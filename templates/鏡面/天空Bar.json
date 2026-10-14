@@ -1,0 +1,36 @@
+{
+  "templateId": "天空Bar",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "天空Bar.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "天空Bar",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "天空Bar"
+  },
+  "layers": {
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1080,
+      "height": 420,
+      "centerX": 540,
+      "centerY": 210,
+      "rotation": 0,
+      "assetFilename": "天空Bar_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg"
+  ]
+}

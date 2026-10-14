@@ -1,0 +1,37 @@
+/* 25節 整合版 — 入口頁樣式（只作用於入口頁；工具頁在 iframe 內用各自的 style.css） */
+:root {
+  --bg: #0b0f18; --panel: #151b28; --line: #273247; --text: #f8fafc; --muted: #94a3b8;
+  --accent: #3b82f6; --accent-soft: rgba(59, 130, 246, .16); --orange: #ff5a1f; --bar-h: 56px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; width: 100%; height: 100%; background: var(--bg); color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+
+.launcher-bar { height: var(--bar-h); display: flex; align-items: center; gap: 14px; padding: 0 16px;
+  background: var(--panel); border-bottom: 1px solid var(--line); }
+.launcher-brand { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+.launcher-brand strong { font-size: 16px; }
+.launcher-sub { color: var(--muted); font-size: 12px; }
+.launcher-select { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
+.launcher-select select { min-width: 260px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line);
+  background: #0e1420; color: var(--text); }
+.launcher-btn { display: inline-block; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--accent);
+  background: var(--accent-soft); color: var(--text); font-size: 13px; cursor: pointer; text-decoration: none; }
+.launcher-btn:hover { background: rgba(59, 130, 246, .3); }
+.launcher-btn.ghost { border-color: var(--line); background: transparent; color: var(--muted); }
+.launcher-status { flex: 1; min-width: 0; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.launcher-actions { display: flex; gap: 8px; }
+
+.launcher-main { height: calc(100% - var(--bar-h)); }
+.launcher-frame { width: 100%; height: 100%; border: 0; background: var(--bg); }
+.launcher-welcome { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
+.launcher-welcome h1 { margin: 0 0 8px; font-size: 24px; }
+.launcher-welcome p { margin: 0 0 24px; color: var(--muted); line-height: 1.6; }
+.launcher-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.launcher-card { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; padding: 14px 16px;
+  border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; text-align: left; }
+.launcher-card:hover { border-color: var(--accent); }
+.launcher-card.is-hit { border-color: var(--orange); box-shadow: 0 0 0 2px rgba(255, 90, 31, .35); }
+.launcher-card small { color: var(--muted); font-size: 11px; }
+.launcher-card strong { font-size: 15px; }
+.launcher-card span { color: var(--muted); font-size: 12px; }

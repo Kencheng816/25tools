@@ -1,0 +1,1863 @@
+{
+  "templateId": "Appier_600x500",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "Appier_600x500.psd"
+  },
+  "canvas": {
+    "width": 600,
+    "height": 500,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "Appier_600x500",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "Appier_600x500"
+  },
+  "layers": {
+    "蝦皮商城_LOGO_純文字": {
+      "type": "image",
+      "psdName": "蝦皮商城_LOGO_純文字",
+      "x": 236,
+      "y": 31,
+      "width": 133,
+      "height": 30,
+      "centerX": 302.5,
+      "centerY": 46,
+      "assetFilename": "Appier_600x500_蝦皮商城_LOGO_純文字.png"
+    },
+    "橫式_25號商城狂購節_LOGO_黃": {
+      "type": "image",
+      "psdName": "橫式_25號商城狂購節_LOGO_黃",
+      "x": 136,
+      "y": 71,
+      "width": 330,
+      "height": 46,
+      "centerX": 301,
+      "centerY": 94,
+      "assetFilename": "Appier_600x500_橫式_25號商城狂購節_LOGO_黃.png"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 202,
+      "y": 138,
+      "width": 197,
+      "height": 29,
+      "centerX": 300.5,
+      "centerY": 152.5,
+      "text": "25號激省25%",
+      "fontSizePt": 29.76,
+      "fontSizePx": 29.76,
+      "fontSizePtRaw": 35.22858810424805,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFE600",
+      "lineHeight": 35.71,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.8414855093068213,
+        "scaleY": 0.8448679705533444
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 29.76,
+          "fontSizePtRaw": 35.22858810424805,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE600",
+          "lineHeight": 35.71,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 149,
+      "y": 131,
+      "width": 99,
+      "height": 35,
+      "centerX": 198.5,
+      "centerY": 148.5,
+      "assetFilename": "Appier_600x500_蝦皮VIP_LOGO.png"
+    },
+    "蝦皮VIP_副標題": {
+      "type": "text",
+      "psdName": "蝦皮VIP_副標題",
+      "x": 250,
+      "y": 142,
+      "width": 202,
+      "height": 24,
+      "centerX": 351,
+      "centerY": 154,
+      "text": "專屬蝦幣25%回饋",
+      "fontSizePt": 24.22,
+      "fontSizePx": 24.22,
+      "fontSizePtRaw": 43.3067741394043,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 29.06,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5608295881145748,
+        "scaleY": 0.559317166799853
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 6,
+          "fontSizePx": 24.22,
+          "fontSizePtRaw": 43.3067741394043,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 29.06,
+          "letterSpacing": 0
+        },
+        {
+          "from": 6,
+          "to": 7,
+          "fontSizePx": 24.22,
+          "fontSizePtRaw": 43.3067741394043,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 29.06,
+          "letterSpacing": 0
+        },
+        {
+          "from": 7,
+          "to": 10,
+          "fontSizePx": 24.22,
+          "fontSizePtRaw": 43.3067741394043,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 29.06,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "副標題_底色": {
+      "type": "shape",
+      "psdName": "副標題_底色",
+      "x": 138,
+      "y": 125,
+      "width": 325,
+      "height": 55,
+      "centerX": 300.5,
+      "centerY": 152.5,
+      "fill": "#113366",
+      "shape": {
+        "kind": "rectangle",
+        "fill": "#113366",
+        "stroke": {
+          "enabled": false,
+          "width": 1,
+          "color": "#000000",
+          "opacity": 100,
+          "raw": {
+            "_obj": "strokeStyle",
+            "strokeStyleVersion": 2,
+            "strokeEnabled": false,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": {
+              "_unit": "pixelsUnit",
+              "_value": 1
+            },
+            "strokeStyleLineDashOffset": {
+              "_unit": "pointsUnit",
+              "_value": 0
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": {
+              "_enum": "strokeStyleLineCapType",
+              "_value": "strokeStyleButtCap"
+            },
+            "strokeStyleLineJoinType": {
+              "_enum": "strokeStyleLineJoinType",
+              "_value": "strokeStyleMiterJoin"
+            },
+            "strokeStyleLineAlignment": {
+              "_enum": "strokeStyleLineAlignment",
+              "_value": "strokeStyleAlignCenter"
+            },
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleLineDashSet": [],
+            "strokeStyleBlendMode": {
+              "_enum": "blendMode",
+              "_value": "normal"
+            },
+            "strokeStyleOpacity": {
+              "_unit": "percentUnit",
+              "_value": 100
+            },
+            "strokeStyleContent": {
+              "_obj": "solidColorLayer",
+              "color": {
+                "_obj": "RGBColor",
+                "red": 0,
+                "grain": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 72
+          }
+        },
+        "cornerRadius": 0,
+        "pathBounds": {
+          "x": 138,
+          "y": 125,
+          "width": 325,
+          "height": 54.5,
+          "centerX": 300.5,
+          "centerY": 152.25
+        },
+        "geometry": {
+          "kind": "rectangle",
+          "originType": 1,
+          "bbox": {
+            "x": 243.99999999999997,
+            "y": 1450,
+            "width": 535,
+            "height": 76,
+            "centerX": 511.5,
+            "centerY": 1488
+          },
+          "corners": [
+            {
+              "x": 244,
+              "y": 1450
+            },
+            {
+              "x": 779,
+              "y": 1450
+            },
+            {
+              "x": 779,
+              "y": 1526
+            },
+            {
+              "x": 244,
+              "y": 1526
+            }
+          ],
+          "polygonSides": null,
+          "maxOuterCornerRadius": null,
+          "transform": {
+            "xx": 1,
+            "xy": 0,
+            "yx": 0,
+            "yy": 1.085714,
+            "tx": -15,
+            "ty": -130.8,
+            "rotationDeg": 0,
+            "scaleX": 1,
+            "scaleY": 1.085714,
+            "raw": {
+              "_obj": "transform",
+              "xx": 1,
+              "xy": 0,
+              "yx": 0,
+              "yy": 1.0857142857142856,
+              "tx": -15.000000000000028,
+              "ty": -130.79999999999995
+            }
+          },
+          "source": "keyOriginType"
+        },
+        "vectorPath": [
+          {
+            "anchor": {
+              "x": 138,
+              "y": 125
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "classFloatRect",
+              "top": 125,
+              "left": 138,
+              "bottom": 179.5,
+              "right": 463
+            },
+            "sourcePath": "pathBounds.pathBounds"
+          },
+          {
+            "anchor": {
+              "x": 244,
+              "y": 1450
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "unitRect",
+              "unitValueQuadVersion": 1,
+              "top": {
+                "_unit": "pixelsUnit",
+                "_value": 1450
+              },
+              "left": {
+                "_unit": "pixelsUnit",
+                "_value": 243.99999999999997
+              },
+              "bottom": {
+                "_unit": "pixelsUnit",
+                "_value": 1526
+              },
+              "right": {
+                "_unit": "pixelsUnit",
+                "_value": 779
+              }
+            },
+            "sourcePath": "keyOriginType[0].keyOriginShapeBBox"
+          },
+          {
+            "anchor": {
+              "x": 779,
+              "y": 1450
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 779,
+              "vertical": 1450
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerB"
+          },
+          {
+            "anchor": {
+              "x": 779,
+              "y": 1526
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 779,
+              "vertical": 1526
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerC"
+          },
+          {
+            "anchor": {
+              "x": 244,
+              "y": 1526
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 243.99999999999997,
+              "vertical": 1526
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerD"
+          }
+        ],
+        "vectorMask": null,
+        "vectorDiscovery": {
+          "candidateCount": 5,
+          "candidatePaths": [
+            "pathBounds",
+            "pathBounds.pathBounds",
+            "keyOriginType",
+            "keyOriginType.0.keyOriginType",
+            "keyOriginType.0.keyOriginBoxCorners"
+          ],
+          "bezierPointCount": 5,
+          "bezierPoints": [
+            {
+              "anchor": {
+                "x": 138,
+                "y": 125
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "classFloatRect",
+                "top": 125,
+                "left": 138,
+                "bottom": 179.5,
+                "right": 463
+              },
+              "sourcePath": "pathBounds.pathBounds"
+            },
+            {
+              "anchor": {
+                "x": 244,
+                "y": 1450
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "unitRect",
+                "unitValueQuadVersion": 1,
+                "top": {
+                  "_unit": "pixelsUnit",
+                  "_value": 1450
+                },
+                "left": {
+                  "_unit": "pixelsUnit",
+                  "_value": 243.99999999999997
+                },
+                "bottom": {
+                  "_unit": "pixelsUnit",
+                  "_value": 1526
+                },
+                "right": {
+                  "_unit": "pixelsUnit",
+                  "_value": 779
+                }
+              },
+              "sourcePath": "keyOriginType[0].keyOriginShapeBBox"
+            },
+            {
+              "anchor": {
+                "x": 779,
+                "y": 1450
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "paint",
+                "horizontal": 779,
+                "vertical": 1450
+              },
+              "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerB"
+            },
+            {
+              "anchor": {
+                "x": 779,
+                "y": 1526
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "paint",
+                "horizontal": 779,
+                "vertical": 1526
+              },
+              "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerC"
+            },
+            {
+              "anchor": {
+                "x": 244,
+                "y": 1526
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "paint",
+                "horizontal": 243.99999999999997,
+                "vertical": 1526
+              },
+              "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerD"
+            }
+          ],
+          "rawCandidates": [
+            {
+              "key": "pathBounds",
+              "path": "pathBounds",
+              "value": {
+                "_obj": "rectangle",
+                "pathBounds": {
+                  "_obj": "classFloatRect",
+                  "top": 125,
+                  "left": 138,
+                  "bottom": 179.5,
+                  "right": 463
+                }
+              }
+            },
+            {
+              "key": "pathBounds",
+              "path": "pathBounds.pathBounds",
+              "value": {
+                "_obj": "classFloatRect",
+                "top": 125,
+                "left": 138,
+                "bottom": 179.5,
+                "right": 463
+              }
+            },
+            {
+              "key": "keyOriginType",
+              "path": "keyOriginType",
+              "value": [
+                {
+                  "keyOriginType": 1,
+                  "keyOriginResolution": 96.01199340820312,
+                  "keyOriginShapeBBox": {
+                    "_obj": "unitRect",
+                    "unitValueQuadVersion": 1,
+                    "top": {
+                      "_unit": "pixelsUnit",
+                      "_value": 1450
+                    },
+                    "left": {
+                      "_unit": "pixelsUnit",
+                      "_value": 243.99999999999997
+                    },
+                    "bottom": {
+                      "_unit": "pixelsUnit",
+                      "_value": 1526
+                    },
+                    "right": {
+                      "_unit": "pixelsUnit",
+                      "_value": 779
+                    }
+                  },
+                  "keyOriginBoxCorners": {
+                    "rectangleCornerA": {
+                      "_obj": "paint",
+                      "horizontal": 243.99999999999997,
+                      "vertical": 1450
+                    },
+                    "rectangleCornerB": {
+                      "_obj": "paint",
+                      "horizontal": 779,
+                      "vertical": 1450
+                    },
+                    "rectangleCornerC": {
+                      "_obj": "paint",
+                      "horizontal": 779,
+                      "vertical": 1526
+                    },
+                    "rectangleCornerD": {
+                      "_obj": "paint",
+                      "horizontal": 243.99999999999997,
+                      "vertical": 1526
+                    }
+                  },
+                  "transform": {
+                    "_obj": "transform",
+                    "xx": 1,
+                    "xy": 0,
+                    "yx": 0,
+                    "yy": 1.0857142857142856,
+                    "tx": -15.000000000000028,
+                    "ty": -130.79999999999995
+                  },
+                  "keyShapeInvalidated": true,
+                  "keyOriginIndex": 0,
+                  "keyActionMode": 0
+                }
+              ]
+            },
+            {
+              "key": "keyOriginType",
+              "path": "keyOriginType.0.keyOriginType",
+              "value": 1
+            },
+            {
+              "key": "keyOriginBoxCorners",
+              "path": "keyOriginType.0.keyOriginBoxCorners",
+              "value": {
+                "rectangleCornerA": {
+                  "_obj": "paint",
+                  "horizontal": 243.99999999999997,
+                  "vertical": 1450
+                },
+                "rectangleCornerB": {
+                  "_obj": "paint",
+                  "horizontal": 779,
+                  "vertical": 1450
+                },
+                "rectangleCornerC": {
+                  "_obj": "paint",
+                  "horizontal": 779,
+                  "vertical": 1526
+                },
+                "rectangleCornerD": {
+                  "_obj": "paint",
+                  "horizontal": 243.99999999999997,
+                  "vertical": 1526
+                }
+              }
+            }
+          ]
+        },
+        "bezierPoints": [
+          {
+            "anchor": {
+              "x": 138,
+              "y": 125
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "classFloatRect",
+              "top": 125,
+              "left": 138,
+              "bottom": 179.5,
+              "right": 463
+            },
+            "sourcePath": "pathBounds.pathBounds"
+          },
+          {
+            "anchor": {
+              "x": 244,
+              "y": 1450
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "unitRect",
+              "unitValueQuadVersion": 1,
+              "top": {
+                "_unit": "pixelsUnit",
+                "_value": 1450
+              },
+              "left": {
+                "_unit": "pixelsUnit",
+                "_value": 243.99999999999997
+              },
+              "bottom": {
+                "_unit": "pixelsUnit",
+                "_value": 1526
+              },
+              "right": {
+                "_unit": "pixelsUnit",
+                "_value": 779
+              }
+            },
+            "sourcePath": "keyOriginType[0].keyOriginShapeBBox"
+          },
+          {
+            "anchor": {
+              "x": 779,
+              "y": 1450
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 779,
+              "vertical": 1450
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerB"
+          },
+          {
+            "anchor": {
+              "x": 779,
+              "y": 1526
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 779,
+              "vertical": 1526
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerC"
+          },
+          {
+            "anchor": {
+              "x": 244,
+              "y": 1526
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 243.99999999999997,
+              "vertical": 1526
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerD"
+          }
+        ],
+        "hasVectorData": true,
+        "rawDescriptorKeys": [
+          "name",
+          "color",
+          "visible",
+          "mode",
+          "opacity",
+          "layerID",
+          "itemIndex",
+          "count",
+          "preserveTransparency",
+          "layerFXVisible",
+          "globalAngle",
+          "background",
+          "layerSection",
+          "layerLocking",
+          "group",
+          "targetChannels",
+          "visibleChannels",
+          "channelRestrictions",
+          "fillOpacity",
+          "hasUserMask",
+          "hasVectorMask",
+          "proportionalScaling",
+          "layerKind",
+          "hasFilterMask",
+          "userMaskDensity",
+          "userMaskFeather",
+          "vectorMaskDensity",
+          "vectorMaskFeather",
+          "filterMaskDensity",
+          "filterMaskFeather",
+          "adjustment",
+          "bounds",
+          "boundsNoEffects",
+          "boundsNoMask",
+          "pathBounds",
+          "useAlignedRendering",
+          "generatorSettings",
+          "AGMStrokeStyleInfo",
+          "keyOriginType",
+          "fillEnabled",
+          "animationProtection",
+          "isSyntheticFill",
+          "artboardEnabled",
+          "vectorMaskEnabled",
+          "vectorMaskEmpty",
+          "vectorMaskLinked",
+          "textWarningLevel",
+          "parentLayerID"
+        ],
+        "rawShapeDescriptor": {
+          "layerKind": 4,
+          "keyOriginType": [
+            {
+              "keyOriginType": 1,
+              "keyOriginResolution": 96.01199340820312,
+              "keyOriginShapeBBox": {
+                "_obj": "unitRect",
+                "unitValueQuadVersion": 1,
+                "top": {
+                  "_unit": "pixelsUnit",
+                  "_value": 1450
+                },
+                "left": {
+                  "_unit": "pixelsUnit",
+                  "_value": 243.99999999999997
+                },
+                "bottom": {
+                  "_unit": "pixelsUnit",
+                  "_value": 1526
+                },
+                "right": {
+                  "_unit": "pixelsUnit",
+                  "_value": 779
+                }
+              },
+              "keyOriginBoxCorners": {
+                "rectangleCornerA": {
+                  "_obj": "paint",
+                  "horizontal": 243.99999999999997,
+                  "vertical": 1450
+                },
+                "rectangleCornerB": {
+                  "_obj": "paint",
+                  "horizontal": 779,
+                  "vertical": 1450
+                },
+                "rectangleCornerC": {
+                  "_obj": "paint",
+                  "horizontal": 779,
+                  "vertical": 1526
+                },
+                "rectangleCornerD": {
+                  "_obj": "paint",
+                  "horizontal": 243.99999999999997,
+                  "vertical": 1526
+                }
+              },
+              "transform": {
+                "_obj": "transform",
+                "xx": 1,
+                "xy": 0,
+                "yx": 0,
+                "yy": 1.0857142857142856,
+                "tx": -15.000000000000028,
+                "ty": -130.79999999999995
+              },
+              "keyShapeInvalidated": true,
+              "keyOriginIndex": 0,
+              "keyActionMode": 0
+            }
+          ],
+          "adjustment": [
+            {
+              "_obj": "solidColorLayer",
+              "color": {
+                "_obj": "RGBColor",
+                "red": 17.003631591796875,
+                "grain": 51.00311279296875,
+                "blue": 101.99844360351562
+              }
+            }
+          ],
+          "pathBounds": {
+            "_obj": "rectangle",
+            "pathBounds": {
+              "_obj": "classFloatRect",
+              "top": 125,
+              "left": 138,
+              "bottom": 179.5,
+              "right": 463
+            }
+          },
+          "vectorMaskEnabled": true,
+          "hasVectorMask": true,
+          "AGMStrokeStyleInfo": {
+            "_obj": "strokeStyle",
+            "strokeStyleVersion": 2,
+            "strokeEnabled": false,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": {
+              "_unit": "pixelsUnit",
+              "_value": 1
+            },
+            "strokeStyleLineDashOffset": {
+              "_unit": "pointsUnit",
+              "_value": 0
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": {
+              "_enum": "strokeStyleLineCapType",
+              "_value": "strokeStyleButtCap"
+            },
+            "strokeStyleLineJoinType": {
+              "_enum": "strokeStyleLineJoinType",
+              "_value": "strokeStyleMiterJoin"
+            },
+            "strokeStyleLineAlignment": {
+              "_enum": "strokeStyleLineAlignment",
+              "_value": "strokeStyleAlignCenter"
+            },
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleLineDashSet": [],
+            "strokeStyleBlendMode": {
+              "_enum": "blendMode",
+              "_value": "normal"
+            },
+            "strokeStyleOpacity": {
+              "_unit": "percentUnit",
+              "_value": 100
+            },
+            "strokeStyleContent": {
+              "_obj": "solidColorLayer",
+              "color": {
+                "_obj": "RGBColor",
+                "red": 0,
+                "grain": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 72
+          },
+          "bounds": {
+            "_obj": "rectangle",
+            "top": {
+              "_unit": "pixelsUnit",
+              "_value": 125
+            },
+            "left": {
+              "_unit": "pixelsUnit",
+              "_value": 138
+            },
+            "bottom": {
+              "_unit": "pixelsUnit",
+              "_value": 180
+            },
+            "right": {
+              "_unit": "pixelsUnit",
+              "_value": 463
+            },
+            "width": {
+              "_unit": "pixelsUnit",
+              "_value": 325
+            },
+            "height": {
+              "_unit": "pixelsUnit",
+              "_value": 55
+            }
+          },
+          "boundsNoEffects": {
+            "_obj": "rectangle",
+            "top": {
+              "_unit": "pixelsUnit",
+              "_value": 125
+            },
+            "left": {
+              "_unit": "pixelsUnit",
+              "_value": 138
+            },
+            "bottom": {
+              "_unit": "pixelsUnit",
+              "_value": 180
+            },
+            "right": {
+              "_unit": "pixelsUnit",
+              "_value": 463
+            },
+            "width": {
+              "_unit": "pixelsUnit",
+              "_value": 325
+            },
+            "height": {
+              "_unit": "pixelsUnit",
+              "_value": 55
+            }
+          }
+        }
+      }
+    },
+    "警語": {
+      "type": "text",
+      "psdName": "警語",
+      "x": 221,
+      "y": 183,
+      "width": 159,
+      "height": 14,
+      "centerX": 300.5,
+      "centerY": 190,
+      "text": "優惠數量有限，售完為止",
+      "fontSizePt": 14.5,
+      "fontSizePx": 14.5,
+      "fontSizePtRaw": 37.178070068359375,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Regular",
+      "fontWeight": "400",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 17.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.3881968468269734,
+        "scaleY": 0.3900148930352087
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 12,
+          "fontSizePx": 14.5,
+          "fontSizePtRaw": 37.178070068359375,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "400",
+          "fontStyleName": "Regular",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Regular",
+          "color": "#FFFFFF",
+          "lineHeight": 17.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "P_範圍": {
+      "type": "shape",
+      "psdName": "P_範圍",
+      "x": 144,
+      "y": 208,
+      "width": 313,
+      "height": 275,
+      "centerX": 300.5,
+      "centerY": 345.5,
+      "fill": "#FFFFFF",
+      "shape": {
+        "kind": "rectangle",
+        "fill": "#FFFFFF",
+        "stroke": {
+          "enabled": true,
+          "width": 1,
+          "color": "#00FFFF",
+          "opacity": 100,
+          "raw": {
+            "_obj": "strokeStyle",
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": false,
+            "strokeStyleLineWidth": {
+              "_unit": "pixelsUnit",
+              "_value": 1
+            },
+            "strokeStyleLineDashOffset": {
+              "_unit": "pointsUnit",
+              "_value": 0
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": {
+              "_enum": "strokeStyleLineCapType",
+              "_value": "strokeStyleButtCap"
+            },
+            "strokeStyleLineJoinType": {
+              "_enum": "strokeStyleLineJoinType",
+              "_value": "strokeStyleMiterJoin"
+            },
+            "strokeStyleLineAlignment": {
+              "_enum": "strokeStyleLineAlignment",
+              "_value": "strokeStyleAlignCenter"
+            },
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleLineDashSet": [],
+            "strokeStyleBlendMode": {
+              "_enum": "blendMode",
+              "_value": "normal"
+            },
+            "strokeStyleOpacity": {
+              "_unit": "percentUnit",
+              "_value": 100
+            },
+            "strokeStyleContent": {
+              "_obj": "solidColorLayer",
+              "color": {
+                "_obj": "RGBColor",
+                "red": 0,
+                "grain": 255,
+                "blue": 255
+              }
+            },
+            "strokeStyleResolution": 72
+          }
+        },
+        "cornerRadius": 0,
+        "pathBounds": {
+          "x": 144.9375,
+          "y": 208.5,
+          "width": 311.09375,
+          "height": 273.875,
+          "centerX": 300.484375,
+          "centerY": 345.4375
+        },
+        "geometry": {
+          "kind": "rectangle",
+          "originType": 1,
+          "bbox": {
+            "x": 145.44124338429123,
+            "y": 208.98635950668904,
+            "width": 310.09729833356926,
+            "height": 272.8856228082751,
+            "centerX": 300.48989255107585,
+            "centerY": 345.4291709108266
+          },
+          "corners": [
+            {
+              "x": 145.441,
+              "y": 208.986
+            },
+            {
+              "x": 455.539,
+              "y": 208.986
+            },
+            {
+              "x": 455.539,
+              "y": 481.872
+            },
+            {
+              "x": 145.441,
+              "y": 481.872
+            }
+          ],
+          "polygonSides": null,
+          "maxOuterCornerRadius": null,
+          "transform": {
+            "xx": 0.861381,
+            "xy": 0,
+            "yx": 0,
+            "yy": 0.758016,
+            "tx": -258.547,
+            "ty": 108.928,
+            "rotationDeg": 0,
+            "scaleX": 0.861381,
+            "scaleY": 0.758016,
+            "raw": {
+              "_obj": "transform",
+              "xx": 0.8613813842599145,
+              "xy": 0,
+              "yx": 1.7950474030895034e-16,
+              "yy": 0.7580156189118757,
+              "tx": -258.5466258336087,
+              "ty": 108.9282978103214
+            }
+          },
+          "source": "keyOriginType"
+        },
+        "vectorPath": [
+          {
+            "anchor": {
+              "x": 144.938,
+              "y": 208.5
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "classFloatRect",
+              "top": 208.5,
+              "left": 144.9375,
+              "bottom": 482.375,
+              "right": 456.03125
+            },
+            "sourcePath": "pathBounds.pathBounds"
+          },
+          {
+            "anchor": {
+              "x": 145.441,
+              "y": 208.986
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "unitRect",
+              "unitValueQuadVersion": 1,
+              "top": {
+                "_unit": "pixelsUnit",
+                "_value": 208.98635950668904
+              },
+              "left": {
+                "_unit": "pixelsUnit",
+                "_value": 145.44124338429123
+              },
+              "bottom": {
+                "_unit": "pixelsUnit",
+                "_value": 481.87198231496416
+              },
+              "right": {
+                "_unit": "pixelsUnit",
+                "_value": 455.5385417178605
+              }
+            },
+            "sourcePath": "keyOriginType[0].keyOriginShapeBBox"
+          },
+          {
+            "anchor": {
+              "x": 455.539,
+              "y": 208.986
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 455.5385417178605,
+              "vertical": 208.98635950668904
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerB"
+          },
+          {
+            "anchor": {
+              "x": 455.539,
+              "y": 481.872
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 455.5385417178605,
+              "vertical": 481.87198231496416
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerC"
+          },
+          {
+            "anchor": {
+              "x": 145.441,
+              "y": 481.872
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 145.44124338429128,
+              "vertical": 481.87198231496416
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerD"
+          }
+        ],
+        "vectorMask": null,
+        "vectorDiscovery": {
+          "candidateCount": 5,
+          "candidatePaths": [
+            "pathBounds",
+            "pathBounds.pathBounds",
+            "keyOriginType",
+            "keyOriginType.0.keyOriginType",
+            "keyOriginType.0.keyOriginBoxCorners"
+          ],
+          "bezierPointCount": 5,
+          "bezierPoints": [
+            {
+              "anchor": {
+                "x": 144.938,
+                "y": 208.5
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "classFloatRect",
+                "top": 208.5,
+                "left": 144.9375,
+                "bottom": 482.375,
+                "right": 456.03125
+              },
+              "sourcePath": "pathBounds.pathBounds"
+            },
+            {
+              "anchor": {
+                "x": 145.441,
+                "y": 208.986
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "unitRect",
+                "unitValueQuadVersion": 1,
+                "top": {
+                  "_unit": "pixelsUnit",
+                  "_value": 208.98635950668904
+                },
+                "left": {
+                  "_unit": "pixelsUnit",
+                  "_value": 145.44124338429123
+                },
+                "bottom": {
+                  "_unit": "pixelsUnit",
+                  "_value": 481.87198231496416
+                },
+                "right": {
+                  "_unit": "pixelsUnit",
+                  "_value": 455.5385417178605
+                }
+              },
+              "sourcePath": "keyOriginType[0].keyOriginShapeBBox"
+            },
+            {
+              "anchor": {
+                "x": 455.539,
+                "y": 208.986
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "paint",
+                "horizontal": 455.5385417178605,
+                "vertical": 208.98635950668904
+              },
+              "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerB"
+            },
+            {
+              "anchor": {
+                "x": 455.539,
+                "y": 481.872
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "paint",
+                "horizontal": 455.5385417178605,
+                "vertical": 481.87198231496416
+              },
+              "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerC"
+            },
+            {
+              "anchor": {
+                "x": 145.441,
+                "y": 481.872
+              },
+              "leftDirection": null,
+              "rightDirection": null,
+              "smooth": false,
+              "raw": {
+                "_obj": "paint",
+                "horizontal": 145.44124338429128,
+                "vertical": 481.87198231496416
+              },
+              "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerD"
+            }
+          ],
+          "rawCandidates": [
+            {
+              "key": "pathBounds",
+              "path": "pathBounds",
+              "value": {
+                "_obj": "rectangle",
+                "pathBounds": {
+                  "_obj": "classFloatRect",
+                  "top": 208.5,
+                  "left": 144.9375,
+                  "bottom": 482.375,
+                  "right": 456.03125
+                }
+              }
+            },
+            {
+              "key": "pathBounds",
+              "path": "pathBounds.pathBounds",
+              "value": {
+                "_obj": "classFloatRect",
+                "top": 208.5,
+                "left": 144.9375,
+                "bottom": 482.375,
+                "right": 456.03125
+              }
+            },
+            {
+              "key": "keyOriginType",
+              "path": "keyOriginType",
+              "value": [
+                {
+                  "keyOriginType": 1,
+                  "keyOriginResolution": 72,
+                  "keyOriginShapeBBox": {
+                    "_obj": "unitRect",
+                    "unitValueQuadVersion": 1,
+                    "top": {
+                      "_unit": "pixelsUnit",
+                      "_value": 208.98635950668904
+                    },
+                    "left": {
+                      "_unit": "pixelsUnit",
+                      "_value": 145.44124338429123
+                    },
+                    "bottom": {
+                      "_unit": "pixelsUnit",
+                      "_value": 481.87198231496416
+                    },
+                    "right": {
+                      "_unit": "pixelsUnit",
+                      "_value": 455.5385417178605
+                    }
+                  },
+                  "keyOriginBoxCorners": {
+                    "rectangleCornerA": {
+                      "_obj": "paint",
+                      "horizontal": 145.44124338429123,
+                      "vertical": 208.98635950668904
+                    },
+                    "rectangleCornerB": {
+                      "_obj": "paint",
+                      "horizontal": 455.5385417178605,
+                      "vertical": 208.98635950668904
+                    },
+                    "rectangleCornerC": {
+                      "_obj": "paint",
+                      "horizontal": 455.5385417178605,
+                      "vertical": 481.87198231496416
+                    },
+                    "rectangleCornerD": {
+                      "_obj": "paint",
+                      "horizontal": 145.44124338429128,
+                      "vertical": 481.87198231496416
+                    }
+                  },
+                  "transform": {
+                    "_obj": "transform",
+                    "xx": 0.8613813842599145,
+                    "xy": 0,
+                    "yx": 1.7950474030895034e-16,
+                    "yy": 0.7580156189118757,
+                    "tx": -258.5466258336087,
+                    "ty": 108.9282978103214
+                  },
+                  "keyOriginIndex": 0,
+                  "keyActionMode": 0
+                }
+              ]
+            },
+            {
+              "key": "keyOriginType",
+              "path": "keyOriginType.0.keyOriginType",
+              "value": 1
+            },
+            {
+              "key": "keyOriginBoxCorners",
+              "path": "keyOriginType.0.keyOriginBoxCorners",
+              "value": {
+                "rectangleCornerA": {
+                  "_obj": "paint",
+                  "horizontal": 145.44124338429123,
+                  "vertical": 208.98635950668904
+                },
+                "rectangleCornerB": {
+                  "_obj": "paint",
+                  "horizontal": 455.5385417178605,
+                  "vertical": 208.98635950668904
+                },
+                "rectangleCornerC": {
+                  "_obj": "paint",
+                  "horizontal": 455.5385417178605,
+                  "vertical": 481.87198231496416
+                },
+                "rectangleCornerD": {
+                  "_obj": "paint",
+                  "horizontal": 145.44124338429128,
+                  "vertical": 481.87198231496416
+                }
+              }
+            }
+          ]
+        },
+        "bezierPoints": [
+          {
+            "anchor": {
+              "x": 144.938,
+              "y": 208.5
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "classFloatRect",
+              "top": 208.5,
+              "left": 144.9375,
+              "bottom": 482.375,
+              "right": 456.03125
+            },
+            "sourcePath": "pathBounds.pathBounds"
+          },
+          {
+            "anchor": {
+              "x": 145.441,
+              "y": 208.986
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "unitRect",
+              "unitValueQuadVersion": 1,
+              "top": {
+                "_unit": "pixelsUnit",
+                "_value": 208.98635950668904
+              },
+              "left": {
+                "_unit": "pixelsUnit",
+                "_value": 145.44124338429123
+              },
+              "bottom": {
+                "_unit": "pixelsUnit",
+                "_value": 481.87198231496416
+              },
+              "right": {
+                "_unit": "pixelsUnit",
+                "_value": 455.5385417178605
+              }
+            },
+            "sourcePath": "keyOriginType[0].keyOriginShapeBBox"
+          },
+          {
+            "anchor": {
+              "x": 455.539,
+              "y": 208.986
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 455.5385417178605,
+              "vertical": 208.98635950668904
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerB"
+          },
+          {
+            "anchor": {
+              "x": 455.539,
+              "y": 481.872
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 455.5385417178605,
+              "vertical": 481.87198231496416
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerC"
+          },
+          {
+            "anchor": {
+              "x": 145.441,
+              "y": 481.872
+            },
+            "leftDirection": null,
+            "rightDirection": null,
+            "smooth": false,
+            "raw": {
+              "_obj": "paint",
+              "horizontal": 145.44124338429128,
+              "vertical": 481.87198231496416
+            },
+            "sourcePath": "keyOriginType[0].keyOriginBoxCorners.rectangleCornerD"
+          }
+        ],
+        "hasVectorData": true,
+        "rawDescriptorKeys": [
+          "name",
+          "color",
+          "visible",
+          "mode",
+          "opacity",
+          "layerID",
+          "itemIndex",
+          "count",
+          "preserveTransparency",
+          "layerFXVisible",
+          "globalAngle",
+          "background",
+          "layerSection",
+          "layerLocking",
+          "group",
+          "targetChannels",
+          "visibleChannels",
+          "channelRestrictions",
+          "fillOpacity",
+          "hasUserMask",
+          "hasVectorMask",
+          "proportionalScaling",
+          "layerKind",
+          "hasFilterMask",
+          "userMaskDensity",
+          "userMaskFeather",
+          "vectorMaskDensity",
+          "vectorMaskFeather",
+          "filterMaskDensity",
+          "filterMaskFeather",
+          "adjustment",
+          "bounds",
+          "boundsNoEffects",
+          "boundsNoMask",
+          "pathBounds",
+          "useAlignedRendering",
+          "generatorSettings",
+          "AGMStrokeStyleInfo",
+          "keyOriginType",
+          "fillEnabled",
+          "animationProtection",
+          "isSyntheticFill",
+          "artboardEnabled",
+          "vectorMaskEnabled",
+          "vectorMaskEmpty",
+          "vectorMaskLinked",
+          "textWarningLevel",
+          "parentLayerID"
+        ],
+        "rawShapeDescriptor": {
+          "layerKind": 4,
+          "keyOriginType": [
+            {
+              "keyOriginType": 1,
+              "keyOriginResolution": 72,
+              "keyOriginShapeBBox": {
+                "_obj": "unitRect",
+                "unitValueQuadVersion": 1,
+                "top": {
+                  "_unit": "pixelsUnit",
+                  "_value": 208.98635950668904
+                },
+                "left": {
+                  "_unit": "pixelsUnit",
+                  "_value": 145.44124338429123
+                },
+                "bottom": {
+                  "_unit": "pixelsUnit",
+                  "_value": 481.87198231496416
+                },
+                "right": {
+                  "_unit": "pixelsUnit",
+                  "_value": 455.5385417178605
+                }
+              },
+              "keyOriginBoxCorners": {
+                "rectangleCornerA": {
+                  "_obj": "paint",
+                  "horizontal": 145.44124338429123,
+                  "vertical": 208.98635950668904
+                },
+                "rectangleCornerB": {
+                  "_obj": "paint",
+                  "horizontal": 455.5385417178605,
+                  "vertical": 208.98635950668904
+                },
+                "rectangleCornerC": {
+                  "_obj": "paint",
+                  "horizontal": 455.5385417178605,
+                  "vertical": 481.87198231496416
+                },
+                "rectangleCornerD": {
+                  "_obj": "paint",
+                  "horizontal": 145.44124338429128,
+                  "vertical": 481.87198231496416
+                }
+              },
+              "transform": {
+                "_obj": "transform",
+                "xx": 0.8613813842599145,
+                "xy": 0,
+                "yx": 1.7950474030895034e-16,
+                "yy": 0.7580156189118757,
+                "tx": -258.5466258336087,
+                "ty": 108.9282978103214
+              },
+              "keyOriginIndex": 0,
+              "keyActionMode": 0
+            }
+          ],
+          "adjustment": [
+            {
+              "_obj": "solidColorLayer",
+              "color": {
+                "_obj": "RGBColor",
+                "red": 255,
+                "grain": 255,
+                "blue": 255
+              }
+            }
+          ],
+          "pathBounds": {
+            "_obj": "rectangle",
+            "pathBounds": {
+              "_obj": "classFloatRect",
+              "top": 208.5,
+              "left": 144.9375,
+              "bottom": 482.375,
+              "right": 456.03125
+            }
+          },
+          "vectorMaskEnabled": true,
+          "hasVectorMask": true,
+          "AGMStrokeStyleInfo": {
+            "_obj": "strokeStyle",
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": false,
+            "strokeStyleLineWidth": {
+              "_unit": "pixelsUnit",
+              "_value": 1
+            },
+            "strokeStyleLineDashOffset": {
+              "_unit": "pointsUnit",
+              "_value": 0
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": {
+              "_enum": "strokeStyleLineCapType",
+              "_value": "strokeStyleButtCap"
+            },
+            "strokeStyleLineJoinType": {
+              "_enum": "strokeStyleLineJoinType",
+              "_value": "strokeStyleMiterJoin"
+            },
+            "strokeStyleLineAlignment": {
+              "_enum": "strokeStyleLineAlignment",
+              "_value": "strokeStyleAlignCenter"
+            },
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleLineDashSet": [],
+            "strokeStyleBlendMode": {
+              "_enum": "blendMode",
+              "_value": "normal"
+            },
+            "strokeStyleOpacity": {
+              "_unit": "percentUnit",
+              "_value": 100
+            },
+            "strokeStyleContent": {
+              "_obj": "solidColorLayer",
+              "color": {
+                "_obj": "RGBColor",
+                "red": 0,
+                "grain": 255,
+                "blue": 255
+              }
+            },
+            "strokeStyleResolution": 72
+          },
+          "bounds": {
+            "_obj": "rectangle",
+            "top": {
+              "_unit": "pixelsUnit",
+              "_value": 208
+            },
+            "left": {
+              "_unit": "pixelsUnit",
+              "_value": 144
+            },
+            "bottom": {
+              "_unit": "pixelsUnit",
+              "_value": 483
+            },
+            "right": {
+              "_unit": "pixelsUnit",
+              "_value": 457
+            },
+            "width": {
+              "_unit": "pixelsUnit",
+              "_value": 313
+            },
+            "height": {
+              "_unit": "pixelsUnit",
+              "_value": 275
+            }
+          },
+          "boundsNoEffects": {
+            "_obj": "rectangle",
+            "top": {
+              "_unit": "pixelsUnit",
+              "_value": 208
+            },
+            "left": {
+              "_unit": "pixelsUnit",
+              "_value": 144
+            },
+            "bottom": {
+              "_unit": "pixelsUnit",
+              "_value": 483
+            },
+            "right": {
+              "_unit": "pixelsUnit",
+              "_value": 457
+            },
+            "width": {
+              "_unit": "pixelsUnit",
+              "_value": 313
+            },
+            "height": {
+              "_unit": "pixelsUnit",
+              "_value": 275
+            }
+          }
+        }
+      }
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 73,
+      "y": 222,
+      "width": 453,
+      "height": 246,
+      "centerX": 299.5,
+      "centerY": 345,
+      "assetFilename": "Appier_600x500_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 453
+    },
+    "P_01": {
+      "type": "image",
+      "psdName": "P_01",
+      "x": 266,
+      "y": 272,
+      "width": 187,
+      "height": 186,
+      "centerX": 359.5,
+      "centerY": 365,
+      "assetFilename": "Appier_600x500_P_01.png"
+    },
+    "P_02": {
+      "type": "image",
+      "psdName": "P_02",
+      "x": 68,
+      "y": 208,
+      "width": 297,
+      "height": 231,
+      "centerX": 216.5,
+      "centerY": 323.5,
+      "assetFilename": "Appier_600x500_P_02.png"
+    },
+    "DECO_錢幣_右上": {
+      "type": "image",
+      "psdName": "DECO_錢幣_右上",
+      "x": 428,
+      "y": 204,
+      "width": 79,
+      "height": 66,
+      "centerX": 467.5,
+      "centerY": 237,
+      "assetFilename": "Appier_600x500_DECO_錢幣_右上.png"
+    },
+    "DECO_券_左上": {
+      "type": "image",
+      "psdName": "DECO_券_左上",
+      "x": 84,
+      "y": 200,
+      "width": 155,
+      "height": 106,
+      "centerX": 161.5,
+      "centerY": 253,
+      "assetFilename": "Appier_600x500_DECO_券_左上.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 600,
+      "height": 500,
+      "centerX": 300,
+      "centerY": 250,
+      "assetFilename": "Appier_600x500_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "DECO_券_左上",
+    "DECO_錢幣_右上",
+    "P_02",
+    "P_01",
+    "product",
+    "P_範圍",
+    "警語",
+    "副標題_底色",
+    "蝦皮VIP_副標題",
+    "蝦皮VIP_LOGO",
+    "subtitle",
+    "橫式_25號商城狂購節_LOGO_黃",
+    "蝦皮商城_LOGO_純文字"
+  ]
+}

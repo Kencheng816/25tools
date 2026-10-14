@@ -1,0 +1,68 @@
+{
+  "templateId": "Example_Template",
+  "canvas": {
+    "width": 1200,
+    "height": 628,
+    "unit": "px"
+  },
+  "layers": {
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "assetFilename": "KV_BG.png",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 628,
+      "hidden": false,
+      "keepAspectRatio": true
+    },
+    "logo": {
+      "type": "image",
+      "psdName": "LOGO",
+      "assetFilename": "LOGO.svg",
+      "x": 60,
+      "y": 60,
+      "width": 160,
+      "height": 60,
+      "hidden": false,
+      "keepAspectRatio": true
+    },
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "role": "title",
+      "x": 60,
+      "y": 160,
+      "width": 800,
+      "height": 60,
+      "text": "主標題",
+      "fontSizePx": 48,
+      "color": "#ffffff"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "role": "subtitle",
+      "x": 60,
+      "y": 230,
+      "width": 800,
+      "height": 40,
+      "text": "副標題",
+      "fontSizePx": 28,
+      "color": "#ffffff"
+    },
+    "cta": {
+      "type": "image",
+      "psdName": "CTA",
+      "assetFilename": "CTA.png",
+      "x": 60,
+      "y": 500,
+      "width": 200,
+      "height": 60,
+      "hidden": false,
+      "keepAspectRatio": true
+    }
+  },
+  "renderOrder": ["kv_bg", "logo", "title", "subtitle", "cta"]
+}

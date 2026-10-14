@@ -1,0 +1,36 @@
+{
+  "templateId": "底Bar",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "底Bar.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "底Bar",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "底Bar"
+  },
+  "layers": {
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 1616,
+      "width": 1080,
+      "height": 304,
+      "centerX": 540,
+      "centerY": 1768,
+      "rotation": 0,
+      "assetFilename": "底Bar_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg"
+  ]
+}

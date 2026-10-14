@@ -1,0 +1,46 @@
+{
+  "templateId": "正式(16x9外)",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "正式(16x9外).psd"
+  },
+  "canvas": {
+    "width": 1600,
+    "height": 900,
+    "unit": "px",
+    "source": "document",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "正式(16x9外)"
+  },
+  "layers": {
+    "USP": {
+      "type": "image",
+      "psdName": "USP",
+      "x": 505,
+      "y": 564,
+      "width": 586,
+      "height": 114,
+      "centerX": 798,
+      "centerY": 621,
+      "assetFilename": "正式(16x9外)_USP.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1600,
+      "height": 900,
+      "centerX": 800,
+      "centerY": 450,
+      "assetFilename": "正式(16x9外)_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "USP"
+  ]
+}

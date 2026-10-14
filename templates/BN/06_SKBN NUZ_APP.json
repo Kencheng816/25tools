@@ -1,0 +1,170 @@
+{
+  "templateId": "06_SKBN NUZ_APP",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "06_SKBN NUZ_APP.psd"
+  },
+  "canvas": {
+    "width": 600,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "06_SKBN NUZ_APP",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "06_SKBN NUZ_APP"
+  },
+  "layers": {
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 116,
+      "y": 132,
+      "width": 351,
+      "height": 194,
+      "centerX": 291.5,
+      "centerY": 229,
+      "assetFilename": "06_SKBN NUZ_APP_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 351
+    },
+    "橫式_25號商城狂購節_LOGO_黃": {
+      "type": "image",
+      "psdName": "橫式_25號商城狂購節_LOGO_黃",
+      "x": 140,
+      "y": 30,
+      "width": 321,
+      "height": 44,
+      "centerX": 300.5,
+      "centerY": 52,
+      "assetFilename": "06_SKBN NUZ_APP_橫式_25號商城狂購節_LOGO_黃.png"
+    },
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 130,
+      "y": 79,
+      "width": 130,
+      "height": 46,
+      "centerX": 195,
+      "centerY": 102,
+      "assetFilename": "06_SKBN NUZ_APP_蝦皮VIP_LOGO.png"
+    },
+    "蝦皮VIP_主標題_右": {
+      "type": "text",
+      "psdName": "蝦皮VIP_主標題_右",
+      "x": 266,
+      "y": 95,
+      "width": 205,
+      "height": 31,
+      "centerX": 368.5,
+      "centerY": 110.5,
+      "text": "獨享25%蝦幣\r",
+      "fontSizePt": 32.48,
+      "fontSizePx": 32.48,
+      "fontSizePtRaw": 72.90248107910156,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 38.98,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.4461915863645831,
+        "scaleY": 0.44552665573670164
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 4,
+          "fontSizePx": 32.48,
+          "fontSizePtRaw": 72.90248107910156,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 38.98,
+          "letterSpacing": 0
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "fontSizePx": 32.48,
+          "fontSizePtRaw": 72.90248107910156,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 38.98,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 9,
+          "fontSizePx": 32.48,
+          "fontSizePtRaw": 72.90248107910156,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 38.98,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 9,
+          "fontSizePx": 32.48,
+          "fontSizePtRaw": 72.90248107910156,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 38.98,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "DECO_錢幣_右上": {
+      "type": "image",
+      "psdName": "DECO_錢幣_右上",
+      "x": 296,
+      "y": 124,
+      "width": 171,
+      "height": 100,
+      "centerX": 381.5,
+      "centerY": 174,
+      "assetFilename": "06_SKBN NUZ_APP_DECO_錢幣_右上.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 600,
+      "height": 360,
+      "centerX": 300,
+      "centerY": 180,
+      "assetFilename": "06_SKBN NUZ_APP_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "DECO_錢幣_右上",
+    "蝦皮VIP_主標題_右",
+    "蝦皮VIP_LOGO",
+    "橫式_25號商城狂購節_LOGO_黃",
+    "product"
+  ]
+}

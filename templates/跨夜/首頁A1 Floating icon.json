@@ -1,0 +1,137 @@
+{
+  "templateId": "首頁A1 Floating icon",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "首頁A1 Floating icon.psd"
+  },
+  "canvas": {
+    "width": 360,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "首頁A1 Floating icon",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "首頁A1 Floating icon"
+  },
+  "layers": {
+    "CTA_X": {
+      "type": "image",
+      "psdName": "CTA_X",
+      "x": 255,
+      "y": 8,
+      "width": 96,
+      "height": 96,
+      "centerX": 303,
+      "centerY": 56,
+      "rotation": 0,
+      "assetFilename": "首頁A1 Floating icon_CTA_X.png"
+    },
+    "A1_Floating_文案_上": {
+      "type": "text",
+      "psdName": "A1 Floating_文案_上",
+      "x": 109,
+      "y": 105,
+      "width": 142,
+      "height": 68,
+      "centerX": 180,
+      "centerY": 139,
+      "rotation": 0,
+      "text": "點我",
+      "fontSizePt": 73,
+      "fontSizePx": 73,
+      "fontSizePtRaw": 54.79317855834961,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 87.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.3322826519596458,
+        "scaleY": 1.3322827048997665
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 73,
+          "fontSizePtRaw": 54.79317855834961,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFFFF",
+          "lineHeight": 87.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "A1_Floating_文案_下": {
+      "type": "text",
+      "psdName": "A1 Floating_文案_下",
+      "x": 109,
+      "y": 187,
+      "width": 141,
+      "height": 68,
+      "centerX": 179.5,
+      "centerY": 221,
+      "rotation": 0,
+      "text": "領幣",
+      "fontSizePt": 73,
+      "fontSizePx": 73,
+      "fontSizePtRaw": 54.79317855834961,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Medium",
+      "fontWeight": "500",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 87.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.3322826519596458,
+        "scaleY": 1.3322827048997665
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 3,
+          "fontSizePx": 73,
+          "fontSizePtRaw": 54.79317855834961,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "500",
+          "fontStyleName": "Medium",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+          "color": "#FFFFFF",
+          "lineHeight": 87.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 30,
+      "y": 18,
+      "width": 330,
+      "height": 312,
+      "centerX": 195,
+      "centerY": 174,
+      "rotation": 0,
+      "assetFilename": "首頁A1 Floating icon_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "A1_Floating_文案_下",
+    "A1_Floating_文案_上",
+    "CTA_X"
+  ]
+}

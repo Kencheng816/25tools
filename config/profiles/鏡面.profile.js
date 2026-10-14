@@ -1,0 +1,81 @@
+/* 分類設定：鏡面（鏡面 V0.2）— flags 只放與 _defaults 不同的旗標
+ * 由 core/profile-loader.js 以 <script> 載入（不用 fetch，雙擊 index.html 用 file:// 開也能跑）。
+ * 內容就是原本的 JSON，只多包一行登錄到 window.__profileRegistry。 */
+window.__profileRegistry = window.__profileRegistry || {};
+window.__profileRegistry["profile:鏡面"] = {
+  "id": "鏡面",
+  "label": "鏡面 V0.2",
+  "family": "b",
+  "sheetHints": [
+    "425_鏡面",
+    "鏡面"
+  ],
+  "rulesNamespace": "rules/鏡面/",
+  "_comment": "flags 只放與 _defaults.json（defaults ＋ families.b）不同的旗標；其餘沿用預設。",
+  "flags": {
+    "batch.assetSpecEngineFirst": false,
+    "batch.matrixParser": false,
+    "batch.genericRowParser": false,
+    "batch.recordContentMode": "anyField",
+    "batch.rowsFromZero": true,
+    "batch.explicitTemplateIdRoute": "blockFamily",
+    "batch.smartAssetIdMode": "none",
+    "batch.smartAssetApplyPhase": "none",
+    "batch.previewMode": "mutatingGuardedNoSmart",
+    "render.autoLogoShadow": true,
+    "render.useProductEngineSizing": false,
+    "render.applyBoxSyncCenterForAllTypes": true,
+    "render.applyBoxCoverSyncHeight": true,
+    "render.loadShapeRenderer": false,
+    "render.productSizingHeightPriority": "explicit",
+    "assets.lookupEngine": "flatFuzzyScoped",
+    "assets.shopeeVipGuard": false,
+    "assets.missingDiagnostics": "templateListMarkMissing",
+    "templates.prepareHook": "none",
+    "export.zipPrefix": "25節Tool_鏡面",
+    "export.batchZipName": "prefixOutput",
+    "export.formatSource": "specFormat",
+    "export.defaultFormat": "png",
+    "export.folderStrategy": "project",
+    "export.whiteFill": "jpg",
+    "export.compressMode": "kLimit",
+    "export.skipMissingAssets": true,
+    "export.diagnostics": "mirror",
+    "price.fitBoxToInk": true,
+    "price.syncSeparatePositionScale": true,
+    "smartAsset.engine": "none",
+    "interaction.syncMode": "none",
+    "interaction.dropUpload": "none",
+    "interaction.dblclickReplace": "none",
+    "interaction.replaceAssetImpl": "none",
+    "interaction.deleteClearsUploadSlot": false,
+    "text.priceRecalcOnCommit": "capture",
+    "ui.rotateHandleAnchor": "topCenter",
+    "ui.specOverlaySkip": "none",
+    "ui.thumbWhiteOnMultiSize": false,
+    "ui.thumbShowGuides": false,
+    "ui.hitLockedPassthrough": true,
+    "ui.toolName": "25節鏡面生成工具",
+    "export.diagnosticsTitle": "25節鏡面"
+  },
+  "_inapplicable": [
+    "render.shapeFillEnabledMode",
+    "render.shapeRotationSource",
+    "render.shapePsdCornerRadii",
+    "render.shapeCornerCurve",
+    "render.shapeStrokeInset",
+    "render.shapeBoxSource",
+    "render.productSizingHeightPriority",
+    "assets.moduleCommonFolder",
+    "assets.multiSizeMaterialPredicate",
+    "smartAsset.multiProductLink",
+    "smartAsset.skipHiddenProduct",
+    "ui.manualUploadExcludeLocked"
+  ],
+  "_todo": [],
+  "coreScripts": [
+    "core/app.core.js"
+  ],
+  "templatesDir": "templates/鏡面",
+  "assetsDir": "assets/鏡面"
+};

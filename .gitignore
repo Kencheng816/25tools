@@ -1,0 +1,8 @@
+node_modules/
+tests/golden-diff/
+*.log
+.DS_Store
+Thumbs.db
+# 開發期間的暫存
+work/
+*.tmp

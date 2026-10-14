@@ -1,0 +1,46 @@
+{
+  "templateId": "POPUP",
+  "version": "1.0.0",
+  "source": {
+    "type": "generated",
+    "note": "LineOA POPUP Resize 專用：POPUP 圖等比放大貼齊其中一邊（containByPBox），其餘以透明補到 1040x1289，輸出 PNG。"
+  },
+  "canvas": {
+    "width": 1040,
+    "height": 1289,
+    "unit": "px",
+    "templateId": "POPUP"
+  },
+  "layers": {
+    "popup": {
+      "type": "image",
+      "psdName": "載入POPUP圖片",
+      "x": 0,
+      "y": 0,
+      "width": 1040,
+      "height": 1289,
+      "centerX": 520,
+      "centerY": 644.5,
+      "targetWidth": 1040,
+      "targetHeight": 1289,
+      "maxTargetHeight": 1289,
+      "keepAspectRatio": true,
+      "sizingMode": "containByPBox",
+      "assetFilename": "",
+      "assetCandidates": [],
+      "assetProject": "",
+      "hidden": false,
+      "locked": false,
+      "role": "lineoa_popup_upload",
+      "__uploadSlot": true,
+      "__uploadPrompt": "+上傳POPUP圖片",
+      "__uploadPromptColor": "#8C8C8C",
+      "__uploadPromptFontSize": 60,
+      "__uploadSizingMode": "containByPBox"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "popup"
+  ]
+}

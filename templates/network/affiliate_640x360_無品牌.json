@@ -1,0 +1,102 @@
+{
+  "templateId": "affiliate_640x360_無品牌",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "affiliate_640x360_無品牌.psd"
+  },
+  "canvas": {
+    "width": 640,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "affiliate_640x360_無品牌",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "affiliate_640x360_無品牌"
+  },
+  "layers": {
+    "直式_25號商城狂購節_LOGO": {
+      "type": "image",
+      "psdName": "直式_25號商城狂購節_LOGO",
+      "x": 58,
+      "y": 68,
+      "width": 200,
+      "height": 204,
+      "centerX": 158,
+      "centerY": 170,
+      "assetFilename": "affiliate_640x360_無品牌_直式_25號商城狂購節_LOGO.png"
+    },
+    "直式_USP_無品牌": {
+      "type": "image",
+      "psdName": "直式_USP_無品牌",
+      "x": 289,
+      "y": 89,
+      "width": 283,
+      "height": 176,
+      "centerX": 430.5,
+      "centerY": 177,
+      "assetFilename": "affiliate_640x360_無品牌_直式_USP_無品牌.png"
+    },
+    "警語": {
+      "type": "text",
+      "psdName": "警語",
+      "x": 358,
+      "y": 271,
+      "width": 144,
+      "height": 12,
+      "centerX": 430,
+      "centerY": 277,
+      "text": "優惠券數量有限，用完為止",
+      "fontSizePt": 12,
+      "fontSizePx": 12,
+      "fontSizePtRaw": 10.738908767700195,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#930019",
+      "lineHeight": 14.4,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.1174320575530687,
+        "scaleY": 1.1174320575530718
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 13,
+          "fontSizePx": 12,
+          "fontSizePtRaw": 10.738908767700195,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#930019",
+          "lineHeight": 14.4,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 640,
+      "height": 360,
+      "centerX": 320,
+      "centerY": 180,
+      "assetFilename": "affiliate_640x360_無品牌_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "警語",
+    "直式_USP_無品牌",
+    "直式_25號商城狂購節_LOGO"
+  ]
+}

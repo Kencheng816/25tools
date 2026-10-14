@@ -1,0 +1,46 @@
+{
+  "templateId": "01_L2_攻略頁",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "01_L2_攻略頁.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 630,
+    "unit": "px",
+    "source": "document",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "01_L2_攻略頁"
+  },
+  "layers": {
+    "USP": {
+      "type": "image",
+      "psdName": "USP",
+      "x": 378,
+      "y": 390,
+      "width": 443,
+      "height": 86,
+      "centerX": 599.5,
+      "centerY": 433,
+      "assetFilename": "01_L2_攻略頁_USP.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 630,
+      "centerX": 600,
+      "centerY": 315,
+      "assetFilename": "01_L2_攻略頁_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "USP"
+  ]
+}

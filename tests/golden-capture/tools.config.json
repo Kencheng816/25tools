@@ -1,0 +1,146 @@
+{
+  "_comment": "黃金樣本擷取設定。sourceDir 相對於 #整合版本 資料夾；uploads 對應各工具 index.html 的 <input> id。",
+  "外廣OM_wave1": {
+    "sourceDir": "外廣OM/25節Tool_外廣OM_wave1_V0.5",
+    "workbook": "2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "外廣OM_wave2": {
+    "sourceDir": "外廣OM/25節Tool_外廣OM_wave2_V0.4",
+    "workbook": "2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "暖正MS": {
+    "sourceDir": "暖正MS/25節Tool_暖正MS_V0.5",
+    "workbook": "5.25 MS設定_版配格式_KEN.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "LineOA": {
+    "sourceDir": "Line OA/25節Tool_LineOA_V0.5",
+    "workbook": "2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "Affiliate_network": {
+    "sourceDir": "Affiliate/25節Tool_network_V0.7",
+    "workbook": "[internal] LINE購物入稿表_2026 Ken.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "Affiliate_AMS": {
+    "sourceDir": "Affiliate/25節Tool_Line 購物AMS_V0.6",
+    "workbook": "[internal] LINE購物入稿表_2026 Ken.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "鏡面": {
+    "sourceDir": "鏡面/25節Tool_鏡面_V0.2",
+    "workbook": "2026跨夜美術工單_KEN.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "跨夜直播": {
+    "sourceDir": "跨夜直播宣傳圖/25節Tool_跨夜直播宣傳圖_V0.5",
+    "workbook": "2026跨夜美術工單_KEN.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "KV": {
+    "sourceDir": "KV/25節_KV_V0.2",
+    "workbook": "【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "暖身BN": {
+    "sourceDir": "暖身BN/25節Tool_暖身BN_V1.5",
+    "workbook": "【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  },
+  "正式BN": {
+    "sourceDir": "正式BN/25節Tool_正式BN_V0.8",
+    "workbook": "【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+    "uploads": {
+      "templates": { "inputId": "templateFolderInput", "dir": "templates" },
+      "assets": { "inputId": "assetInput", "dir": "assets" },
+      "workbook": { "inputId": "excelInput" }
+    },
+    "cdn": {
+      "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js": "jszip/dist/jszip.min.js",
+      "https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js": "xlsx/dist/xlsx.full.min.js"
+    }
+  }
+}

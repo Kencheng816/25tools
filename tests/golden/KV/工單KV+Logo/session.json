@@ -1,0 +1,1452 @@
+{
+  "excelFileName": "【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+  "sheetName": "工單KV+Logo",
+  "currentProject": "",
+  "templates": [
+    {
+      "name": "01_L2_攻略頁_01",
+      "file": "01_L2_攻略頁_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "01_L2_攻略頁_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "01_L2_攻略頁.psd"
+        },
+        "canvas": {
+          "width": 1200,
+          "height": 630,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "01_L2_攻略頁"
+        },
+        "layers": {
+          "USP": {
+            "type": "image",
+            "psdName": "USP",
+            "x": 378,
+            "y": 390,
+            "width": 443,
+            "height": 86,
+            "centerX": 599.5,
+            "centerY": 433,
+            "assetFilename": "01_L2_攻略頁_USP.png",
+            "__assetMissing": false,
+            "assetProject": "01_L2_攻略頁"
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 630,
+            "centerX": 600,
+            "centerY": 315,
+            "assetFilename": "01_L2_攻略頁_KV_BG.png",
+            "assetProject": "01_L2_攻略頁",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "USP"
+        ],
+        "batchSourceName": "01_L2_攻略頁",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "01_L2_攻略頁",
+          "sourceTemplateId": "01_L2_攻略頁"
+        },
+        "batchRecord": {
+          "主標": "",
+          "副標": "",
+          "__頁面備註": "",
+          "__備註": "1",
+          "__製作內容": "01_L2_攻略頁",
+          "__sortKey": 1,
+          "__sourceRow": 20
+        },
+        "batchDiagnostics": []
+      }
+    },
+    {
+      "name": "正式(16x9外)_01",
+      "file": "正式(16x9外)_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "正式(16x9外)_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "正式(16x9外).psd"
+        },
+        "canvas": {
+          "width": 1600,
+          "height": 900,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "正式(16x9外)"
+        },
+        "layers": {
+          "USP": {
+            "type": "image",
+            "psdName": "USP",
+            "x": 505,
+            "y": 564,
+            "width": 586,
+            "height": 114,
+            "centerX": 798,
+            "centerY": 621,
+            "assetFilename": "正式(16x9外)_USP.png",
+            "assetProject": "正式(16x9外)",
+            "__assetMissing": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1600,
+            "height": 900,
+            "centerX": 800,
+            "centerY": 450,
+            "assetFilename": "正式(16x9外)_KV_BG.png",
+            "assetProject": "正式(16x9外)",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "USP"
+        ],
+        "batchSourceName": "正式(16x9外)",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "正式(16x9外)",
+          "sourceTemplateId": "正式(16x9外)"
+        },
+        "batchRecord": {
+          "主標": "",
+          "副標": "",
+          "__頁面備註": "",
+          "__備註": "46054",
+          "__製作內容": "正式(16x9外)",
+          "__sortKey": 1.001,
+          "__sourceRow": 21
+        },
+        "batchDiagnostics": []
+      }
+    },
+    {
+      "name": "正式(內)_01",
+      "file": "正式(內)_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "正式(內)_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "正式(內).psd"
+        },
+        "canvas": {
+          "width": 1200,
+          "height": 630,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "正式(內)"
+        },
+        "layers": {
+          "USP": {
+            "type": "image",
+            "psdName": "USP",
+            "x": 379,
+            "y": 392,
+            "width": 443,
+            "height": 86,
+            "centerX": 600.5,
+            "centerY": 435,
+            "assetFilename": "正式(內)_USP.png",
+            "assetProject": "正式(內)",
+            "__assetMissing": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 630,
+            "centerX": 600,
+            "centerY": 315,
+            "assetFilename": "正式(內)_KV_BG.png",
+            "assetProject": "正式(內)",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "USP"
+        ],
+        "batchSourceName": "正式(內)",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "正式(內)",
+          "sourceTemplateId": "正式(內)"
+        },
+        "batchRecord": {
+          "主標": "",
+          "副標": "",
+          "__頁面備註": "",
+          "__備註": "46055",
+          "__製作內容": "正式(內)",
+          "__sortKey": 1.002,
+          "__sourceRow": 22
+        },
+        "batchDiagnostics": []
+      }
+    },
+    {
+      "name": "正式(外)_01",
+      "file": "正式(外)_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "正式(外)_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "正式(外).psd"
+        },
+        "canvas": {
+          "width": 1200,
+          "height": 630,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "正式(外)"
+        },
+        "layers": {
+          "USP": {
+            "type": "image",
+            "psdName": "USP",
+            "x": 392,
+            "y": 399,
+            "width": 415,
+            "height": 81,
+            "centerX": 599.5,
+            "centerY": 439.5,
+            "assetFilename": "正式(外)_USP.png",
+            "assetProject": "正式(外)",
+            "__assetMissing": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 630,
+            "centerX": 600,
+            "centerY": 315,
+            "assetFilename": "正式(外)_KV_BG.png",
+            "assetProject": "正式(外)",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "USP"
+        ],
+        "batchSourceName": "正式(外)",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "正式(外)",
+          "sourceTemplateId": "正式(外)"
+        },
+        "batchRecord": {
+          "主標": "",
+          "副標": "",
+          "__頁面備註": "",
+          "__備註": "46056",
+          "__製作內容": "正式(外)",
+          "__sortKey": 1.003,
+          "__sourceRow": 23
+        },
+        "batchDiagnostics": []
+      }
+    },
+    {
+      "name": "03_L2_免運頁_暖身_01",
+      "file": "03_L2_免運頁_暖身_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "03_L2_免運頁_暖身_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "03_L2_免運頁_暖身.psd"
+        },
+        "canvas": {
+          "width": 1200,
+          "height": 542,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "03_L2_免運頁_暖身"
+        },
+        "layers": {
+          "title": {
+            "type": "text",
+            "psdName": "主標題",
+            "x": 123,
+            "y": 123,
+            "width": 954,
+            "height": 118,
+            "centerX": 600,
+            "centerY": 182,
+            "text": "免運無限次$99起",
+            "fontSizePt": 121.59,
+            "fontSizePx": 121.59,
+            "fontSizePtRaw": 23.576099395751953,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFFFFF",
+            "lineHeight": 145.91,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 5.15742543664198,
+              "scaleY": 5.1574254366420345
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 5,
+                "fontSizePx": 121.59,
+                "color": "#FFFFFF",
+                "fill": "#FFFFFF",
+                "__spNonPriceTextStandard": true,
+                "__spTextSizeClass": "big"
+              },
+              {
+                "from": 5,
+                "to": 6,
+                "fontSizePx": 99.7,
+                "color": "#FFFFFF",
+                "fill": "#FFFFFF",
+                "baselineOffset": 0,
+                "__spNonPriceTextStandard": true,
+                "__spTextSizeClass": "small"
+              },
+              {
+                "from": 6,
+                "to": 9,
+                "fontSizePx": 121.59,
+                "color": "#FFFFFF",
+                "fill": "#FFFFFF",
+                "__spNonPriceTextStandard": true,
+                "__spTextSizeClass": "big"
+              }
+            ],
+            "dominantStyleSource": "textStyleRange-dominant",
+            "hidden": false,
+            "styledTextVerticalAlign": "source-baseline"
+          },
+          "25號": {
+            "type": "image",
+            "psdName": "25號",
+            "x": 298,
+            "y": 288,
+            "width": 122,
+            "height": 61,
+            "centerX": 359,
+            "centerY": 318.5,
+            "assetFilename": "03_L2_免運頁_暖身_25號.png",
+            "assetProject": "03_L2_免運頁_暖",
+            "__assetMissing": false
+          },
+          "副標題_右": {
+            "type": "text",
+            "psdName": "副標題_右",
+            "x": 425,
+            "y": 286,
+            "width": 477,
+            "height": 64,
+            "centerX": 663.5,
+            "centerY": 318,
+            "text": "不限店無限免運",
+            "fontSizePt": 68,
+            "fontSizePx": 68,
+            "fontSizePtRaw": 47.59096908569336,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Medium",
+            "fontWeight": "500",
+            "italic": false,
+            "align": "left",
+            "color": "#FFE600",
+            "lineHeight": 81.6,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1.4257320273065348,
+              "scaleY": 1.4288424767304038
+            },
+            "dominantStyleSource": "textStyleRange",
+            "hidden": false,
+            "styledTextVerticalAlign": "default"
+          },
+          "副標題_底色": {
+            "type": "shape",
+            "psdName": "副標題_底色",
+            "x": 120.5,
+            "y": 269,
+            "width": 959,
+            "height": 98,
+            "centerX": 600,
+            "centerY": 318,
+            "fill": "#113366",
+            "shape": {
+              "kind": "path",
+              "fill": "#113366",
+              "stroke": {
+                "enabled": false,
+                "width": 0,
+                "color": null,
+                "opacity": null,
+                "raw": null
+              },
+              "cornerRadius": 0,
+              "vectorPath": [
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  }
+                }
+              ],
+              "bezierPoints": [
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  }
+                }
+              ]
+            },
+            "hidden": false,
+            "useDynamicBounds": true
+          },
+          "保護文字": {
+            "type": "text",
+            "psdName": "保護文字",
+            "x": 231,
+            "y": 385,
+            "width": 738,
+            "height": 32,
+            "centerX": 600,
+            "centerY": 401,
+            "text": "5/25無限免運，免運優惠須依店家適用之物流為主",
+            "fontSizePt": 33.34,
+            "fontSizePx": 33.34,
+            "fontSizePtRaw": 33.337501525878906,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Medium",
+            "fontWeight": "500",
+            "italic": false,
+            "align": "center",
+            "color": "#113366",
+            "lineHeight": 40.01,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 25,
+                "fontSizePx": 33.34,
+                "fontSizePtRaw": 33.337501525878906,
+                "fontFamily": "ShopeeNotoSans Content",
+                "fontWeight": "500",
+                "fontStyleName": "Medium",
+                "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+                "color": "#113366",
+                "lineHeight": 40.01,
+                "letterSpacing": 0
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "hidden": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 542,
+            "centerX": 600,
+            "centerY": 271,
+            "assetFilename": "03_L2_免運頁_暖身_KV_BG.png",
+            "assetProject": "03_L2_免運頁_暖",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "保護文字",
+          "副標題_底色",
+          "副標題_右",
+          "25號",
+          "title"
+        ],
+        "batchSourceName": "03_L2_免運頁_暖身",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "03_L2_免運頁_暖身",
+          "sourceTemplateId": "03_L2_免運頁_暖身"
+        },
+        "batchRecord": {
+          "主標": "免運無限次$99起",
+          "副標": "25號不限店無限免運",
+          "__頁面備註": "5/25無限免運，免運優惠須依店家適用之物流為主",
+          "__備註": "3",
+          "__製作內容": "03_L2_免運頁_暖身",
+          "__sortKey": 3,
+          "__sourceRow": 24
+        },
+        "batchDiagnostics": [
+          {
+            "field": "主標",
+            "status": "ok",
+            "value": "免運無限次$99起",
+            "target": "主標題"
+          }
+        ]
+      }
+    },
+    {
+      "name": "04_L2_免運頁_正式_01",
+      "file": "04_L2_免運頁_正式_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "04_L2_免運頁_正式_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "04_L2_免運頁_正式.psd"
+        },
+        "canvas": {
+          "width": 1200,
+          "height": 542,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "04_L2_免運頁_正式"
+        },
+        "layers": {
+          "title": {
+            "type": "text",
+            "psdName": "主標題",
+            "x": 123,
+            "y": 123,
+            "width": 954,
+            "height": 118,
+            "centerX": 600,
+            "centerY": 182,
+            "text": "免運無限次$99起",
+            "fontSizePt": 121.59,
+            "fontSizePx": 121.59,
+            "fontSizePtRaw": 23.576099395751953,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFFFFF",
+            "lineHeight": 145.91,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 5.15742543664198,
+              "scaleY": 5.1574254366420345
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 5,
+                "fontSizePx": 121.59,
+                "color": "#FFFFFF",
+                "fill": "#FFFFFF",
+                "__spNonPriceTextStandard": true,
+                "__spTextSizeClass": "big"
+              },
+              {
+                "from": 5,
+                "to": 6,
+                "fontSizePx": 99.7,
+                "color": "#FFFFFF",
+                "fill": "#FFFFFF",
+                "baselineOffset": 0,
+                "__spNonPriceTextStandard": true,
+                "__spTextSizeClass": "small"
+              },
+              {
+                "from": 6,
+                "to": 9,
+                "fontSizePx": 121.59,
+                "color": "#FFFFFF",
+                "fill": "#FFFFFF",
+                "__spNonPriceTextStandard": true,
+                "__spTextSizeClass": "big"
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "hidden": false,
+            "styledTextVerticalAlign": "source-baseline"
+          },
+          "subtitle": {
+            "type": "text",
+            "psdName": "副標題",
+            "x": 293.5,
+            "y": 286,
+            "width": 613,
+            "height": 64,
+            "centerX": 600,
+            "centerY": 318,
+            "text": "今日不限店無限免運",
+            "fontSizePt": 68.01,
+            "fontSizePx": 68.01,
+            "fontSizePtRaw": 47.596920013427734,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Medium",
+            "fontWeight": "500",
+            "italic": false,
+            "align": "center",
+            "color": "#FFE600",
+            "lineHeight": 81.61,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1.4257320273065348,
+              "scaleY": 1.4288424767304038
+            },
+            "dominantStyleSource": "textStyleRange",
+            "hidden": false,
+            "styledTextVerticalAlign": "default"
+          },
+          "副標題_底色": {
+            "type": "shape",
+            "psdName": "副標題_底色",
+            "x": 120.5,
+            "y": 269,
+            "width": 959,
+            "height": 98,
+            "centerX": 600,
+            "centerY": 318,
+            "fill": "#113366",
+            "shape": {
+              "kind": "path",
+              "fill": "#113366",
+              "stroke": {
+                "enabled": false,
+                "width": 0,
+                "color": null,
+                "opacity": null,
+                "raw": null
+              },
+              "cornerRadius": 0,
+              "vectorPath": [
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  }
+                }
+              ],
+              "bezierPoints": [
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 269
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 1079.5,
+                    "y": 318
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 1051.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "leftDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  },
+                  "rightDirection": {
+                    "x": 148.5,
+                    "y": 367
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "leftDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  },
+                  "rightDirection": {
+                    "x": 120.5,
+                    "y": 318
+                  }
+                }
+              ]
+            },
+            "hidden": false,
+            "useDynamicBounds": true
+          },
+          "保護文字": {
+            "type": "text",
+            "psdName": "保護文字",
+            "x": 231,
+            "y": 385,
+            "width": 738,
+            "height": 32,
+            "centerX": 600,
+            "centerY": 401,
+            "text": "5/25無限免運，免運優惠須依店家適用之物流為主",
+            "fontSizePt": 33.34,
+            "fontSizePx": 33.34,
+            "fontSizePtRaw": 33.337501525878906,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Medium",
+            "fontWeight": "500",
+            "italic": false,
+            "align": "center",
+            "color": "#113366",
+            "lineHeight": 40.01,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 25,
+                "fontSizePx": 33.34,
+                "fontSizePtRaw": 33.337501525878906,
+                "fontFamily": "ShopeeNotoSans Content",
+                "fontWeight": "500",
+                "fontStyleName": "Medium",
+                "fontPostScriptName": "ShopeeNotoSanscontent-Medium",
+                "color": "#113366",
+                "lineHeight": 40.01,
+                "letterSpacing": 0
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "hidden": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 542,
+            "centerX": 600,
+            "centerY": 271,
+            "assetFilename": "04_L2_免運頁_正式_KV_BG.png",
+            "assetProject": "04_L2_免運頁_正式",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {
+          "subtitle_frame": {
+            "type": "shape",
+            "source": "generated",
+            "fill": "#0053D1",
+            "radius": "capsule",
+            "rules": {
+              "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+              "y": "layers.title.y + layers.title.height + 13",
+              "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+              "height": "layers.subtitle.height + 26",
+              "radius": "height / 2",
+              "dynamicWidth": true,
+              "widthSource": "subtitle",
+              "horizontalPadding": 48,
+              "minWidth": "layers.subtitle.height + 48",
+              "alignTo": "layers.subtitle.centerX"
+            }
+          }
+        },
+        "renderOrder": [
+          "kv_bg",
+          "保護文字",
+          "副標題_底色",
+          "subtitle_frame",
+          "subtitle",
+          "title"
+        ],
+        "batchSourceName": "04_L2_免運頁_正式",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "04_L2_免運頁_正式",
+          "sourceTemplateId": "04_L2_免運頁_正式"
+        },
+        "batchRecord": {
+          "主標": "免運無限次$99起",
+          "副標": "今日不限店無限免運",
+          "__頁面備註": "5/25無限免運，免運優惠須依店家適用之物流為主",
+          "__備註": "4",
+          "__製作內容": "04_L2_免運頁_正式",
+          "__sortKey": 4,
+          "__sourceRow": 25
+        },
+        "batchDiagnostics": [
+          {
+            "field": "主標",
+            "status": "ok",
+            "value": "免運無限次$99起",
+            "target": "主標題"
+          }
+        ]
+      }
+    },
+    {
+      "name": "05_L2_感謝頁_01",
+      "file": "05_L2_感謝頁_01.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "05_L2_感謝頁_01",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "05_L2_感謝頁.psd"
+        },
+        "canvas": {
+          "width": 1200,
+          "height": 630,
+          "unit": "px",
+          "source": "document",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "05_L2_感謝頁"
+        },
+        "layers": {
+          "subtitle": {
+            "type": "text",
+            "psdName": "副標題",
+            "x": 458.5,
+            "y": 474,
+            "width": 283,
+            "height": 61,
+            "centerX": 600,
+            "centerY": 504.5,
+            "text": "感謝您的參與",
+            "fontSizePt": 47.17,
+            "fontSizePx": 47.17,
+            "fontSizePtRaw": 46.194762693488265,
+            "fontFamily": "Noto Sans CJK TC",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFE600",
+            "lineHeight": 56.6,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1.018939184654444,
+              "scaleY": 1.021162127094465
+            },
+            "dominantStyleSource": "textStyleRange",
+            "hidden": false,
+            "styledTextVerticalAlign": "default"
+          },
+          "副標題_底色": {
+            "type": "shape",
+            "psdName": "副標題_底色",
+            "x": 396.57,
+            "y": 456,
+            "width": 406.87,
+            "height": 96,
+            "centerX": 600,
+            "centerY": 504,
+            "fill": "#1D54A4",
+            "shape": {
+              "kind": "path",
+              "fill": "#1D54A4",
+              "stroke": {
+                "enabled": false,
+                "width": 0,
+                "color": null,
+                "opacity": null,
+                "raw": null
+              },
+              "cornerRadius": 0,
+              "vectorPath": [
+                {
+                  "anchor": {
+                    "x": 424.565,
+                    "y": 456
+                  },
+                  "leftDirection": {
+                    "x": 424.565,
+                    "y": 456
+                  },
+                  "rightDirection": {
+                    "x": 424.565,
+                    "y": 456
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 775.435,
+                    "y": 456
+                  },
+                  "leftDirection": {
+                    "x": 775.435,
+                    "y": 456
+                  },
+                  "rightDirection": {
+                    "x": 775.435,
+                    "y": 456
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 803.435,
+                    "y": 504
+                  },
+                  "leftDirection": {
+                    "x": 803.435,
+                    "y": 504
+                  },
+                  "rightDirection": {
+                    "x": 803.435,
+                    "y": 504
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 775.435,
+                    "y": 552
+                  },
+                  "leftDirection": {
+                    "x": 775.435,
+                    "y": 552
+                  },
+                  "rightDirection": {
+                    "x": 775.435,
+                    "y": 552
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 424.565,
+                    "y": 552
+                  },
+                  "leftDirection": {
+                    "x": 424.565,
+                    "y": 552
+                  },
+                  "rightDirection": {
+                    "x": 424.565,
+                    "y": 552
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 396.565,
+                    "y": 504
+                  },
+                  "leftDirection": {
+                    "x": 396.565,
+                    "y": 504
+                  },
+                  "rightDirection": {
+                    "x": 396.565,
+                    "y": 504
+                  }
+                }
+              ],
+              "bezierPoints": [
+                {
+                  "anchor": {
+                    "x": 424.565,
+                    "y": 456
+                  },
+                  "leftDirection": {
+                    "x": 424.565,
+                    "y": 456
+                  },
+                  "rightDirection": {
+                    "x": 424.565,
+                    "y": 456
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 775.435,
+                    "y": 456
+                  },
+                  "leftDirection": {
+                    "x": 775.435,
+                    "y": 456
+                  },
+                  "rightDirection": {
+                    "x": 775.435,
+                    "y": 456
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 803.435,
+                    "y": 504
+                  },
+                  "leftDirection": {
+                    "x": 803.435,
+                    "y": 504
+                  },
+                  "rightDirection": {
+                    "x": 803.435,
+                    "y": 504
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 775.435,
+                    "y": 552
+                  },
+                  "leftDirection": {
+                    "x": 775.435,
+                    "y": 552
+                  },
+                  "rightDirection": {
+                    "x": 775.435,
+                    "y": 552
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 424.565,
+                    "y": 552
+                  },
+                  "leftDirection": {
+                    "x": 424.565,
+                    "y": 552
+                  },
+                  "rightDirection": {
+                    "x": 424.565,
+                    "y": 552
+                  }
+                },
+                {
+                  "anchor": {
+                    "x": 396.565,
+                    "y": 504
+                  },
+                  "leftDirection": {
+                    "x": 396.565,
+                    "y": 504
+                  },
+                  "rightDirection": {
+                    "x": 396.565,
+                    "y": 504
+                  }
+                }
+              ]
+            },
+            "hidden": false,
+            "useDynamicBounds": true
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1200,
+            "height": 630,
+            "centerX": 600,
+            "centerY": 315,
+            "assetFilename": "05_L2_感謝頁_KV_BG.png",
+            "assetProject": "05_L2_感謝頁",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "副標題_底色",
+          "subtitle"
+        ],
+        "batchSourceName": "05_L2_感謝頁",
+        "batchProject": "",
+        "ruleFamily": "kv_25_festival",
+        "sheetTemplateRoute": {
+          "key": "kv_25_festival",
+          "family": "kv_25_festival",
+          "label": "05_L2_感謝頁",
+          "sourceTemplateId": "05_L2_感謝頁"
+        },
+        "batchRecord": {
+          "主標": "",
+          "副標": "感謝您的參與",
+          "__頁面備註": "",
+          "__備註": "5",
+          "__製作內容": "05_L2_感謝頁",
+          "__sortKey": 5,
+          "__sourceRow": 26
+        },
+        "batchDiagnostics": []
+      }
+    }
+  ],
+  "unmatched": [],
+  "diagnostics": {
+    "sheetName": "工單KV+Logo",
+    "anchorCount": 7,
+    "parsedBlockCount": 7,
+    "recordCount": 7,
+    "sourceTemplateNames": [
+      "01_L2_攻略頁",
+      "03_L2_免運頁_暖身",
+      "04_L2_免運頁_正式",
+      "05_L2_感謝頁",
+      "Example_Template",
+      "正式(16x9外)",
+      "正式(內)",
+      "正式(外)"
+    ],
+    "warnings": [],
+    "skippedRows": [],
+    "generatedCount": 7,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  }
+}

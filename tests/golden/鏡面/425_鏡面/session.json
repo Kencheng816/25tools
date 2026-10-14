@@ -1,0 +1,981 @@
+{
+  "excelFileName": "2026跨夜美術工單_KEN.xlsx",
+  "sheetName": "425_鏡面",
+  "currentProject": "",
+  "templates": [
+    {
+      "name": "人名標_01_1080x1920",
+      "file": "人名標_01_1080x1920.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "人名標_01_1080x1920",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "人名標.psd"
+        },
+        "canvas": {
+          "width": 1080,
+          "height": 1920,
+          "unit": "px",
+          "source": "artboard",
+          "artboardName": "人名標",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "人名標"
+        },
+        "layers": {
+          "主持人": {
+            "type": "text",
+            "psdName": "主持人",
+            "x": 466,
+            "y": 825,
+            "width": 147,
+            "height": 48,
+            "centerX": 539.5,
+            "centerY": 849,
+            "rotation": 0,
+            "text": "主持人",
+            "fontSizePt": 50,
+            "fontSizePx": 50,
+            "fontSizePtRaw": 78.44959259033203,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFFFFF",
+            "lineHeight": 60,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 0.6373519272365008,
+              "scaleY": 0.6373519272364985
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 4,
+                "fontSizePx": 50,
+                "fontSizePtRaw": 78.44959259033203,
+                "fontFamily": "ShopeeNotoSans Content",
+                "fontWeight": "700",
+                "fontStyleName": "Bold",
+                "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+                "color": "#FFFFFF",
+                "lineHeight": 60,
+                "letterSpacing": 0
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "textBaselineReference": {
+              "version": 2,
+              "source": "json",
+              "baselineOffsetY": 43,
+              "boxHeight": 48,
+              "fontSizePx": 50,
+              "lineHeight": 60,
+              "lineCount": 1,
+              "topPadding": 0,
+              "inkAscent": 43,
+              "inkDescent": 5,
+              "inkBlockHeight": 48,
+              "measurementSource": "actual-bounds",
+              "sampleText": "主持人",
+              "fontFamily": "ShopeeNotoSans Content",
+              "fontWeight": "700",
+              "fontStyle": "Bold",
+              "italic": false
+            }
+          },
+          "主持人名稱": {
+            "type": "text",
+            "psdName": "主持人名稱",
+            "x": 453,
+            "y": 905,
+            "width": 173,
+            "height": 58,
+            "centerX": 539.5,
+            "centerY": 934,
+            "rotation": 0,
+            "text": "Sunny",
+            "fontSizePt": 50,
+            "fontSizePx": 50,
+            "fontSizePtRaw": 50,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFFFFF",
+            "lineHeight": 60,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 6,
+                "fontSizePx": 50,
+                "fontSizePtRaw": 50,
+                "fontFamily": "ShopeeNotoSans Content",
+                "fontWeight": "700",
+                "fontStyleName": "Bold",
+                "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+                "color": "#FFFFFF",
+                "lineHeight": 60,
+                "letterSpacing": 0
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "textBaselineReference": {
+              "version": 2,
+              "source": "json",
+              "baselineOffsetY": 41,
+              "boxHeight": 58,
+              "fontSizePx": 50,
+              "lineHeight": 60,
+              "lineCount": 1,
+              "topPadding": 0,
+              "inkAscent": 41,
+              "inkDescent": 17,
+              "inkBlockHeight": 58,
+              "measurementSource": "actual-bounds",
+              "sampleText": "Sunny",
+              "fontFamily": "ShopeeNotoSans Content",
+              "fontWeight": "700",
+              "fontStyle": "Bold",
+              "italic": false
+            },
+            "hidden": false
+          },
+          "DECO_左上_蝦幣": {
+            "type": "image",
+            "psdName": "DECO_左上_蝦幣",
+            "x": 325,
+            "y": 834,
+            "width": 81,
+            "height": 74,
+            "centerX": 365.5,
+            "centerY": 871,
+            "rotation": 0,
+            "assetFilename": "人名標_DECO_左上_蝦幣.png",
+            "__resolvedAssetFolder": "人名標",
+            "__resolvedAssetFilename": "人名標_DECO_左上_蝦幣.png",
+            "__resolvedAssetPath": "人名標/人名標_DECO_左上_蝦幣.png",
+            "__assetMissing": false
+          },
+          "DECO_右下_票券": {
+            "type": "image",
+            "psdName": "DECO_右下_票券",
+            "x": 649,
+            "y": 911,
+            "width": 138,
+            "height": 105,
+            "centerX": 718,
+            "centerY": 963.5,
+            "rotation": 0,
+            "assetFilename": "人名標_DECO_右下_票券.png",
+            "__resolvedAssetFolder": "人名標",
+            "__resolvedAssetFilename": "人名標_DECO_右下_票券.png",
+            "__resolvedAssetPath": "人名標/人名標_DECO_右下_票券.png",
+            "__assetMissing": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 336,
+            "y": 810,
+            "width": 408,
+            "height": 168,
+            "centerX": 540,
+            "centerY": 894,
+            "rotation": 0,
+            "assetFilename": "人名標_KV_BG.png",
+            "__resolvedAssetFolder": "人名標",
+            "__resolvedAssetFilename": "人名標_KV_BG.png",
+            "__resolvedAssetPath": "人名標/人名標_KV_BG.png",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "DECO_右下_票券",
+          "DECO_左上_蝦幣",
+          "主持人名稱",
+          "主持人"
+        ],
+        "batchDiagnostics": [
+          {
+            "field": "主持人名稱",
+            "status": "ok",
+            "value": "Sunny",
+            "target": "主持人名稱"
+          }
+        ],
+        "batchSourceName": "人名標",
+        "batchProject": "",
+        "ruleFamily": "mirror_25",
+        "sheetTemplateRoute": {
+          "key": "mirror_25",
+          "family": "mirror_25",
+          "label": "人名標",
+          "sourceTemplateId": "人名標"
+        },
+        "batchRecord": {
+          "__workflow": "mirror-25",
+          "__sourceRow": 19,
+          "__position": "人名標",
+          "__width": 1080,
+          "__height": 1920,
+          "__size": "1080x1920",
+          "__kLimitBytes": null,
+          "__specFormat": "png",
+          "__route": {
+            "key": "mirror_25",
+            "family": "mirror_25",
+            "label": "人名標",
+            "templateId": "人名標",
+            "templateFile": "人名標.json",
+            "outputPrefix": "人名標"
+          },
+          "__templateId": "人名標",
+          "__outputName": "人名標_01_1080x1920",
+          "__rawCopy": "字數：上下兩行，各保留３個字的空間\n上方留小框填寫title：Sunny",
+          "__hostName": "Sunny",
+          "__sourceCells": [
+            "人名標",
+            "",
+            "1080*1920",
+            "字數：上下兩行，各保留３個字的空間\n上方留小框填寫title：Sunny",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "人名標_02_1080x1920",
+      "file": "人名標_02_1080x1920.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "人名標_02_1080x1920",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "人名標.psd"
+        },
+        "canvas": {
+          "width": 1080,
+          "height": 1920,
+          "unit": "px",
+          "source": "artboard",
+          "artboardName": "人名標",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "人名標"
+        },
+        "layers": {
+          "主持人": {
+            "type": "text",
+            "psdName": "主持人",
+            "x": 466,
+            "y": 825,
+            "width": 147,
+            "height": 48,
+            "centerX": 539.5,
+            "centerY": 849,
+            "rotation": 0,
+            "text": "主持人",
+            "fontSizePt": 50,
+            "fontSizePx": 50,
+            "fontSizePtRaw": 78.44959259033203,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFFFFF",
+            "lineHeight": 60,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 0.6373519272365008,
+              "scaleY": 0.6373519272364985
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 4,
+                "fontSizePx": 50,
+                "fontSizePtRaw": 78.44959259033203,
+                "fontFamily": "ShopeeNotoSans Content",
+                "fontWeight": "700",
+                "fontStyleName": "Bold",
+                "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+                "color": "#FFFFFF",
+                "lineHeight": 60,
+                "letterSpacing": 0
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "textBaselineReference": {
+              "version": 2,
+              "source": "json",
+              "baselineOffsetY": 43,
+              "boxHeight": 48,
+              "fontSizePx": 50,
+              "lineHeight": 60,
+              "lineCount": 1,
+              "topPadding": 0,
+              "inkAscent": 43,
+              "inkDescent": 5,
+              "inkBlockHeight": 48,
+              "measurementSource": "actual-bounds",
+              "sampleText": "主持人",
+              "fontFamily": "ShopeeNotoSans Content",
+              "fontWeight": "700",
+              "fontStyle": "Bold",
+              "italic": false
+            }
+          },
+          "主持人名稱": {
+            "type": "text",
+            "psdName": "主持人名稱",
+            "x": 453,
+            "y": 905,
+            "width": 173,
+            "height": 58,
+            "centerX": 539.5,
+            "centerY": 934,
+            "rotation": 0,
+            "text": "亞莎",
+            "fontSizePt": 50,
+            "fontSizePx": 50,
+            "fontSizePtRaw": 50,
+            "fontFamily": "ShopeeNotoSans Content",
+            "fontStyle": "Bold",
+            "fontWeight": "700",
+            "italic": false,
+            "align": "center",
+            "color": "#FFFFFF",
+            "lineHeight": 60,
+            "letterSpacing": 0,
+            "textTransform": {
+              "scaleX": 1,
+              "scaleY": 1
+            },
+            "textStyleRanges": [
+              {
+                "from": 0,
+                "to": 6,
+                "fontSizePx": 50,
+                "fontSizePtRaw": 50,
+                "fontFamily": "ShopeeNotoSans Content",
+                "fontWeight": "700",
+                "fontStyleName": "Bold",
+                "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+                "color": "#FFFFFF",
+                "lineHeight": 60,
+                "letterSpacing": 0
+              }
+            ],
+            "dominantStyleSource": "textStyleRange",
+            "textBaselineReference": {
+              "version": 2,
+              "source": "json",
+              "baselineOffsetY": 41,
+              "boxHeight": 58,
+              "fontSizePx": 50,
+              "lineHeight": 60,
+              "lineCount": 1,
+              "topPadding": 0,
+              "inkAscent": 41,
+              "inkDescent": 17,
+              "inkBlockHeight": 58,
+              "measurementSource": "actual-bounds",
+              "sampleText": "Sunny",
+              "fontFamily": "ShopeeNotoSans Content",
+              "fontWeight": "700",
+              "fontStyle": "Bold",
+              "italic": false
+            },
+            "hidden": false
+          },
+          "DECO_左上_蝦幣": {
+            "type": "image",
+            "psdName": "DECO_左上_蝦幣",
+            "x": 325,
+            "y": 834,
+            "width": 81,
+            "height": 74,
+            "centerX": 365.5,
+            "centerY": 871,
+            "rotation": 0,
+            "assetFilename": "人名標_DECO_左上_蝦幣.png",
+            "__resolvedAssetFolder": "人名標",
+            "__resolvedAssetFilename": "人名標_DECO_左上_蝦幣.png",
+            "__resolvedAssetPath": "人名標/人名標_DECO_左上_蝦幣.png",
+            "__assetMissing": false
+          },
+          "DECO_右下_票券": {
+            "type": "image",
+            "psdName": "DECO_右下_票券",
+            "x": 649,
+            "y": 911,
+            "width": 138,
+            "height": 105,
+            "centerX": 718,
+            "centerY": 963.5,
+            "rotation": 0,
+            "assetFilename": "人名標_DECO_右下_票券.png",
+            "__resolvedAssetFolder": "人名標",
+            "__resolvedAssetFilename": "人名標_DECO_右下_票券.png",
+            "__resolvedAssetPath": "人名標/人名標_DECO_右下_票券.png",
+            "__assetMissing": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 336,
+            "y": 810,
+            "width": 408,
+            "height": 168,
+            "centerX": 540,
+            "centerY": 894,
+            "rotation": 0,
+            "assetFilename": "人名標_KV_BG.png",
+            "__resolvedAssetFolder": "人名標",
+            "__resolvedAssetFilename": "人名標_KV_BG.png",
+            "__resolvedAssetPath": "人名標/人名標_KV_BG.png",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "DECO_右下_票券",
+          "DECO_左上_蝦幣",
+          "主持人名稱",
+          "主持人"
+        ],
+        "batchDiagnostics": [
+          {
+            "field": "主持人名稱",
+            "status": "ok",
+            "value": "亞莎",
+            "target": "主持人名稱"
+          }
+        ],
+        "batchSourceName": "人名標",
+        "batchProject": "",
+        "ruleFamily": "mirror_25",
+        "sheetTemplateRoute": {
+          "key": "mirror_25",
+          "family": "mirror_25",
+          "label": "人名標",
+          "sourceTemplateId": "人名標"
+        },
+        "batchRecord": {
+          "__workflow": "mirror-25",
+          "__sourceRow": 20,
+          "__position": "人名標",
+          "__width": 1080,
+          "__height": 1920,
+          "__size": "1080x1920",
+          "__kLimitBytes": null,
+          "__specFormat": "png",
+          "__route": {
+            "key": "mirror_25",
+            "family": "mirror_25",
+            "label": "人名標",
+            "templateId": "人名標",
+            "templateFile": "人名標.json",
+            "outputPrefix": "人名標"
+          },
+          "__templateId": "人名標",
+          "__outputName": "人名標_02_1080x1920",
+          "__rawCopy": "字數：上下兩行，各保留３個字的空間\n上方留小框可填寫title：亞莎",
+          "__hostName": "亞莎",
+          "__sourceCells": [
+            "人名標",
+            "",
+            "1080*1920",
+            "字數：上下兩行，各保留３個字的空間\n上方留小框可填寫title：亞莎",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      }
+    },
+    {
+      "name": "天空Bar_01_1080x1920",
+      "file": "天空Bar_01_1080x1920.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "天空Bar_01_1080x1920",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "天空Bar.psd"
+        },
+        "canvas": {
+          "width": 1080,
+          "height": 1920,
+          "unit": "px",
+          "source": "artboard",
+          "artboardName": "天空Bar",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "天空Bar"
+        },
+        "layers": {
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1080,
+            "height": 420,
+            "centerX": 540,
+            "centerY": 210,
+            "rotation": 0,
+            "assetFilename": "天空Bar_KV_BG.png",
+            "__resolvedAssetFolder": "天空Bar",
+            "__resolvedAssetFilename": "天空Bar_KV_BG.png",
+            "__resolvedAssetPath": "天空Bar/天空Bar_KV_BG.png",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg"
+        ],
+        "batchSourceName": "天空Bar",
+        "batchProject": "",
+        "ruleFamily": "mirror_25",
+        "sheetTemplateRoute": {
+          "key": "mirror_25",
+          "family": "mirror_25",
+          "label": "天空Bar",
+          "sourceTemplateId": "天空Bar"
+        },
+        "batchRecord": {
+          "__workflow": "mirror-25",
+          "__sourceRow": 21,
+          "__position": "天空Bar",
+          "__width": 1080,
+          "__height": 1920,
+          "__size": "1080x1920",
+          "__kLimitBytes": null,
+          "__specFormat": "png",
+          "__route": {
+            "key": "mirror_25",
+            "family": "mirror_25",
+            "label": "天空Bar",
+            "templateId": "天空Bar",
+            "templateFile": "天空Bar.json",
+            "outputPrefix": "天空Bar"
+          },
+          "__templateId": "天空Bar",
+          "__outputName": "天空Bar_01_1080x1920",
+          "__rawCopy": "與底Bar同色或更淺的顏色\n漸層純色，無文字（直播當下不會壓logo）",
+          "__hostName": "",
+          "__sourceCells": [
+            "天空Bar",
+            "",
+            "1080*1920",
+            "與底Bar同色或更淺的顏色\n漸層純色，無文字（直播當下不會壓logo）",
+            "",
+            "",
+            "－使用4.25視覺設計\n需提供無文字PNG檔",
+            "",
+            ""
+          ]
+        },
+        "batchDiagnostics": [
+          {
+            "field": "套版",
+            "status": "ok",
+            "value": "天空Bar",
+            "target": "天空Bar"
+          }
+        ]
+      }
+    },
+    {
+      "name": "底Bar_01_1080x1920",
+      "file": "底Bar_01_1080x1920.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "底Bar_01_1080x1920",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "底Bar.psd"
+        },
+        "canvas": {
+          "width": 1080,
+          "height": 1920,
+          "unit": "px",
+          "source": "artboard",
+          "artboardName": "底Bar",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "底Bar"
+        },
+        "layers": {
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 1616,
+            "width": 1080,
+            "height": 304,
+            "centerX": 540,
+            "centerY": 1768,
+            "rotation": 0,
+            "assetFilename": "底Bar_KV_BG.png",
+            "__resolvedAssetFolder": "底Bar",
+            "__resolvedAssetFilename": "底Bar_KV_BG.png",
+            "__resolvedAssetPath": "底Bar/底Bar_KV_BG.png",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg"
+        ],
+        "batchSourceName": "底Bar",
+        "batchProject": "",
+        "ruleFamily": "mirror_25",
+        "sheetTemplateRoute": {
+          "key": "mirror_25",
+          "family": "mirror_25",
+          "label": "底Bar",
+          "sourceTemplateId": "底Bar"
+        },
+        "batchRecord": {
+          "__workflow": "mirror-25",
+          "__sourceRow": 23,
+          "__position": "底Bar",
+          "__width": 1080,
+          "__height": 1920,
+          "__size": "1080x1920",
+          "__kLimitBytes": null,
+          "__specFormat": "png",
+          "__route": {
+            "key": "mirror_25",
+            "family": "mirror_25",
+            "label": "底Bar",
+            "templateId": "底Bar",
+            "templateFile": "底Bar.json",
+            "outputPrefix": "底Bar"
+          },
+          "__templateId": "底Bar",
+          "__outputName": "底Bar_01_1080x1920",
+          "__rawCopy": "四周的icon可以以4.25全站KV設計為延伸",
+          "__hostName": "",
+          "__sourceCells": [
+            "底Bar",
+            "",
+            "1080*1920",
+            "四周的icon可以以4.25全站KV設計為延伸",
+            "",
+            "",
+            "－使用4.25視覺設計\n需提供無文字PNG檔",
+            "",
+            ""
+          ]
+        },
+        "batchDiagnostics": [
+          {
+            "field": "套版",
+            "status": "ok",
+            "value": "底Bar",
+            "target": "底Bar"
+          }
+        ]
+      }
+    },
+    {
+      "name": "開框留底字卡_01_1080x1920",
+      "file": "開框留底字卡_01_1080x1920.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "開框留底字卡_01_1080x1920",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "開框留底字卡.psd"
+        },
+        "canvas": {
+          "width": 1080,
+          "height": 1920,
+          "unit": "px",
+          "source": "artboard",
+          "artboardName": "開框留底字卡",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "開框留底字卡"
+        },
+        "layers": {
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1080,
+            "height": 1920,
+            "centerX": 540,
+            "centerY": 960,
+            "rotation": 0,
+            "assetFilename": "開框留底字卡_KV_BG.png",
+            "__resolvedAssetFolder": "開框留底字卡",
+            "__resolvedAssetFilename": "開框留底字卡_KV_BG.png",
+            "__resolvedAssetPath": "開框留底字卡/開框留底字卡_KV_BG.png",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg"
+        ],
+        "batchSourceName": "開框留底字卡",
+        "batchProject": "",
+        "ruleFamily": "mirror_25",
+        "sheetTemplateRoute": {
+          "key": "mirror_25",
+          "family": "mirror_25",
+          "label": "開框留底字卡",
+          "sourceTemplateId": "開框留底字卡"
+        },
+        "batchRecord": {
+          "__workflow": "mirror-25",
+          "__sourceRow": 25,
+          "__position": "開框留底字卡",
+          "__width": 1080,
+          "__height": 1920,
+          "__size": "1080x1920",
+          "__kLimitBytes": null,
+          "__specFormat": "png",
+          "__route": {
+            "key": "mirror_25",
+            "family": "mirror_25",
+            "label": "開框留底字卡",
+            "templateId": "開框留底字卡",
+            "templateFile": "開框留底字卡.json",
+            "outputPrefix": "開框留底字卡"
+          },
+          "__templateId": "開框留底字卡",
+          "__outputName": "開框留底字卡_01_1080x1920",
+          "__rawCopy": "純底圖即可，無需KV logo",
+          "__hostName": "",
+          "__sourceCells": [
+            "開框留底字卡",
+            "x",
+            "1080*1920",
+            "純底圖即可，無需KV logo",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        "batchDiagnostics": [
+          {
+            "field": "套版",
+            "status": "ok",
+            "value": "開框留底字卡",
+            "target": "開框留底字卡"
+          }
+        ]
+      }
+    },
+    {
+      "name": "循環動畫底圖_01_1080x1920",
+      "file": "循環動畫底圖_01_1080x1920.generated",
+      "project": "",
+      "visible": true,
+      "data": {
+        "templateId": "循環動畫底圖_01_1080x1920",
+        "version": "2.6.2-subtitle-frame-order",
+        "source": {
+          "type": "photoshop",
+          "psdName": "循環動畫底圖.psd"
+        },
+        "canvas": {
+          "width": 1080,
+          "height": 1920,
+          "unit": "px",
+          "source": "artboard",
+          "artboardName": "循環動畫底圖",
+          "originX": 0,
+          "originY": 0,
+          "templateId": "循環動畫底圖"
+        },
+        "layers": {
+          "DECO_票券": {
+            "type": "image",
+            "psdName": "DECO_票券",
+            "x": 26.465,
+            "y": 9.717,
+            "width": 368.293,
+            "height": 341.039,
+            "centerX": 210.612,
+            "centerY": 180.236,
+            "rotation": -10.322,
+            "boundsAABB": {
+              "x": 16,
+              "y": 25,
+              "width": 396,
+              "height": 282
+            },
+            "assetFilename": "循環動畫底圖_DECO_票券.png",
+            "__resolvedAssetFolder": "循環動畫底圖",
+            "__resolvedAssetFilename": "循環動畫底圖_DECO_票券.png",
+            "__resolvedAssetPath": "循環動畫底圖/循環動畫底圖_DECO_票券.png",
+            "__assetMissing": false
+          },
+          "橫式_25號商城狂購節_LOGO": {
+            "type": "image",
+            "psdName": "橫式_25號商城狂購節_LOGO",
+            "x": 131,
+            "y": 663,
+            "width": 818,
+            "height": 181,
+            "centerX": 540,
+            "centerY": 753.5,
+            "rotation": 0,
+            "assetFilename": "循環動畫底圖_橫式_25號商城狂購節_LOGO.png",
+            "__resolvedAssetFolder": "",
+            "__resolvedAssetFilename": "橫式_25號商城狂購節_LOGO.svg",
+            "__resolvedAssetPath": "@root/橫式_25號商城狂購節_LOGO.svg",
+            "__assetMissing": false
+          },
+          "橫式_USP": {
+            "type": "image",
+            "psdName": "橫式_USP_",
+            "x": 118,
+            "y": 859,
+            "width": 845,
+            "height": 142,
+            "centerX": 540.5,
+            "centerY": 930,
+            "rotation": 0,
+            "assetFilename": "循環動畫底圖_橫式_USP.png",
+            "__resolvedAssetFolder": "",
+            "__resolvedAssetFilename": "橫式_USP.svg",
+            "__resolvedAssetPath": "@root/橫式_USP.svg",
+            "__assetMissing": false
+          },
+          "kv_bg": {
+            "type": "image",
+            "psdName": "KV_BG",
+            "x": 0,
+            "y": 0,
+            "width": 1080,
+            "height": 1920,
+            "centerX": 540,
+            "centerY": 960,
+            "rotation": 0,
+            "assetFilename": "循環動畫底圖_KV_BG.png",
+            "__resolvedAssetFolder": "循環動畫底圖",
+            "__resolvedAssetFilename": "循環動畫底圖_KV_BG.png",
+            "__resolvedAssetPath": "循環動畫底圖/循環動畫底圖_KV_BG.png",
+            "__assetMissing": false
+          }
+        },
+        "generatedLayers": {},
+        "renderOrder": [
+          "kv_bg",
+          "橫式_USP",
+          "橫式_25號商城狂購節_LOGO",
+          "DECO_票券"
+        ],
+        "batchSourceName": "循環動畫\n底圖",
+        "batchProject": "",
+        "ruleFamily": "mirror_25",
+        "sheetTemplateRoute": {
+          "key": "mirror_25",
+          "family": "mirror_25",
+          "label": "循環動畫\n底圖",
+          "sourceTemplateId": "循環動畫底圖"
+        },
+        "batchRecord": {
+          "__workflow": "mirror-25",
+          "__sourceRow": 26,
+          "__position": "循環動畫\n底圖",
+          "__width": 1080,
+          "__height": 1920,
+          "__size": "1080x1920",
+          "__kLimitBytes": null,
+          "__specFormat": "png",
+          "__route": {
+            "key": "mirror_25",
+            "family": "mirror_25",
+            "label": "循環動畫\n底圖",
+            "templateId": "循環動畫底圖",
+            "templateFile": "循環動畫底圖.json",
+            "outputPrefix": "循環動畫底圖"
+          },
+          "__templateId": "循環動畫底圖",
+          "__outputName": "循環動畫底圖_01_1080x1920",
+          "__rawCopy": "需要製作循環動畫底圖、元素、放上「4.25 跨夜直播KV視覺」\n[跨夜直播派對 Logo] x［4.25 KV LOGO］ >>放置在示意框內\n(廠商logo會由直播剪輯放上去)",
+          "__hostName": "",
+          "__sourceCells": [
+            "循環動畫\n底圖",
+            "-",
+            "1080*1920",
+            "\n需要製作循環動畫底圖、元素、放上「4.25 跨夜直播KV視覺」\n[跨夜直播派對 Logo] x［4.25 KV LOGO］ >>放置在示意框內\n(廠商logo會由直播剪輯放上去)",
+            "",
+            "",
+            "提供底圖 【PSD檔】 後，循環影片製作完成後續會另外提供給GD審核\n\n請務必留意安全框位置",
+            "",
+            ""
+          ]
+        },
+        "batchDiagnostics": [
+          {
+            "field": "套版",
+            "status": "ok",
+            "value": "循環動畫\n底圖",
+            "target": "循環動畫底圖"
+          }
+        ]
+      }
+    }
+  ],
+  "unmatched": [],
+  "diagnostics": {
+    "sheetName": "425_鏡面",
+    "anchorCount": 1,
+    "parsedBlockCount": 6,
+    "recordCount": 6,
+    "sourceTemplateNames": [
+      "人名標",
+      "天空Bar",
+      "底Bar",
+      "循環動畫底圖",
+      "開框留底字卡"
+    ],
+    "warnings": [],
+    "skippedRows": [],
+    "generatedCount": 6,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  }
+}

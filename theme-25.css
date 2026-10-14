@@ -1,0 +1,200 @@
+/* 25節 整合版 — 深色主題覆寫層（自 18節 2026-10-07 回饋 8 移植，七項）
+ *
+ * 載在 style.css 之後，只「覆寫」不重寫：style.css 是歷代工具累積的樣式（含壓縮過的一行），
+ * 這裡集中放設計決策，之後要調整主題只動這一支。
+ *
+ *   1. 單一強調色：蝦皮橘（#EE4D2D）。藍色只留在「連動／資訊」語意；成功綠、警告黃、錯誤紅不變。
+ *   2. 8px 網格：間距只用 8／16／24／32，控件高度 32／40／48。
+ *   3. 統一面板：左欄面板、右側批次預覽、對話框、素材庫、診斷面板、浮動工具列同一組底色／邊框／圓角／陰影。
+ *   4. 三種字級：12（輔助）／13（內文）／16（標題）。
+ *   5. 按鈕狀態：hover／active／focus-visible／disabled 四態一致。
+ *   6. 空狀態：還沒有東西的區塊給一句提示，而不是空白。
+ *   7. 快捷鍵提示：工具列「⌨ 快捷鍵」按鈕＋各按鈕 title 補上快捷鍵。
+ */
+
+/* ── 1. 色票 ── */
+:root {
+  --accent: #ee4d2d;
+  --accent-2: #ff7a59;
+  --accent-soft: rgba(238, 77, 45, .16);
+  --accent-line: rgba(255, 122, 89, .55);
+  --shadow-glow: 0 0 24px rgba(238, 77, 45, .28);
+  --info: #60a5fa;            /* 連動／資訊語意保留藍 */
+  --orange: var(--accent);
+
+  /* 2. 8px 網格 */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --control-h: 40px;
+  --control-h-sm: 32px;
+  --toolbar-h: 56px;
+  --status-h: 32px;
+  --sidebar-w: 360px;
+
+  /* 3. 面板 */
+  --panel-bg: linear-gradient(180deg, rgba(26, 34, 51, .96), rgba(18, 24, 36, .96));
+  --panel-bg-solid: #151b28;
+  --panel-border: 1px solid var(--line);
+  --panel-radius: 16px;
+  --panel-shadow: 0 1px 0 rgba(255, 255, 255, .04) inset, 0 12px 28px rgba(0, 0, 0, .18);
+  --r-xs: 8px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 24px;
+
+  /* 4. 字級 */
+  --fs-s: 12px;
+  --fs-m: 13px;
+  --fs-l: 16px;
+}
+
+body {
+  background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), transparent 30%), var(--bg);
+  font-size: var(--fs-m);
+}
+
+/* 藍色硬編碼 → 強調色 */
+.primary-btn, .primaryBtn { background: linear-gradient(135deg, #ff7a59, #ee4d2d); box-shadow: 0 10px 24px rgba(238, 77, 45, .32), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+.primary-btn:hover, .primaryBtn:hover { box-shadow: 0 14px 30px rgba(238, 77, 45, .4), 0 0 0 1px rgba(255, 255, 255, .12) inset; }
+.secondary-btn:hover, .ghostBtn:hover, .toolbar button:hover, .upload-btn:hover, .fileDrop:hover,
+.align-group button:hover, .segmented button:hover, .word-icon-btn:hover, .word-fmt-btn:hover, .batch-group-header:hover,
+.batch-item:hover, .batch-thumb:hover, .diag-row:hover, .diag-chip:hover, .diag-tool:hover { background: rgba(238, 77, 45, .12); }
+.layerItem.active, .layer-item.active { background: linear-gradient(135deg, rgba(238, 77, 45, .2), rgba(255, 122, 89, .06)); box-shadow: 0 0 18px rgba(238, 77, 45, .12); }
+.templateItem.active, .template-item.active, .batch-item.active { box-shadow: 0 0 18px rgba(238, 77, 45, .12); }
+.batch-thumb.active { box-shadow: 0 0 0 2px rgba(238, 77, 45, .3); }
+.layerIcon, .layer-icon, .accordion-icon, .batch-group-icon { color: var(--accent-2); background: rgba(238, 77, 45, .12); border-color: rgba(255, 122, 89, .22); }
+.word-fmt-btn.active { box-shadow: 0 0 8px rgba(238, 77, 45, .2); }
+.search-input:focus, #layerSearch:focus, .controls input:focus, .controls textarea:focus, #commonControls input:focus,
+#textControls input:focus, #textControls textarea:focus, #textInput:focus, .word-select:focus, .word-size-input:focus, .al-search:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(238, 77, 45, .16);
+}
+#inlineTextEditor::selection { background: rgba(238, 77, 45, .32); }
+.canvas-shell { background:
+  linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px),
+  linear-gradient(0deg, rgba(255, 255, 255, .025) 1px, transparent 1px),
+  radial-gradient(circle at center, rgba(238, 77, 45, .06), transparent 48%), #090d15;
+  background-size: 24px 24px, 24px 24px, auto, auto; }
+.asset-loading-bar span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+.link-btn { color: var(--accent-2); }
+/* 連動開關／連動徽章維持資訊藍（語意不同於主要操作） */
+.link-sync-badge, .asset-link-badge { color: var(--info); }
+
+/* ── 2. 8px 網格 ── */
+.mt-6 { margin-top: var(--space-1) !important; }
+.mt-10 { margin-top: var(--space-2) !important; }
+.sidebar { gap: var(--space-2); padding: var(--space-2); padding-right: 14px; }
+.brand { padding: var(--space-1) var(--space-1) var(--space-2); gap: var(--space-2); }
+.panel-header { height: 48px; padding: 0 var(--space-2); }
+.panel-body { padding: var(--space-2); }
+.panel-description { margin-bottom: var(--space-1); }
+.primary-btn, .secondary-btn, .ghostBtn, .primaryBtn, .upload-btn, .fileDrop, .word-select, .search-input, #layerSearch,
+#commonControls input, #textControls input, .controls input { min-height: var(--control-h); height: var(--control-h); }
+#textControls textarea, #textInput, .controls textarea { height: auto; }
+.upload-btn, .fileDrop { margin-top: var(--space-1); }
+.secondary-btn, .ghostBtn { margin-top: var(--space-1); }
+.toolbar { padding: 0 var(--space-2); }
+.toolbar button { height: var(--control-h-sm); padding: 0 var(--space-2); }
+.toolbar-left, .toolbar-right { gap: var(--space-1); }
+.canvas-shell, .canvas-shell.batch-mode { padding: var(--space-4) !important; }
+.statusbar { gap: var(--space-3); padding: 0 var(--space-2); }
+.template-list, .templateList, .batch-item-list, .layer-list, #layerList, .layerList { gap: var(--space-1); }
+.templateItem, .template-item, .batch-item { min-height: var(--control-h); padding: var(--space-1) 12px; }
+.layerItem, .layer-item { min-height: 48px; padding: var(--space-1); }
+.batch-preview-panel { padding: var(--space-2); }
+.batch-preview-title { margin: calc(-1 * var(--space-2)) calc(-1 * var(--space-2)) var(--space-2); padding: var(--space-2); }
+.batch-preview-actions { gap: var(--space-1); margin-bottom: var(--space-2); }
+.batch-preview-grid { gap: var(--space-2) !important; }
+.batch-thumb { padding: var(--space-1); }
+.align-group, .segmented, .control-grid, .grid2 { gap: var(--space-1); }
+.align-group button, .segmented button { height: var(--control-h-sm); }
+.v3-modal, .modal-box, .asset-loading-card { padding: var(--space-3); }
+.v3-modal-actions, .modal-actions { gap: var(--space-1); }
+.v3-modal-actions button { min-height: var(--control-h); }
+.unmatched-box { margin-top: var(--space-1); padding: var(--space-1); }
+.diag-chips { gap: var(--space-1); margin-bottom: var(--space-1); }
+.diag-row { min-height: var(--control-h); padding: var(--space-1) 12px; }
+.diag-row + .diag-row { margin-top: var(--space-1); }
+.diag-drawer-head { padding: var(--space-2); }
+.diag-drawer-tabs { padding: var(--space-1) var(--space-2); gap: var(--space-1); }
+.diag-drawer-body { padding: var(--space-2) var(--space-2) var(--space-3); }
+.asset-library { gap: var(--space-1); padding: var(--space-2); }
+.text-float-toolbar { padding: var(--space-1); gap: var(--space-1); }
+
+/* ── 3. 統一面板 ── */
+.panel, .batch-preview-panel, .v3-modal, .modal-box, .asset-loading-card, .diag-drawer, .asset-library, .text-float-toolbar, .al-toast, .asset-review-modal {
+  border: var(--panel-border);
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+}
+.panel, .v3-modal, .modal-box, .asset-loading-card, .asset-library { border-radius: var(--panel-radius); }
+.batch-preview-panel { border-radius: 0 !important; border-top: 0; border-right: 0; border-bottom: 0; box-shadow: -18px 0 60px rgba(0, 0, 0, .22); }
+.diag-drawer { box-shadow: -24px 0 70px rgba(0, 0, 0, .45); }
+.text-float-toolbar, .al-toast { border-radius: var(--r-md); }
+.panel-header span:first-child, .batch-preview-title, .diag-drawer-title, .modal-title, .v3-modal h3, .al-title {
+  font-size: var(--fs-m); font-weight: 800; letter-spacing: .06em; text-transform: none;
+}
+.panel-body, .batch-preview-title, .diag-drawer-head, .diag-drawer-tabs { border-color: var(--line); }
+.inspector-title, #emptyInspector, .empty-state, .empty, .batch-group, .diag-row, .diag-chip, .templateItem, .template-item, .batch-item, .layerItem, .layer-item, .batch-thumb {
+  border-radius: var(--r-md);
+}
+
+/* ── 4. 三種字級 ── */
+.brand-title, .v3-modal h3, .modal-title, .diag-drawer-title { font-size: var(--fs-l); }
+.brand-version, .panel-description, .layerMeta small, .layer-meta small, .batch-item small, .batch-group-header small, .batch-thumb small,
+.word-label, #commonControls label, #textControls label, .controls label, .statusbar, .diag-chip, .diag-kind, .diag-drawer-sub, .diag-tab,
+.al-count, .al-target, .workbook-status small, .panel-divider, .canvas-stage::after, .batch-loading, .asset-loading-text, .asset-loading-percent, .diag-group h4 small, .diag-times, .diag-empty, .diag-tool {
+  font-size: var(--fs-s) !important;
+}
+.diag-chip b { font-size: var(--fs-l) !important; }
+.templateItem, .template-item, .template-name-only, .batch-item, .layerMeta strong, .layer-meta strong, .toolbar button, .toolbar label, .upload-btn, .fileDrop,
+.primary-btn, .secondary-btn, .word-select, .search-input, #layerSearch, .diag-row, .diag-item, .diag-group h4, .v3-modal-notes, .v3-modal p, .modal-description, .inspector-title, #emptyInspector, .empty-state {
+  font-size: var(--fs-m);
+}
+.word-label, #commonControls label, #textControls label, .controls label { letter-spacing: .02em; text-transform: none; }
+
+/* ── 5. 按鈕四態 ── */
+.primary-btn, .secondary-btn, .ghostBtn, .primaryBtn, .toolbar button, .upload-btn, .fileDrop, .align-group button, .segmented button,
+.word-icon-btn, .word-fmt-btn, .icon-btn, .eyeBtn, .lockBtn, .diag-tool, .diag-tab, .diag-row, .diag-chip, .batch-group-header, .link-btn, .al-close {
+  transition: background .14s ease, border-color .14s ease, color .14s ease, box-shadow .14s ease, transform .1s ease, opacity .14s ease;
+}
+.primary-btn:active, .primaryBtn:active { transform: translateY(0); filter: brightness(.94); box-shadow: 0 6px 16px rgba(238, 77, 45, .28), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+.secondary-btn:active, .ghostBtn:active, .toolbar button:active, .align-group button:active, .segmented button:active, .word-icon-btn:active, .word-fmt-btn:active,
+.diag-tool:active, .diag-row:active, .diag-chip:active, .batch-group-header:active { transform: translateY(1px); background: rgba(238, 77, 45, .2); }
+button:focus-visible, .upload-btn:focus-within, .link-btn:focus-visible, select:focus-visible, input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
+button:disabled, button[disabled], .primary-btn:disabled, .secondary-btn:disabled, .toolbar button:disabled {
+  opacity: .42; cursor: not-allowed; transform: none !important; box-shadow: none !important; filter: none !important;
+}
+.primary-btn:disabled { background: linear-gradient(135deg, #7a6560, #5a4a46); }
+.toolbar button:disabled:hover { color: var(--text-2); border-color: var(--line); background: rgba(255, 255, 255, .05); }
+
+/* ── 6. 空狀態 ── */
+#emptyInspector, .empty-state, .empty, .diag-empty, .batch-loading {
+  display: grid; gap: 4px; place-items: center; min-height: 72px; padding: var(--space-2);
+  border: 1px dashed var(--line-2); border-radius: var(--r-md); color: var(--muted); background: rgba(255, 255, 255, .02); text-align: center; line-height: 1.55;
+}
+#emptyInspector::before { content: '⬚'; font-size: 22px; line-height: 1; color: var(--muted-2); }
+#templateList:empty::before, #layerList:empty::before {
+  display: grid; place-items: center; min-height: 72px; padding: var(--space-2);
+  border: 1px dashed var(--line-2); border-radius: var(--r-md); color: var(--muted); background: rgba(255, 255, 255, .02); font-size: var(--fs-s); text-align: center; line-height: 1.55;
+}
+#templateList:empty::before { content: '還沒有公版 — 上傳公版資料夾後會列在這裡'; }
+#layerList:empty::before { content: '這一張還沒有圖層，或搜尋沒有結果'; }
+#batchStatus.is-empty { display: grid; place-items: center; min-height: 56px; padding: var(--space-2); border: 1px dashed var(--line-2); border-radius: var(--r-md); background: rgba(255, 255, 255, .02); text-align: center; }
+#batchItemList:empty { display: none; }
+
+/* ── 7. 快捷鍵提示 ── */
+.toolbar .shortcut-help { color: var(--muted); }
+.toolbar .shortcut-help:hover { color: var(--text); }
+kbd.kbd { display: inline-block; min-width: 18px; padding: 0 5px; border: 1px solid var(--line-2); border-bottom-width: 2px; border-radius: 5px; background: rgba(255, 255, 255, .06); color: var(--text-2); font: 600 11px/18px ui-monospace, Menlo, Consolas, monospace; text-align: center; }
+.shortcut-popover { position: fixed; z-index: 9100; width: min(380px, 92vw); padding: var(--space-2); border: var(--panel-border); border-radius: var(--panel-radius); background: var(--panel-bg); box-shadow: var(--shadow-md); color: var(--text-2); font-size: var(--fs-m); }
+.shortcut-popover.hidden { display: none !important; }
+.shortcut-popover h4 { margin: 0 0 var(--space-1); font-size: var(--fs-m); font-weight: 800; color: var(--text); }
+.shortcut-popover ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; }
+.shortcut-popover li { display: flex; align-items: center; justify-content: space-between; gap: var(--space-1); }
+.shortcut-popover li span:last-child { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.shortcut-popover li span:first-child { flex: 1 1 auto; min-width: 0; }
+.shortcut-popover li span:last-child { flex: 0 0 auto; flex-wrap: nowrap; white-space: nowrap; }
+.workbook-status[hidden], [hidden]:not(.panel-body) { display: none !important; }

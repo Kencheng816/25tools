@@ -1,0 +1,1081 @@
+{
+  "tool": "暖身BN",
+  "sheetName": "BN 暖身",
+  "project": "",
+  "capturedAt": "2026-09-10T04:40:13.169Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "registry": {
+      "register": {},
+      "get": {},
+      "getRules": {},
+      "getMatchRules": {},
+      "detectFamily": {},
+      "getSheetParsers": {},
+      "list": {}
+    },
+    "loadedRuleFiles": [
+      "rules/shared/runtime-policy.js",
+      "rules/shared/special-block-parser-policy.js",
+      "rules/shared/template-rule-utils.js",
+      "rules/shared/sp-text-standard.js",
+      "rules/shared/warmup-price-style-resolver.js",
+      "rules/shared/warmup-banner-rule-factory.js",
+      "rules/shared/warmup-placement-presets.js",
+      "rules/01_頭巾_rules.js",
+      "rules/02_HBN_rules.js",
+      "rules/03_DD Card_rules.js",
+      "rules/04_POPUP_rules.js",
+      "rules/05_SKBN_rules.js",
+      "rules/06_AR_rules.js",
+      "rules/07_AR Large BN_rules.js",
+      "rules/08_IG Story_rules.js",
+      "rules/10_Seller BN_rules.js",
+      "rules/11_外部team宣傳素材_rules.js",
+      "rules/12_Mepage_rules.js"
+    ],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 23,
+    "assetCount": 200,
+    "sheetNames": [
+      "GD Timeline",
+      "美術工單▶",
+      "工單KV+Logo",
+      "BN 暖身",
+      "C.美術工單(overlay)>>由support發單",
+      " BN 正式",
+      "新增製作物_VIP",
+      "新增製作物_SCS EL",
+      "(do not edit)首頁曝光大表",
+      "MS版配 ▶",
+      "Component Label公版",
+      "設定用色碼",
+      "類別分會場PIC名單",
+      "可使用MS公版清單"
+    ]
+  },
+  "generated": 109,
+  "exported": 109,
+  "unmatched": [
+    "AR",
+    "AR Large"
+  ],
+  "alerts": [],
+  "diagnostics": {
+    "sheetName": "BN 暖身",
+    "anchorCount": 12,
+    "parsedBlockCount": 12,
+    "recordCount": 98,
+    "sourceTemplateNames": [
+      "10_Seller BN_高單券通用版_商城(1k-200)_無賣場券",
+      "07_AR Large BN",
+      "10_Seller BN_高單券通用版_商城(1k-4k)",
+      "10_Seller BN_PS店家_無賣場",
+      "外部team宣傳素材_1125x360",
+      "04_POPUP",
+      "10_Seller BN_CCB 店家",
+      "10_Seller BN_高單券通用版_全站(1K-2.5K)_無賣場券",
+      "11_外部team宣傳素材_1200x360",
+      "10_Seller BN_CCB 店家_無賣場券",
+      "10_Seller BN_高單券通用版_全站(1K-2.5K)",
+      "05_SKBN_APP_中",
+      "10_Seller BN_高單券通用版_商城(1k-200)",
+      "07_AR Large BN_保護文字款",
+      "08_IG Story",
+      "02_HBN",
+      "10_Seller BN_PS店家",
+      "05_SKBN_PC_中",
+      "03_DD Card",
+      "10_Seller BN_高單券通用版_商城(1k-4k)_無賣場券",
+      "12_Mepage",
+      "01_頭巾",
+      "06_AR"
+    ],
+    "warnings": [],
+    "skippedRows": [
+      {
+        "row": 3,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 4,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 5,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 6,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 7,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 10,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 11,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 12,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 13,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 14,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 15,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 16,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 17,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 18,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 19,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 20,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 21,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 22,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 25,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 26,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 27,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 28,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 29,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 30,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 31,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 32,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 33,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 34,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 35,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 36,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 37,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 40,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 41,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 42,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 43,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 44,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 45,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 46,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 51,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 52,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 53,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 54,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 55,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 60,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 61,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 62,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 63,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 64,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 69,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 70,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 71,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 72,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 73,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 74,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 75,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 76,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 77,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 78,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 79,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 80,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 81,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 86,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 87,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 88,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 89,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 90,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 91,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 92,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 93,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 94,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 95,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 96,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 97,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 103,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 104,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 109,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 110,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 111,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 112,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 113,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 114,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 115,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 116,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 117,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 118,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 119,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 120,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 121,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 122,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 123,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 124,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 125,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 126,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 127,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 128,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 129,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 130,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 131,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 132,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 133,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 134,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 135,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 136,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 137,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 143,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 144,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 145,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 146,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 147,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 148,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 149,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 150,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 151,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 152,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 153,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 154,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 155,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 158,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 159,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 160,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 161,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 162,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 163,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 164,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 165,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 166,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 167,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 168,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 169,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 170,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 190,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 191,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 199,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 200,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 201,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 202,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 203,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      }
+    ],
+    "generatedCount": 109,
+    "unmatchedCount": 2,
+    "emptyBlockCount": 0
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_25%E7%AF%80USP_%E5%B0%8D%E5%A4%96_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E8%99%9B%E7%B7%9A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AEVIP_LOGO_%E6%A9%98%E8%89%B2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_25%E7%AF%80USP_%E5%B0%8D%E5%A4%96_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E8%99%9B%E7%B7%9A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AEVIP_LOGO_%E6%A9%98%E8%89%B2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_25%E7%AF%80USP_%E5%B0%8D%E5%A4%96_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E8%99%9B%E7%B7%9A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AEVIP_LOGO_%E6%A9%98%E8%89%B2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_25%E7%AF%80USP_%E5%B0%8D%E5%A4%96_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E8%B3%BC%E7%89%A9_LOGO_%E7%99%BD.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E8%99%9B%E7%B7%9A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AEVIP_LOGO_%E6%A9%98%E8%89%B2.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "pageerror: 素材模糊比對不明確：10_Seller BN_高單券通用版_商城(1k-200)_無賣場券_蝦皮VIP_LOGO_橘色.png 候選為 蝦皮VIP_LOGO.svg、蝦皮VIP_LOGO_橘色.svg\nObject.match (http://127.0.0.1:37485/core/app.core.js:313:38)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_VIP.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E5%B9%A3%E5%A0%86.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E8%9D%A6%E7%9A%AE%E7%B4%99%E7%AE%B1.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_3D%E5%85%8D%E9%81%8B%E5%B0%8F%E8%BB%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/10_Seller%20BN_%E9%AB%98%E5%96%AE%E5%88%B8%E9%80%9A%E7%94%A8%E7%89%88_%E5%95%86%E5%9F%8E(1k-200)_%E7%84%A1%E8%B3%A3%E5%A0%B4%E5%88%B8_%E5%B0%8F%E7%A5%A8%E5%88%B8_%E5%95%86%E5%9F%8E_200.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/01_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/01%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1125x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/assets/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:37485/11_%E5%A4%96%E9%83%A8team%E5%AE%A3%E5%82%B3%E7%B4%A0%E6%9D%90_1200x360_%E5%88%B8.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+      "sha256": "96f2184a818336556be4dd2d9dfa81ccfd2fe374eee3149060bb24e0006a1506"
+    },
+    "templates": {
+      "01_頭巾.json": "f2828bb565479994e9929e7c91b4462b34fbc8f8a4960f98d678de43d194085f",
+      "02_HBN.json": "a799349bee9e4a11f49cd0d7d3c90caffe05c7c2bfc3c3919cada666b6148d59",
+      "03_DD Card.json": "7a0cc4fce77967cf7572fa5ff90e779f9c664bf217e99500b8f882fb6e58da57",
+      "04_POPUP.json": "3b2c38db3026f2dfeef98dce7a723a36f0300ef7c8e111675ace8c2370c3b695",
+      "05_SKBN_APP_中.json": "96d16be628c4431bd6d6d00e876cba616d4836ba15ba47fc5650b67260aab7ed",
+      "05_SKBN_PC_中.json": "d903323428b3c97056ecdc08a38ab8dc815e69025e7e6d290834e6d4e2030485",
+      "06_AR.json": "88eb54426b14de4fc2e7dce3393cae5cca3c05ba00b9b2a9dcccadbff7256b32",
+      "07_AR Large BN.json": "d7471840191101556129e60447e60ef09cf6f46f03639e17092aec09d7200ab1",
+      "07_AR Large BN_保護文字款.json": "85f3f408ac05e17c8b68e11f6afe3312860c3b5ebc92ba2d053272fc190cbdd5",
+      "08_IG Story.json": "3dc21bc43029408866dce0e4ecdfe32c2d04b94a37a26c4433fa9d6c879c8aa0",
+      "10_Seller BN_CCB 店家.json": "2509aa12fde614f1c3bf058b366da05d852188d51da379b0b75b9dc90ca3e3d4",
+      "10_Seller BN_CCB 店家_無賣場券.json": "ba5fb73f8c7994aea2ea9d40b43c903ab43a952242e5f18b13065c8318dad361",
+      "10_Seller BN_PS店家.json": "90de817dbe6999398100175b3e9b4005f221ce122741889778e9cee301aead6d",
+      "10_Seller BN_PS店家_無賣場.json": "52761bd95b2ca2bc7275aa25af0c3576b4751522f860729c8b3a07d4ec502920",
+      "10_Seller BN_高單券通用版_全站(1K-2.5K).json": "8bc7b82d6f7200fd07af0f16c34b2921d5fa014c635d3f99d5ac18f699191d89",
+      "10_Seller BN_高單券通用版_全站(1K-2.5K)_無賣場券.json": "efc15829ca67abe71bc12fecaba70740b1b013e7bfaa8d6306bb035fd7e43303",
+      "10_Seller BN_高單券通用版_商城(1k-200).json": "79e87ac48891e51cd2f0c5d4bf73649d9412d22a9e24a05bcfcda4e8473d5032",
+      "10_Seller BN_高單券通用版_商城(1k-200)_無賣場券.json": "e2c40f4d3a25aec67dd28ca29e61b6787921a93215f74a95c406e26822690939",
+      "10_Seller BN_高單券通用版_商城(1k-4k).json": "1bef93494d60eb8fee0230b2c3f8eca258924db727784659234a534c7494fe00",
+      "10_Seller BN_高單券通用版_商城(1k-4k)_無賣場券.json": "e8ad6e5e9b0f31df1913dca1c10a31991f7904801679ba86b0b21fa7bd599ea2",
+      "11_外部team宣傳素材_1125x360.json": "333d1680020d69914be29f9f9e7541c1f29e190dc5fa012ba497e842e380eada",
+      "11_外部team宣傳素材_1200x360.json": "d8c2092ce0aa753664521f9cb98cea95532bbeb11f38b22737426eb681e4386c",
+      "12_Mepage.json": "9e513c67bad34a3db3eb7d60c16371aa675742d5d2d8e3060718493ccea49c14"
+    },
+    "assets": {
+      "01_頭巾/01_頭巾_CTA_兌換完畢.png": "6e74109117d5b1d8f47c9d03a4cd5b872ab17707b2e9c839ad7a8da935b1f315",
+      "01_頭巾/01_頭巾_全站券_券面底圖.png": "ddeac3e6ad460c0a8fa6560719bd2d880eaa5363ac5f21d1e88dd8f5c1ea93b0",
+      "01_頭巾/01_頭巾_全站券_蝦皮購物_LOGO.png": "a1cc570de7d444f1c891d887df654d8bd40aee3de14e0f7e0daf4714c4da2249",
+      "01_頭巾/01_頭巾_券面底圖.png": "1cfa31b407d797f22febb0855ca31d2a3cb202408e116a7ab3fefd7898568ad6",
+      "01_頭巾/01_頭巾_商城券_券面底圖.png": "370d1458a45c34c52fe3a081ffb8adc85a67a9658a4d860a8b914dbd7bbeb344",
+      "01_頭巾/01_頭巾_商城券_蝦皮購物_LOGO.png": "391b092bac13c0a5bbaf96f9fa0c8a6871e0baf435e928a0f536d61e87add69d",
+      "01_頭巾/01_頭巾_橫式_25號商城狂購節_LOGO_白.svg": "9e11722b68c899e6a1ba9337a4178418382f00cff5a906e62e78f0d669134aee",
+      "01_頭巾/VIP_單券_折扣.png": "21b7bc03b53ab02606a76fbf291925e4bce85f3d6b90d150e9685af4647dc881",
+      "01_頭巾/VIP_單券_蝦幣.png": "05f2b6e598289b0ecc939cd29085ccc0a96e4a93c4bac8bc71446fdad12df2fc",
+      "01_頭巾/VIP_蝦幣_100.png": "b48d13a1f28a657ede76e9f76807700ee4197865124f9cd3388db01b9c9e4481",
+      "02_HBN/02_HBN_KV_BG.png": "c03918bd79875236d4ac1e655afab26aa27558b9e66dfde1eb94f37c45495e47",
+      "02_HBN/02_HBN_規範.png": "ae22b344835e6f39c0eaf0832da2f2fbdb20e0f8056480c5dfaf06f5bc5f1faa",
+      "03_DD Card/03_DD Card_KV_BG.png": "a9cd78ea5974d7cec9d98ceb18c16c5e5550348bec310f3db9f9adaca6e06d74",
+      "03_DD Card/03_DD Card_規範.png": "868d3cece226ea5bb71ee65f0e1284ab87e21d1d41e55445e75e0841491d0434",
+      "04_POPUP/04_POPUP_KV_BG.png": "9b5fc539a67a922c22909be71fbce97164d2fac511ea3c445e84a62288bc544e",
+      "05_SKBN_APP_中/05_SKBN_APP_CTA.png": "69cbb05bfebc3cbd0cd662a2f09eb06ddfcffe2bb2ebd9866f85b212b8ef55a5",
+      "05_SKBN_APP_中/05_SKBN_APP_中_KV_BG.png": "ed5db387653574efd5d98243c149ff19345cf19f61b4ec04d2d287636fc9d08a",
+      "05_SKBN_APP_中/05_SKBN_PC_CTA.png": "88517560ea6893e43197f06ab7ed971cac58ba60a1286c12febcf43095d84934",
+      "05_SKBN_APP_中/05_SKBN_PC_中_KV_BG.png": "1680b74130b5f4aeed5f79deef33abd9f11732675052e35129aa17283b2f9dc1",
+      "05_SKBN_PC_中/05_SKBN_APP_中_CTA.png": "69cbb05bfebc3cbd0cd662a2f09eb06ddfcffe2bb2ebd9866f85b212b8ef55a5",
+      "05_SKBN_PC_中/05_SKBN_APP_中_KV_BG.png": "ed5db387653574efd5d98243c149ff19345cf19f61b4ec04d2d287636fc9d08a",
+      "05_SKBN_PC_中/05_SKBN_PC_中_CTA.png": "88517560ea6893e43197f06ab7ed971cac58ba60a1286c12febcf43095d84934",
+      "05_SKBN_PC_中/05_SKBN_PC_中_KV_BG.png": "1680b74130b5f4aeed5f79deef33abd9f11732675052e35129aa17283b2f9dc1",
+      "07_AR Large BN/07_AR Large BN_KV_BG_免運.png": "b48c75b33c1fec250bb91d0a2f16d59ac20be5ee04c3a76db5b4a55b05b0c0bc",
+      "07_AR Large BN/07_AR Large BN_KV_BG_蝦皮VIP.png": "dca205a52da8c2a0d8f248c3805da1ca5f8859c171972e401a5cb049b754f018",
+      "07_AR Large BN/07_AR Large BN_KV_BG_蝦皮商城.png": "ee79659575c6ab82ba8cfaaf24c7619967e843b6eaa545c24e01aec0dbcacbec",
+      "07_AR Large BN/07_AR Large BN_KV_BG_蝦皮購物.png": "dca205a52da8c2a0d8f248c3805da1ca5f8859c171972e401a5cb049b754f018",
+      "07_AR Large BN_保護文字款/07_AR Large BN_保護文字款KV_BG_免運.png": "b48c75b33c1fec250bb91d0a2f16d59ac20be5ee04c3a76db5b4a55b05b0c0bc",
+      "07_AR Large BN_保護文字款/07_AR Large BN_保護文字款KV_BG_蝦皮VIP.png": "dca205a52da8c2a0d8f248c3805da1ca5f8859c171972e401a5cb049b754f018",
+      "07_AR Large BN_保護文字款/07_AR Large BN_保護文字款KV_BG_蝦皮商城.png": "ee79659575c6ab82ba8cfaaf24c7619967e843b6eaa545c24e01aec0dbcacbec",
+      "07_AR Large BN_保護文字款/07_AR Large BN_保護文字款KV_BG_蝦皮購物.png": "dca205a52da8c2a0d8f248c3805da1ca5f8859c171972e401a5cb049b754f018",
+      "08_IG Story/08_IG Story_KV_BG.png": "14031ac444ef426a9cfe2b90e9ba1c88aea863daa3b98c22d182b6223e5f8a1a",
+      "10_Seller BN/10_Seller BN_3D免運小車.png": "0d8141ac01d102202a91415060f9ce1c1677efd20790f082163ff62f4ec33799",
+      "10_Seller BN/10_Seller BN_KV_BG.png": "4aa1ccbdd1be3bd601d847ffdc658a5ca20c7ea4c5d79608be3eafa08e774a3d",
+      "10_Seller BN/10_Seller BN_小票券_VIP.png": "cbc81e9849ba9c71003dd349ee4022c7f7d21698cf26c37ea29f189e02111f27",
+      "10_Seller BN/10_Seller BN_小票券_全站_全站50%.png": "105750b2064636cedd1423ec7519e4a1f646749d8b299496d09f6d85a60ba43b",
+      "10_Seller BN/10_Seller BN_小票券_全站_全站6%.png": "cb5b8743432d31cf5ee85d35168868bc6de32201631c021f37c57309ef8c88b1",
+      "10_Seller BN/10_Seller BN_小票券_全站_全站94折券.png": "5d5159205f00303a534fc86c09bc624642bb22b86d1933972ff4132a7fb6b9fd",
+      "10_Seller BN/10_Seller BN_小票券_商城_$200.png": "d34726ec1ffd5e36ac9ebe78e989610da9471ee800db67c615f5c0ad482f01f7",
+      "10_Seller BN/10_Seller BN_小票券_商城_商城93折.png": "b2c098db296951d96c08fa0e9b586ee2fd4477b78f0b1836f870d8c2f1bba05f",
+      "10_Seller BN/10_Seller BN_小票券_賣場_賣場優惠券.png": "4ff07acd1746258b3f402162510f217c9c88e36a021d912a58645fdd24e877bf",
+      "10_Seller BN/10_Seller BN_虛線.png": "657dd0da6cbd7a138a3fe211c9eaaa7f67a9392491d09cba4725b21ae4491150",
+      "10_Seller BN/10_Seller BN_蝦幣堆.png": "e7a8eb0817a8018238c01e75427e4b47b423b5708df423d02e581a1d10dcf51e",
+      "10_Seller BN/10_Seller BN_蝦皮紙箱.png": "52f3a50be47478fcce881044a4ccc444f1e09f59e9110689a49d660b07f91433",
+      "11_外部team宣傳素材/10_外部team宣傳素材_券.png": "8100e976b2cbf934459256f2dac7e0d43c921582f3055562f1af95097d98fe75",
+      "11_外部team宣傳素材/11_外部team宣傳素材_1200x360_KV_BG.png": "3897e4afd35eee6ccaf8eeb4c6baca337d0d4c044042155292d42b48e6f1f78c",
+      "11_外部team宣傳素材/外部team宣傳素材_1125x360_KV_BG.png": "ca5708bae963e7e88676caa6d92fc670aa97448632cfc6bc695a01423aeafcf2",
+      "25節USP_對外_LOGO.svg": "245e2277453630427fc3927b9f9dfd58e4d5d11c6256c83ce99efa0e7cd4eae0",
+      "25號_白字.svg": "71bd4ad3102a27b381f44aaa590e4df2cf490131fa7da1e3b3f6e9584b2758ba",
+      "25號_黃字.svg": "c6034a3b1e58bccd5fda9f64431a0d14ea143e90cb80e9d552f722f76e36b751",
+      "README.md": "43a0cbaf271a3859685005e1d4b3ac7758f88ed4497e8cb030dfcb3ed87e529e",
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "共用素材/SCS_雙券.png": "bccdfa6af92a96237b3c874188c0c609583cb3e3b08290e7a10e96d753cad0b7",
+      "共用素材/VIP_單券_折扣.png": "21b7bc03b53ab02606a76fbf291925e4bce85f3d6b90d150e9685af4647dc881",
+      "共用素材/VIP_單券_蝦幣.png": "05f2b6e598289b0ecc939cd29085ccc0a96e4a93c4bac8bc71446fdad12df2fc",
+      "共用素材/VIP_單券_蝦幣_有皇冠.png": "fbf9940cf7bfc3d25589b16ec0d558f078f6f80647c4f6dc323ffa8f98fa96d4",
+      "共用素材/VIP_蝦幣_100.png": "b48d13a1f28a657ede76e9f76807700ee4197865124f9cd3388db01b9c9e4481",
+      "共用素材/VIP加商城券.png": "fc5912c4a675684614dcba5f0e8bf39067e8d95b57b0ae5322240ebbee79cbcf",
+      "共用素材/VIP加蝦幣.png": "787ab57a0f0340506200e0e1c76a695666c2837f78bd20ca121a1466d276e82f",
+      "共用素材/信用卡加全站券.png": "6321160b572db4604616a25d8b571127df53553a3c804a79ad98fa529f12f4fa",
+      "共用素材/免運車.png": "9ea95c3811e1653231f597390124c0c7a607c9b393d5312548c00584d35440d7",
+      "共用素材/免運車加全站券.png": "b2531725e015376cf39a3709e84dfad58cd54f96dc8c2ff11f430ad853ea47cb",
+      "共用素材/免運車加商城券.png": "48769052e2b451e0959b9c2bf7663fec712c165c06dd2b2f98a7eeebab611a97",
+      "共用素材/免運車加商城券_長券.png": "b0d24ff0a61f930542bf1a8f9cd20253a0ea296e584f1827b564fa4482707961",
+      "共用素材/免運車加蝦幣.png": "dd9543c6a8236e8ea5cf64b31d8c305a65c099e0f86c8e0d6a1c5d29ac1d79c6",
+      "共用素材/全站券_雙券.png": "b1addc67fdcc6e0bb89665e8029d8bba79d8d957f1080884b7a5e10b7c3c768e",
+      "共用素材/全站券_雙券_長券.png": "0f3518732868f67402686a6a111a06fc2659822910e82b9f5c3c9faf01abd874",
+      "共用素材/全站券加商城券.png": "c4771e1eb4d6c0f491c7dbb64e5bc7f1f1d8a61d2218472ba9b84b5b583249d6",
+      "共用素材/全站券加短影音_雙券.png": "4b11edb380bef13c27d59af902d65c39f72571a47b86747805fc8b71994af6b0",
+      "共用素材/全站券加禮物.png": "b9132fd377135c9632e6204311e4cd4aa6e41d9a1304b4c7a73fd0edf7f9cf75",
+      "共用素材/全站券加蝦幣.png": "6954ae789e42a06bfbe2075dce7ff81678319f939643f624471e3777aac3739f",
+      "共用素材/商城$50 icon.png": "1c376952bf81863e4e6ee984e55c5967cb06010dd21eebc5efc766018be10ef3",
+      "共用素材/商城券_雙券.png": "67fc2b0a8af9704c3ffd0221c6689d64bfee850e58e6de159296fc3bccfc3603",
+      "共用素材/商城券_雙券_長券.png": "ec9d120bd5b7ba71408d2cef20ef308998c3b0af56f939a198ceaacc98905ea6",
+      "共用素材/商城券加全站券.png": "863433e0e68a059055c6dec6be30dc334d370794567115f666962a97d8e35a6b",
+      "共用素材/商城券加蝦幣.png": "fb0fb140dc5fce950af046c16af2ec72fe84a4021f22a3a9571b4de159dda0b2",
+      "共用素材/國泰銀行.png": "e68a4fb16ebe9f563cee01acb43536cb4fb63846990cbf5be53a0a2239482a08",
+      "共用素材/星展銀行.png": "97b09e49eeaa0537742e6c2ae41cfac37e429948a134febca5dd6a6cb14b1911",
+      "共用素材/時鐘 icon.png": "e65cdd24fb3e05592b0d8813d30b28ff6668086d84b56d492712b3a3de431e07",
+      "共用素材/標籤_底色.svg": "56dcee567d7942a78d89da61856fd0b78fc1e34d6ba113666f076c5fb595b714",
+      "共用素材/永豐銀行.png": "ec850a36cc7d247980c79e5d740e861b7a1a4a49b17b8ca043dc17147f6a2b9f",
+      "共用素材/玉山銀行.png": "9756c992d84d47bf0092261fa145a7715aba2ba0f5a4955bfeb4310d585163f8",
+      "共用素材/禮物盒icon.png": "3089d371a38dd8a9fcbdffd49ad936bf95cbff06ab4744d82792afc56d6136d8",
+      "共用素材/聯邦銀行.png": "81c4bdfe590c939a68b0488be9b6e238016f7d2c2a8852bbbe8c5f2935f874bc",
+      "共用素材/衛生紙加鞋子.png": "396e08c210ad06119a7441185592a84a21b1d2b1deef8f907a899995b803cae7",
+      "共用素材/購物車加蝦皮直營券.png": "e96895611823b365b57ded0471fc504bfb0c20b53311aef06b83361134268f5a",
+      "共用素材/除濕機加商城券.png": "5d5ce144bcd44c702f34a3403b80dab9108bcbfd3b672f9df1c69f1e2ff02bdb",
+      "共用素材/鬧鐘加全站券.png": "64fc540044e729c91893eb863f2c3efd05eede55edb410c69a3e3c963feed365",
+      "共用素材/鬧鐘加蝦幣.png": "82fbe4ab10cecef17096906def88a659f71a32dd6711e1b6a9fc03dc2c7a541d",
+      "橫式_25號商城狂購節_LOGO_白.svg": "9e11722b68c899e6a1ba9337a4178418382f00cff5a906e62e78f0d669134aee",
+      "橫式_25號商城狂購節_LOGO_黃.svg": "c9cf64f03643885f2ca2dc8c6f352335b3b105011eb48abd348a02a0fcb7f926",
+      "直式_25號商城狂購節_LOGO.svg": "2700c258d680a7823600c8c15744a89747462f246a387ee3645aceadd766a827",
+      "直式_蝦皮VIP_LOGO.svg": "be522e6d4c640f327d7fcb0ad2882a7aa26d15d2a5722f960c0f8a331e1853e9",
+      "蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "蝦皮VIP_LOGO_橘色.svg": "be02439db82200a5e6c19efc69941e5f51e383a619153472e19958c94e710dd0",
+      "蝦皮VIP_icon_橘色.svg": "ba7013a8330079bb512b5a2eb66f22a473d2572ac7a204168d9f3d6fecc71394",
+      "蝦皮VIP_icon_白色.svg": "cf1bede31c5296ee5694893e7ec55ad158c9b593fd4ee2713e4aa37f06fa8451",
+      "蝦皮免運_LOGO_白.svg": "f397e104ec6fa2349402d790a665e39dc53aeb3278b2086c792a54fc246845ba",
+      "蝦皮商城_LOGO_白.svg": "fefb887515175b45a1c8ac526193658b69ab54021625b13c622b0c1ee0dad98d",
+      "蝦皮直營_LOGO.svg": "eaff266247fb75c0647ba241562de6226922f8a2a04d33c15dfce11f206dfcee",
+      "蝦皮購物_LOGO_白.svg": "05f6a1ca23383e43edd79ea008c045d5b0999deb38cd1f87df6a4dfeb861ba24"
+    }
+  }
+}

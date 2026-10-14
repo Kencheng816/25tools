@@ -1,0 +1,184 @@
+{
+  "templateId": "免運懶人包_MSBN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "免運懶人包_MSBN.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 350,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "免運懶人包_MSBN",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "免運懶人包_MSBN"
+  },
+  "layers": {
+    "title": {
+      "type": "text",
+      "psdName": "主標題",
+      "x": 123,
+      "y": 97,
+      "width": 511,
+      "height": 64,
+      "centerX": 378.5,
+      "centerY": 129,
+      "text": "免運無限次$99起",
+      "fontSizePt": 66,
+      "fontSizePx": 66,
+      "fontSizePtRaw": 112.8990707397461,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFFFFF",
+      "lineHeight": 79.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.5842813630601226,
+        "scaleY": 0.5845929507658886
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 5,
+          "fontSizePx": 66,
+          "fontSizePtRaw": 112.8990707397461,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 79.2,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 6,
+          "fontSizePx": 55,
+          "fontSizePtRaw": 94.08255767822266,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 66,
+          "letterSpacing": 0
+        },
+        {
+          "from": 6,
+          "to": 10,
+          "fontSizePx": 66,
+          "fontSizePtRaw": 112.8990707397461,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 79.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "subtitle": {
+      "type": "text",
+      "psdName": "副標題",
+      "x": 55,
+      "y": 184,
+      "width": 646,
+      "height": 71,
+      "centerX": 378,
+      "centerY": 219.5,
+      "text": "加碼2張超商免運券",
+      "fontSizePt": 74.86,
+      "fontSizePx": 74.86,
+      "fontSizePtRaw": 62.54941177368164,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FEE600",
+      "lineHeight": 89.83,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 1.196162429173052,
+        "scaleY": 1.1968003230553326
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 10,
+          "fontSizePx": 74.86,
+          "fontSizePtRaw": 62.54941177368164,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FEE600",
+          "lineHeight": 89.83,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 763,
+      "y": 46,
+      "width": 378,
+      "height": 238,
+      "centerX": 952,
+      "centerY": 165,
+      "assetFilename": "免運懶人包_MSBN_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 378
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 350,
+      "centerX": 600,
+      "centerY": 175,
+      "assetFilename": "免運懶人包_MSBN_KV_BG.png"
+    }
+  },
+  "generatedLayers": {
+    "subtitle_frame": {
+      "type": "shape",
+      "source": "generated",
+      "fill": "#0053D1",
+      "radius": "capsule",
+      "rules": {
+        "x": "layers.subtitle.centerX - (measureText(layers.subtitle.text, layers.subtitle) + 48) / 2",
+        "y": "layers.title.y + layers.title.height + 13",
+        "width": "measureText(layers.subtitle.text, layers.subtitle) + 48",
+        "height": "layers.subtitle.height + 26",
+        "radius": "height / 2",
+        "dynamicWidth": true,
+        "widthSource": "subtitle",
+        "horizontalPadding": 48,
+        "minWidth": "layers.subtitle.height + 48",
+        "alignTo": "layers.subtitle.centerX"
+      }
+    }
+  },
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "subtitle_frame",
+    "subtitle",
+    "title"
+  ]
+}

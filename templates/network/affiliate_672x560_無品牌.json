@@ -1,0 +1,59 @@
+{
+  "templateId": "affiliate_672x560_無品牌",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "affiliate_672x560_無品牌.psd"
+  },
+  "canvas": {
+    "width": 672,
+    "height": 560,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "affiliate_672x560_無品牌",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "affiliate_672x560_無品牌"
+  },
+  "layers": {
+    "直式_25號商城狂購節_LOGO": {
+      "type": "image",
+      "psdName": "直式_25號商城狂購節_LOGO",
+      "x": 172,
+      "y": 46,
+      "width": 329,
+      "height": 338,
+      "centerX": 336.5,
+      "centerY": 215,
+      "assetFilename": "affiliate_672x560_無品牌_直式_25號商城狂購節_LOGO.png"
+    },
+    "橫式_USP_高版": {
+      "type": "image",
+      "psdName": "橫式_USP_高版",
+      "x": 118,
+      "y": 395,
+      "width": 436,
+      "height": 112,
+      "centerX": 336,
+      "centerY": 451,
+      "assetFilename": "affiliate_672x560_無品牌_橫式_USP_高版.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 672,
+      "height": 560,
+      "centerX": 336,
+      "centerY": 280,
+      "assetFilename": "affiliate_672x560_無品牌_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "橫式_USP_高版",
+    "直式_25號商城狂購節_LOGO"
+  ]
+}

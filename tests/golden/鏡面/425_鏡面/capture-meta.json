@@ -1,0 +1,92 @@
+{
+  "tool": "鏡面",
+  "sheetName": "425_鏡面",
+  "project": "",
+  "capturedAt": "2026-09-14T10:53:34.455Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "registry": {
+      "register": {},
+      "get": {},
+      "getRules": {},
+      "getMatchRules": {},
+      "detectFamily": {},
+      "getSheetParsers": {},
+      "list": {}
+    },
+    "loadedRuleFiles": [
+      "rules/shared/template-rule-utils.js",
+      "rules/mirror.rules.js"
+    ],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 5,
+    "assetCount": 22,
+    "sheetNames": [
+      "418跨夜_線上宣傳圖",
+      "418_鏡面",
+      "425跨夜_線上宣傳圖",
+      "425_鏡面"
+    ]
+  },
+  "generated": 6,
+  "exported": 7,
+  "unmatched": [],
+  "alerts": [],
+  "diagnostics": {
+    "sheetName": "425_鏡面",
+    "anchorCount": 1,
+    "parsedBlockCount": 6,
+    "recordCount": 6,
+    "sourceTemplateNames": [
+      "人名標",
+      "天空Bar",
+      "底Bar",
+      "循環動畫底圖",
+      "開框留底字卡"
+    ],
+    "warnings": [],
+    "skippedRows": [],
+    "generatedCount": 6,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:44777/assets/%E4%BA%BA%E5%90%8D%E6%A8%99_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44777/assets/%E4%BA%BA%E5%90%8D%E6%A8%99%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44777/assets/%E4%BA%BA%E5%90%8D%E6%A8%99_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:44777/assets/%E4%BA%BA%E5%90%8D%E6%A8%99%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "2026跨夜美術工單_KEN.xlsx",
+      "sha256": "e317cb94b3b846caf340fd7835cf6311abae5329ff6d61ee437176e356eae57d"
+    },
+    "templates": {
+      "人名標.json": "72a3dd420ba439817cfd5208458f525ba76f0a117a3a3d06870cb56c13d1cae6",
+      "天空Bar.json": "9ea58e99a86b2dc64a66d385465dfb244aae37f31f92ca797661ea3b33d3ff07",
+      "底Bar.json": "750dd04dfbb41b9e4e7700fa1df38dae8e321ce30001e6141f64610ffa66cd2c",
+      "循環動畫底圖.json": "eb6c52c1bc52699650f1daaf22668600214abcefbbfdca477785bbb419c7a845",
+      "開框留底字卡.json": "bf2a2a4195663596a5d5cad3b54bdec86bf374895b90d002e3262923a67e4ffe"
+    },
+    "assets": {
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "人名標/人名標_DECO_右下_票券.png": "1db585e233cfc1c3d9e98841c2b48028106fc7259edee691aa77a6608ca9e2a9",
+      "人名標/人名標_DECO_左上_蝦幣.png": "7fbf6a3361dbfe23004e18c82400b18b00c788b5daa36d41c6894765a96c04cc",
+      "人名標/人名標_KV_BG.png": "cf74a3be00d5eb69bd8ed067bed10d52d1a4b534bc8617e02e962a88db00b79e",
+      "天空Bar/天空Bar_KV_BG.png": "95c56136bc2ef2c637d9f9f6c8f806b0b0909e5cfd1555d7567ac3a9fb9b8146",
+      "底Bar/底Bar_KV_BG.png": "c48d8dd1cfa8f4da6114679f8d10883332f16a2e8c06c60108c26d8fd165df2f",
+      "循環動畫底圖/循環動畫底圖_DECO_票券.png": "fd7c6b11ee952421cbf2cef62acadf15b6261274d7d6c9fb5b199d90a62ef302",
+      "循環動畫底圖/循環動畫底圖_KV_BG.png": "25ee7b4c3d2a14db97dfddc9ac2726e099fa08c1df9673ff6d6d7ba15488850f",
+      "橫式_25號商城狂購節_LOGO.svg": "75ef144c9be750e1bd973d54a76ec1c2736b9acd5cf9dc674cf279f12949d2e3",
+      "橫式_USP.svg": "fc91e94d363c01fc7bbef4670ddd066d5b4546ec3e5ff3d78a1c050e265ae352",
+      "開框留底字卡/開框留底字卡_KV_BG.png": "64dc8759dada28bf1aa9333d3b1fa5c0d7be98d33ff1fa511d7529b46fca1c6f"
+    }
+  }
+}

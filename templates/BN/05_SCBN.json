@@ -1,0 +1,199 @@
+{
+  "templateId": "05_SCBN",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "05_SCBN.psd"
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 200,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "05_SCBN_APP",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "05_SCBN"
+  },
+  "layers": {
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 590,
+      "y": 12,
+      "width": 317,
+      "height": 172,
+      "centerX": 748.5,
+      "centerY": 98,
+      "assetFilename": "05_SCBN_P.png",
+      "role": "曝品",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 317
+    },
+    "橫式_25號商城狂購節_LOGO_黃": {
+      "type": "image",
+      "psdName": "橫式_25號商城狂購節_LOGO_黃",
+      "x": 88,
+      "y": 73,
+      "width": 248,
+      "height": 35,
+      "centerX": 212,
+      "centerY": 90.5,
+      "assetFilename": "05_SCBN_橫式_25號商城狂購節_LOGO_黃.png"
+    },
+    "文案": {
+      "type": "text",
+      "psdName": "文案",
+      "x": 88,
+      "y": 117,
+      "width": 456,
+      "height": 61,
+      "centerX": 316,
+      "centerY": 147.5,
+      "text": "商城用券93折起",
+      "fontSizePt": 63,
+      "fontSizePx": 63,
+      "fontSizePtRaw": 93.28700256347656,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 75.6,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.6749656474356319,
+        "scaleY": 0.6753352076149709
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 63,
+          "fontSizePtRaw": 93.28700256347656,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 75.6,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange"
+    },
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 87,
+      "y": 111,
+      "width": 186,
+      "height": 66,
+      "centerX": 180,
+      "centerY": 144,
+      "assetFilename": "05_SCBN_蝦皮VIP_LOGO.png"
+    },
+    "蝦皮VIP_文案_右": {
+      "type": "text",
+      "psdName": "蝦皮VIP_文案_右",
+      "x": 282,
+      "y": 132,
+      "width": 291,
+      "height": 44,
+      "centerX": 427.5,
+      "centerY": 154,
+      "text": "獨享25%蝦幣\r",
+      "fontSizePt": 46.41,
+      "fontSizePx": 46.41,
+      "fontSizePtRaw": 72.89372253417969,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 55.69,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.637622393840042,
+        "scaleY": 0.6366721861901354
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 46.41,
+          "fontSizePtRaw": 72.89372253417969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 55.69,
+          "letterSpacing": 0
+        },
+        {
+          "from": 0,
+          "to": 9,
+          "fontSizePx": 46.41,
+          "fontSizePtRaw": 72.89372253417969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 55.69,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant"
+    },
+    "DECO_錢幣_右上": {
+      "type": "image",
+      "psdName": "DECO_錢幣_右上",
+      "x": 847,
+      "y": 37,
+      "width": 139,
+      "height": 81,
+      "centerX": 916.5,
+      "centerY": 77.5,
+      "assetFilename": "05_SCBN_DECO_錢幣_右上.png"
+    },
+    "DECO_券_左下": {
+      "type": "image",
+      "psdName": "DECO_券_左下",
+      "x": 545,
+      "y": 51,
+      "width": 148,
+      "height": 99,
+      "centerX": 619,
+      "centerY": 100.5,
+      "assetFilename": "05_SCBN_DECO_券_左下.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1200,
+      "height": 200,
+      "centerX": 600,
+      "centerY": 100,
+      "assetFilename": "05_SCBN_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "DECO_券_左下",
+    "DECO_錢幣_右上",
+    "蝦皮VIP_文案_右",
+    "蝦皮VIP_LOGO",
+    "文案",
+    "橫式_25號商城狂購節_LOGO_黃",
+    "product"
+  ]
+}

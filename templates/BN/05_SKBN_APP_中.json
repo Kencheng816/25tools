@@ -1,0 +1,222 @@
+{
+  "templateId": "05_SKBN_APP_中",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "05_SKBN_APP_中.psd"
+  },
+  "canvas": {
+    "width": 484,
+    "height": 360,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "SKBN_APP_中",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "05_SKBN_APP_中"
+  },
+  "layers": {
+    "橫式_25號商城狂購節_LOGO_黃": {
+      "type": "image",
+      "psdName": "橫式_25號商城狂購節_LOGO_黃",
+      "x": 82,
+      "y": 27,
+      "width": 321,
+      "height": 44,
+      "centerX": 242.5,
+      "centerY": 49,
+      "assetFilename": "橫式_25號商城狂購節_LOGO_黃.svg",
+      "assetProject": "",
+      "hidden": false
+    },
+    "SKBN_APP_CTA": {
+      "type": "image",
+      "psdName": "SKBN_APP_CTA",
+      "x": 379,
+      "y": 141,
+      "width": 80,
+      "height": 80,
+      "centerX": 419,
+      "centerY": 181,
+      "assetFilename": "05_SKBN_APP_CTA.png",
+      "assetProject": "05_SKBN_APP_中"
+    },
+    "文案": {
+      "type": "text",
+      "psdName": "文案",
+      "x": 105,
+      "y": 81,
+      "width": 275,
+      "height": 45,
+      "centerX": 242.5,
+      "centerY": 103.5,
+      "text": "優惠券一鍵領",
+      "fontSizePt": 46,
+      "fontSizePx": 46,
+      "fontSizePtRaw": 72.89372253417969,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "center",
+      "color": "#FFE600",
+      "lineHeight": 55.2,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.6319975301158655,
+        "scaleY": 0.6310557048386499
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 7,
+          "fontSizePx": 46,
+          "fontSizePtRaw": 72.89372253417969,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFE600",
+          "lineHeight": 55.2,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange",
+      "hidden": false
+    },
+    "蝦皮VIP_LOGO": {
+      "type": "image",
+      "psdName": "蝦皮VIP_LOGO",
+      "x": 54,
+      "y": 74,
+      "width": 144,
+      "height": 51,
+      "centerX": 126,
+      "centerY": 99.5,
+      "assetFilename": "蝦皮VIP_LOGO.svg",
+      "assetProject": "",
+      "hidden": true
+    },
+    "蝦皮VIP_文案": {
+      "type": "text",
+      "psdName": "蝦皮VIP_文案",
+      "x": 204,
+      "y": 91,
+      "width": 227,
+      "height": 35,
+      "centerX": 317.5,
+      "centerY": 108.5,
+      "text": "獨享25%蝦幣\r",
+      "fontSizePt": 35.96,
+      "fontSizePx": 35.96,
+      "fontSizePtRaw": 72.90194702148438,
+      "fontFamily": "ShopeeNotoSans Content",
+      "fontStyle": "Bold",
+      "fontWeight": "700",
+      "italic": false,
+      "align": "left",
+      "color": "#FFFFFF",
+      "lineHeight": 43.15,
+      "letterSpacing": 0,
+      "textTransform": {
+        "scaleX": 0.49400144254110057,
+        "scaleY": 0.4932652639590712
+      },
+      "textStyleRanges": [
+        {
+          "from": 0,
+          "to": 4,
+          "fontSizePx": 35.96,
+          "fontSizePtRaw": 72.90194702148438,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 43.15,
+          "letterSpacing": 0
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "fontSizePx": 35.96,
+          "fontSizePtRaw": 72.90194702148438,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 43.15,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 9,
+          "fontSizePx": 35.96,
+          "fontSizePtRaw": 72.90194702148438,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 43.15,
+          "letterSpacing": 0
+        },
+        {
+          "from": 5,
+          "to": 9,
+          "fontSizePx": 35.96,
+          "fontSizePtRaw": 72.90194702148438,
+          "fontFamily": "ShopeeNotoSans Content",
+          "fontWeight": "700",
+          "fontStyleName": "Bold",
+          "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
+          "color": "#FFFFFF",
+          "lineHeight": 43.15,
+          "letterSpacing": 0
+        }
+      ],
+      "dominantStyleSource": "textStyleRange-dominant",
+      "hidden": true
+    },
+    "product": {
+      "type": "image",
+      "psdName": "P",
+      "x": 99,
+      "y": 135,
+      "width": 291,
+      "height": 179,
+      "centerX": 244.5,
+      "centerY": 224.5,
+      "assetFilename": "05_SKBN_APP_中_P.png",
+      "role": "product",
+      "alignX": "custom",
+      "sizingMode": "widthBased",
+      "keepAspectRatio": true,
+      "targetWidth": 291,
+      "assetProject": "05_SKBN_APP_中"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 484,
+      "height": 360,
+      "centerX": 242,
+      "centerY": 180,
+      "assetFilename": "05_SKBN_APP_中_KV_BG.png",
+      "assetProject": "05_SKBN_APP_中"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "product",
+    "蝦皮VIP_文案",
+    "蝦皮VIP_LOGO",
+    "文案",
+    "SKBN_APP_CTA",
+    "橫式_25號商城狂購節_LOGO_黃"
+  ]
+}

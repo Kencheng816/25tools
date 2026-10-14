@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>25節生成工具</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Preload local UI fonts before Canvas initializes.
+       Keep the actual .ttf files in ./fonts/ beside this HTML. -->
+  <link rel="preload" href="fonts/ShopeeNotoSans(content)-Regular.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="fonts/ShopeeNotoSans(content)-Medium.ttf" as="font" type="font/ttf" crossorigin />
+  <link rel="preload" href="fonts/ShopeeNotoSans(content)-Bold.ttf" as="font" type="font/ttf" crossorigin />
+  <script>
+    window.FontPreloader = (() => {
+      const fontFamily = 'ShopeeNotoSans Content';
+      const sources = [
+        { weight: '400', url: 'fonts/ShopeeNotoSans(content)-Regular.ttf' },
+        { weight: '500', url: 'fonts/ShopeeNotoSans(content)-Medium.ttf' },
+        { weight: '700', url: 'fonts/ShopeeNotoSans(content)-Bold.ttf' },
+      ];
+
+      const ready = (async () => {
+        if (!('FontFace' in window) || !document.fonts) return false;
+        const results = await Promise.allSettled(sources.map(async ({ weight, url }) => {
+          const face = new FontFace(fontFamily, `url("${url}") format("truetype")`, {
+            weight,
+            style: 'normal',
+            display: 'block',
+          });
+          const loaded = await face.load();
+          document.fonts.add(loaded);
+          return loaded;
+        }));
+        return results.some((result) => result.status === 'fulfilled');
+      })();
+
+      return { ready };
+    })();
+  </script>
+  <style>
+    :root {
+      --brand-icon-color: #EE4D2D;
+      --brand-icon-radius: 2px;
+      --brand-icon-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    /* 左上品牌區：蝦皮色系 Logo */
+    .brand-icon.shopee-brand-icon {
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      min-height: 48px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0;
+      background: var(--brand-icon-color);
+      border-radius: var(--brand-icon-radius);
+      box-shadow: var(--brand-icon-shadow);
+      overflow: hidden;
+    }
+
+    .brand-icon.shopee-brand-icon .shopee-brand-logo {
+      display: block;
+      width: auto;
+      height: 35px;
+      max-width: 40px;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <section class="brand">
+        <div class="brand-icon shopee-brand-icon">
+          <img src="./assets/正式BN/shopee-logo.svg" alt="Shopee Logo" class="shopee-brand-logo" />
+        </div>
+        <div class="brand-info">
+          <div class="brand-title">25節生成工具（整合版）</div>
+          <div class="brand-version" id="profileVersionLabel">尚未選擇工具分類</div>
+        </div>
+      </section>
+
+      <!-- ── 步驟 1：開始（工單 → 分頁 → 分類自動偵測；或直接載入存檔） ── -->
+      <section class="panel">
+        <button class="panel-header" data-target="startBody">
+          <span>1. 開始</span>
+          <span class="accordion-icon">-</span>
+        </button>
+        <div id="startBody" class="panel-body">
+          <label class="upload-btn" title="選擇 Excel 工單">
+            <span id="excelInputLabel">上傳工單</span>
+            <input id="excelInput" type="file" accept=".xlsx,.xls,.xlsm" />
+          </label>
+          <!-- 工單載入後（手動上傳或由入口頁帶入）顯示檔名與分頁數，避免被誤認為還要再上傳一次。 -->
+          <div id="workbookStatus" class="workbook-status" hidden></div>
+
+          <label class="word-label mt-10">
+            分頁
+            <select id="excelSheetSelect" class="word-select" disabled>
+              <option value="">尚未上傳工單</option>
+            </select>
+          </label>
+
+          <div id="profileStatus" class="panel-description mt-10">上傳工單、選好分頁後會自動判斷工具分類。</div>
+          <!-- 分類選單：自動判斷成功時收起，判斷不出來（或多個都符合）時才展開；也可隨時手動打開。 -->
+          <details id="profileChooser" class="profile-chooser">
+            <summary>手動選擇工具分類</summary>
+            <select id="profileSelect" class="word-select mt-6">
+              <option value="">（自動偵測）</option>
+            </select>
+          </details>
+
+          <div class="panel-divider">或</div>
+          <button id="loadArchiveBtn" class="secondary-btn" title="載入之前儲存的 .25tool.zip 存檔，直接回到上次做到一半的狀態">載入存檔</button>
+          <input id="archiveInput" type="file" accept=".zip,application/zip" hidden />
+        </div>
+      </section>
+
+      <!-- ── 步驟 2：公版與素材 → 預覽 ── -->
+      <section class="panel">
+        <button class="panel-header" data-target="templatesBody">
+          <span>2. 公版與素材</span>
+          <span class="accordion-icon">-</span>
+        </button>
+        <div id="templatesBody" class="panel-body">
+          <div id="loadStatus" class="panel-description">選好分類後，上傳該分類的公版與素材資料夾。</div>
+          <label class="upload-btn" title="選擇 templates 資料夾上傳">
+            上傳公版
+            <input id="templateFolderInput" type="file" webkitdirectory directory multiple />
+          </label>
+          <label class="upload-btn mt-6" title="選擇 assets 資料夾上傳">
+            上傳素材
+            <input id="assetInput" type="file" webkitdirectory directory multiple accept="image/*" />
+          </label>
+
+          <div class="word-label template-filter-label mt-10">
+            目前專案
+            <div class="current-project-row">
+              <span id="currentProjectDisplay" class="current-project-display">（尚未選擇）</span>
+              <button id="openProjectModalBtn" type="button" class="link-btn">更改</button>
+            </div>
+          </div>
+          <label class="word-label template-filter-label">
+            顯示公版
+            <select id="templateFilter" class="word-select">
+              <option value="All">All</option>
+            </select>
+          </label>
+          <div id="templateList" class="template-list"></div>
+
+          <button id="generateFromExcelBtn" class="primary-btn mt-10" disabled title="依工單與公版產生整批預覽圖">預覽檔案</button>
+          <!-- 回饋 4：原「清除預覽」＋「重置公版」合成一顆。按下確認後整頁重新載入回到「1. 開始」，
+               保證所有狀態（分類、工單、公版、素材、預覽、手動紀錄）都乾淨；分類切換本來就需要重載。 -->
+          <button id="resetProjectBtn" class="primary-btn reset-project-btn mt-6" title="清掉目前分類、工單、公版、素材與預覽，回到「1. 開始」">重置專案</button>
+          <!-- 舊按鈕保留 id 供 core 綁定，不顯示。 -->
+          <button id="clearBatchBtn" class="secondary-btn" hidden>清除預覽</button>
+          <button id="loadDefaultBtn" class="secondary-btn" hidden>重置公版</button>
+          <div id="batchStatus" class="panel-description mt-10">尚未產生預覽檔案</div>
+          <div id="batchItemList" class="batch-item-list"></div>
+          <div id="unmatchedBox" class="unmatched-box hidden"></div>
+        </div>
+      </section>
+
+      <!-- ── 步驟 3：輸出 ── -->
+      <section class="panel">
+        <button class="panel-header" data-target="exportBody">
+          <span>3. 輸出</span>
+          <span class="accordion-icon">-</span>
+        </button>
+        <div id="exportBody" class="panel-body">
+          <button id="downloadImageBtn" class="primary-btn" title="把右側勾選的版位打包成 ZIP（含存檔與診斷報告）">下載圖片</button>
+          <!-- 存檔（.25tool.zip）：整批圖的最終狀態＋工單＋公版＋用到的素材；載回可繼續微調、再存、再下載。 -->
+          <button id="saveArchiveBtn" class="secondary-btn mt-6" title="把目前所有圖片、工單、公版與用到的素材打包成一個存檔">儲存存檔</button>
+          <button id="exportJsonBtn" class="secondary-btn mt-6" title="只輸出目前這一張的最終狀態 JSON（進階）">輸出 JSON</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <button class="panel-header" data-target="inspectorBody">
+          <span>調整</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="inspectorBody" class="panel-body collapsed">
+          <div id="selectedLayerName" class="inspector-title">未選取</div>
+          <div id="emptyInspector">點選畫布上的圖層、右側縮圖或下方「圖層」清單，就能在這裡調整</div>
+
+          <div id="commonControls" class="hidden">
+            <div class="control-grid">
+              <label>X<input id="xInput" type="number" step="0.5" /></label>
+              <label>Y<input id="yInput" type="number" step="0.5" /></label>
+              <label>寬<input id="wInput" type="number" step="0.5" /></label>
+              <label>高<input id="hInput" type="number" step="0.5" /></label>
+            </div>
+          </div>
+
+          <!-- 整合版 5.3：任何圖片圖層都可上傳替換／清除（modules/manual-asset-controls.js） -->
+          <div id="assetControls" class="hidden">
+            <div class="asset-control-row">
+              <button id="libraryAssetBtn" class="secondary-btn" title="從已上傳的素材裡挑一張替換（快捷鍵：L；也可以右鍵圖層）">素材庫</button>
+              <button id="uploadAssetBtn" class="secondary-btn" title="選一張圖片替換這一層的素材（也可以直接把圖檔拖到畫布上的圖層）">上傳替換</button>
+              <button id="clearAssetBtn" class="secondary-btn" title="清除這一層的素材，輸出時不會出現（快捷鍵：Delete）">清除圖片</button>
+            </div>
+            <div id="assetControlStatus" class="asset-control-status"></div>
+          </div>
+
+          <!-- 整合版 5.4：票券型錄（config/coupon-catalog.js ＋ modules/coupon-controls.js） -->
+          <div id="couponControls" class="hidden">
+            <div class="coupon-title">票券類型</div>
+            <div id="couponStatus" class="asset-control-status"></div>
+            <select id="couponSelect" class="word-select" title="手動指定票券類型；只改價格顏色，不改版面"></select>
+          </div>
+
+          <div id="textControls" class="hidden">
+            <div class="font-display-row">
+              <span class="font-display-label">字型：</span>
+              <span id="fontFamilyDisplay" class="font-display-value">Shopee Noto Sans</span>
+            </div>
+
+            <div class="text-adjust-toolbar">
+              <div class="word-font-size-group">
+                <button class="word-icon-btn" id="fontSizeDecBtn" title="縮小字級">A−</button>
+                <input id="fontSizeInput" class="word-size-input" type="number" step="0.5" min="6" max="300" title="字級 (px)" />
+                <button class="word-icon-btn" id="fontSizeIncBtn" title="放大字級">A+</button>
+              </div>
+
+              <label class="color-swatch-field" title="文字顏色">
+                <span>顏色：</span>
+                <input id="colorInput" type="color" class="word-color-input" />
+              </label>
+            </div>
+
+            <label class="word-label">
+              內容
+              <textarea id="textInput"></textarea>
+            </label>
+
+            <div id="alignGroup" class="align-group">
+              <button data-align="left" title="齊左">齊左</button>
+              <button data-align="center" title="置中">置中</button>
+              <button data-align="right" title="齊右">齊右</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel panel-grow">
+        <button class="panel-header" data-target="layersBody">
+          <span>圖層</span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div id="layersBody" class="panel-body collapsed">
+          <input id="layerSearch" class="search-input" type="text" placeholder="搜尋圖層…" title="Shift+點選圖層可多選；方向鍵微調位置" />
+          <div id="layerList" class="layer-list"></div>
+        </div>
+      </section>
+    </aside>
+
+    <main class="workspace">
+      <header class="toolbar">
+        <div class="toolbar-left">
+          <button id="undoBtn" title="復原（Ctrl+Z）">↩ 復原</button>
+          <button id="redoBtn" title="重做（Ctrl+Shift+Z／Ctrl+Y）">↪ 重做</button>
+          <button id="shortcutHelpBtn" class="shortcut-help" type="button" title="所有快捷鍵一覽（按 ? 也可開）">⌨ 快捷鍵</button>
+        </div>
+        <div class="toolbar-right">
+          <label><input id="gridToggle" type="checkbox" /> 格線</label>
+          <label><input id="guideToggle" type="checkbox" checked /> 對齊 / 參考線</label>
+          <label><input id="specToggle" type="checkbox" checked /> 規範</label>
+          <!-- 跨版位連動開關（僅 interaction.linkSync=true 的分類顯示，例：跨夜） -->
+          <label style="display:none" title="關閉後，這一張公版的上傳槽圖素不再與其他公版互相連動（雙向斷開）。快捷鍵：D"><input id="linkSyncToggle" type="checkbox" checked /> 連動</label>
+        </div>
+      </header>
+
+      <section class="canvas-shell">
+        <div class="canvas-stage">
+          <canvas id="canvas" width="531" height="792"></canvas>
+          <!-- 隱藏的文字編輯框：鍵盤與輸入法打進這裡，畫面由 canvas 畫。改為 textarea 以取得游標／選取位置（modules/text-editing-ux.js）。 -->
+          <textarea id="inlineTextEditor" aria-label="文字編輯" spellcheck="false" autocomplete="off" wrap="off"></textarea>
+          <div id="guideLayer"></div>
+          <div id="resizeHint">⤡ 縮放</div>
+          <div id="rotateHint">↻ 旋轉</div>
+        </div>
+      </section>
+
+      <footer class="statusbar">
+        <div>公版：<span id="activeTemplateName">DDcard</span></div>
+        <div>尺寸：<span id="canvasSize">531 × 792</span></div>
+        <div>X：<span id="statusX">0</span></div>
+        <div>Y：<span id="statusY">0</span></div>
+        <div>寬：<span id="statusW">0</span></div>
+        <div>高：<span id="statusH">0</span></div>
+      </footer>
+    </main>
+
+    <aside id="batchPreviewPanel" class="batch-preview-panel hidden">
+      <div class="batch-preview-title">批次預覽</div>
+      <div class="batch-preview-actions">
+        <button id="selectAllBatchBtn" class="secondary-btn" title="勾選全部版位（下載時只輸出勾選的）">全選</button>
+        <button id="deselectAllBatchBtn" class="secondary-btn" title="取消全部勾選">取消全選</button>
+      </div>
+      <div id="batchPreviewGrid" class="batch-preview-grid"></div>
+    </aside>
+  </div>
+
+  <div id="projectModalOverlay" class="modal-overlay hidden">
+    <div class="modal-box">
+      <div class="modal-title">選擇目前專案</div>
+      <div id="projectModalDescription" class="modal-description">請選擇要套用/產生的專案：</div>
+      <div id="projectModalOptions" class="modal-options"></div>
+      <div class="modal-actions">
+        <button id="projectModalCancelBtn" type="button" class="secondary-btn">取消</button>
+        <button id="projectModalOkBtn" type="button" class="primary-btn">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第三方套件改為本機副本（原工具走 CDN；版本相同：jszip 3.10.1、xlsx 0.18.5）。 -->
+  <script src="vendor/jszip-3.10.1.min.js"></script>
+  <script src="vendor/xlsx-0.18.5.full.min.js"></script>
+
+  <!-- 整合版啟動流程：開頁只載入 profile-loader 與 bootstrap。
+       上傳工單／選分類後，由 ProfileLoader 依序載入 rules/<分類>/、分類專屬程式、core 與引擎模組
+       （順序見 core/profile-loader.js 的 DEFAULT_CORE_SCRIPTS，或 profile 的 coreScripts）。
+       core 建構時會依分類選用 A／B 兩套模組實作，因此分類必須先於 core 決定。切換分類會重新載入頁面。 -->
+  <script src="core/profile-loader.js"></script>
+  <script src="config/template-routing.js"></script>
+  <script src="core/bootstrap.js"></script>
+  <script src="core/session-archive.js"></script>
+  <!-- 素材庫要排在 manual-asset-controls 之前：點已清除空槽時先出小選單（兩者都在 capture 階段監聽 pointerdown） -->
+  <script src="modules/diagnostics-report.js"></script>
+  <script src="modules/diagnostics-panel.js"></script>
+  <script src="modules/shortcut-help.js"></script>
+  <script src="modules/coupon-price-sync.js"></script>
+  <script src="modules/asset-library.js"></script>
+  <script src="modules/manual-asset-controls.js"></script>
+  <script src="modules/text-editing-ux.js"></script>
+  <script src="modules/text-float-toolbar.js"></script>
+  <script src="modules/thumb-sync.js"></script>
+  <script src="modules/layer-lock-defaults.js"></script>
+  <script src="modules/asset-link-sync.js"></script>
+  <script src="modules/product-group-sync.js"></script>
+  <script src="modules/multi-select.js"></script>
+  <script src="config/coupon-catalog.js"></script>
+  <script src="modules/coupon-controls.js"></script>
+  <link rel="stylesheet" href="smart-assets/smart-asset-editor.css" />
+  <!-- 深色主題覆寫層（自 18節 回饋 8 移植）：放最後，蓋過 style.css 與各模組的樣式；之後調主題只動這一支。 -->
+  <link rel="stylesheet" href="theme-25.css" />
+</body>
+</html>

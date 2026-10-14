@@ -1,0 +1,36 @@
+{
+  "templateId": "開框留底字卡",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "開框留底字卡.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "開框留底字卡",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "開框留底字卡"
+  },
+  "layers": {
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1080,
+      "height": 1920,
+      "centerX": 540,
+      "centerY": 960,
+      "rotation": 0,
+      "assetFilename": "開框留底字卡_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg"
+  ]
+}

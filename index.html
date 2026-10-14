@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>25節生成工具（整合版）</title>
+  <link rel="stylesheet" href="launcher/launcher.css" />
+</head>
+<body>
+  <header class="launcher-bar">
+    <div class="launcher-brand">
+      <strong>25節生成工具</strong><span class="launcher-sub">整合版・單一入口</span>
+    </div>
+
+    <label class="launcher-select">
+      <span>工具</span>
+      <select id="toolSelect"><option value="">— 請選擇工具 —</option></select>
+    </label>
+
+    <label class="launcher-detect" title="上傳工單，依分頁名自動判別工具">
+      <input id="detectInput" type="file" accept=".xlsx,.xlsm,.xls" hidden />
+      <span class="launcher-btn">上傳工單自動判別</span>
+    </label>
+    <span id="detectStatus" class="launcher-status"></span>
+
+    <div class="launcher-actions">
+      <button id="reloadBtn" class="launcher-btn ghost" type="button" title="重新載入目前工具，清空已上傳的工單／素材／公版">重新開始</button>
+      <a id="openTabLink" class="launcher-btn ghost" href="#" target="_blank" rel="noopener" hidden>另開分頁</a>
+    </div>
+  </header>
+
+  <main class="launcher-main">
+    <section id="welcome" class="launcher-welcome">
+      <h1>使用方式</h1>
+      <p>1.上傳工單　→　２.選擇工單類別　→　3.上傳公版資料夾　→　4.上傳素材資料夾　→　5.預覽檔案。</p>
+      <div id="toolGrid" class="launcher-grid"></div>
+    </section>
+    <iframe id="toolFrame" class="launcher-frame" title="工具" hidden></iframe>
+  </main>
+
+  <script src="vendor/xlsx-0.18.5.full.min.js"></script>
+  <script src="config/tools.js"></script>
+  <script src="launcher/launcher.js"></script>
+</body>
+</html>

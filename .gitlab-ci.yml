@@ -1,0 +1,55 @@
+# 25節生成工具（整合版）CI
+#   check   ：不開瀏覽器的靜態檢查（每次 push 都跑，幾秒鐘）
+#   golden  ：入口頁＋黃金樣本回歸（含逐張點縮圖）＋存檔往返＋手動素材／貼合＋文字＋互動＋素材庫＋票券＋下載＋診斷 E2E（需 headless Chromium；手動觸發，或 main 分支自動）
+stages: [check, golden]
+
+default:
+  image: node:20-bookworm
+  cache:
+    key: npm-$CI_COMMIT_REF_SLUG
+    paths: [node_modules/]
+
+variables:
+  GIT_LFS_SKIP_SMUDGE: "0"          # 黃金樣本圖走 LFS，回歸需要真檔
+  GOLDEN_WORK_DIR: /tmp/golden-work # 純 ASCII 路徑（CDP 檔案上傳對 # 與中文路徑失效）
+
+check:
+  stage: check
+  script:
+    - node tests/check-manifests.js
+    - node tests/check-coupon-catalog.js
+
+.golden-base:
+  stage: golden
+  timeout: 2h
+  before_script:
+    # @sparticuz/chromium 需要的系統函式庫
+    - apt-get update -qq && apt-get install -y -qq libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libcairo2 fonts-noto-cjk > /dev/null
+    - npm ci
+    - export NODE_PATH=$CI_PROJECT_DIR/node_modules
+  artifacts:
+    when: always
+    expire_in: 1 week
+    paths: [tests/golden-diff/]
+
+golden:
+  extends: .golden-base
+  script:
+    - node tests/run-golden/run-launcher.js
+    - node tests/run-golden/run-golden.js
+    - node tests/run-golden/run-golden.js --click-thumbs
+    - node tests/run-golden/run-roundtrip.js
+    - node tests/run-golden/run-manual-assets.js
+    - node tests/run-golden/run-manual-fit.js
+    - node tests/run-golden/run-text-edit.js
+    - node tests/run-golden/run-text-ux.js
+    - node tests/run-golden/run-interaction.js
+    - node tests/run-golden/run-asset-library.js
+    - node tests/run-golden/run-coupon.js
+    - node tests/run-golden/run-coupon-price.js
+    - node tests/run-golden/run-export-bundle.js
+    - node tests/run-golden/run-diagnostics-panel.js
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - when: manual
+      allow_failure: true

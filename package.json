@@ -1,0 +1,34 @@
+{
+  "name": "25jie-tool-integrated",
+  "version": "1.0.0",
+  "private": true,
+  "description": "25節生成工具（整合版）— 11 個產圖工具合為單一入口（入口頁 index.html ＋ 工具頁 app.html）；純靜態網頁，無建置步驟。package.json 只用於回歸測試相依。",
+  "scripts": {
+    "check": "node tests/check-manifests.js && node tests/check-coupon-catalog.js",
+    "test:golden": "node tests/run-golden/run-golden.js",
+    "test:launcher": "node tests/run-golden/run-launcher.js",
+    "test:click-export": "node tests/run-golden/run-golden.js --click-thumbs",
+    "test:roundtrip": "node tests/run-golden/run-roundtrip.js",
+    "test:manual-assets": "node tests/run-golden/run-manual-assets.js",
+    "test:manual-fit": "node tests/run-golden/run-manual-fit.js",
+    "test:coupon": "node tests/run-golden/run-coupon.js",
+    "test:coupon-price": "node tests/run-golden/run-coupon-price.js",
+    "test:export-bundle": "node tests/run-golden/run-export-bundle.js",
+    "test:diagnostics": "node tests/run-golden/run-diagnostics-panel.js",
+    "test:text-edit": "node tests/run-golden/run-text-edit.js",
+    "test:text-ux": "node tests/run-golden/run-text-ux.js",
+    "test:interaction": "node tests/run-golden/run-interaction.js",
+    "test:asset-library": "node tests/run-golden/run-asset-library.js",
+    "test:all": "npm run check && npm run test:launcher && npm run test:golden && npm run test:click-export && npm run test:roundtrip && npm run test:manual-assets && npm run test:manual-fit && npm run test:text-edit && npm run test:text-ux && npm run test:interaction && npm run test:asset-library && npm run test:coupon && npm run test:coupon-price && npm run test:export-bundle && npm run test:diagnostics"
+  },
+  "devDependencies": {
+    "@sparticuz/chromium": "152.0.0",
+    "jpeg-js": "^0.4.4",
+    "jszip": "3.10.1",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^25.10.0",
+    "xlsx": "0.18.5"
+  },
+  "engines": { "node": ">=20" }
+}

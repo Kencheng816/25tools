@@ -1,0 +1,47 @@
+{
+  "templateId": "affiliate_1500x200_無品牌",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "affiliate_1500x200_無品牌.psd"
+  },
+  "canvas": {
+    "width": 1500,
+    "height": 200,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "affiliate_1500x200_無品牌",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "affiliate_1500x200_無品牌"
+  },
+  "layers": {
+    "橫式_25號商城狂購節_LOGO": {
+      "type": "image",
+      "psdName": "橫式_25號商城狂購節_LOGO",
+      "x": 291,
+      "y": 26,
+      "width": 625,
+      "height": 149,
+      "centerX": 603.5,
+      "centerY": 100.5,
+      "assetFilename": "affiliate_1500x200_無品牌_橫式_25號商城狂購節_LOGO.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1500,
+      "height": 200,
+      "centerX": 750,
+      "centerY": 100,
+      "assetFilename": "affiliate_1500x200_無品牌_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "橫式_25號商城狂購節_LOGO"
+  ]
+}

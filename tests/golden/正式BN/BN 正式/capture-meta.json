@@ -1,0 +1,596 @@
+{
+  "tool": "正式BN",
+  "sheetName": " BN 正式",
+  "project": "",
+  "capturedAt": "2026-09-10T04:41:30.232Z",
+  "chrome": "HeadlessChrome/152.0.7977.0",
+  "rules": {
+    "registry": {
+      "register": {},
+      "get": {},
+      "getRules": {},
+      "getMatchRules": {},
+      "detectFamily": {},
+      "getSheetParsers": {},
+      "list": {}
+    },
+    "loadedRuleFiles": [
+      "rules/shared/runtime-policy.js",
+      "rules/shared/special-block-parser-policy.js",
+      "rules/shared/template-rule-utils.js",
+      "rules/shared/sp-text-standard.js",
+      "rules/shared/warmup-price-style-resolver.js",
+      "rules/shared/warmup-banner-rule-factory.js",
+      "rules/shared/warmup-placement-presets.js",
+      "rules/shared/skbn-rule-factory.js",
+      "rules/01_DD Card_rules.js",
+      "rules/01_HBN_rules.js",
+      "rules/02_POPUP_rules.js",
+      "rules/03_SKBN_APP_rules.js",
+      "rules/03_SKBN_PC_rules.js",
+      "rules/04_Mall Skinny BN_rules.js",
+      "rules/shared/simple-banner-rule-factory.js",
+      "rules/05_SCBN_rules.js",
+      "rules/06_SKBN NUZ_APP_rules.js",
+      "rules/06_SKBN NUZ_PC_rules.js"
+    ],
+    "failedRuleFiles": []
+  },
+  "uploaded": {
+    "templateCount": 9,
+    "assetCount": 156,
+    "sheetNames": [
+      "GD Timeline",
+      "美術工單▶",
+      "工單KV+Logo",
+      "BN 暖身",
+      "C.美術工單(overlay)>>由support發單",
+      " BN 正式",
+      "新增製作物_VIP",
+      "新增製作物_SCS EL",
+      "(do not edit)首頁曝光大表",
+      "MS版配 ▶",
+      "Component Label公版",
+      "設定用色碼",
+      "類別分會場PIC名單",
+      "可使用MS公版清單"
+    ]
+  },
+  "generated": 62,
+  "exported": 92,
+  "unmatched": [],
+  "alerts": [],
+  "diagnostics": {
+    "sheetName": " BN 正式",
+    "anchorCount": 9,
+    "parsedBlockCount": 9,
+    "recordCount": 62,
+    "sourceTemplateNames": [
+      "06_SKBN NUZ_PC",
+      "03_SKBN_PC",
+      "02_POPUP",
+      "03_SKBN_APP",
+      "01_HBN",
+      "04_Mall Skinny BN",
+      "05_SCBN",
+      "01_DD Card",
+      "06_SKBN NUZ_APP"
+    ],
+    "warnings": [
+      "第 52 列「切圖名稱」此版位只允許特規 Parser，但目前尚未註冊 Parser",
+      "第 53 列「SKBN_APP_切圖_左」特規 Parser 沒有產生有效 Record，禁止回退共用 Parser",
+      "第 54 列「SKBN_APP_切圖_中」特規 Parser 沒有產生有效 Record，禁止回退共用 Parser",
+      "第 55 列「SKBN_APP_切圖_右」特規 Parser 沒有產生有效 Record，禁止回退共用 Parser",
+      "第 70 列「切圖名稱」此版位只允許特規 Parser，但目前尚未註冊 Parser",
+      "第 71 列「SKBN_PC_切圖_左」特規 Parser 沒有產生有效 Record，禁止回退共用 Parser",
+      "第 72 列「SKBN_PC_切圖_中」特規 Parser 沒有產生有效 Record，禁止回退共用 Parser",
+      "第 73 列「SKBN_PC_切圖_右」特規 Parser 沒有產生有效 Record，禁止回退共用 Parser",
+      "第 83 列「top bar BK image」沒有數量，也沒有可套用欄位，已略過",
+      "第 84 列「BK color」沒有數量，也沒有可套用欄位，已略過",
+      "第 85 列「circle BK color XX%」沒有數量，也沒有可套用欄位，已略過",
+      "第 86 列「Home circleindicator color」沒有數量，也沒有可套用欄位，已略過",
+      "第 87 列「top bar background color」沒有數量，也沒有可套用欄位，已略過",
+      "第 88 列「top bar BK image」沒有數量，也沒有可套用欄位，已略過"
+    ],
+    "skippedRows": [
+      {
+        "row": 3,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 4,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 5,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 6,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 7,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 8,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 9,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 10,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 11,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 12,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 13,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 14,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 15,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 16,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 21,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 22,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 23,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 24,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 25,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 26,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 27,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 28,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 29,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 30,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 31,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 32,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 33,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 34,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 39,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 40,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 41,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 42,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 43,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 44,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 45,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 46,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 52,
+        "name": "切圖名稱",
+        "reason": "此版位只允許特規 Parser，但目前尚未註冊 Parser"
+      },
+      {
+        "row": 53,
+        "name": "SKBN_APP_切圖_左",
+        "reason": "特規 Parser 沒有產生有效 Record，禁止回退共用 Parser"
+      },
+      {
+        "row": 54,
+        "name": "SKBN_APP_切圖_中",
+        "reason": "特規 Parser 沒有產生有效 Record，禁止回退共用 Parser"
+      },
+      {
+        "row": 55,
+        "name": "SKBN_APP_切圖_右",
+        "reason": "特規 Parser 沒有產生有效 Record，禁止回退共用 Parser"
+      },
+      {
+        "row": 58,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 61,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 64,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 70,
+        "name": "切圖名稱",
+        "reason": "此版位只允許特規 Parser，但目前尚未註冊 Parser"
+      },
+      {
+        "row": 71,
+        "name": "SKBN_PC_切圖_左",
+        "reason": "特規 Parser 沒有產生有效 Record，禁止回退共用 Parser"
+      },
+      {
+        "row": 72,
+        "name": "SKBN_PC_切圖_中",
+        "reason": "特規 Parser 沒有產生有效 Record，禁止回退共用 Parser"
+      },
+      {
+        "row": 73,
+        "name": "SKBN_PC_切圖_右",
+        "reason": "特規 Parser 沒有產生有效 Record，禁止回退共用 Parser"
+      },
+      {
+        "row": 76,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 79,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 82,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 83,
+        "name": "top bar BK image",
+        "reason": "沒有數量，也沒有主標/副標/警語/商品圖/CTA，且無法回溯到主標"
+      },
+      {
+        "row": 84,
+        "name": "BK color",
+        "reason": "沒有數量，也沒有主標/副標/警語/商品圖/CTA，且無法回溯到主標"
+      },
+      {
+        "row": 85,
+        "name": "circle BK color XX%",
+        "reason": "沒有數量，也沒有主標/副標/警語/商品圖/CTA，且無法回溯到主標"
+      },
+      {
+        "row": 86,
+        "name": "Home circleindicator color",
+        "reason": "沒有數量，也沒有主標/副標/警語/商品圖/CTA，且無法回溯到主標"
+      },
+      {
+        "row": 87,
+        "name": "top bar background color",
+        "reason": "沒有數量，也沒有主標/副標/警語/商品圖/CTA，且無法回溯到主標"
+      },
+      {
+        "row": 88,
+        "name": "top bar BK image",
+        "reason": "沒有數量，也沒有主標/副標/警語/商品圖/CTA，且無法回溯到主標"
+      },
+      {
+        "row": 91,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 92,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 93,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 94,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 95,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 96,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 97,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 98,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 99,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 100,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 101,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 102,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 103,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 104,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 109,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 110,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 111,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 119,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      },
+      {
+        "row": 126,
+        "reason": "製作內容欄空白，但同列有主標/副標/素材資料，無法判斷要套哪個公版"
+      }
+    ],
+    "generatedCount": 62,
+    "unmatchedCount": 0,
+    "emptyBlockCount": 0
+  },
+  "consoleErrors": [
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_25%E8%99%9F_%E7%99%BD%E5%AD%97.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/%E5%85%B1%E7%94%A8%E7%B4%A0%E6%9D%90/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_25%E8%99%9F_%E7%99%BD%E5%AD%97.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_25%E8%99%9F_%E7%99%BD%E5%AD%97.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_25%E8%99%9F_%E7%99%BD%E5%AD%97.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_%E8%9D%A6%E7%9A%AEVIP_LOGO.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_KV_BG.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC/06_SKBN%20NUZ_PC/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC/06_SKBN%20NUZ_PC/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/%E5%85%B1%E7%94%A8%E7%B4%A0%E6%9D%90/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_DECO_%E9%8C%A2%E5%B9%A3_%E5%8F%B3%E4%B8%8A.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/06_SKBN%20NUZ_PC_P.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/06%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/01_%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "HTTP 404 http://127.0.0.1:40581/assets/01%20%E8%A6%8F%E7%AF%84.png",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "staleFiles": [],
+  "inputs": {
+    "workbook": {
+      "file": "【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+      "sha256": "f8049138ac048983f3a0a42ca03730a35598a08450b390ebf21cf14efba126f7"
+    },
+    "templates": {
+      "01_DD Card.json": "726a18ab001a26c824556fe8a8026e9cc5d8d94ea7e7329a83e5cc6882640790",
+      "01_HBN.json": "2fa1959de98f06217afe329b9361daef7a6e59027d408266a31e8b52ae0eba34",
+      "02_POPUP.json": "f78d769b5144f54aa302e51490efb326b94687e103c9635a989a127bbce2527a",
+      "03_SKBN_APP.json": "2c43b7812b4f512733bb509b6e525c4ed8701ab5353b4dc5ce90e6de0fea4335",
+      "03_SKBN_PC.json": "b1c97ebededa1c27fc6f9b1a08144d4c440e1be81a16050fa361655713171e66",
+      "04_Mall Skinny BN.json": "9fc6c997269f185c23303507e582e2d2805e90722b5d77d5ca9b876ff76280fb",
+      "05_SCBN.json": "6e2fd6de256d795f735a6c1f137bd15c0dfd5bb298d7e89490d10d57a554a7a5",
+      "06_SKBN NUZ_APP.json": "2ad21536a27a103a54d2049cc3591f3ea6bd24951bcaae78508577517364d28e",
+      "06_SKBN NUZ_PC.json": "c132f5229542b736ea608089589d8c30682f43536b7085cb4810b63961358372"
+    },
+    "assets": {
+      "01_DD Card/01_DD Card_KV_BG.png": "f2db06bbd5797024743031ad9071b73e9f1a2382f6ddacfbafa7350e68a6b460",
+      "01_DD Card/01_DD Card_規範.png": "868d3cece226ea5bb71ee65f0e1284ab87e21d1d41e55445e75e0841491d0434",
+      "01_HBN/01_HBN_KV_BG.png": "4df3619414269eca590021e895651a0e23d70d551f401223e3864857fd950906",
+      "01_HBN/01_HBN_規範.png": "ae22b344835e6f39c0eaf0832da2f2fbdb20e0f8056480c5dfaf06f5bc5f1faa",
+      "02_POPUP/02_POPUP_KV_BG.png": "f614c825ab9a3cd83811c594af2825ed11d4eee98275cb3ce1f4eb0336536d8b",
+      "03_SKBN_APP/03_SKBN_APP_KV_BG.png": "5d6ae0f2e120d9c3f02b3ff344459683b0ea7deedc69c6aa8764f31a37b4e62f",
+      "03_SKBN_APP/RW介面.jpg": "955a97a766a49752b1dcb25f1552705256e8de971c5dc6c303af11b995493019",
+      "03_SKBN_APP/Skin色碼 Background Color.jpg": "09ab15eb6b3fcb1db8849978c126249ae0a718aad5c4194056d9409376520d4c",
+      "03_SKBN_APP/版頭.jpg": "94c05ab2264a4403a9d8322b0212a394d1ddb72d6851fb349c984d1cb017351f",
+      "03_SKBN_PC/03_SKBN_PC_KV_BG.png": "7355e7c515f34f8c4b065eff8e4d853fcf397384d1dbbac1bfa5634803ee7dcf",
+      "04_Mall Skinny BN/04_Mall Skinny BN_KV_BG.png": "58bfbaf030e0b15d0370e0a783984afc0493a232c094ca4935aeb6aac4af30dc",
+      "05_SCBN/05_SCBN_KV_BG.png": "e0ea57133345379f25c9bfc409d3719787e27c9a09fb6cd9fdcf1be74426763b",
+      "06_SKBN NUZ_APP/06_SKBN NUZ_APP_KV_BG.png": "7475b3046e26f9de73436d12545e544c2f2102b0e31e75677c5fc90f7db22928",
+      "06_SKBN NUZ_PC/06_SKBN NUZ_PC_KV_BG.png": "97924fb971bd9aee64a2ecdd65ec3d93368f502b73ebce58c206507cbef40df0",
+      "25節USP_對外_LOGO.svg": "68185d4b62b3c4a764ab326277427c2d62434ea8c4b733fdb2234920eeccf824",
+      "25號_白字.svg": "71bd4ad3102a27b381f44aaa590e4df2cf490131fa7da1e3b3f6e9584b2758ba",
+      "25號_黃字.svg": "c6034a3b1e58bccd5fda9f64431a0d14ea143e90cb80e9d552f722f76e36b751",
+      "README.md": "43a0cbaf271a3859685005e1d4b3ac7758f88ed4497e8cb030dfcb3ed87e529e",
+      "shopee-logo.svg": "719f289c8f0b062de9194420829327cf0b20d702cac6ef22c3d2b456eb1339b4",
+      "共用素材/DECO_券.png": "539f592495061f37a43d5ea16000fa24a9f3328e3e56fc0906dd4781289a61c1",
+      "共用素材/DECO_券_左下.png": "e745caed0fd72dd88e5d579a4de81d0686400d6ba4586ff045c997f04660fce9",
+      "共用素材/DECO_錢幣.png": "1b428c8e16482460bc0a2d0e9246afc37702b5c2800a51f7c148eeea15d4a19b",
+      "共用素材/DECO_錢幣_右上.png": "724aa8698e6098c5ac981b4379d970283ee2ad2cb77758b990de636f6e4e1862",
+      "共用素材/NB 球鞋.png": "4d75162e37f3b951f4310ee271984358211e3db36ce042cd05c76e6c9990a15a",
+      "共用素材/SAMPO立扇.png": "c23a57b2d4bbf47bbe32c30582689c7ff6b954717bb51eb9e12bf062ccca195f",
+      "共用素材/SCS_雙券.png": "bccdfa6af92a96237b3c874188c0c609583cb3e3b08290e7a10e96d753cad0b7",
+      "共用素材/VIP_單券_折扣.png": "21b7bc03b53ab02606a76fbf291925e4bce85f3d6b90d150e9685af4647dc881",
+      "共用素材/VIP_單券_蝦幣.png": "05f2b6e598289b0ecc939cd29085ccc0a96e4a93c4bac8bc71446fdad12df2fc",
+      "共用素材/VIP_單券_蝦幣_有皇冠.png": "fbf9940cf7bfc3d25589b16ec0d558f078f6f80647c4f6dc323ffa8f98fa96d4",
+      "共用素材/VIP_蝦幣_100.png": "b48d13a1f28a657ede76e9f76807700ee4197865124f9cd3388db01b9c9e4481",
+      "共用素材/VIP加商城券.png": "fc5912c4a675684614dcba5f0e8bf39067e8d95b57b0ae5322240ebbee79cbcf",
+      "共用素材/VIP加蝦幣.png": "787ab57a0f0340506200e0e1c76a695666c2837f78bd20ca121a1466d276e82f",
+      "共用素材/信用卡加全站券.png": "6321160b572db4604616a25d8b571127df53553a3c804a79ad98fa529f12f4fa",
+      "共用素材/免運券_雙券.png": "96feb5f63687051739fb82e3aaf587498903d58a88c0e8650adbf4bde41dbd48",
+      "共用素材/免運車.png": "9ea95c3811e1653231f597390124c0c7a607c9b393d5312548c00584d35440d7",
+      "共用素材/免運車加全站券.png": "b2531725e015376cf39a3709e84dfad58cd54f96dc8c2ff11f430ad853ea47cb",
+      "共用素材/免運車加商城券.png": "48769052e2b451e0959b9c2bf7663fec712c165c06dd2b2f98a7eeebab611a97",
+      "共用素材/免運車加商城券_長券.png": "b0d24ff0a61f930542bf1a8f9cd20253a0ea296e584f1827b564fa4482707961",
+      "共用素材/免運車加蝦幣.png": "dd9543c6a8236e8ea5cf64b31d8c305a65c099e0f86c8e0d6a1c5d29ac1d79c6",
+      "共用素材/全站券_單券.png": "a914d78b86d30247b1d7ae1a31b9d9c1941fe338ed98c047196df4a7ae61a7e8",
+      "共用素材/全站券_雙券.png": "b1addc67fdcc6e0bb89665e8029d8bba79d8d957f1080884b7a5e10b7c3c768e",
+      "共用素材/全站券_雙券_長券.png": "0f3518732868f67402686a6a111a06fc2659822910e82b9f5c3c9faf01abd874",
+      "共用素材/全站券加商城券.png": "c4771e1eb4d6c0f491c7dbb64e5bc7f1f1d8a61d2218472ba9b84b5b583249d6",
+      "共用素材/全站券加短影音_雙券.png": "4b11edb380bef13c27d59af902d65c39f72571a47b86747805fc8b71994af6b0",
+      "共用素材/全站券加禮物.png": "b9132fd377135c9632e6204311e4cd4aa6e41d9a1304b4c7a73fd0edf7f9cf75",
+      "共用素材/全站券加蝦幣.png": "6954ae789e42a06bfbe2075dce7ff81678319f939643f624471e3777aac3739f",
+      "共用素材/商城$50 icon.png": "1c376952bf81863e4e6ee984e55c5967cb06010dd21eebc5efc766018be10ef3",
+      "共用素材/商城券_單券.png": "2aa7071fd235be8b5c6ba8b6bce71951f2210cac515e4d86c248d05a2acd3592",
+      "共用素材/商城券_雙券.png": "67fc2b0a8af9704c3ffd0221c6689d64bfee850e58e6de159296fc3bccfc3603",
+      "共用素材/商城券_雙券_長券.png": "ec9d120bd5b7ba71408d2cef20ef308998c3b0af56f939a198ceaacc98905ea6",
+      "共用素材/商城券加全站券.png": "863433e0e68a059055c6dec6be30dc334d370794567115f666962a97d8e35a6b",
+      "共用素材/商城券加蝦幣.png": "1a6658e5d34bb0fc8ec7e5b2da066fe3a18608f3820d4e0be87fc530ee8ddc7d",
+      "共用素材/國泰銀行.png": "e68a4fb16ebe9f563cee01acb43536cb4fb63846990cbf5be53a0a2239482a08",
+      "共用素材/星展銀行.png": "97b09e49eeaa0537742e6c2ae41cfac37e429948a134febca5dd6a6cb14b1911",
+      "共用素材/時鐘 icon.png": "e65cdd24fb3e05592b0d8813d30b28ff6668086d84b56d492712b3a3de431e07",
+      "共用素材/標籤_底色.svg": "56dcee567d7942a78d89da61856fd0b78fc1e34d6ba113666f076c5fb595b714",
+      "共用素材/永豐銀行.png": "ec850a36cc7d247980c79e5d740e861b7a1a4a49b17b8ca043dc17147f6a2b9f",
+      "共用素材/玉山銀行.png": "9756c992d84d47bf0092261fa145a7715aba2ba0f5a4955bfeb4310d585163f8",
+      "共用素材/禮物盒icon.png": "3089d371a38dd8a9fcbdffd49ad936bf95cbff06ab4744d82792afc56d6136d8",
+      "共用素材/聯邦銀行.png": "81c4bdfe590c939a68b0488be9b6e238016f7d2c2a8852bbbe8c5f2935f874bc",
+      "共用素材/衛生紙加鞋子.png": "396e08c210ad06119a7441185592a84a21b1d2b1deef8f907a899995b803cae7",
+      "共用素材/購物車加蝦皮直營券.png": "e96895611823b365b57ded0471fc504bfb0c20b53311aef06b83361134268f5a",
+      "共用素材/除濕機加商城券.png": "5d5ce144bcd44c702f34a3403b80dab9108bcbfd3b672f9df1c69f1e2ff02bdb",
+      "共用素材/鬧鐘加全站券.png": "64fc540044e729c91893eb863f2c3efd05eede55edb410c69a3e3c963feed365",
+      "共用素材/鬧鐘加蝦幣.png": "82fbe4ab10cecef17096906def88a659f71a32dd6711e1b6a9fc03dc2c7a541d",
+      "共用素材/黃色購物車加蝦皮直營券.png": "194f7cd11b5d628149aadbbec2f36bb473fbe8188aaa5f62052c69e18f9e95a0",
+      "副蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "橫式_25號商城狂購節_LOGO_白.svg": "9e11722b68c899e6a1ba9337a4178418382f00cff5a906e62e78f0d669134aee",
+      "橫式_25號商城狂購節_LOGO_黃.svg": "c9cf64f03643885f2ca2dc8c6f352335b3b105011eb48abd348a02a0fcb7f926",
+      "直式_25號商城狂購節_LOGO.svg": "2700c258d680a7823600c8c15744a89747462f246a387ee3645aceadd766a827",
+      "直式_蝦皮VIP_LOGO.svg": "be522e6d4c640f327d7fcb0ad2882a7aa26d15d2a5722f960c0f8a331e1853e9",
+      "蝦皮VIP_LOGO.svg": "b4736d74c8a4b87a68e601d9a2da221e7ef44a2b92afc05c5ce29fb0ca9062a1",
+      "蝦皮VIP_LOGO_橘色.svg": "be02439db82200a5e6c19efc69941e5f51e383a619153472e19958c94e710dd0",
+      "蝦皮VIP_icon_橘色.svg": "ba7013a8330079bb512b5a2eb66f22a473d2572ac7a204168d9f3d6fecc71394",
+      "蝦皮VIP_icon_白色.svg": "cf1bede31c5296ee5694893e7ec55ad158c9b593fd4ee2713e4aa37f06fa8451",
+      "蝦皮免運_LOGO_白.svg": "f397e104ec6fa2349402d790a665e39dc53aeb3278b2086c792a54fc246845ba",
+      "蝦皮商城_LOGO_白.svg": "fefb887515175b45a1c8ac526193658b69ab54021625b13c622b0c1ee0dad98d",
+      "蝦皮直營_LOGO.svg": "eaff266247fb75c0647ba241562de6226922f8a2a04d33c15dfce11f206dfcee",
+      "蝦皮購物_LOGO_白.svg": "05f6a1ca23383e43edd79ea008c045d5b0999deb38cd1f87df6a4dfeb861ba24"
+    }
+  }
+}

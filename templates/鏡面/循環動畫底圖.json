@@ -1,0 +1,81 @@
+{
+  "templateId": "循環動畫底圖",
+  "version": "2.6.2-subtitle-frame-order",
+  "source": {
+    "type": "photoshop",
+    "psdName": "循環動畫底圖.psd"
+  },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "unit": "px",
+    "source": "artboard",
+    "artboardName": "循環動畫底圖",
+    "originX": 0,
+    "originY": 0,
+    "templateId": "循環動畫底圖"
+  },
+  "layers": {
+    "DECO_票券": {
+      "type": "image",
+      "psdName": "DECO_票券",
+      "x": 26.465,
+      "y": 9.717,
+      "width": 368.293,
+      "height": 341.039,
+      "centerX": 210.612,
+      "centerY": 180.236,
+      "rotation": -10.322,
+      "boundsAABB": {
+        "x": 16,
+        "y": 25,
+        "width": 396,
+        "height": 282
+      },
+      "assetFilename": "循環動畫底圖_DECO_票券.png"
+    },
+    "橫式_25號商城狂購節_LOGO": {
+      "type": "image",
+      "psdName": "橫式_25號商城狂購節_LOGO",
+      "x": 131,
+      "y": 663,
+      "width": 818,
+      "height": 181,
+      "centerX": 540,
+      "centerY": 753.5,
+      "rotation": 0,
+      "assetFilename": "循環動畫底圖_橫式_25號商城狂購節_LOGO.png"
+    },
+    "橫式_USP": {
+      "type": "image",
+      "psdName": "橫式_USP_",
+      "x": 118,
+      "y": 859,
+      "width": 845,
+      "height": 142,
+      "centerX": 540.5,
+      "centerY": 930,
+      "rotation": 0,
+      "assetFilename": "循環動畫底圖_橫式_USP.png"
+    },
+    "kv_bg": {
+      "type": "image",
+      "psdName": "KV_BG",
+      "x": 0,
+      "y": 0,
+      "width": 1080,
+      "height": 1920,
+      "centerX": 540,
+      "centerY": 960,
+      "rotation": 0,
+      "assetFilename": "循環動畫底圖_KV_BG.png"
+    }
+  },
+  "generatedLayers": {},
+  "renderOrder": [
+    "kv_bg",
+    "橫式_USP",
+    "橫式_25號商城狂購節_LOGO",
+    "DECO_票券"
+  ]
+}

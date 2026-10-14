@@ -1,0 +1,1283 @@
+[
+  {
+    "key": "batch.assetSpecEngineFirst",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "讀工單時先用 AssetSpecEngine 找「素材規格」表頭，找到就整張表交給它接管，不走一般解析。",
+    "source": "02-batch §1 generateFromSelectedSheet；§2.2 assetSpec stage",
+    "default": true
+  },
+  {
+    "key": "batch.matrixParser",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "是否啟用「矩陣工單」解析（以及上傳時自動偵測專案名的提示）。",
+    "source": "02-batch §1 detectMatrixProjectNames/parseMatrixSheet",
+    "default": true
+  },
+  {
+    "key": "batch.genericRowParser",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "規則 sheetParser 沒命中時，是否退回通用「製作內容／版位」錨點解析；關掉則只回「工單格式無法解析」。",
+    "source": "02-batch §1 parseRows；§2.2 generic stage",
+    "default": true
+  },
+  {
+    "key": "batch.specialParserPolicy",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "啟用 SpecialBlockParserPolicy：特規欄位算有效表頭、特規版位禁止退回通用解析、特規資料算「記錄有內容」。",
+    "source": "02-batch §1 parseRows / generateForCurrentProject",
+    "default": false
+  },
+  {
+    "key": "batch.sellerHeaderDetect",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "表頭同時出現「版型/宣傳案型/左/中/右」時視為 Seller BN 特規表頭（暖身BN 專用，非 opt-in 行為）。",
+    "source": "06-price-shared §2.4 special-block-parser-policy",
+    "default": false
+  },
+  {
+    "key": "batch.extraHeaderAliases",
+    "type": "enum",
+    "values": [
+      "none",
+      "ams"
+    ],
+    "affects": "pixel",
+    "summary": "額外的欄位別名表：ams 版把「檔名/文案/店名/LINE POINTS %/GD摳圖LINK」對到標準欄位，並啟用 LINE購物逐列模式。",
+    "source": "02-batch §1 parseRows.detectColMap / readRecordFromRow",
+    "default": "none"
+  },
+  {
+    "key": "batch.extraFields",
+    "type": "enum",
+    "values": [
+      "none",
+      "lineShoppingAms"
+    ],
+    "affects": "pixel",
+    "summary": "「記錄有內容／表頭判定」要多算哪些欄位：lineShoppingAms＝多算 檔名、店名、LINE_POINTS_PERCENT。",
+    "source": "02-batch §1 __module_head__.fields",
+    "default": "none"
+  },
+  {
+    "key": "batch.recordContentMode",
+    "type": "enum",
+    "values": [
+      "fields",
+      "anyField"
+    ],
+    "affects": "pixel",
+    "summary": "一列工單算不算「有內容」：fields＝標準欄位有值；anyField＝任何非 __ 欄位有值就算（只有備註也會產圖）。",
+    "source": "02-batch §1 generateForCurrentProject",
+    "default": "fields"
+  },
+  {
+    "key": "batch.mergeFillMode",
+    "type": "enum",
+    "values": [
+      "rect",
+      "vertical"
+    ],
+    "affects": "pixel",
+    "summary": "Excel 合併儲存格補值方式：rect＝整個矩形範圍都補左上值；vertical＝只補同欄垂直合併。",
+    "source": "02-batch §1 sheetToRowsWithMergedFill",
+    "default": "vertical"
+  },
+  {
+    "key": "batch.numericDisplayValue",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "數字格若顯示字串（cell.w）與值不同時，取顯示字串（保留前導 0）；關掉一律取原始值。",
+    "source": "02-batch §1 sheetToRowsWithMergedFill",
+    "default": false
+  },
+  {
+    "key": "batch.rowsFromZero",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "讀分頁時從第 0 列／欄開始掃（避免 !ref 不是 A1 起點時出現稀疏陣列），關掉則從 range.s 起掃。",
+    "source": "02-batch §1 sheetToRowsWithMergedFill",
+    "default": false
+  },
+  {
+    "key": "batch.explicitTemplateIdRoute",
+    "type": "enum",
+    "values": [
+      "omWave1",
+      "generic",
+      "blockFamily",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "規則沒回路由但記錄有 __templateId 時的相容路由：omWave1＝family 固定 om_wave1_subtitle；generic＝family 空；blockFamily＝用區塊 templateType；none＝不路由。",
+    "source": "02-batch §1 resolveRecordTemplateRoute",
+    "default": "omWave1"
+  },
+  {
+    "key": "batch.templateMatchMode",
+    "type": "enum",
+    "values": [
+      "strict",
+      "fuzzy"
+    ],
+    "affects": "pixel",
+    "summary": "工單名對公版的比對嚴格度：strict＝只認精準相等、多命中算衝突、去數字前綴；fuzzy＝精準→去前綴→includes 模糊取第一個，並啟用 direct-name 比對。",
+    "source": "02-batch §1 findTemplateForRoute/findTemplateRuleForName/findTemplateForName/normalizeTemplateIdentity/findTemplateByDirectName",
+    "default": "fuzzy"
+  },
+  {
+    "key": "batch.fetchRouteTemplate",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "路由指到的公版不在已載入池時，是否自動 fetch ./templates/<file>（打包內的 JSON）補上。",
+    "source": "02-batch §1 ensureTemplateForRoute/fetchRouteTemplate",
+    "default": true
+  },
+  {
+    "key": "batch.ctaMode",
+    "type": "enum",
+    "values": [
+      "policy",
+      "legacy"
+    ],
+    "affects": "pixel",
+    "summary": "CTA 圖層套素材方式：policy＝依規則 ctaPolicy（explicit/rule-managed/legacy）並寫 assetProject、hidden=false；legacy＝只寫 assetFilename。",
+    "source": "02-batch §1 applyRecordToTemplate ③",
+    "default": "legacy"
+  },
+  {
+    "key": "batch.coreSubtitleTextMap",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "core 內建文字對映是否多認「副標」欄位。",
+    "source": "02-batch §1 applyRecordToTemplate ②",
+    "default": false
+  },
+  {
+    "key": "batch.smartAssetIdMode",
+    "type": "enum",
+    "values": [
+      "grouped",
+      "contextual",
+      "plain",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "商品圖命中時怎麼產 smartAssetId：grouped＝含 folder/logicalAssetKey/group；contextual＝含 layer/template/folder；plain＝只用檔名；none＝不產。",
+    "source": "02-batch §1 applyRecordToTemplate ④",
+    "default": "contextual"
+  },
+  {
+    "key": "batch.missingProductAssetMode",
+    "type": "enum",
+    "values": [
+      "clear",
+      "manualUpload"
+    ],
+    "affects": "pixel",
+    "summary": "商品圖找不到素材時：clear＝清空 assetFilename 標 missing；manualUpload＝保留商品框並標 __manualUploadRequired。",
+    "source": "02-batch §1 applyRecordToTemplate ⑤",
+    "default": "clear"
+  },
+  {
+    "key": "batch.placementPreset",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "套版時呼叫 WarmupPlacementPresetEngine（無 preset 且規則未宣告 legacyPresetOptional 會中止；有 preset 則鎖幾何、跳過 LayoutRuleEngine）。",
+    "source": "02-batch §1 applyRecordToTemplate ⑥ / captureTemplateGeometry",
+    "default": false
+  },
+  {
+    "key": "batch.applyNonPriceTextStandard",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "套版後、Layout 前是否呼叫 SPTextStandard.applyTemplateNonPriceText（非價格文字的 82% 標準字級）。OM/LineOA 有物件但不呼叫。",
+    "source": "02-batch §1 applyRecordToTemplate ⑦",
+    "default": false
+  },
+  {
+    "key": "batch.smartAssetApplyPhase",
+    "type": "enum",
+    "values": [
+      "beforeLayout",
+      "afterLayout",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "SmartAssetManager.applyTemplate 在 LayoutRuleEngine 之前還是之後跑；none＝不呼叫。",
+    "source": "02-batch §1 applyRecordToTemplate ⑧",
+    "default": "afterLayout"
+  },
+  {
+    "key": "batch.previewMode",
+    "type": "enum",
+    "values": [
+      "snapshot",
+      "mutating",
+      "mutatingGuarded",
+      "mutatingGuardedNoSmart"
+    ],
+    "affects": "pixel",
+    "summary": "預覽縮圖怎麼畫：snapshot＝clone 後只載圖，不動正式 template；mutating＝切 activeIndex 並重跑套版＋價格＋Layout（會回寫正式 template）；Guarded＝多 SnapshotManager 保護；NoSmart＝不跑 SmartAsset。須與 export.renderPath 一致。",
+    "source": "02-batch §1 renderPreviewGrid/renderThumbnailForTemplate/selectGenerated/refreshTemplateFromBatchRecord/stabilizeTemplateBeforePreview",
+    "default": "mutatingGuarded"
+  },
+  {
+    "key": "render.appliesLayout",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "每次繪製前先跑 PriceTransformEngine.syncTemplate ＋ LayoutRuleEngine.apply（畫圖即同步幾何）；關掉則繪製唯讀，只在初始化／編輯時同步。",
+    "source": "03-render §1 render/renderSceneTo（renderAppliesLayout）",
+    "default": true
+  },
+  {
+    "key": "render.textEngine",
+    "type": "enum",
+    "values": [
+      "legacy",
+      "baselineModel"
+    ],
+    "affects": "pixel",
+    "summary": "文字引擎：legacy＝KV 舊版（不設 fontKerning/textRendering、無 TextBaselineModel、top 對齊置中、usp_ 首分段置中）；baselineModel＝TextBaselineModel 基線＋bottom 對齊。",
+    "source": "03-render §1 drawText/drawStyledTextLine/drawTextCaret；§3 TextBaselineModel",
+    "default": "baselineModel"
+  },
+  {
+    "key": "render.autoLogoShadow",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "圖層名為「蝦皮購物_LOGO_白」等 4 個名稱時自動加橘色 multiply 陰影。",
+    "source": "03-render §1 drawImage (1)",
+    "default": true
+  },
+  {
+    "key": "render.shapeLegacyTriangleOverride",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "命中 GLOBAL_VECTOR_RULES 或 shapeKind 為三角形／CTA 箭頭時，用圖層外框硬畫向右三角形（或用 corners 當多邊形頂點）；關掉一律交 ShapeRenderer。",
+    "source": "03-render §1 drawShape",
+    "default": true
+  },
+  {
+    "key": "render.maskScope",
+    "type": "enum",
+    "values": [
+      "image",
+      "all"
+    ],
+    "affects": "pixel",
+    "summary": "遮罩只套在 image 圖層，還是 shape/text 也套（並多認 effects.maskBy/clipBy）。",
+    "source": "03-render §1 _drawLayers / applyImageMask / applyLayerMask",
+    "default": "image"
+  },
+  {
+    "key": "render.useProductEngineSizing",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "是否載入並使用 product-engine.js 算商品圖比例（keepAspectRatio/sizingMode）；關掉只用 layer 寬高不算比例。",
+    "source": "03-render §2 getRenderedImageBox；§8 product-engine",
+    "default": true
+  },
+  {
+    "key": "render.applyBoxSyncCenterForAllTypes",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "Geometry.applyBox 對所有圖層型別都同步 centerX/centerY（關掉只同步 image）。",
+    "source": "03-render §2 applyBox",
+    "default": true
+  },
+  {
+    "key": "render.applyBoxCoverSyncHeight",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "applyBox 時 sizingMode 為 coverByPBox/cover 的圖層也同步 targetHeight/maxTargetHeight。",
+    "source": "03-render §2 applyBox",
+    "default": false
+  },
+  {
+    "key": "render.applyBoxDdcardHeightRule",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "applyBox 是否認 productImageSizingRule=ddcardHeightPriorityNoWidthLimit。",
+    "source": "03-render §2 applyBox",
+    "default": true
+  },
+  {
+    "key": "render.loadShapeRenderer",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "是否載入 renderers/shape-renderer.js；關掉時形狀圖層走 core 內建矩形 fallback。",
+    "source": "03-render §7 shape-renderer.js（鏡面未載入）",
+    "default": true
+  },
+  {
+    "key": "render.shapeFillEnabledMode",
+    "type": "enum",
+    "values": [
+      "ignore",
+      "flag",
+      "flagStrict",
+      "flagOrNoFill"
+    ],
+    "affects": "pixel",
+    "summary": "形狀 fillEnabled:false 怎麼處理：ignore＝照填；flag＝看 rule/layer/shape/stroke.raw 的 fillEnabled；flagStrict＝不看 stroke.raw；flagOrNoFill＝沒任何 fill 來源也不填白。",
+    "source": "03-render §7 S4/S6/S7 isFillEnabled",
+    "default": "ignore"
+  },
+  {
+    "key": "render.shapeRotationSource",
+    "type": "enum",
+    "values": [
+      "transform",
+      "corners"
+    ],
+    "affects": "pixel",
+    "summary": "形狀旋轉角來源：transform＝geometry.transform.rotationDeg；corners＝layer.rotation→geometry.rotation→由 corners 反推（bbox 也改用未旋轉框）。",
+    "source": "03-render §7 S6 (1)",
+    "default": "transform"
+  },
+  {
+    "key": "render.shapePsdCornerRadii",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "讀 PSD 的 keyOriginRRectRadii 讓圓角矩形四角各自半徑（關掉四角都用 cornerRadius）。",
+    "source": "03-render §7 S6 (2)",
+    "default": false
+  },
+  {
+    "key": "render.shapeCornerCurve",
+    "type": "enum",
+    "values": [
+      "arcTo",
+      "bezier"
+    ],
+    "affects": "pixel",
+    "summary": "圓角畫法：arcTo 或 cubic Bezier（kappa 0.5523），邊緣抗鋸齒像素不同。",
+    "source": "03-render §7 S6 (3)",
+    "default": "arcTo"
+  },
+  {
+    "key": "render.shapeStrokeInset",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "有描邊時把形狀框內縮半個線寬，讓描邊不外溢 pathBounds。",
+    "source": "03-render §7 S7 (3) insetBoxForStroke",
+    "default": false
+  },
+  {
+    "key": "render.shapeBoxSource",
+    "type": "enum",
+    "values": [
+      "bboxFirst",
+      "pathBoundsFirstOverlap"
+    ],
+    "affects": "pixel",
+    "summary": "形狀框來源順序：bboxFirst＝geometry.bbox 優先；pathBoundsFirstOverlap＝shape.pathBounds 優先，且與 layer 框不重疊時改用 layer 框。",
+    "source": "03-render §7 S7 (5) resolveExportedBox",
+    "default": "bboxFirst"
+  },
+  {
+    "key": "render.productSizingHeightPriority",
+    "type": "enum",
+    "values": [
+      "explicit",
+      "legacy"
+    ],
+    "affects": "pixel",
+    "summary": "商品圖 keepAspectRatio 時：legacy＝layer 有 targetHeight 就高優先（忽略 widthBased）；explicit＝依 sizingMode，只在無 mode 且只有 targetHeight 時高優先。",
+    "source": "03-render §8 product-engine P1/P2",
+    "default": "explicit"
+  },
+  {
+    "key": "assets.lookupEngine",
+    "type": "enum",
+    "values": [
+      "assetLookup",
+      "flatFuzzy",
+      "flatFuzzyScoped"
+    ],
+    "affects": "asset",
+    "summary": "本機素材怎麼找：assetLookup＝A 版四層精準比對、歧義即 throw；flatFuzzy＝扁平表＋ASSET_POLICY＋includes 模糊不 throw；flatFuzzyScoped＝同前並依規則 assetLookup.scope=strict 限制在公版同名資料夾。",
+    "source": "04-assets §1 findLocalAssetFile、§3 AssetLookup；02-batch §1 findAssetFilename（assetLookupMode，已合併）",
+    "default": "flatFuzzy"
+  },
+  {
+    "key": "assets.lookupProjectMode",
+    "type": "enum",
+    "values": [
+      "identityFolder",
+      "explicit",
+      "explicitFirstNonEmpty"
+    ],
+    "affects": "asset",
+    "summary": "決定去哪個專案資料夾找素材：identityFolder＝explicit 需非空，否則用公版 identity 比對資料夾名；explicit＝options.project ?? batchProject ?? __project；explicitFirstNonEmpty＝取第一個非空且非 All。",
+    "source": "04-assets §1 resolveAssetLookupProject",
+    "default": "explicit"
+  },
+  {
+    "key": "assets.roleClassify",
+    "type": "bool",
+    "affects": "asset",
+    "summary": "找素材時是否先用 classifyAssetRole 分角色（product/logo/cta…）來決定可搜資料夾與可否模糊。",
+    "source": "04-assets §3 match（MS 無 role）；02-batch §1 findAssetFilename（assetRoleClassify）",
+    "default": true
+  },
+  {
+    "key": "assets.shopeeVipGuard",
+    "type": "bool",
+    "affects": "asset",
+    "summary": "「蝦皮VIP_LOGO」不可退回到「VIP_LOGO」的特例（只在 flatFuzzy 系引擎有效）。",
+    "source": "04-assets §1 findLocalAssetFile；02-batch §1 findAssetFilename（shopeeVipGuard）",
+    "default": true
+  },
+  {
+    "key": "assets.moduleCommonFolder",
+    "type": "enum",
+    "values": [
+      "productOnly",
+      "always"
+    ],
+    "affects": "asset",
+    "summary": "assetLookup 引擎的資料夾順序中，「共用素材」是只有 product 角色才找，還是一律找。",
+    "source": "04-assets §3 AssetLookup._folderOrder",
+    "default": "always"
+  },
+  {
+    "key": "assets.crossProjectFallback",
+    "type": "bool",
+    "affects": "asset",
+    "summary": "扁平查找表在 專案→共用素材→root 之後，是否再掃所有其他專案資料夾（依 ASSET_POLICY 角色允許）。",
+    "source": "04-assets §2 getFlatForLookup",
+    "default": true
+  },
+  {
+    "key": "assets.urlCommonFolder",
+    "type": "enum",
+    "values": [
+      "productOnly",
+      "always"
+    ],
+    "affects": "asset",
+    "summary": "沒本機檔改探 ./assets/ URL 時，「assets/共用素材/」候選是只有 product 角色才加，還是一律加。",
+    "source": "04-assets §1 loadImagesForTemplate ①",
+    "default": "always"
+  },
+  {
+    "key": "assets.urlTemplateSubfolderSource",
+    "type": "enum",
+    "values": [
+      "template",
+      "activeIndex"
+    ],
+    "affects": "asset",
+    "summary": "URL 候選 assets/<專案>/<公版>/ 的公版名取自：template＝正在載圖的 template 自身；activeIndex＝全域 AppState.templates[activeIndex]。",
+    "source": "04-assets §1 loadImagesForTemplate ①",
+    "default": "activeIndex"
+  },
+  {
+    "key": "assets.urlExtensionExpand",
+    "type": "bool",
+    "affects": "asset",
+    "summary": "URL 候選每個再展開 6 種副檔名（原、png、svg、webp、jpg、jpeg）。",
+    "source": "04-assets §1 loadImagesForTemplate ①（MS）",
+    "default": false
+  },
+  {
+    "key": "assets.templatePrefixVariants",
+    "type": "bool",
+    "affects": "asset",
+    "summary": "候選檔名多一個「剝掉 <templateId>_ 前綴」的版本。",
+    "source": "04-assets §1 loadImagesForTemplate ②；§9 assetNameVariantsForTemplate",
+    "default": false
+  },
+  {
+    "key": "assets.missingDiagnostics",
+    "type": "enum",
+    "values": [
+      "spec",
+      "templateList",
+      "batchDiagnosticsAlways",
+      "none",
+      "templateListMarkMissing"
+    ],
+    "affects": "ui",
+    "summary": "素材缺失怎麼記：spec＝只在 __assetSpec 時寫 spec warning；templateList＝每層寫 batchDiagnostics；batchDiagnosticsAlways＝一律標 __assetMissing 並進 BatchDiagnostics；none＝不記。；templateListMarkMissing（鏡面）＝同 templateList 且載入失敗一律標 __assetMissing。",
+    "source": "04-assets §1 loadImagesForTemplate ⑤⑥⑦ / updateSpecAssetWarning / recordAssetLoadDiagnostic",
+    "default": "spec"
+  },
+  {
+    "key": "assets.waitFontsBeforeLoad",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "載圖前先 await TextBaselineModel.waitForFonts()，並在載完後觸發 afterTemplateAssetsReady 規則 hook。",
+    "source": "04-assets §1 loadImagesForTemplate ⑥",
+    "default": false
+  },
+  {
+    "key": "assets.captureRenderModel",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "載圖完成後建立 template.__renderModel 一次性基準（multi-size sync 依賴；僅互動後影響）。",
+    "source": "04-assets §1 captureRenderModel",
+    "default": false
+  },
+  {
+    "key": "assets.afterUploadRefresh",
+    "type": "enum",
+    "values": [
+      "refreshThumbsKeepState",
+      "reapplyRecordsRegrid"
+    ],
+    "affects": "pixel",
+    "summary": "上傳素材夾後：refreshThumbsKeepState＝只重載圖並刷縮圖（保留手動調整）；reapplyRecordsRegrid＝重新套工單再重畫整格（會洗掉手動調整）。",
+    "source": "04-assets §1 loadAssetFolder",
+    "default": "reapplyRecordsRegrid"
+  },
+  {
+    "key": "assets.multiSizeMaterialPredicate",
+    "type": "enum",
+    "values": [
+      "dynamicLogoSpec",
+      "anyAssetFilename"
+    ],
+    "affects": "pixel",
+    "summary": "多尺寸素材同步要同步哪些圖層：dynamicLogoSpec＝只有 __assetSpec.kind=dynamic-logo；anyAssetFilename＝有 assetFilename 即可（僅互動後影響）。",
+    "source": "04-assets §10.2 multi-size-asset-sync.js",
+    "default": "dynamicLogoSpec"
+  },
+  {
+    "key": "templates.variant",
+    "type": "enum",
+    "values": [
+      "formal",
+      "warmup",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "正式BN／暖身BN 合併後同名公版（HBN、DD Card、POPUP）要用哪組版型：formal＝正式、warmup＝暖身（同時決定 placement-presets key 前綴、warmup-banner-rule-factory 預設 anchorLayerNames 順序）。由工單分頁名「 BN 正式」／「BN 暖身」切換；其他工具 none。",
+    "source": "06-price-shared §2.1 warmupAnchorOrder、§2.2 placementPresetNamespace、§2.7；00-總覽 §5-6；決策 5",
+    "default": "none"
+  },
+  {
+    "key": "templates.identityConflict",
+    "type": "enum",
+    "values": [
+      "excludeAll",
+      "keepAll"
+    ],
+    "affects": "pixel",
+    "summary": "載入公版夾時同 identity 有兩份以上：excludeAll＝全部排除並 alert；keepAll＝都留下。",
+    "source": "04-assets §1 loadTemplateFolder",
+    "default": "keepAll"
+  },
+  {
+    "key": "templates.snapshotRestore",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "載入 JSON 時辨識 SnapshotManager 快照（source=snapshot-restore、不跑 AssetSpecEngine），且快照保護狀態下先用 __resolvedAssetPath 精準回找素材。",
+    "source": "04-assets §1 loadTemplateFolder / §7 SnapshotManager；§1 findLocalAssetFile snapshotPathFirst（已合併）",
+    "default": true
+  },
+  {
+    "key": "templates.prepareHook",
+    "type": "enum",
+    "values": [
+      "assetSpecEngine",
+      "none",
+      "ruleHook"
+    ],
+    "affects": "pixel",
+    "summary": "公版 JSON 載入後的前處理：assetSpecEngine＝AssetSpecEngine.prepareTemplate；ruleHook＝applyTemplateRuleHook(\"prepareTemplate\")；none＝不做。fetchRouteTemplate 路徑也用同一設定。",
+    "source": "04-assets §1 loadTemplateFolder；02-batch §1 fetchRouteTemplate 後處理",
+    "default": "assetSpecEngine"
+  },
+  {
+    "key": "templates.textBaselinePrepare",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "載入公版時呼叫 TextBaselineModel.prepareTemplate 建立文字基線參考；KV 維持舊行為不呼叫。",
+    "source": "04-assets §1 loadTemplateFolder (c)1；決策 2",
+    "default": true
+  },
+  {
+    "key": "templates.layerDefaults",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "載入公版後套 LayerDefaults.apply（如 lockOnLoad 鎖定圖層）。",
+    "source": "04-assets §1 loadTemplateFolder（AMS）；05-export-ui §8 LayerDefaults",
+    "default": false
+  },
+  {
+    "key": "export.zipPrefix",
+    "type": "string",
+    "affects": "filename",
+    "summary": "單張輸出 zip 檔名前綴（<prefix>_<id>_<ts>.zip）。",
+    "source": "05-export-ui §1 export（單張 zip 檔名）；§8 OUTPUT_NAME",
+    "default": "25節生成工具"
+  },
+  {
+    "key": "export.batchZipName",
+    "type": "enum",
+    "values": [
+      "specDrivenOrBatchTs",
+      "batchTs",
+      "batchOutputTs",
+      "prefixOutput"
+    ],
+    "affects": "filename",
+    "summary": "批次 zip 檔名規則：specDrivenOrBatchTs＝規格表模式用 25節Tool_network_輸出.zip 否則 <prefix>_batch_<ts>；batchTs＝固定 <prefix>_batch_<ts>；batchOutputTs＝<prefix>_批次輸出_<ts>；prefixOutput＝<prefix>_輸出（無時間戳）。",
+    "source": "05-export-ui §1 exportVisibleBatch",
+    "default": "batchOutputTs"
+  },
+  {
+    "key": "export.autoLabel",
+    "type": "string",
+    "affects": "ui",
+    "summary": "輸出格式對話框「自動」按鈕的說明文字。 2026-10-13 對齊 18節：全部統一「依工單規則」（下載對話框主按鈕文案）。",
+    "source": "05-export-ui §1 askImageFormat",
+    "default": "依工單規則"
+  },
+  {
+    "key": "export.formatSource",
+    "type": "enum",
+    "values": [
+      "exportCfgSpecTable",
+      "specTable",
+      "omMedia",
+      "outputFormatOmMedia",
+      "outputFormat",
+      "specFormat"
+    ],
+    "affects": "format",
+    "summary": "format=auto 時 jpg/png 怎麼決定：exportCfgSpecTable＝規則 exportConfig.format → 素材規格表；specTable＝素材規格表；omMedia＝媒體為 DPA Frame_MAU 才 png；outputFormatOmMedia＝先看 __outputFormat 再 omMedia；outputFormat＝__outputFormat==png；specFormat＝__specFormat==jpg 才 jpg。",
+    "source": "05-export-ui §1 resolveRecommendedFormat/resolveSpecFormat/resolveTemplateFormat；§2.1",
+    "default": "outputFormat"
+  },
+  {
+    "key": "export.defaultFormat",
+    "type": "enum",
+    "values": [
+      "jpg",
+      "png"
+    ],
+    "affects": "format",
+    "summary": "formatSource 都查不到時的預設格式。",
+    "source": "05-export-ui §1 resolveTemplateFormat",
+    "default": "jpg"
+  },
+  {
+    "key": "export.multiSizeForceJpg",
+    "type": "bool",
+    "affects": "format",
+    "summary": "batchRecord.__multiSizeSync 的項目一律輸出 jpg（優先於其他格式判斷）。",
+    "source": "05-export-ui §2.1",
+    "default": false
+  },
+  {
+    "key": "export.stemSource",
+    "type": "enum",
+    "values": [
+      "templateId",
+      "outputName"
+    ],
+    "affects": "filename",
+    "summary": "輸出檔名主幹：templateId＝templateId||item.name；outputName＝先看規則給的 __outputName。",
+    "source": "05-export-ui §2.2 檔名 stem",
+    "default": "outputName"
+  },
+  {
+    "key": "export.multiOutputSizeSuffix",
+    "type": "bool",
+    "affects": "filename",
+    "summary": "sheetTemplateRoute.multiOutput 為 true 且檔名沒尺寸時，自動追加 _WxH。",
+    "source": "05-export-ui §1 buildZip ⑤",
+    "default": false
+  },
+  {
+    "key": "export.dedupeOutputName",
+    "type": "bool",
+    "affects": "filename",
+    "summary": "同一批內 __outputName 重複時自動補後綴避免互相覆蓋（整合版刻意差異，只開在 OM_w2）。",
+    "source": "tests/golden/README.md（外廣OM wave2 LineOA 同名互覆）；決策 9",
+    "default": false
+  },
+  {
+    "key": "export.folderStrategy",
+    "type": "enum",
+    "values": [
+      "exportCfgSpecBanner",
+      "specBanner",
+      "omMedia",
+      "msArchiveExportCfgBanner",
+      "rootFolder",
+      "project",
+      "sourceTemplate"
+    ],
+    "affects": "folder",
+    "summary": "zip 內資料夾：exportCfgSpecBanner＝規則 exportConfig.folder → __outputRoot/__outputFolder → 專案/Template|UAC/bannerN；specBanner＝後兩段；omMedia＝媒體名/bannerN；msArchiveExportCfgBanner＝上蓋→下蓋歸檔 NN_X → exportCfg → banner；rootFolder＝sanitize(__outputRoot)/sanitize(__outputFolder) 否則專案；project＝專案/檔案。；sourceTemplate（回饋 2，正式／暖身BN）＝來源公版「編號_主名」，SKBN 系再分 APP／PC 子夾。",
+    "source": "05-export-ui §1 resolveBannerSubfolder/resolveArchiveFolder；§2.3；§9",
+    "default": "rootFolder"
+  },
+  {
+    "key": "export.slices",
+    "type": "bool",
+    "affects": "filename",
+    "summary": "支援規則 exportConfig.slices 切圖，每張再輸出 stem_suffix.ext。",
+    "source": "05-export-ui §1 buildZip ⑥；§11 export.slices",
+    "default": false
+  },
+  {
+    "key": "export.scaleMode",
+    "type": "enum",
+    "values": [
+      "multiSize2x",
+      "fixed4x"
+    ],
+    "affects": "pixel",
+    "summary": "超取樣倍率：multiSize2x＝__multiSizeSync 項目上限 2 倍、其餘 4 倍；fixed4x＝一律 4 倍。",
+    "source": "05-export-ui §1 buildZip ②；§2.4",
+    "default": "multiSize2x"
+  },
+  {
+    "key": "export.whiteFill",
+    "type": "enum",
+    "values": [
+      "multiSize",
+      "none",
+      "jpg"
+    ],
+    "affects": "pixel",
+    "summary": "匯出前先填白底的條件：multiSize＝只有 __multiSizeSync 項目；jpg＝輸出 jpg 時（ctx alpha:false）；none＝不填。",
+    "source": "05-export-ui §1 buildZip ③；§2.4",
+    "default": "multiSize"
+  },
+  {
+    "key": "export.compressMode",
+    "type": "enum",
+    "values": [
+      "multiSize150k",
+      "none",
+      "kLimit"
+    ],
+    "affects": "pixel",
+    "summary": "JPG 壓縮：multiSize150k＝__multiSizeSync 且 ≥150000B 時 q∈[0,1] 二分 12 次；kLimit＝依 __kLimitBytes 在 q∈[0.92,1] 二分，壓不到就不輸出；none＝不壓。",
+    "source": "05-export-ui §1 buildZip ④ / compressCanvasToLimit",
+    "default": "multiSize150k"
+  },
+  {
+    "key": "export.skipMissingAssets",
+    "type": "bool",
+    "affects": "filename",
+    "summary": "可見 image 圖層有 assetFilename 但素材缺失時，該張不輸出並寫進診斷報告。",
+    "source": "05-export-ui §1 findMissingVisibleAssets",
+    "default": false
+  },
+  {
+    "key": "export.diagnostics",
+    "type": "enum",
+    "values": [
+      "assetSpec",
+      "batchDiagnostics",
+      "mirror",
+      "none"
+    ],
+    "affects": "filename",
+    "summary": "zip 內是否附「診斷報告.txt」及用哪套產生：assetSpec＝規格表模式才附 AssetSpecEngine 報告；batchDiagnostics＝批次模式一律附；mirror＝鏡面自有格式一律附；none＝不附。（黃金比對已排除此檔）",
+    "source": "05-export-ui §1 buildDiagnosticText / formatBytes；§8 BatchDiagnostics",
+    "default": "assetSpec"
+  },
+  {
+    "key": "export.renderPath",
+    "type": "enum",
+    "values": [
+      "snapshot",
+      "activeSwitch"
+    ],
+    "affects": "pixel",
+    "summary": "匯出時怎麼取畫面：snapshot＝clone 唯讀快照＋顯式載圖後 renderSceneTo；activeSwitch＝切換 AppState.activeIndex/template，先 refreshTemplateFromBatchRecord 重排版再畫。兩條路徑都保留。",
+    "source": "05-export-ui §1 buildZip ①；§2.4；決策 4",
+    "default": "activeSwitch"
+  },
+  {
+    "key": "export.jsonMode",
+    "type": "enum",
+    "values": [
+      "raw",
+      "snapshot"
+    ],
+    "affects": "format",
+    "summary": "「輸出 JSON」的內容：raw＝直接 stringify AppState.template；snapshot＝先 commit 編輯，輸出 SnapshotManager.createSnapshot（含 snapshotMeta）。",
+    "source": "05-export-ui §1 exportJSON",
+    "default": "snapshot"
+  },
+  {
+    "key": "price.typographyResolver",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "價格層用 PriceTypographyResolver 重算字級、lineHeight=大字×1.08，並以 smallRatio 0.795 產生雙字級 ranges（%、$、蝦幣/折/起 縮小）。",
+    "source": "06-price-shared §1.2 PriceTypographyResolver / applyForAnchor",
+    "default": false
+  },
+  {
+    "key": "price.doubleCouponAuto",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "價格含「+」或商品名含「雙券」時自動判雙券，並依規則 doublePrice.enabled 展開成 價格_上/價格_下。",
+    "source": "06-price-shared §1.2 priceParts/shouldUseDoubleCoupon/expandDoubleLayouts/classify",
+    "default": false
+  },
+  {
+    "key": "price.inheritAnchorRotation",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "product-image-ratio 模式的價格層旋轉角＝商品圖旋轉＋rotationOffset（關掉沿用 layout.rotation）。",
+    "source": "06-price-shared §1.2 resolveLayoutForAnchor",
+    "default": false
+  },
+  {
+    "key": "price.layerBaselineMode",
+    "type": "enum",
+    "values": [
+      "source",
+      "capture",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "產生價格層時的基線設定：source＝textVerticalAlign=SOURCE_MODE 並 captureLayer(generated-price)；capture＝captureLayer(auto-price)；none＝KV 無 TextBaselineModel。",
+    "source": "06-price-shared §1.2 PriceLayerFactory.create",
+    "default": "capture"
+  },
+  {
+    "key": "price.specialCharRanges82",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "價格層呼叫 SPTextStandard.applyPriceTextLayer：%、$、逗號、數字後「號」縮成 0.82（與 0.795 雙字級不可互換）。",
+    "source": "06-price-shared §1.2 create/syncPriceLayer；§1.3；§2.3",
+    "default": false
+  },
+  {
+    "key": "price.fitBoxToInk",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "價格層產生／同步後用 Renderer.fitTextLayerToInk 把框收斂到實測 ink 並回寫 anchor 基準。",
+    "source": "06-price-shared §1.2 create/syncPriceLayer/captureManualPriceTransform；03-render §1 fitTextLayerToInk",
+    "default": false
+  },
+  {
+    "key": "price.syncSeparatePositionScale",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "價格跟隨商品圖同步時，位置比例與內容比例分開算（preserveExactSize 時 offset 仍等比移動、lineHeight 用 baseLineHeight×scale）。",
+    "source": "06-price-shared §1.2 syncPriceLayer",
+    "default": true
+  },
+  {
+    "key": "price.anchorBaseLineHeight",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "建立價格錨點時多記 baseLineHeight／baseStyleFontSizes／baseStyleLineHeights，baseHeight 預設改用 baseLineHeight。",
+    "source": "06-price-shared §1.2 createAnchor",
+    "default": false
+  },
+  {
+    "key": "price.normalizeDecimalPercent",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "工單價格為 0～1 的純小數（如 0.2）時轉成百分比文字（20%）。",
+    "source": "06-price-shared §1.2 PriceCouponManager.apply ①",
+    "default": false
+  },
+  {
+    "key": "price.rebuildMemoryMode",
+    "type": "enum",
+    "values": [
+      "productLayout",
+      "text",
+      "textRanges"
+    ],
+    "affects": "pixel",
+    "summary": "重建價格層時怎麼比對舊層回填手動調整：productLayout＝同商品名＋同 layoutKey 並換算字級比例；text＝文字相同原值回填；textRanges＝text 再回填 ranges/baseline/__spPriceTextStandard。",
+    "source": "06-price-shared §1.2 PriceCouponManager.apply ②",
+    "default": "textRanges"
+  },
+  {
+    "key": "price.rotationHook",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "旋轉商品圖時呼叫 PriceTransformEngine.handleLayerRotationApplied 同步價格層（僅互動後影響）。",
+    "source": "05-export-ui §3 moveSelected；06-price-shared §1.2 handleLayerRotationApplied",
+    "default": false
+  },
+  {
+    "key": "smartAsset.engine",
+    "type": "enum",
+    "values": [
+      "a",
+      "b",
+      "kv",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "載入哪一套 smart-asset-manager：a＝runtime registry＋alias group（正式BN 版）；b＝session baselineStore（OM 版）；kv＝localStorage 持久化；none＝不載入。",
+    "source": "04-assets §10.1 smart-asset-manager.js；決策 3",
+    "default": "b"
+  },
+  {
+    "key": "smartAsset.multiProductLink",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "a 引擎：多商品版位（左/中/右_P）改以「同圖層 key＋同素材＋同價格文字」連動，smartMemberRole 逐一找子層。",
+    "source": "04-assets §10.1 A-SAM（linkedUsageEntriesFor）",
+    "default": false
+  },
+  {
+    "key": "smartAsset.skipHiddenProduct",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "a 引擎：productEntry 排除 hidden===true 的商品層。",
+    "source": "04-assets §10.1 A-SAM（productEntry）",
+    "default": false
+  },
+  {
+    "key": "interaction.syncMode",
+    "type": "enum",
+    "values": [
+      "dispatch",
+      "smartOnly",
+      "both",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "手動變形時同步給誰：dispatch＝智慧素材交 SmartAssetManager、其他交 AssetSyncHub；smartOnly＝只 SmartAssetManager；both＝兩者都呼叫；none＝不同步（僅互動後影響其他版位）。",
+    "source": "05-export-ui §3 beginSync/updateSync/finishSync/finalizeActiveTransform；§4 applyBoxFromInputs",
+    "default": "both"
+  },
+  {
+    "key": "interaction.markThumbStale",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "變形結束後把目前縮圖標成待更新。",
+    "source": "05-export-ui §3 finishSync",
+    "default": false
+  },
+  {
+    "key": "interaction.dropUpload",
+    "type": "enum",
+    "values": [
+      "none",
+      "uploadSlot",
+      "manualProduct",
+      "manualAssetUpload"
+    ],
+    "affects": "pixel",
+    "summary": "拖檔到畫布怎麼處理：uploadSlot＝上傳槽（依遮罩對齊、coverByPBox，點擊命中也限遮罩內）；manualProduct＝手動商品上傳；manualAssetUpload＝ManualAssetUpload.bindDropZone；none＝不支援（僅互動後影響）。",
+    "source": "05-export-ui §3 bindCanvas/onMouseDown；§5 hitTest（hit.uploadSlotMaskClip 已合併）",
+    "default": "none"
+  },
+  {
+    "key": "interaction.dblclickReplace",
+    "type": "enum",
+    "values": [
+      "assetSpec",
+      "uploadSlot",
+      "none"
+    ],
+    "affects": "ui",
+    "summary": "雙擊 image 圖層：assetSpec＝有 __assetSpec 時換圖；uploadSlot＝是上傳槽時開檔案；none＝只支援文字。",
+    "source": "05-export-ui §3 onDoubleClick",
+    "default": "assetSpec"
+  },
+  {
+    "key": "interaction.replaceAssetImpl",
+    "type": "enum",
+    "values": [
+      "a",
+      "legacy",
+      "manualAssetUpload",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "手動換圖的實作：a＝多版位同步＋History 快照、fitMode 只在缺值時補 contain；legacy＝強制 fitMode=contain、無快照；manualAssetUpload＝交 ManualAssetUpload.pickFile；none＝無此功能（僅互動後影響）。",
+    "source": "05-export-ui §3 replaceSpecDrivenImage",
+    "default": "legacy"
+  },
+  {
+    "key": "interaction.deleteClearsUploadSlot",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "Delete/Backspace 清除上傳槽素材（ManualAssetUpload.clearAsset，僅互動後影響）。",
+    "source": "05-export-ui §3 bindKeyboard",
+    "default": false
+  },
+  {
+    "key": "interaction.linkSync",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "啟用單一公版跨版位「連動」開關（#linkSyncToggle 與 D 鍵）；關掉時 isEnabled 恆 true 且不顯示 UI（僅互動後影響）。 2026-10-13 對齊 18節：全部工具預設 true（搭配 sync.assetLink 的單張斷開）。",
+    "source": "05-export-ui §8 LinkSync/LinkSyncUI；§3 bindKeyboard linkSyncToggleKey；§10 #linkSyncToggle（已合併）",
+    "default": true
+  },
+  {
+    "key": "text.afterEditHook",
+    "type": "enum",
+    "values": [
+      "dynamicLayout",
+      "omWave1Subtitle",
+      "markManualTextEdited",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "改文字後觸發哪個重排：dynamicLayout＝DynamicLayoutManager.refreshForText；omWave1Subtitle＝OMWave1SubtitleLayout.refresh；markManualTextEdited＝設 __manualTextEdited 觸發規則 hook；none（僅互動後影響）。",
+    "source": "05-export-ui §4 applyTextFromInputs；§6 syncFromEditor/commit；§8",
+    "default": "omWave1Subtitle"
+  },
+  {
+    "key": "text.priceRecalcOnCommit",
+    "type": "enum",
+    "values": [
+      "none",
+      "spTextCapture",
+      "capture"
+    ],
+    "affects": "pixel",
+    "summary": "編輯 auto_price_v2 價格文字 commit 後：spTextCapture＝SPTextStandard.applyPriceTextLayer＋captureManualPriceTransform；capture＝只 capture；none（僅互動後影響）。",
+    "source": "05-export-ui §6 commit",
+    "default": "none"
+  },
+  {
+    "key": "text.editSnapshot",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "開始編輯文字時保存整份 editingOriginalSnapshot，取消時整份還原（關掉只還原 layer.text）；locked 圖層不可編輯。",
+    "source": "05-export-ui §6 open/cancel",
+    "default": false
+  },
+  {
+    "key": "ui.textToolbarMode",
+    "type": "enum",
+    "values": [
+      "managed",
+      "plain"
+    ],
+    "affects": "ui",
+    "summary": "文字工具列：managed＝走 applyTextFormat（先 commit、ManualOverrideManager.mark、DynamicLayout refresh、有標籤的 History）；plain＝直接改 layer 屬性。",
+    "source": "02-batch §1 App.bindUI",
+    "default": "plain"
+  },
+  {
+    "key": "ui.selectionBoxMode",
+    "type": "enum",
+    "values": [
+      "layer",
+      "inkFitPrice",
+      "inkFit",
+      "inkFitAll"
+    ],
+    "affects": "ui",
+    "summary": "選取框與點擊命中框：inkFitPrice＝auto_price_v2 價格層貼合實測文字寬；layer＝用圖層框。；inkFit（回饋 3，全部工具預設）＝價格層選取框貼合實測文字寬與高、隨文字即時變動。 inkFitAll（自 18節 移植，全部工具預設）＝所有文字層（主標／副標／法務小字／價格）的選取框、控制點與點選判定都貼著實際墨跡，由 modules/text-editing-ux.js 攔截畫字位置量測；幾何不動、輸出不變。",
+    "source": "03-render §1 drawSelection / §2 getSelectionBox；05-export-ui §5 hitTest/hitHandle（hit.useSelectionBox 已合併）",
+    "default": "inkFitAll"
+  },
+  {
+    "key": "ui.rotateHandleAnchor",
+    "type": "enum",
+    "values": [
+      "topCenter",
+      "topRight"
+    ],
+    "affects": "ui",
+    "summary": "旋轉握把位置：上緣中央外側 26px，或右上角外側。",
+    "source": "03-render §1 drawSelection / §2 handles",
+    "default": "topRight"
+  },
+  {
+    "key": "ui.specOverlaySkip",
+    "type": "enum",
+    "values": [
+      "specDrivenAndMultiSize",
+      "specDriven",
+      "none"
+    ],
+    "affects": "ui",
+    "summary": "規範圖疊層在哪些情況不載：specDrivenAndMultiSize＝ruleFamily=spec-driven 或 __multiSizeSync；specDriven＝只看 spec-driven；none＝都載。",
+    "source": "03-render §6 getAllowedSpecFilenames",
+    "default": "specDrivenAndMultiSize"
+  },
+  {
+    "key": "ui.thumbWhiteOnMultiSize",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "__multiSizeSync 的縮圖先填白底。",
+    "source": "02-batch §1 makeThumbURLFor（thumbOptions.whiteOnMultiSize）",
+    "default": true
+  },
+  {
+    "key": "ui.thumbShowUploadPrompt",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "縮圖上畫「+上傳圖片」上傳槽提示。",
+    "source": "02-batch §1 makeThumbURLFor（thumbOptions.showUploadPrompt）；03-render §1 _drawLayers showUploadPrompt",
+    "default": false
+  },
+  {
+    "key": "ui.thumbShowGuides",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "縮圖上畫 P_範圍參考框等輔助線。",
+    "source": "02-batch §1 makeThumbURLFor（thumbOptions.showGuides）",
+    "default": true
+  },
+  {
+    "key": "ui.manualUploadExcludeLocked",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "鎖定（locked）的圖層不算上傳槽。",
+    "source": "04-assets §8 ManualAssetUpload.isUploadSlot",
+    "default": false
+  },
+  {
+    "key": "ui.assetReviewMode",
+    "type": "enum",
+    "values": [
+      "transactional",
+      "live",
+      "off"
+    ],
+    "affects": "pixel",
+    "summary": "素材審核視窗：transactional＝需 reviewRequired 才開、working copy 預覽、確認才寫回；live＝有 __reviewLayerKey 就開、直接改 live template；off＝不載入（目前各工具規則皆未觸發；僅互動後影響）。",
+    "source": "04-assets §10.3 asset-review-modal.js",
+    "default": "off"
+  },
+  {
+    "key": "ui.hitLockedPassthrough",
+    "type": "bool",
+    "affects": "ui",
+    "summary": "點擊時 locked 圖層穿透不被選取。",
+    "source": "05-export-ui §5 hitTest/hitHandle",
+    "default": false
+  },
+  {
+    "key": "ui.toolName",
+    "type": "string",
+    "affects": "ui",
+    "summary": "頁面標題與診斷報告抬頭用的工具名稱。",
+    "source": "05-export-ui §8 TOOL_NAME；§10 <title>/.brand-title",
+    "default": "25節生成工具"
+  },
+  {
+    "key": "rules.registryMode",
+    "type": "enum",
+    "values": [
+      "strict",
+      "strictExact",
+      "merge"
+    ],
+    "affects": "pixel",
+    "summary": "規則登錄器：strict＝重複 register 同 family 拋錯、detectFamily 計分（exact>長度>priority）同分拋錯；strictExact＝同 strict 但只接受完全相等；merge＝重複 register 合併、依 priority 取第一個相等或互含者。",
+    "source": "06-price-shared §2.6 template-rules.loader.js",
+    "default": "merge"
+  },
+  {
+    "key": "rules.normalizeLegacy",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "規則名稱正規化用 KV 舊法：不去編號前綴、不做 NFKC。",
+    "source": "06-price-shared §2.6 L-KV",
+    "default": false
+  },
+  {
+    "key": "rules.omWaveProfile",
+    "type": "enum",
+    "values": [
+      "wave1",
+      "wave2",
+      "none"
+    ],
+    "affects": "pixel",
+    "summary": "om-wave1-* 共用模組行為：wave1＝只套 P_* 幾何、Appier/Rtbhouse/DPA 不注入 priceRules、單品無 P 槽不退回 P_01；wave2＝完整新版；none＝不用 OM 模組。OM_w1 與 OM_w2 各自獨立保留。",
+    "source": "06-price-shared §2.9 OM wave1 vs wave2；決策 1",
+    "default": "none"
+  },
+  {
+    "key": "boot.abortOnRuleLoadFailure",
+    "type": "bool",
+    "affects": "none",
+    "summary": "規則檔載入失敗時：true＝記錄＋alert 並不啟動 App；false＝warn 後照常 App.init()。",
+    "source": "02-batch §1 rulesReady",
+    "default": false
+  },
+  {
+    "key": "export.diagnosticsTitle",
+    "type": "string",
+    "affects": "text",
+    "summary": "export.diagnostics=mirror 時診斷報告第一行的工具名稱（鏡面原工具為 TOOL_NAME「25節鏡面」）。",
+    "source": "05-export 鏡面 buildDiagnosticText",
+    "default": ""
+  },
+  {
+    "key": "rules.loadFailurePolicy",
+    "type": "enum",
+    "values": [
+      "reject",
+      "continue"
+    ],
+    "affects": "none",
+    "summary": "規則檔載入失敗時載入器怎麼辦：reject＝ready 拒絕（原 A 系／OM／B 系 loader）；continue（KV）＝記錄後繼續載下一支。",
+    "source": "06-price-shared §2.6 template-rules.loader.js ready",
+    "default": "reject"
+  },
+  {
+    "key": "export.transparentToPng",
+    "type": "bool",
+    "affects": "format",
+    "summary": "（回饋 1）「依規則」輸出時成品有透明像素就改存 PNG；手動選全部 JPG／PNG 不介入。2026-09-15 使用者決定：所有工具都開。",
+    "source": "回饋 2026-09-15",
+    "default": true
+  },
+  {
+    "key": "layers.lockOnLoadPatterns",
+    "type": "array",
+    "affects": "interaction",
+    "summary": "圖層 key／psdName 符合任一樣式（不分大小寫，* 萬用）就在第一次出現在主畫布時預設鎖定（modules/layer-lock-defaults.js）；可手動解鎖，每版位只套一次。全部工具＝['*kv_bg*']（自 18節 2026-10-06 回饋移植：KV_BG 預設鎖定）。",
+    "source": "18節 回饋 2026-10-06",
+    "default": [
+      "*kv_bg*"
+    ]
+  },
+  {
+    "key": "sync.assetLink",
+    "type": "bool",
+    "affects": "interaction",
+    "summary": "智慧型物件連動（modules/asset-link-sync.js）：同版型、同素材的圖片圖層跨版位連動（同尺寸 1:1、不同尺寸依版面比例換算），搭配 interaction.linkSync 的單張斷開；由 interaction.syncMode 決定互動是否進 AssetSyncHub（MS smartOnly／鏡面 none 不會進）。全部工具 true（自 18節 2026-10-06 回饋移植）。",
+    "source": "18節 回饋 2026-10-06",
+    "default": true
+  },
+  {
+    "key": "sync.productGroup",
+    "type": "bool",
+    "affects": "interaction",
+    "summary": "商品組（modules/product-group-sync.js）：商品圖 N 移動／縮放時，配對的價格 N（規則錨點優先、命名次之）字級／框／相對位置等比跟著；單獨調價格不連動商品圖。智慧物件引擎擁有的商品圖（A 系）由引擎自己同步，不經此模組。全部工具 true（自 18節 2026-10-06 回饋移植）。",
+    "source": "18節 回饋 2026-10-06",
+    "default": true
+  },
+  {
+    "key": "export.bundleSessionArchive",
+    "type": "bool",
+    "affects": "folder",
+    "summary": "下載圖片的 zip 內附「存檔/<分類>_<分頁>_<時間>.25tool.zip」（SessionArchive.buildArchive），可載回繼續調整；一張圖都沒有時不附。自 18節 2026-10-07 回饋 3 移植。",
+    "source": "18節 回饋 2026-10-07",
+    "default": true
+  },
+  {
+    "key": "export.bundleDiagnostics",
+    "type": "bool",
+    "affects": "folder",
+    "summary": "下載圖片的 zip 內附「診斷報告.txt」（modules/diagnostics-report.js 四級分類）；該工具原本就有自己的診斷報告（network／鏡面／跨夜）時不重複附。自 18節 2026-10-07 回饋 3 移植。",
+    "source": "18節 回饋 2026-10-07",
+    "default": true
+  }
+]

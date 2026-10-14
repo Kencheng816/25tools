@@ -1,0 +1,120 @@
+{
+  "_comment": "回歸案例。路徑相對於 repo 根目錄；goldenDir 內的 images/ 為原工具輸出（見 tests/golden/README.md）。",
+  "cases": [
+    {
+      "id": "正式BN/BN 正式",
+      "profile": "正式BN",
+      "sheet": " BN 正式",
+      "workbook": "tests/golden-inputs/正式BN/【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+      "templatesDir": "templates/BN",
+      "assetsDir": "assets/正式BN",
+      "goldenDir": "tests/golden/正式BN/BN 正式"
+    },
+    {
+      "id": "暖身BN/BN 暖身",
+      "profile": "暖身BN",
+      "sheet": "BN 暖身",
+      "workbook": "tests/golden-inputs/暖身BN/【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+      "templatesDir": "templates/BN",
+      "assetsDir": "assets/暖身BN",
+      "goldenDir": "tests/golden/暖身BN/BN 暖身"
+    },
+    {
+      "id": "MS/攻略頁_GD做圖列表",
+      "profile": "MS",
+      "sheet": "攻略頁_GD做圖列表",
+      "workbook": "tests/golden-inputs/MS/5.25 MS設定_版配格式_KEN.xlsx",
+      "templatesDir": "templates/MS",
+      "assetsDir": "assets/MS",
+      "goldenDir": "tests/golden/暖正MS/攻略頁_GD做圖列表"
+    },
+    {
+      "id": "OM_w1/外廣_Wave1",
+      "profile": "OM_w1",
+      "sheet": "外廣_Wave1",
+      "workbook": "tests/golden-inputs/OM_w1/2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+      "templatesDir": "templates/OM_w1",
+      "assetsDir": "assets/OM_w1",
+      "goldenDir": "tests/golden/外廣OM_wave1/外廣_Wave1"
+    },
+    {
+      "id": "KV/工單KV+Logo",
+      "profile": "KV",
+      "sheet": "工單KV+Logo",
+      "workbook": "tests/golden-inputs/KV/【美術工單】2026.5.25商城狂購節_KEN.xlsx",
+      "templatesDir": "templates/KV",
+      "assetsDir": "assets/KV",
+      "goldenDir": "tests/golden/KV/工單KV+Logo"
+    },
+    {
+      "id": "OM_w2/外廣_wave2",
+      "profile": "OM_w2",
+      "sheet": "外廣_wave2",
+      "workbook": "tests/golden-inputs/OM_w2/2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+      "templatesDir": "templates/OM_w2",
+      "assetsDir": "assets/OM_w2",
+      "goldenDir": "tests/golden/外廣OM_wave2/外廣_wave2",
+      "nameMap": {
+        "LineOA/lineoa_1040x1040.png": "LineOA/lineoa_1040x1040_2.png"
+      },
+      "expectedExtra": [
+        "LineOA/lineoa_1040x1040.png"
+      ],
+      "_note": "刻意差異：原工具兩筆 LineOA 同名互覆，整合版補 _2 後綴；黃金的 lineoa_1040x1040.jpg 實為第二筆（一般 01），對映到 _2；第一筆（25 spike 創貼 14）為整合版找回的圖。 2026-09-15 透明→PNG 後兩檔改為 .png。"
+    },
+    {
+      "id": "LineOA/Line OA",
+      "profile": "LineOA",
+      "sheet": "Line OA",
+      "workbook": "tests/golden-inputs/LineOA/2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+      "templatesDir": "templates/LineOA",
+      "assetsDir": "assets/LineOA",
+      "goldenDir": "tests/golden/LineOA/Line OA"
+    },
+    {
+      "id": "LineOA/LineOA_Wave1",
+      "profile": "LineOA",
+      "sheet": "LineOA_Wave1",
+      "workbook": "tests/golden-inputs/LineOA/2026.5.25 商城狂購節_Timeline&入稿表_Ken.xlsx",
+      "templatesDir": "templates/LineOA",
+      "assetsDir": "assets/LineOA",
+      "goldenDir": "tests/golden/LineOA/LineOA_Wave1"
+    },
+    {
+      "id": "network/Network_5.19-5.25",
+      "profile": "network",
+      "sheet": "Network_5.19-5.25",
+      "workbook": "tests/golden-inputs/network/[internal] LINE購物入稿表_2026 Ken.xlsx",
+      "templatesDir": "templates/network",
+      "assetsDir": "assets/network",
+      "goldenDir": "tests/golden/Affiliate_network/Network_5.19-5.25"
+    },
+    {
+      "id": "AMS/2026.4_Line購物_4.19-4.25",
+      "profile": "AMS",
+      "sheet": "2026.4_Line購物_4.19-4.25",
+      "workbook": "tests/golden-inputs/AMS/[internal] LINE購物入稿表_2026 Ken.xlsx",
+      "templatesDir": "templates/AMS",
+      "assetsDir": "assets/AMS",
+      "goldenDir": "tests/golden/Affiliate_AMS/2026.4_Line購物_4.19-4.25"
+    },
+    {
+      "id": "跨夜/425跨夜_線上宣傳圖",
+      "profile": "跨夜",
+      "sheet": "425跨夜_線上宣傳圖",
+      "workbook": "tests/golden-inputs/跨夜/2026跨夜美術工單_KEN.xlsx",
+      "templatesDir": "templates/跨夜",
+      "assetsDir": "assets/跨夜",
+      "goldenDir": "tests/golden/跨夜直播/425跨夜_線上宣傳圖"
+    },
+    {
+      "id": "鏡面/425_鏡面",
+      "profile": "鏡面",
+      "sheet": "425_鏡面",
+      "workbook": "tests/golden-inputs/鏡面/2026跨夜美術工單_KEN.xlsx",
+      "templatesDir": "templates/鏡面",
+      "assetsDir": "assets/鏡面",
+      "goldenDir": "tests/golden/鏡面/425_鏡面"
+    }
+  ]
+}
