@@ -18,6 +18,7 @@ check:
   script:
     - node tests/check-manifests.js
     - node tests/check-coupon-catalog.js
+    - node tests/check-lfs-pointers.js
 
 .golden-base:
   stage: golden

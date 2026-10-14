@@ -1,13 +1,25 @@
-# 二進位檔走 Git LFS（黃金樣本圖、素材、工單、字型）；若 GitLab 未開 LFS，刪掉本檔即回一般 git 存放。
-*.png filter=lfs diff=lfs merge=lfs -text
-*.jpg filter=lfs diff=lfs merge=lfs -text
-*.jpeg filter=lfs diff=lfs merge=lfs -text
-*.webp filter=lfs diff=lfs merge=lfs -text
-*.gif filter=lfs diff=lfs merge=lfs -text
-*.xlsx filter=lfs diff=lfs merge=lfs -text
-*.xls filter=lfs diff=lfs merge=lfs -text
-*.xlsm filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text
+# Git LFS 只用在「測試資料」：黃金樣本圖、黃金工單。
+# 瀏覽器執行時要讀的檔案（fonts／assets／vendor／templates／config／rules／core／modules）一律不走 LFS——
+# GitHub Pages 與「下載 ZIP」拿到的 LFS 檔是幾行文字的指標檔，不是真檔，字型與素材會載不到。
+# 若 GitHub／GitLab 沒開 LFS，刪掉下面 filter=lfs 的行即回一般 git 存放。
+tests/golden/**/*.png filter=lfs diff=lfs merge=lfs -text
+tests/golden/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+tests/golden/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
+tests/golden/**/*.webp filter=lfs diff=lfs merge=lfs -text
+tests/golden-inputs/** filter=lfs diff=lfs merge=lfs -text
+
+# 執行時需要的目錄：明確關掉 LFS（即使本機曾跑過 git lfs track "*.ttf" 之類的全域規則，這裡的路徑規則優先）
+fonts/** -filter -diff -merge
+assets/** -filter -diff -merge
+vendor/** -filter -diff -merge
+templates/** -filter -diff -merge
+fonts/** binary
+assets/**/*.png binary
+assets/**/*.jpg binary
+assets/**/*.jpeg binary
+assets/**/*.webp binary
+assets/**/*.gif binary
+
 # 文字檔統一 LF
 *.js text eol=lf
 *.json text eol=lf

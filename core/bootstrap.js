@@ -181,9 +181,30 @@
     });
   }
 
+  /** 字型載入偵測：fonts/*.ttf 若是 Git LFS 指標檔（上 GitHub Pages／下載 ZIP 常見），瀏覽器會悄悄退回系統字型、產圖字體全錯。
+   *  這裡主動把 ShopeeNotoSans 三個字重載一次，任一失敗就在「1. 開始」顯示紅字提醒，不讓問題被吞掉。 */
+  async function checkFontsLoaded() {
+    if (!document.fonts?.load) return;
+    const family = '"ShopeeNotoSans Content"';
+    const weights = ['400', '500', '700'];
+    const results = await Promise.all(weights.map((weight) => document.fonts.load(`${weight} 16px ${family}`).then((faces) => faces.length > 0).catch(() => false)));
+    const failed = weights.filter((_, index) => !results[index]);
+    if (!failed.length) return;
+    const message = `字型載入失敗（ShopeeNotoSans ${failed.join('／')}）：fonts/ 裡的 .ttf 可能是 Git LFS 指標檔而不是真檔（GitHub Pages／下載 ZIP 常見）。請用 git clone 並安裝 git-lfs，或依 README「上 GitHub／GitLab」一節把字型移出 LFS。`;
+    console.error('[Bootstrap]', message);
+    const status = $('profileStatus');
+    if (!status) return;
+    const warning = document.createElement('div');
+    warning.className = 'font-warning';
+    warning.setAttribute('role', 'alert');
+    warning.textContent = message;
+    status.insertAdjacentElement('afterend', warning);
+  }
+
   async function main() {
     setGated(true);
     bindResetProject();
+    checkFontsLoaded().catch((error) => console.warn('[Bootstrap] 字型偵測失敗', error));
     await populateProfileSelect();
     const { signal } = listeners;
     $('profileSelect')?.addEventListener('change', (event) => { if (event.target.value) activate(event.target.value, '手動選擇'); }, { signal });

@@ -63,7 +63,7 @@ docs/GitLab上傳步驟.md     第一次 push 的指令與注意事項
 ```bash
 npm install                     # 只裝測試相依（工具本身是純靜態網頁，不需建置）
 export NODE_PATH=$PWD/node_modules GOLDEN_WORK_DIR=/tmp/golden-work   # 工作目錄須為純 ASCII 路徑（CDP 檔案上傳對 # 與中文路徑失效）
-npm run check                   # 不開瀏覽器：manifest／profile／入口頁工具表引用檢查＋票券型錄一致性
+npm run check                   # 不開瀏覽器：manifest／profile／入口頁工具表引用檢查＋票券型錄一致性＋LFS 指標檔檢查
 npm run test:launcher           # 入口頁：上傳工單自動判別→開工具→工單帶入（http 與 file:// 各跑一次）
 npm run test:golden             # 黃金回歸（12 案例、585 張）
 npm run test:click-export       # 黃金回歸＋逐張點縮圖再下載（抓互動路徑，--click-thumbs）
@@ -84,6 +84,16 @@ node tests/run-golden/run-golden.js --batch 1/3               # 分批跑（單�
 通過條件：每張輸出圖與 `tests/golden/.../images/` 位元組相同；差異圖與存檔樣本寫到 `tests/golden-diff/`（已 gitignore）。
 CI 見 `.gitlab-ci.yml`：`check` 每次 push 都跑；`golden` 在預設分支自動跑、其他分支手動觸發。
 
+## 上 GitHub／GitLab（Git LFS 注意事項）
+**只有測試資料走 Git LFS**（`tests/golden/` 黃金圖 210MB、`tests/golden-inputs/` 工單 76MB）；字型、素材、vendor、公版等**瀏覽器執行時要讀的檔案一律不走 LFS**。
+原因：GitHub Pages 與「Code → Download ZIP」拿到的 LFS 檔是幾行文字的指標檔（`version https://git-lfs.github.com/spec/v1 …`），不是真檔；字型變指標時瀏覽器會悄悄退回系統字型、產圖字體全錯，素材也載不到。`.gitattributes` 已改成路徑規則，`npm run check` 會掃 fonts／assets／vendor／templates 等目錄，有指標檔或 `.gitattributes` 把執行目錄交給 LFS 就擋下；工具頁開啟時也會偵測字型，載不到會在「1. 開始」顯示紅字。
+
+- **GitHub Pages**：Settings → Pages → 來源選 main 分支根目錄，網址 `https://<帳號>.github.io/<repo>/`（入口頁）。根目錄的 `.nojekyll` 不可刪：Pages 預設用 Jekyll 建站，會略過 `_` 開頭的檔案，`config/profiles/_defaults.js` 就載不到、所有工具都啟用失敗。LFS 檔不會被 Pages 提供，所以黃金樣本在 Pages 上看不到是正常的，不影響工具。
+- **下載 ZIP** 使用：解壓後雙擊 `index.html` 即可；ZIP 內的 `tests/golden/` 是指標檔（只影響回歸測試，不影響工具）。
+- **clone 後跑回歸測試**：需要 `git lfs install` 後再 clone（或 `git lfs pull`），黃金圖才是真檔。
+- **不想用 LFS**：刪掉 `.gitattributes` 裡含 `filter=lfs` 的 5 行再 `git add`，全部改一般 git 存放（repo 約 490MB；GitHub 單檔上限 100MB，這裡最大單檔 < 20MB）。
+- 曾經把字型／素材推進 LFS 的 repo 要救回：`git lfs untrack "*.ttf" "*.png" …` → 用本專案的 `.gitattributes` 覆蓋 → `git rm -r --cached fonts assets vendor templates` → `git add fonts assets vendor templates` → commit → push；重新開始的話直接重建 repo 更乾淨（見 `docs/GitLab上傳步驟.md`）。
+
 ## repo 大小與 LFS
 | 目錄 | 大小 | 說明 |
 |---|---|---|
@@ -93,4 +103,4 @@ CI 見 `.gitlab-ci.yml`：`check` 每次 push 都跑；`golden` 在預設分支�
 | fonts | 53 MB | ShopeeNotoSans |
 | 其餘程式與設定 | < 20 MB | |
 
-`.gitattributes` 已把 png／jpg／xlsx／字型／zip 設為 Git LFS；GitLab 專案需開啟 LFS（Settings → General → Visibility → Git LFS）。若不用 LFS，刪掉 `.gitattributes` 的 lfs 行即可，但 clone 會變成約 500 MB。
+`.gitattributes` 只把 `tests/golden/` 的圖與 `tests/golden-inputs/` 的工單設為 Git LFS（字型與素材刻意不走 LFS，原因見上一節）；GitLab 專案需開啟 LFS（Settings → General → Visibility → Git LFS）。若不用 LFS，刪掉 `.gitattributes` 的 lfs 行即可，但 clone 會變成約 490 MB。

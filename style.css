@@ -662,3 +662,6 @@
 .diag-text strong{color:var(--text);font-weight:700}
 .diag-times{margin-left:6px;color:var(--muted);font-style:normal;font-size:11px}
 .diag-empty{padding:18px;border:1px dashed var(--line-2);border-radius:var(--r-md);color:var(--muted);text-align:center;font-size:12px}
+
+/* ── 字型載入失敗提醒（core/bootstrap.js checkFontsLoaded：fonts/*.ttf 是 Git LFS 指標檔時） ── */
+.font-warning { margin-top: 8px; padding: 8px 10px; border: 1px solid rgba(239,68,68,.5); border-radius: var(--r-sm); background: rgba(239,68,68,.1); color: #fecaca; font-size: 12px; line-height: 1.5; word-break: break-word; }

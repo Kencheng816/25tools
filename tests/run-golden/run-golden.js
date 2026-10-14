@@ -30,7 +30,7 @@ const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const CASES = JSON.parse(fs.readFileSync(path.join(__dirname, 'cases.json'), 'utf8')).cases;
 const DIFF_ROOT = path.join(REPO_ROOT, 'tests', 'golden-diff');
 const SYNC_DIRS = ['core', 'renderers', 'modules', 'smart-assets', 'vendor', 'fonts', 'config', 'rules', 'templates', 'assets', 'launcher', 'tests/golden-inputs'];
-const SYNC_FILES = ['index.html', 'app.html', 'style.css', 'theme-25.css'];
+const SYNC_FILES = ['index.html', 'app.html', 'style.css', 'theme-25.css', '.nojekyll', '.gitattributes'];
 
 const BOOLEAN_FLAGS = ['--click-thumbs'];
 function parseArgs(argv) {

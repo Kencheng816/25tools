@@ -4,7 +4,7 @@
   "private": true,
   "description": "25節生成工具（整合版）— 11 個產圖工具合為單一入口（入口頁 index.html ＋ 工具頁 app.html）；純靜態網頁，無建置步驟。package.json 只用於回歸測試相依。",
   "scripts": {
-    "check": "node tests/check-manifests.js && node tests/check-coupon-catalog.js",
+    "check": "node tests/check-manifests.js && node tests/check-coupon-catalog.js && node tests/check-lfs-pointers.js",
     "test:golden": "node tests/run-golden/run-golden.js",
     "test:launcher": "node tests/run-golden/run-launcher.js",
     "test:click-export": "node tests/run-golden/run-golden.js --click-thumbs",
