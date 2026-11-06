@@ -73,7 +73,8 @@
   }
 
   // ── 替換 ──
-  async function replaceLayerAsset(key, layer, file, template) {
+  /** @param {{ priceSync?: boolean }} [options] priceSync=false：不重算價格（商品合成視窗自己依比例貼回，modules/product-composer.js；烤好的圖檔名沒有「券」，重算會把價格拿掉） */
+  async function replaceLayerAsset(key, layer, file, template, { priceSync = true } = {}) {
     const { ManualAssetUpload, Interaction, HistoryManager, AppState } = core();
     if (!ManualAssetUpload.canManuallyEdit(key, layer)) return false;
     if (!isImageFile(file)) { alert('請提供圖片檔（png / jpg / webp / svg）。'); return false; }
@@ -98,7 +99,7 @@
       // 5.4：商品／票券圖換了 → 用新檔名查型錄、重上價格顏色。
       window.CouponControls?.onAssetReplaced?.(template, key, layer, file);
       // （自 18節 移植）A 系商品圖也是價格錨點：換了票券素材 → 價格依新素材的規則重算。
-      const priceMessage = await rebuildPricesForAsset(template, key, file);
+      const priceMessage = priceSync ? await rebuildPricesForAsset(template, key, file) : '';
       refreshAfterChange(template);
       showPriceMessage(priceMessage);
       return true;
@@ -109,7 +110,7 @@
     const count = await ManualAssetUpload.applyFile(key, layer, file, { template, manualGeometry: false, fitToImage: true });
     if (count > 0) {
       window.CouponControls?.onAssetReplaced?.(template, key, layer, file);
-      const priceMessage = await rebuildPricesForAsset(template, key, file);
+      const priceMessage = priceSync ? await rebuildPricesForAsset(template, key, file) : '';
       refreshAfterChange(template);
       showPriceMessage(priceMessage);
     }

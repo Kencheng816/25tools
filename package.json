@@ -4,7 +4,8 @@
   "private": true,
   "description": "25節生成工具（整合版）— 11 個產圖工具合為單一入口（入口頁 index.html ＋ 工具頁 app.html）；純靜態網頁，無建置步驟。package.json 只用於回歸測試相依。",
   "scripts": {
-    "check": "node tests/check-manifests.js && node tests/check-coupon-catalog.js && node tests/check-lfs-pointers.js",
+    "check": "node tests/check-manifests.js && node tests/check-coupon-catalog.js && node tests/check-lfs-pointers.js && node tests/check-template-bundles.js",
+    "bundle:templates": "node tests/tools/bundle-templates.js",
     "test:golden": "node tests/run-golden/run-golden.js",
     "test:launcher": "node tests/run-golden/run-launcher.js",
     "test:click-export": "node tests/run-golden/run-golden.js --click-thumbs",
@@ -15,11 +16,14 @@
     "test:coupon-price": "node tests/run-golden/run-coupon-price.js",
     "test:export-bundle": "node tests/run-golden/run-export-bundle.js",
     "test:diagnostics": "node tests/run-golden/run-diagnostics-panel.js",
+    "test:edit-flows": "node tests/run-golden/run-edit-flows.js",
+    "test:tour": "node tests/run-golden/run-tour.js",
+    "build:tour-sample": "node tests/tools/build-tour-sample.js",
     "test:text-edit": "node tests/run-golden/run-text-edit.js",
     "test:text-ux": "node tests/run-golden/run-text-ux.js",
     "test:interaction": "node tests/run-golden/run-interaction.js",
     "test:asset-library": "node tests/run-golden/run-asset-library.js",
-    "test:all": "npm run check && npm run test:launcher && npm run test:golden && npm run test:click-export && npm run test:roundtrip && npm run test:manual-assets && npm run test:manual-fit && npm run test:text-edit && npm run test:text-ux && npm run test:interaction && npm run test:asset-library && npm run test:coupon && npm run test:coupon-price && npm run test:export-bundle && npm run test:diagnostics"
+    "test:all": "npm run check && npm run test:launcher && npm run test:golden && npm run test:click-export && npm run test:roundtrip && npm run test:manual-assets && npm run test:manual-fit && npm run test:text-edit && npm run test:text-ux && npm run test:interaction && npm run test:asset-library && npm run test:coupon && npm run test:coupon-price && npm run test:export-bundle && npm run test:diagnostics && npm run test:edit-flows && npm run test:tour"
   },
   "devDependencies": {
     "@sparticuz/chromium": "152.0.0",

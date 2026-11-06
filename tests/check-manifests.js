@@ -40,18 +40,24 @@ function main() {
   for (const id of indexIds) if (!profileIds.has(id)) problems.push(`index.js 列了「${id}」但沒有 ${id}.profile.js`);
   for (const id of profileIds) if (!indexIds.has(id)) problems.push(`${id}.profile.js 存在但 index.js 沒列`);
   if (!fs.existsSync(path.join(PROFILE_DIR, '_defaults.js'))) problems.push('缺少 config/profiles/_defaults.js');
-  // 入口頁工具登錄表（config/tools.js）：每個工具都要有設定檔，每個設定檔也都要列在入口頁；sheetHints 要與 index.js 一致。
+  // 入口頁卡片登錄表（config/tools.js，2026-11-05 改 18節 格式）：每張卡片的每個 profile 都要有設定檔、每個設定檔都要被某張卡片列到；
+  // 分頁判別只看 profile 的 sheetHints（卡片不重複寫），所以每個 profile 的 sheetHints 不可為空。
   const toolsSandbox = {};
   new Function('window', fs.readFileSync(path.join(REPO_ROOT, 'config', 'tools.js'), 'utf8'))(toolsSandbox);
   const tools = toolsSandbox.TOOL_REGISTRY || [];
-  if (!tools.length) problems.push('config/tools.js 沒有登錄任何工具');
-  const toolIds = new Set(tools.map((tool) => tool.id));
-  for (const id of toolIds) if (!profileIds.has(id)) problems.push(`tools.js 列了「${id}」但沒有 ${id}.profile.js`);
-  for (const id of profileIds) if (!toolIds.has(id)) problems.push(`${id}.profile.js 存在但 tools.js（入口頁）沒列`);
+  if (!tools.length) problems.push('config/tools.js 沒有登錄任何卡片');
+  const cardProfileIds = new Set();
   for (const tool of tools) {
-    const indexHints = (indexSandbox.__profileRegistry.index || []).find((item) => item.id === tool.id)?.sheetHints || [];
-    if (!Array.isArray(tool.sheetHints) || !tool.sheetHints.length) problems.push(`tools.js「${tool.id}」沒有 sheetHints`);
-    else if (!tool.sheetHints.every((hint) => indexHints.some((known) => known.includes(hint) || hint.includes(known)))) problems.push(`tools.js「${tool.id}」的 sheetHints 與 profiles/index.js 對不上`);
+    if (!Array.isArray(tool.profiles) || !tool.profiles.length) { problems.push(`tools.js「${tool.id}」profiles 為空，卡片開不了工具`); continue; }
+    for (const profileId of tool.profiles) {
+      cardProfileIds.add(profileId);
+      if (!profileIds.has(profileId)) problems.push(`tools.js「${tool.id}」列了「${profileId}」但沒有 ${profileId}.profile.js`);
+    }
+    if (tool.profiles.length === 1 && tool.profiles[0] !== tool.id) problems.push(`tools.js「${tool.id}」只有一個 profile 時 id 應等於 profile id（舊網址 index.html#tool= 轉址靠它）`);
+  }
+  for (const id of profileIds) if (!cardProfileIds.has(id)) problems.push(`${id}.profile.js 存在但 tools.js（入口頁）沒有任何卡片列到它`);
+  for (const item of indexSandbox.__profileRegistry.index || []) {
+    if (!Array.isArray(item.sheetHints) || !item.sheetHints.length) problems.push(`index.js「${item.id}」沒有 sheetHints（匯入彈窗靠它判別分頁）`);
   }
 
   for (const file of profiles) {

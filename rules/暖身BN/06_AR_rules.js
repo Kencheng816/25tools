@@ -112,6 +112,8 @@
     var bottomCount = visualCharacterCount(lines[1]);
     if (topCount === 2 && bottomCount === 3) return { key: 'twoTopThreeBottom', topCount: topCount, bottomCount: bottomCount };
     if (topCount === 3 && bottomCount === 2) return { key: 'threeTopTwoBottom', topCount: topCount, bottomCount: bottomCount };
+    // 2026-11-06 封測診斷（使用者決定）：「全站／92折」這種 2 字上 2 字下 公版沒有對應版面，借用 2上3下 的圖層排；診斷提醒。
+    if (topCount === 2 && bottomCount === 2) return { key: 'twoTopThreeBottom', topCount: topCount, bottomCount: bottomCount, borrowed: '2上3下' };
     return { key: 'unsupported', topCount: topCount, bottomCount: bottomCount };
   }
 
@@ -375,9 +377,18 @@
         value: context.raw,
         target: context.variant.key,
       });
+      if (context.variant.borrowed) {
+        args.diagnostics.push({
+          field: 'AR案型',
+          status: 'warning',
+          kind: '版面提醒',
+          value: context.raw,
+          target: '2 字上 2 字下 沒有專屬版面，借用 ' + context.variant.borrowed + ' 的版面排，請確認畫面',
+        });
+      }
     }
   };
 
   window.TemplateRuleRegistry.register(FAMILY, rule);
-  window.__AR_RULE_VERSION = '2026-08-10b｜AR特規Parser＋複合曝光＋自動備註No＋五型Variant';
+  window.__AR_RULE_VERSION = '2026-11-06｜AR特規Parser＋複合曝光＋自動備註No＋五型Variant＋2上2下借用2上3下';
 })();

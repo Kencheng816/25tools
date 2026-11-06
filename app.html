@@ -6,34 +6,138 @@
   <title>25節生成工具</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Preload local UI fonts before Canvas initializes.
-       Keep the actual .ttf files in ./fonts/ beside this HTML. -->
-  <link rel="preload" href="fonts/ShopeeNotoSans(content)-Regular.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="preload" href="fonts/ShopeeNotoSans(content)-Medium.ttf" as="font" type="font/ttf" crossorigin />
-  <link rel="preload" href="fonts/ShopeeNotoSans(content)-Bold.ttf" as="font" type="font/ttf" crossorigin />
+  <!-- 字型（2026-11-05 自 18節 移植）：先抓 GitHub raw 的 WOFF2（約 8 MB／個），抓不到退回 fonts/ 內建 TTF；來源設定在 config/fonts.js。
+       不再 <link rel=preload> TTF、style.css 也不再宣告 @font-face，否則瀏覽器會把 TTF 也抓一份。 -->
+  <script src="config/fonts.js"></script>
   <script>
     window.FontPreloader = (() => {
-      const fontFamily = 'ShopeeNotoSans Content';
-      const sources = [
-        { weight: '400', url: 'fonts/ShopeeNotoSans(content)-Regular.ttf' },
-        { weight: '500', url: 'fonts/ShopeeNotoSans(content)-Medium.ttf' },
-        { weight: '700', url: 'fonts/ShopeeNotoSans(content)-Bold.ttf' },
-      ];
+      const config = window.FONT_CONFIG || { family: 'ShopeeNotoSans Content', faces: [] };
+      const fontFamily = config.family;
+      const override = new URLSearchParams(location.search).get('fonts');
+      const remoteBase = override === 'local' ? '' : (override || config.remoteBase || '');
+      const localBase = config.localBase || 'fonts/';
+      const stallMs = Number(config.remoteStallMs) || 12000;
+      const isFileProtocol = location.protocol === 'file:';
+
+      // ── 開頁進度畫面：x／y MB、第一次比較久 ──
+      const progress = { loaded: new Map(), total: new Map(), stage: '', done: false };
+      let screen = null;
+      function ensureScreen() {
+        // 字型若在 DOMContentLoaded 之前就載完（本機很快），之後就不要再把畫面蓋上去
+        if (screen || !document.body || progress.done) return screen;
+        screen = document.createElement('div');
+        screen.id = 'fontBoot';
+        screen.setAttribute('role', 'status');
+        screen.innerHTML = `
+          <div class="font-boot-card">
+            <h2>25節生成工具</h2>
+            <p class="font-boot-stage">正在載入字型…</p>
+            <div class="font-boot-bar"><span></span></div>
+            <p class="font-boot-bytes"></p>
+            <p class="font-boot-hint">第一次打開比較久，之後會快很多</p>
+          </div>`;
+        document.body.appendChild(screen);
+        return screen;
+      }
+      function renderScreen() {
+        const el = ensureScreen(); if (!el) return;
+        const loaded = [...progress.loaded.values()].reduce((a, b) => a + b, 0);
+        const total = [...progress.total.values()].reduce((a, b) => a + b, 0);
+        const mb = (bytes) => (bytes / 1048576).toFixed(1);
+        el.querySelector('.font-boot-stage').textContent = progress.stage || '正在載入字型…';
+        el.querySelector('.font-boot-bytes').textContent = total ? `${mb(loaded)} / ${mb(total)} MB` : (loaded ? `${mb(loaded)} MB` : '');
+        el.querySelector('.font-boot-bar span').style.width = total ? `${Math.min(100, (loaded / total) * 100).toFixed(1)}%` : '15%';
+        el.querySelector('.font-boot-bar').classList.toggle('is-indeterminate', !total);
+      }
+      function hideScreen() { progress.done = true; screen?.remove(); screen = null; }
+      if (document.readyState === 'loading') window.addEventListener('DOMContentLoaded', renderScreen, { once: true }); else renderScreen();
+
+      // ── 串流下載（才拿得到 bytes 進度；一段時間沒進度就視為卡住） ──
+      async function fetchBytes(url, key, { stall = 0 } = {}) {
+        const controller = new AbortController();
+        let timer = null;
+        const bump = () => { if (!stall) return; clearTimeout(timer); timer = setTimeout(() => controller.abort(), stall); };
+        bump();
+        try {
+          const response = await fetch(url, { signal: controller.signal, cache: 'force-cache' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+          const total = Number(response.headers.get('content-length')) || 0;
+          if (total) progress.total.set(key, total);
+          if (!response.body) { const buffer = await response.arrayBuffer(); progress.loaded.set(key, buffer.byteLength); renderScreen(); return buffer; }
+          const reader = response.body.getReader();
+          const chunks = [];
+          let received = 0;
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            chunks.push(value); received += value.byteLength; bump();
+            progress.loaded.set(key, received); renderScreen();
+          }
+          const buffer = new Uint8Array(received);
+          let offset = 0; for (const chunk of chunks) { buffer.set(chunk, offset); offset += chunk.byteLength; }
+          return buffer.buffer;
+        } finally { clearTimeout(timer); }
+      }
+
+      async function addFace(source, weight) {
+        const face = new FontFace(fontFamily, source, { weight, style: 'normal', display: 'block' });
+        const loaded = await face.load();
+        document.fonts.add(loaded);
+        return loaded;
+      }
+
+      /** 一個字重：遠端 WOFF2 → 內建 TTF（http 用串流抓；file:// 只能交給瀏覽器自己讀）。 */
+      async function loadFace(entry) {
+        const key = entry.weight;
+        if (remoteBase) {
+          try { return { face: await addFace(await fetchBytes(remoteBase + entry.remote, key, { stall: stallMs }), entry.weight), source: 'remote' }; }
+          catch (error) { console.warn(`[FontPreloader] 遠端字型抓不到，改用內建：${entry.remote}`, error?.message || error); progress.loaded.delete(key); progress.total.delete(key); }
+        }
+        progress.stage = '正在載入內建字型…'; renderScreen();
+        const localUrl = localBase + entry.local;
+        if (!isFileProtocol) {
+          try { return { face: await addFace(await fetchBytes(localUrl, key), entry.weight), source: 'local' }; }
+          catch (error) { console.warn('[FontPreloader] 串流讀內建字型失敗，交給瀏覽器讀：', error?.message || error); }
+        }
+        return { face: await addFace(`url("${localUrl}") format("truetype")`, entry.weight), source: 'local' };
+      }
 
       const ready = (async () => {
-        if (!('FontFace' in window) || !document.fonts) return false;
-        const results = await Promise.allSettled(sources.map(async ({ weight, url }) => {
-          const face = new FontFace(fontFamily, `url("${url}") format("truetype")`, {
-            weight,
-            style: 'normal',
-            display: 'block',
-          });
-          const loaded = await face.load();
-          document.fonts.add(loaded);
-          return loaded;
-        }));
+        if (!('FontFace' in window) || !document.fonts) { hideScreen(); return false; }
+        progress.stage = remoteBase ? '正在載入字型…' : '正在載入內建字型…';
+        const results = await Promise.allSettled((config.faces || []).map(loadFace));
+        const failed = (config.faces || []).filter((_, index) => results[index].status !== 'fulfilled').map((entry) => localBase + entry.local);
+        hideScreen();
+        if (failed.length) showFontGuard(failed);
+        window.__fontSources = results.map((result) => (result.status === 'fulfilled' ? result.value.source : 'failed'));
         return results.some((result) => result.status === 'fulfilled');
       })();
+
+      // 2026-10-14：字型載不到（檔案遺失、或 Git LFS 指標檔取代了真檔）時，瀏覽器會悄悄改用系統字型，產出的圖會變。
+      // 這裡直接攔下來、把原因講清楚，不讓它默默往下跑（零誤差）。
+      function showFontGuard(failed) {
+        const guard = document.createElement('div');
+        guard.id = 'fontGuard';
+        guard.setAttribute('role', 'alertdialog');
+        guard.innerHTML = `
+          <div class="font-guard-card">
+            <h2>字型沒有載入，先別產圖</h2>
+            <p>線上字型與內建字型都讀不到，產出的圖會用錯字型：</p>
+            <ul>${failed.map((url) => `<li><code>${url}</code></li>`).join('')}</ul>
+            <p>常見原因：</p>
+            <ul>
+              <li>沒有網路、或公司網路擋了 raw.githubusercontent.com，而且本機的 <code>fonts/</code> 也不完整。</li>
+              <li>專案是從 GitHub／GitLab 的「Download ZIP」拿的，或 clone 時電腦沒裝 git-lfs → 字型變成 130 byte 的 Git LFS 指標檔。請改用 <code>git clone</code>，或照 <code>docs/上傳步驟.md</code> 的「從 LFS 換回一般檔」處理。</li>
+            </ul>
+            <p>修好後重新整理頁面即可。</p>
+            <button type="button" id="fontGuardContinue">我知道輸出會不正確，仍要繼續</button>
+          </div>`;
+        const mount = () => {
+          document.body.appendChild(guard);
+          guard.querySelector('#fontGuardContinue').addEventListener('click', () => guard.remove());
+        };
+        if (document.body) mount(); else window.addEventListener('DOMContentLoaded', mount, { once: true });
+      }
 
       return { ready };
     })();
@@ -73,122 +177,121 @@
     .brand-title {
       white-space: nowrap;
     }
+
+    /* 頂部列左側：Logo＋回首頁（入口頁改為獨立頁面後，工具頁固定可回到卡片清單）；版面在 theme-25.css §12 */
+    .topbar-home { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; text-decoration: none; }
+    .topbar-home:hover, .topbar-home:focus-visible { color: var(--accent-2); outline: none; }
+    .topbar-home .brand-icon.shopee-brand-icon { width: 32px; height: 32px; min-width: 32px; min-height: 32px; padding: 4px 0; }
+    .topbar-home .shopee-brand-logo { height: 22px; max-width: 26px; }
+      /* 2026-10-14：字型載不到時的攔截視窗（FontPreloader.showFontGuard） */
+    #fontGuard { position: fixed; inset: 0; z-index: 999999; display: grid; place-items: center; padding: 16px; background: rgba(3, 7, 18, .86); backdrop-filter: blur(8px); }
+    .font-guard-card { width: min(560px, 100%); padding: 24px; border: 1px solid #ef4444; border-radius: 16px; background: #151b28; color: #f8fafc; font: 13px/1.6 -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif; box-shadow: 0 30px 90px rgba(0, 0, 0, .55); }
+    .font-guard-card h2 { margin: 0 0 8px; font-size: 16px; color: #fca5a5; }
+    .font-guard-card p { margin: 8px 0; color: #cbd5e1; }
+    .font-guard-card ul { margin: 0 0 8px; padding-left: 20px; }
+    .font-guard-card code { padding: 1px 5px; border-radius: 4px; background: rgba(255, 255, 255, .08); font-size: 12px; }
+    .font-guard-card button { margin-top: 8px; height: 36px; padding: 0 14px; border: 1px solid #334155; border-radius: 8px; color: #cbd5e1; background: rgba(255, 255, 255, .06); cursor: pointer; }
+    .font-guard-card button:hover { color: #fff; border-color: #ef4444; }
+
+    /* 開頁字型進度畫面（見上方 FontPreloader；照蝦大編輯器的做法） */
+    #fontBoot { position: fixed; inset: 0; z-index: 999998; display: grid; place-items: center; background: #0b0f18; color: #f8fafc; font: 13px/1.6 -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+    .font-boot-card { width: min(360px, calc(100vw - 48px)); text-align: center; }
+    .font-boot-card h2 { margin: 0 0 6px; font-size: 18px; letter-spacing: .02em; }
+    .font-boot-stage { margin: 0 0 18px; color: #94a3b8; }
+    .font-boot-bar { height: 4px; overflow: hidden; border-radius: 999px; background: rgba(255, 255, 255, .1); }
+    .font-boot-bar span { display: block; height: 100%; width: 0; border-radius: 999px; background: linear-gradient(90deg, #ff7a59, #ee4d2d); transition: width .2s ease; }
+    .font-boot-bar.is-indeterminate span { animation: fontBootSlide 1.2s ease-in-out infinite; }
+    @keyframes fontBootSlide { 0% { margin-left: 0; } 50% { margin-left: 85%; } 100% { margin-left: 0; } }
+    .font-boot-bytes { margin: 10px 0 0; color: #cbd5e1; font-weight: 700; min-height: 20px; }
+    .font-boot-hint { margin: 4px 0 0; color: #64748b; font-size: 12px; }
   </style>
 </head>
 <body>
   <div class="app-shell">
+    <!-- ── 頂部列（2026-11-05 自 18節 移植；18節 封測回饋：照 Circle／蝦大，所有「檔案層級」的動作都在這一列） ── -->
+    <header class="app-topbar">
+      <a class="topbar-home" href="index.html" title="回首頁，選其他版位">
+        <span class="brand-icon shopee-brand-icon"><img src="./assets/正式BN/shopee-logo.svg" alt="Shopee Logo" class="shopee-brand-logo" /></span>
+        <span class="topbar-home-text">← 回首頁</span>
+      </a>
+      <div class="topbar-title">
+        <strong>25節生成工具</strong>
+        <span class="topbar-sep">・</span>
+        <span id="profileVersionLabel">尚未選擇工具分類</span>
+      </div>
+      <span class="topbar-spacer"></span>
+      <!-- 匯入工單彈窗（modules/import-flow.js）：工單＋素材一次套用、自動產生預覽；存檔也從彈窗載入 -->
+      <button id="importWorkbookBtn" class="topbar-btn primary" type="button" title="匯入工單與素材，自動產生所有版位預覽（也可從這裡載入存檔）">⬆ 匯入工單</button>
+      <!-- 存檔（.25tool.zip）：整批圖的最終狀態＋工單＋公版＋用到的素材；載回可繼續微調、再存、再下載。 -->
+      <button id="saveArchiveBtn" class="topbar-btn" type="button" title="把目前所有圖片、工單、公版與用到的素材打包成一個存檔，之後可從「匯入工單 → 載入存檔」回到這個狀態">儲存存檔</button>
+      <button id="downloadImageBtn" class="topbar-btn" type="button" title="把右側勾選的版位依工單規則（格式、資料夾、檔名）以 4x 輸出打包成 ZIP；成品有透明像素會自動存 PNG；ZIP 內另附存檔與診斷報告">下載圖片</button>
+      <!-- 進階才出現：只輸出目前這一張的最終狀態 JSON -->
+      <button id="exportJsonBtn" class="topbar-btn adv-only" type="button" title="只輸出目前這一張的最終狀態 JSON（進階）">輸出 JSON</button>
+      <!-- 「重置專案」＝整頁重新載入回到匯入前（core/bootstrap.js） -->
+      <button id="resetProjectBtn" class="topbar-btn danger" type="button" title="清掉目前的工單、素材、預覽與手動調整，回到匯入前">重置</button>
+      <span class="topbar-divider"></span>
+      <!-- 進階模式（照蝦大 MS 編輯器）：開啟才出現「輸出 JSON」等給設計師／工程師用的功能；狀態記在瀏覽器 -->
+      <button id="advancedToggleBtn" class="topbar-icon-btn" type="button" aria-pressed="false" title="進階模式：打開才會出現「輸出 JSON」與診斷面板這類進階功能">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+      </button>
+    </header>
+
     <aside class="sidebar">
-      <section class="brand">
-        <div class="brand-icon shopee-brand-icon">
-          <img src="./assets/正式BN/shopee-logo.svg" alt="Shopee Logo" class="shopee-brand-logo" />
-        </div>
-        <div class="brand-info">
-          <div class="brand-title">25節生成工具（整合版）</div>
-          <div class="brand-version" id="profileVersionLabel">尚未選擇工具分類</div>
-        </div>
-      </section>
 
-      <!-- ── 步驟 1：開始（工單 → 分頁 → 分類自動偵測；或直接載入存檔） ── -->
-      <section class="panel">
-        <button class="panel-header" data-target="startBody">
-          <span>1. 開始</span>
-          <span class="accordion-icon">-</span>
-        </button>
-        <div id="startBody" class="panel-body">
-          <label class="upload-btn" title="選擇 Excel 工單">
-            <span id="excelInputLabel">上傳工單</span>
-            <input id="excelInput" type="file" accept=".xlsx,.xls,.xlsm" />
-          </label>
-          <!-- 工單載入後（手動上傳或由入口頁帶入）顯示檔名與分頁數，避免被誤認為還要再上傳一次。 -->
-          <div id="workbookStatus" class="workbook-status" hidden></div>
-
-          <label class="word-label mt-10">
-            分頁
-            <select id="excelSheetSelect" class="word-select" disabled>
-              <option value="">尚未上傳工單</option>
-            </select>
-          </label>
-
-          <div id="profileStatus" class="panel-description mt-10">上傳工單、選好分頁後會自動判斷工具分類。</div>
-          <!-- 分類選單：自動判斷成功時收起，判斷不出來（或多個都符合）時才展開；也可隨時手動打開。 -->
-          <details id="profileChooser" class="profile-chooser">
-            <summary>手動選擇工具分類</summary>
-            <select id="profileSelect" class="word-select mt-6">
-              <option value="">（自動偵測）</option>
-            </select>
-          </details>
-
-          <div class="panel-divider">或</div>
-          <button id="loadArchiveBtn" class="secondary-btn" title="載入之前儲存的 .25tool.zip 存檔，直接回到上次做到一半的狀態">載入存檔</button>
-          <input id="archiveInput" type="file" accept=".zip,application/zip" hidden />
-        </div>
-      </section>
-
-      <!-- ── 步驟 2：公版與素材 → 預覽 ── -->
-      <section class="panel">
-        <button class="panel-header" data-target="templatesBody">
-          <span>2. 公版與素材</span>
-          <span class="accordion-icon">-</span>
-        </button>
-        <div id="templatesBody" class="panel-body">
-          <div id="loadStatus" class="panel-description">選好分類後，上傳該分類的公版與素材資料夾。</div>
-          <label class="upload-btn" title="選擇 templates 資料夾上傳">
-            上傳公版
-            <input id="templateFolderInput" type="file" webkitdirectory directory multiple />
-          </label>
-          <label class="upload-btn mt-6" title="選擇 assets 資料夾上傳">
-            上傳素材
-            <input id="assetInput" type="file" webkitdirectory directory multiple accept="image/*" />
-          </label>
-
-          <div class="word-label template-filter-label mt-10">
-            目前專案
-            <div class="current-project-row">
-              <span id="currentProjectDisplay" class="current-project-display">（尚未選擇）</span>
-              <button id="openProjectModalBtn" type="button" class="link-btn">更改</button>
-            </div>
-          </div>
-          <label class="word-label template-filter-label">
-            顯示公版
-            <select id="templateFilter" class="word-select">
-              <option value="All">All</option>
-            </select>
-          </label>
-          <div id="templateList" class="template-list"></div>
-
-          <button id="generateFromExcelBtn" class="primary-btn mt-10" disabled title="依工單與公版產生整批預覽圖">預覽檔案</button>
-          <!-- 回饋 4：原「清除預覽」＋「重置公版」合成一顆。按下確認後整頁重新載入回到「1. 開始」，
-               保證所有狀態（分類、工單、公版、素材、預覽、手動紀錄）都乾淨；分類切換本來就需要重載。 -->
-          <button id="resetProjectBtn" class="primary-btn reset-project-btn mt-6" title="清掉目前分類、工單、公版、素材與預覽，回到「1. 開始」">重置專案</button>
-          <!-- 舊按鈕保留 id 供 core 綁定，不顯示。 -->
-          <button id="clearBatchBtn" class="secondary-btn" hidden>清除預覽</button>
-          <button id="loadDefaultBtn" class="secondary-btn" hidden>重置公版</button>
-          <div id="batchStatus" class="panel-description mt-10">尚未產生預覽檔案</div>
-          <div id="batchItemList" class="batch-item-list"></div>
-          <div id="unmatchedBox" class="unmatched-box hidden"></div>
-        </div>
-      </section>
-
-      <!-- ── 步驟 3：輸出 ── -->
-      <section class="panel">
-        <button class="panel-header" data-target="exportBody">
-          <span>3. 輸出</span>
-          <span class="accordion-icon">-</span>
-        </button>
-        <div id="exportBody" class="panel-body">
-          <button id="downloadImageBtn" class="primary-btn" title="把右側勾選的版位打包成 ZIP（含存檔與診斷報告）">下載圖片</button>
-          <!-- 存檔（.25tool.zip）：整批圖的最終狀態＋工單＋公版＋用到的素材；載回可繼續微調、再存、再下載。 -->
-          <button id="saveArchiveBtn" class="secondary-btn mt-6" title="把目前所有圖片、工單、公版與用到的素材打包成一個存檔">儲存存檔</button>
-          <button id="exportJsonBtn" class="secondary-btn mt-6" title="只輸出目前這一張的最終狀態 JSON（進階）">輸出 JSON</button>
-        </div>
-      </section>
+      <!-- 舊的「1. 開始／2. 公版與素材／3. 輸出」面板已拿掉（2026-11-05 自 18節 移植）；core、bootstrap、session-archive 與回歸測試
+           仍以這些 id 綁事件／讀狀態，所以元素保留在這個隱藏區塊裡：工單與分頁由匯入彈窗寫入，公版由 bootstrap 內建載入，
+           素材由彈窗交給 TemplateLoader，下載／存檔／重置按鈕搬到頂部列。 -->
+      <div id="legacyControls" hidden>
+        <label class="upload-btn"><span id="excelInputLabel">上傳工單</span><input id="excelInput" type="file" accept=".xlsx,.xls,.xlsm" /></label>
+        <div id="workbookStatus" class="workbook-status" hidden></div>
+        <select id="excelSheetSelect" class="word-select" disabled><option value="">尚未上傳工單</option></select>
+        <div id="profileStatus" class="panel-description"></div>
+        <details id="profileChooser" class="profile-chooser"><summary>手動選擇工具分類</summary><select id="profileSelect" class="word-select"><option value="">（自動偵測）</option></select></details>
+        <button id="loadArchiveBtn" class="secondary-btn" type="button">載入存檔</button>
+        <input id="archiveInput" type="file" accept=".zip,application/zip" hidden />
+        <div id="loadStatus" class="panel-description"></div>
+        <label class="upload-btn">上傳公版<input id="templateFolderInput" type="file" webkitdirectory directory multiple /></label>
+        <label class="upload-btn">上傳素材<input id="assetInput" type="file" webkitdirectory directory multiple accept="image/*" /></label>
+        <span id="currentProjectDisplay" class="current-project-display">（尚未選擇）</span>
+        <button id="openProjectModalBtn" type="button" class="link-btn">更改</button>
+        <select id="templateFilter" class="word-select"><option value="All">All</option></select>
+        <div id="templateList" class="template-list"></div>
+        <button id="generateFromExcelBtn" class="primary-btn" type="button" disabled>預覽檔案</button>
+        <button id="clearBatchBtn" class="secondary-btn" type="button">清除預覽</button>
+        <button id="loadDefaultBtn" class="secondary-btn" type="button">重置公版</button>
+      </div>
 
       <section class="panel">
         <button class="panel-header" data-target="inspectorBody">
           <span>調整</span>
-          <span class="accordion-icon">+</span>
+          <span class="accordion-icon">-</span>
         </button>
-        <div id="inspectorBody" class="panel-body collapsed">
+        <div id="inspectorBody" class="panel-body">
+          <!-- 2026-11-06 自 18節 移植：「調整」改成對目前選到的製作物（參考 Circle 編輯器）：文案欄位自動由公版文字層長出（附色票），
+               LOGO／商品各一顆按鈕開編輯視窗（modules/adjust-panel.js；視窗由第 4 批 logo-editor／product-composer 提供）；下方「圖層微調」維持原本逐層微調（進階）。 -->
+          <div id="itemAdjust" class="item-adjust">
+            <div id="itemAdjustEmpty" class="panel-description">匯入工單後，點製作物清單或右側縮圖選一張，這裡會列出它的文案與素材</div>
+            <div id="itemAdjustBody" class="hidden">
+              <div id="itemAdjustName" class="item-adjust-name"></div>
+              <div id="itemTextFields" class="item-text-fields"></div>
+              <div id="itemLogoSection" class="hidden">
+                <div class="adjust-section-title">品牌 LOGO</div>
+                <select id="logoEditTarget" class="word-select hidden" title="這張公版有多個 LOGO 圖層，選要編輯哪一層"></select>
+                <button id="editLogoBtn" type="button" class="secondary-btn adjust-wide-btn" disabled title="載入中">編輯 LOGO</button>
+              </div>
+              <div id="itemProductSection" class="hidden">
+                <div class="adjust-section-title">商品</div>
+                <div id="composeStatus" class="panel-description hidden"></div>
+                <button id="editProductBtn" type="button" class="primary-btn adjust-wide-btn" disabled title="載入中">編輯商品</button>
+                <button id="restoreProductBtn" type="button" class="secondary-btn adjust-wide-btn hidden">還原自動排版</button>
+                <!-- 進階模式才出現。框出券圖上價格該放的白色票面，價格之後都以它為準（modules/coupon-slot-editor.js） -->
+                <button id="defineCouponSlotBtn" type="button" class="secondary-btn adjust-wide-btn adv-only-block" disabled>定義券面案型範圍</button>
+              </div>
+            </div>
+          </div>
+          <!-- 逐層微調（選取的圖層／X Y 寬 高／字型／字級）收進進階模式，一般模式只留上面的文案＋LOGO＋商品 -->
+          <div id="layerFineTune" class="adv-only-block">
+          <div class="adjust-section-title adjust-layer-title">圖層微調（進階）</div>
           <div id="selectedLayerName" class="inspector-title">未選取</div>
           <div id="emptyInspector">點選畫布上的圖層、右側縮圖或下方「圖層」清單，就能在這裡調整</div>
 
@@ -237,7 +340,8 @@
               </label>
             </div>
 
-            <label class="word-label">
+            <!-- 「內容」不再顯示（上面每個文案欄位就是內容）；#textInput 留著給 core 的 applyTextFromInputs 用 -->
+            <label class="word-label hidden">
               內容
               <textarea id="textInput"></textarea>
             </label>
@@ -248,10 +352,25 @@
               <button data-align="right" title="齊右">齊右</button>
             </div>
           </div>
+          </div><!-- /layerFineTune -->
         </div>
       </section>
 
-      <section class="panel panel-grow">
+      <!-- ── 製作物清單：匯入前顯示空狀態；匯入後列出每個版位（可勾選要下載的、有警示的會標黃） ── -->
+      <section class="panel">
+        <button class="panel-header" data-target="batchBody">
+          <span>製作物清單</span>
+          <span class="accordion-icon">-</span>
+        </button>
+        <div id="batchBody" class="panel-body">
+          <div id="batchStatus" class="panel-description">尚未匯入工單</div>
+          <div id="batchItemList" class="batch-item-list"></div>
+          <div id="unmatchedBox" class="unmatched-box hidden"></div>
+        </div>
+      </section>
+
+      <!-- 圖層清單：只在進階模式顯示 -->
+      <section class="panel panel-grow adv-only">
         <button class="panel-header" data-target="layersBody">
           <span>圖層</span>
           <span class="accordion-icon">+</span>
@@ -271,8 +390,8 @@
           <button id="shortcutHelpBtn" class="shortcut-help" type="button" title="所有快捷鍵一覽（按 ? 也可開）">⌨ 快捷鍵</button>
         </div>
         <div class="toolbar-right">
-          <label><input id="gridToggle" type="checkbox" /> 格線</label>
-          <label><input id="guideToggle" type="checkbox" checked /> 對齊 / 參考線</label>
+          <!-- 格線屬進階功能；「對齊／參考線」開關沒有實際功能（core 只拿它當 specToggle 的備援），已移除 -->
+          <label class="adv-only"><input id="gridToggle" type="checkbox" /> 格線</label>
           <label><input id="specToggle" type="checkbox" checked /> 規範</label>
           <!-- 跨版位連動開關（僅 interaction.linkSync=true 的分類顯示，例：跨夜） -->
           <label style="display:none" title="關閉後，這一張公版的上傳槽圖素不再與其他公版互相連動（雙向斷開）。快捷鍵：D"><input id="linkSyncToggle" type="checkbox" checked /> 連動</label>
@@ -332,12 +451,31 @@
        core 建構時會依分類選用 A／B 兩套模組實作，因此分類必須先於 core 決定。切換分類會重新載入頁面。 -->
   <script src="core/profile-loader.js"></script>
   <script src="config/template-routing.js"></script>
+  <!-- 卡片登錄表：工具頁用它解析 ?group=（群組頁） -->
+  <script src="config/tools.js"></script>
   <script src="core/bootstrap.js"></script>
+  <!-- Service Worker（sw.js）：第二次開頁不再下載字型與程式；只在 http／https 註冊，file:// 與 localhost 不註冊（?sw=1 強制） -->
+  <script src="core/sw-register.js"></script>
   <script src="core/session-archive.js"></script>
+  <script src="core/work-order-content-planner.js"></script>
   <!-- 素材庫要排在 manual-asset-controls 之前：點已清除空槽時先出小選單（兩者都在 capture 階段監聽 pointerdown） -->
   <script src="modules/diagnostics-report.js"></script>
   <script src="modules/diagnostics-panel.js"></script>
   <script src="modules/shortcut-help.js"></script>
+  <script src="modules/import-flow.js"></script>
+  <script src="modules/topbar.js"></script>
+  <script src="modules/project-tabs.js"></script>
+  <script src="modules/manual-override-guard.js"></script>
+  <script src="config/coupon-price-slots.js"></script>
+  <script src="modules/record-number-naming.js"></script>
+  <script src="modules/text-color-ranges.js"></script>
+  <script src="modules/coupon-slots.js"></script>
+  <script src="modules/coupon-slot-editor.js"></script>
+  <script src="modules/adjust-panel.js"></script>
+  <script src="modules/multi-product.js"></script>
+  <script src="modules/logo-editor.js"></script>
+  <script src="modules/product-composer.js"></script>
+  <script src="modules/tour.js"></script>
   <script src="modules/coupon-price-sync.js"></script>
   <script src="modules/asset-library.js"></script>
   <script src="modules/manual-asset-controls.js"></script>
@@ -346,6 +484,7 @@
   <script src="modules/thumb-sync.js"></script>
   <script src="modules/layer-lock-defaults.js"></script>
   <script src="modules/asset-link-sync.js"></script>
+  <script src="modules/link-sync-ui-a.js"></script>
   <script src="modules/product-group-sync.js"></script>
   <script src="modules/multi-select.js"></script>
   <script src="config/coupon-catalog.js"></script>

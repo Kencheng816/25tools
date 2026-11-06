@@ -10,7 +10,6 @@ default:
     paths: [node_modules/]
 
 variables:
-  GIT_LFS_SKIP_SMUDGE: "0"          # 黃金樣本圖走 LFS，回歸需要真檔
   GOLDEN_WORK_DIR: /tmp/golden-work # 純 ASCII 路徑（CDP 檔案上傳對 # 與中文路徑失效）
 
 check:
@@ -19,6 +18,7 @@ check:
     - node tests/check-manifests.js
     - node tests/check-coupon-catalog.js
     - node tests/check-lfs-pointers.js
+    - node tests/check-template-bundles.js
 
 .golden-base:
   stage: golden
@@ -39,6 +39,7 @@ golden:
     - node tests/run-golden/run-launcher.js
     - node tests/run-golden/run-golden.js
     - node tests/run-golden/run-golden.js --click-thumbs
+    - node tests/run-golden/run-golden.js --import-flow
     - node tests/run-golden/run-roundtrip.js
     - node tests/run-golden/run-manual-assets.js
     - node tests/run-golden/run-manual-fit.js
@@ -50,6 +51,8 @@ golden:
     - node tests/run-golden/run-coupon-price.js
     - node tests/run-golden/run-export-bundle.js
     - node tests/run-golden/run-diagnostics-panel.js
+    - node tests/run-golden/run-edit-flows.js
+    - node tests/run-golden/run-tour.js
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - when: manual

@@ -1,37 +1,44 @@
-/* 25節 整合版 — 入口頁樣式（只作用於入口頁；工具頁在 iframe 內用各自的 style.css） */
+/* 25節 整合版 — 入口頁樣式（2026-11-05 自 18節 移植）（只作用於入口頁；工具頁用 style.css ＋ theme-25.css）
+ * 色票與工具頁 theme-25.css 同一組：深底、蝦皮橘單一強調色、8px 網格。 */
 :root {
-  --bg: #0b0f18; --panel: #151b28; --line: #273247; --text: #f8fafc; --muted: #94a3b8;
-  --accent: #3b82f6; --accent-soft: rgba(59, 130, 246, .16); --orange: #ff5a1f; --bar-h: 56px;
+  --bg: #0b0f18; --panel: #151b28; --line: #273247; --line-2: #334155; --text: #f8fafc; --muted: #94a3b8;
+  --accent: #ee4d2d; --accent-2: #ff7a59; --accent-soft: rgba(238, 77, 45, .16);
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; width: 100%; height: 100%; background: var(--bg); color: var(--text);
+html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
+body { background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), transparent 30%), var(--bg); }
 
-.launcher-bar { height: var(--bar-h); display: flex; align-items: center; gap: 14px; padding: 0 16px;
-  background: var(--panel); border-bottom: 1px solid var(--line); }
-.launcher-brand { display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
-.launcher-brand strong { font-size: 16px; }
-.launcher-sub { color: var(--muted); font-size: 12px; }
-.launcher-select { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); }
-.launcher-select select { min-width: 260px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line);
-  background: #0e1420; color: var(--text); }
-.launcher-btn { display: inline-block; padding: 7px 12px; border-radius: 8px; border: 1px solid var(--accent);
-  background: var(--accent-soft); color: var(--text); font-size: 13px; cursor: pointer; text-decoration: none; }
-.launcher-btn:hover { background: rgba(59, 130, 246, .3); }
-.launcher-btn.ghost { border-color: var(--line); background: transparent; color: var(--muted); }
-.launcher-status { flex: 1; min-width: 0; font-size: 12px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.launcher-actions { display: flex; gap: 8px; }
+.launcher { max-width: 1080px; margin: 0 auto; padding: 56px 24px 64px; }
+.launcher-hero { text-align: center; margin-bottom: 40px; }
+.launcher-hero h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: .02em; }
+.launcher-hero p { margin: 0; color: var(--muted); font-size: 15px; }
 
-.launcher-main { height: calc(100% - var(--bar-h)); }
-.launcher-frame { width: 100%; height: 100%; border: 0; background: var(--bg); }
-.launcher-welcome { max-width: 1080px; margin: 0 auto; padding: 40px 24px; }
-.launcher-welcome h1 { margin: 0 0 8px; font-size: 24px; }
-.launcher-welcome p { margin: 0 0 24px; color: var(--muted); line-height: 1.6; }
-.launcher-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.launcher-card { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; padding: 14px 16px;
-  border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--text); cursor: pointer; text-align: left; }
-.launcher-card:hover { border-color: var(--accent); }
-.launcher-card.is-hit { border-color: var(--orange); box-shadow: 0 0 0 2px rgba(255, 90, 31, .35); }
-.launcher-card small { color: var(--muted); font-size: 11px; }
-.launcher-card strong { font-size: 15px; }
-.launcher-card span { color: var(--muted); font-size: 12px; }
+/* 群組並排成欄（一排最多 4 欄），每欄內的卡片由上往下疊；視窗窄時自動減欄。 */
+.launcher-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 32px 24px; align-items: start; }
+.launcher-group h2 { margin: 0 0 12px; padding-left: 12px; border-left: 3px solid var(--accent);
+  color: var(--muted); font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+.launcher-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+
+.tool-card { display: flex; align-items: center; justify-content: center; min-height: 80px; padding: 16px;
+  border: 1px solid var(--line); border-radius: 16px; background: var(--panel); color: var(--text);
+  font-size: 16px; font-weight: 700; text-align: center; text-decoration: none;
+  transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease; }
+.tool-card:hover, .tool-card:focus-visible { border-color: var(--accent); transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .28), 0 0 0 1px rgba(238, 77, 45, .25); outline: none; }
+.tool-card:active { transform: translateY(0); background: var(--accent-soft); }
+
+.launcher-error { margin: 24px 0 0; padding: 16px; border: 1px solid #ef4444; border-radius: 12px;
+  color: #fca5a5; background: rgba(239, 68, 68, .08); text-align: center; }
+
+@media (max-width: 600px) {
+  .launcher { padding: 32px 16px 48px; }
+  .launcher-hero h1 { font-size: 22px; }
+  .launcher-groups { grid-template-columns: 1fr 1fr; gap: 24px 12px; }
+  .tool-card { min-height: 64px; font-size: 15px; }
+}
+
+/* 「工具有新版本」提示（core/sw-register.js） */
+#swUpdateToast { position: fixed; left: 50%; bottom: 20px; z-index: 100050; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 1px solid #ff7a59; border-radius: 12px; background: #151b28; color: #f8fafc; font-size: 13px; box-shadow: 0 16px 44px rgba(0, 0, 0, .4); }
+#swUpdateToast button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #ee4d2d; color: #fff; font-weight: 700; cursor: pointer; }
+#swUpdateToast .sw-toast-close { padding: 0 8px; background: transparent; color: #94a3b8; }

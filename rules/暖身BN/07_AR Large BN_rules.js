@@ -310,6 +310,12 @@
     applyExposureVariant(template, required.exposure);
     applyMainTitleSemantic(template, record);
     applyOptionalText(template, record);
+    // 產圖階段的診斷陣列（args.diagnostics）之後才掛到製作物上，版面階段寫進 template.batchDiagnostics 的提醒會被蓋掉 → 這裡再量一次主標寫進去
+    var helpers = args && args.helpers || {};
+    if (typeof helpers.measureTextWidth === 'function' && Array.isArray(args.diagnostics)) {
+      var titleLayer = getLayer(template, 'title');
+      if (titleLayer && !titleLayer.hidden) assertSafeWidth(template, record, '主標', measuredTextWidth(titleLayer, helpers), args.diagnostics);
+    }
   }
 
   function manual(layer) {
@@ -332,20 +338,30 @@
     return width;
   }
 
-  function assertSafeWidth(record, field, width) {
+  // 2026-11-06 封測診斷（使用者決定）：超過安全寬度不再拒做、也不縮小字級，照樣產圖，只在診斷提醒（重要不緊急）。
+  // 版面每次重畫都會量一次，所以同一層只記一筆（照 field 去重），文字改短了就把那筆拿掉。
+  function assertSafeWidth(template, record, field, width, diagnostics) {
     var actual = round2(width);
+    var list = Array.isArray(diagnostics) ? diagnostics : (template && Array.isArray(template.batchDiagnostics) ? template.batchDiagnostics : null);
+    if (!list) return;
+    var tag = 'AR Large BN 安全寬度：' + field;
+    for (var i = list.length - 1; i >= 0; i--) if (list[i] && list[i].__arLargeWidth === tag) list.splice(i, 1);
     if (actual > MAX_SAFE_WIDTH) {
-      throw new Error(
-        'AR Large BN（備註No=' + recordNo(record) + '）' + field +
-        ' 實際寬度 ' + actual + 'px 超過最大安全寬度 ' + MAX_SAFE_WIDTH + 'px'
-      );
+      list.push({
+        field: field,
+        status: 'warning',
+        kind: '版面提醒',
+        value: String(actual) + 'px',
+        target: 'AR Large BN（備註No=' + recordNo(record) + '）' + field + ' 實際寬度 ' + actual + 'px 超過最大安全寬度 ' + MAX_SAFE_WIDTH + 'px，請縮短文字或自行調整',
+        __arLargeWidth: tag,
+      });
     }
   }
 
   function layoutPlainTitle(template, helpers, baseline, record) {
     var title = getLayer(template, 'title');
     var width = measuredTextWidth(title, helpers);
-    assertSafeWidth(record, '主標', width);
+    assertSafeWidth(template, record, '主標', width);
     return {
       centerX: baseline.titleCenterX,
       width: setLayerWidthCentered(title, width, baseline.titleCenterX),
@@ -361,7 +377,7 @@
     var textWidth = text && !text.hidden ? measuredTextWidth(text, helpers) : 0;
     var gap = textWidth > 0 ? Math.max(0, Number(baseline.vipGap) || 0) : 0;
     var groupWidth = logoWidth + gap + textWidth;
-    assertSafeWidth(record, 'VIP主標群組', groupWidth);
+    assertSafeWidth(template, record, 'VIP主標群組', groupWidth);
 
     var centerX = baseline.vipGroupCenterX;
     var left = centerX - groupWidth / 2;
@@ -376,7 +392,7 @@
       if (!textManual.x) text.x = round2(left + logoWidth + gap);
       if (!textManual.centerX) text.centerX = round2(Number(text.x || 0) + effectiveTextWidth / 2);
       groupWidth = logoWidth + gap + effectiveTextWidth;
-      assertSafeWidth(record, 'VIP主標群組', groupWidth);
+      assertSafeWidth(template, record, 'VIP主標群組', groupWidth);
     }
 
     return { centerX: centerX, width: groupWidth };
@@ -400,10 +416,10 @@
 
     if (subtitle && !subtitle.hidden) {
       subtitleWidth = measuredTextWidth(subtitle, helpers);
-      assertSafeWidth(record, '副標', subtitleWidth);
+      assertSafeWidth(template, record, '副標', subtitleWidth);
       setLayerWidthCentered(subtitle, subtitleWidth, centerX);
       frameWidth = resolveSubtitleFrameWidth(mainLayout.width, subtitleWidth);
-      assertSafeWidth(record, '副標題_線框', frameWidth);
+      assertSafeWidth(template, record, '副標題_線框', frameWidth);
       if (!frame) throw new Error('AR Large BN 公版缺少「副標題_線框」');
       enableDynamicBounds(frame);
       frameWidth = setLayerWidthCentered(frame, frameWidth, centerX);
@@ -413,10 +429,10 @@
 
     if (cta && !cta.hidden) {
       var ctaWidth = measuredTextWidth(cta, helpers);
-      assertSafeWidth(record, 'CTA', ctaWidth);
+      assertSafeWidth(template, record, 'CTA', ctaWidth);
       setLayerWidthCentered(cta, ctaWidth, centerX);
       var desiredBgWidth = subtitleWidth > 0 ? frameWidth : mainLayout.width;
-      assertSafeWidth(record, 'CTA_底色', desiredBgWidth);
+      assertSafeWidth(template, record, 'CTA_底色', desiredBgWidth);
       if (!ctaBg) throw new Error('AR Large BN 公版缺少「CTA_底色」');
       enableDynamicBounds(ctaBg);
       var actualBgWidth = setLayerWidthCentered(ctaBg, desiredBgWidth, centerX);

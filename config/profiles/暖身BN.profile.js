@@ -13,10 +13,11 @@ window.__profileRegistry["profile:暖身BN"] = {
   "_comment": "flags 只放與 _defaults.json（defaults ＋ families.a）不同的旗標；其餘沿用預設。",
   "flags": {
     "batch.sellerHeaderDetect": true,
+    "batch.multiProductSplit": true,
     "templates.variant": "warmup",
     "export.zipPrefix": "18SaleTool",
     "export.formatSource": "specTable",
-    "export.folderStrategy": "sourceTemplate",
+    "export.folderStrategy": "workOrderContent",
     "export.slices": false,
     "price.normalizeDecimalPercent": false,
     "smartAsset.multiProductLink": false,

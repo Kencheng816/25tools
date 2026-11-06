@@ -715,10 +715,11 @@
       "msArchiveExportCfgBanner",
       "rootFolder",
       "project",
-      "sourceTemplate"
+      "sourceTemplate",
+      "workOrderContent"
     ],
     "affects": "folder",
-    "summary": "zip 內資料夾：exportCfgSpecBanner＝規則 exportConfig.folder → __outputRoot/__outputFolder → 專案/Template|UAC/bannerN；specBanner＝後兩段；omMedia＝媒體名/bannerN；msArchiveExportCfgBanner＝上蓋→下蓋歸檔 NN_X → exportCfg → banner；rootFolder＝sanitize(__outputRoot)/sanitize(__outputFolder) 否則專案；project＝專案/檔案。；sourceTemplate（回饋 2，正式／暖身BN）＝來源公版「編號_主名」，SKBN 系再分 APP／PC 子夾。",
+    "summary": "zip 內資料夾：exportCfgSpecBanner＝規則 exportConfig.folder → __outputRoot/__outputFolder → 專案/Template|UAC/bannerN；specBanner＝後兩段；omMedia＝媒體名/bannerN；msArchiveExportCfgBanner＝上蓋→下蓋歸檔 NN_X → exportCfg → banner；rootFolder＝sanitize(__outputRoot)/sanitize(__outputFolder) 否則專案；project＝專案/檔案。；sourceTemplate（回饋 2，正式／暖身BN）＝來源公版「編號_主名」，SKBN 系再分 APP／PC 子夾。；workOrderContent（自 18節 移植，2026-11-06，暖身BN／正式BN／MS）＝依工單「製作內容」由上而下分資料夾（01_頭巾、02_HBN…）、檔名 製作內容[_變體]_編號[_尾綴]，工單有「編號」欄就用它（modules/record-number-naming.js）、沒有就流水號（core/work-order-content-planner.js）。",
     "source": "05-export-ui §1 resolveBannerSubfolder/resolveArchiveFolder；§2.3；§9",
     "default": "rootFolder"
   },
@@ -1279,5 +1280,41 @@
     "summary": "下載圖片的 zip 內附「診斷報告.txt」（modules/diagnostics-report.js 四級分類）；該工具原本就有自己的診斷報告（network／鏡面／跨夜）時不重複附。自 18節 2026-10-07 回饋 3 移植。",
     "source": "18節 回饋 2026-10-07",
     "default": true
+  },
+  {
+    "key": "diagnostics.skipBlocks",
+    "type": "array",
+    "affects": "ui",
+    "summary": "診斷「刻意略過」的製作物名稱前綴（modules/diagnostics-report.js）：工單有、但這個工具刻意不做的製作物（沒有公版、或只有圖沒案型），找不到公版／略過的列不報紅，改列資訊層「刻意略過」。自 18節 2026-11-03 工單變更清查 #5／#7 轉換；25節 各分類要略過哪些待使用者定。",
+    "source": "18節 工單變更清查 2026-11-03（2026-11-05 轉換到 25節）",
+    "default": []
+  },
+  {
+    "key": "diagnostics.mutedWarnings",
+    "type": "array",
+    "affects": "ui",
+    "summary": "各分類自己的「工單固定寫法」解析警告（子字串比對），命中就不進診斷（解析統計仍有數字）。共用的固定寫法（表頭統計列、設定列「沒有數量也沒有可套用欄位」）寫死在 diagnostics-report.js。例：正式BN 的 SKBN 切圖列「特規 Parser」。",
+    "source": "25節 一校一修 2026-11-05",
+    "default": []
+  },
+  {
+    "key": "batch.multiProductSplit",
+    "type": "bool",
+    "affects": "pixel",
+    "summary": "工單「商品圖1／商品圖2」寫「A + B」（半形／全形＋）時拆成多張商品各自找素材、在 P 框裡自動排（2 張一大一小／3 張三角／其他並排；modules/multi-product.js）；只有一個名字時完全不動。自 18節 2026-11-02 移植；25節 只對 暖身BN 開。",
+    "source": "18節 封測第二輪 2026-11-02（2026-11-06 移植）",
+    "default": false
+  },
+  {
+    "key": "export.recordNumberMode",
+    "type": "enum",
+    "values": [
+      "contentCode",
+      "code"
+    ],
+    "affects": "folder",
+    "summary": "export.folderStrategy＝workOrderContent 時，工單「編號」是代碼（260525HBN01）怎麼接進檔名：contentCode＝製作內容[_變體]_代碼[_尾綴]（HBN_260525HBN01）；code＝代碼[_尾綴]（260525HBN01）。純數字編號（或頭巾的備註No）一律 製作內容_兩位數。",
+    "source": "25節 一校一修 2026-11-06（封測 P0-5）",
+    "default": "contentCode"
   }
 ]

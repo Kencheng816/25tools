@@ -6485,6 +6485,10 @@
       }
 
       const files = [];
+      // （自 18節 移植，2026-11-06）export.folderStrategy='workOrderContent'：依工單「製作內容」分資料夾、檔名 製作內容_編號（以完整工單順序規劃）。
+      const workOrderContentPlan = flag('export.folderStrategy', 'omMedia') === 'workOrderContent'
+        ? (window.WorkOrderContentPlanner?.build?.(AppState.templates.map((t, index) => ({ ...t, index }))) || [])
+        : [];
       // （跨夜）匯出備註（K 數壓縮結果）每次重新累積；未啟用時為 no-op。
       BatchDiagnostics.resetExportNotes();
       const fixedScale4x = flag('export.scaleMode', 'multiSize2x') === 'fixed4x';
@@ -6613,10 +6617,13 @@
         }
 
         if (blob) {
-          const baseStem = requestedBaseName || String(t.templateId || item.name).replace(/\.(png|jpe?g)$/i, '');
+          const contentMeta = workOrderContentPlan[item.index] || null;
+          const baseStem = contentMeta?.fileStem || requestedBaseName || String(t.templateId || item.name).replace(/\.(png|jpe?g)$/i, '');
           const baseFilename = `${baseStem}.${finalExt}`;
           let zipEntryName;
-          if (flag('export.folderStrategy', 'omMedia') === 'specBanner') {
+          if (contentMeta) {
+            zipEntryName = `${contentMeta.folder}/${baseFilename}`;
+          } else if (flag('export.folderStrategy', 'omMedia') === 'specBanner') {
             // 正式BN／KV 系：專案資料夾＋Template|UAC-Pmax-LineLAP 的 bannerN 子資料夾；規格表項目走 __outputRoot/__outputFolder。
             const bannerFolder = this.resolveBannerSubfolderSpec(t.templateId || item.name);
             const projectFolder = String(item.project || '').trim();
@@ -7024,6 +7031,10 @@
         return null;
       }
       const sourceTemplateFolders = format === 'auto' && flag('export.folderStrategy', 'exportCfgSpecBanner') === 'sourceTemplate';
+      // （自 18節 移植，2026-11-06）export.folderStrategy='workOrderContent'：依工單「製作內容」分資料夾、檔名 製作內容_編號（core/work-order-content-planner.js），不分格式都適用。
+      const workOrderContentPlan = flag('export.folderStrategy', 'exportCfgSpecBanner') === 'workOrderContent'
+        ? (window.WorkOrderContentPlanner?.build?.(allTemplateEntries) || [])
+        : [];
 
       const files = [];
       for (const item of selected) {
@@ -7087,13 +7098,19 @@
           const sizeToken = `${t.canvas.width}x${t.canvas.height}`;
           if (t.sheetTemplateRoute?.multiOutput === true && !filenameStem.toLowerCase().includes(sizeToken.toLowerCase())) filenameStem += `_${sizeToken}`;
           const archiveMeta = workOrderArchivePlan[item.index] || null;
-          const archiveFilenameStem = archiveMeta?.grouped ? archiveMeta.fileStem : filenameStem;
+          const contentMeta = workOrderContentPlan[item.index] || null;
+          const archiveFilenameStem = contentMeta?.fileStem || (archiveMeta?.grouped ? archiveMeta.fileStem : filenameStem);
           const baseFilename = `${archiveFilenameStem}.${ext}`;
 
           // （暖正MS V0.5）工單中由上蓋開始、直到第一個下蓋（含）為同一資料夾。
           // 資料夾與群組內檔名都以完整工單順序預先規劃，因此取消勾選部分縮圖也不會改變原始編號。
           // 若項目不在任何上蓋→下蓋區段內，保留既有 exportConfig / project / banner 歸檔方式。
-          if (archiveMeta?.grouped) {
+          if (contentMeta) {
+            // （自 18節 移植）01_製作內容／製作內容_編號；規則的 slices 切圖放同一夾。
+            const folderParts = [contentMeta.folder];
+            files.push({ name: [...folderParts, baseFilename].join('/'), blob });
+            await this.appendSlices(files, folderParts, archiveFilenameStem, ext, mime, off, exportCfg);
+          } else if (archiveMeta?.grouped) {
             const folderParts = [archiveMeta.folderName];
             files.push({ name: [...folderParts, baseFilename].join('/'), blob });
             if (Array.isArray(exportCfg?.slices) && exportCfg.slices.length) {

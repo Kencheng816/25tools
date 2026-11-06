@@ -44,6 +44,8 @@
 
   // 副標題內 VIP LOGO 與文字之間的水平間距（工單指定 7px）
   var SUBTITLE_GAP_PX = 7;
+  // 副標其餘字顏色：沒有 VIP 維持公版原色（第一次套用時記在 __subtitleBaseColor）；副標含 VIP 時白字（2026-11-06 封測 P0-1，使用者選 A）
+  var SUBTITLE_COLOR_WITH_VIP = '#FFFFFF';
 
   // 素材資料夾（bucket）名稱。
   // V0.9 素材解析由 AssetLookup 單一入口負責：公版專屬素材只查本版位；
@@ -62,6 +64,16 @@
   function toStr(v) { return String(v == null ? '' : v); }
   function trim(v) { return toStr(v).replace(/_x000d_/gi, '\n').trim(); }
   function getLayer(template, key) { return (template && template.layers && template.layers[key]) || null; }
+  // 文字層整層換色：A 系文字層帶 textStyleRanges（每段自己的 color），Renderer 畫字用 range.color，所以要連每段一起換。
+  function setTextColor(layer, color) {
+    if (!layer) return;
+    layer.color = color;
+    (Array.isArray(layer.textStyleRanges) ? layer.textStyleRanges : []).forEach(function (range) {
+      if (!range || typeof range !== 'object') return;
+      range.color = color;
+      if (range.fill !== undefined) range.fill = color;
+    });
+  }
   function show(template, key) { var l = getLayer(template, key); if (l) l.hidden = false; }
   function hide(template, key) { var l = getLayer(template, key); if (l) l.hidden = true; }
   function pad2(n) { return String(Math.max(0, Math.round(Number(n) || 0))).padStart(2, '0'); }
@@ -331,6 +343,10 @@
     subRight.text = restText;
     subRight.hidden = false;
     if (vipLogo) vipLogo.hidden = !hasVip;
+    // 2026-11-06 封測 P0-1（使用者選 A）：副標含 VIP（前面放 蝦皮VIP_LOGO）時，其餘字改白字；沒有 VIP 維持公版黃字。
+    // 使用者在面板手動改過顏色（__manualOverrides.color）就不碰，由 manual-override-guard 保住。
+    if (!subRight.__subtitleBaseColor) subRight.__subtitleBaseColor = subRight.color || '#FFE600';
+    if (!(subRight.__manualOverrides && subRight.__manualOverrides.color)) setTextColor(subRight, hasVip ? SUBTITLE_COLOR_WITH_VIP : subRight.__subtitleBaseColor);
     // 頭巾副標會立刻量測並驅動六角底色，因此必須在量測前先套全域非價格文字標準。
     window.SPTextStandard?.applyNonPriceTextLayer?.(subRight, K.subRight);
 

@@ -136,4 +136,4 @@ async function dumpSession(page) {
   }));
 }
 
-module.exports = { ALL_PROJECTS_VALUE, sleep, waitForAppReady, uploadInputs, selectSheet, generate, exportZip, dumpSession };
+module.exports = { ALL_PROJECTS_VALUE, sleep, waitForAppReady, listFilesRecursive, uploadInputs, selectSheet, generate, exportZip, dumpSession };

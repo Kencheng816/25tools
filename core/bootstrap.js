@@ -1,13 +1,16 @@
 /* 整合版 – 啟動流程（core 載入前）
  *
+ * 2026-11-05 自 18節 移植：入口頁改成獨立卡片頁（不再用 iframe＋postMessage 帶工單），工單改由匯入彈窗（modules/import-flow.js）
+ * 交給 bootstrap／core；?group= 群組頁（外廣 OM Wave 1／2）依分頁自動選定分類；公版改為內建（templates/<分類>/_bundle.js）。
+ *
  * 分類（Profile）必須在 core 載入之前決定，core 才能依分類選用 A／B 兩套模組實作。
  * 所以開頁時只載入這支 bootstrap：
  *   1. 讀網址 ?profile=<分類> → 直接啟用。
- *   2. 否則等使用者上傳工單：用 XLSX 讀出分頁名 → 填入分頁選單 → 依所選分頁自動偵測分類。
- *   3. 也可直接在「工具分類」下拉手動選。
- *   4. 入口頁（index.html）判別用的工單會以 postMessage 送進來，走與手動上傳相同的流程。
- * 啟用後由 ProfileLoader 依序載入規則、分類專屬程式、core；core 起來後把剛上傳的工單交給它，
- * bootstrap 隨即解除自己的監聽，之後所有操作都是 core 在處理（只留一層包裝更新「已載入工單」狀態）。
+ *   2. 讀網址 ?group=<卡片 id>（config/tools.js 裡 profiles 多於一個的卡片，例：外廣 OM 的 Wave 1／2、KOL 的第一單／第二單）
+ *      → 等使用者上傳工單，依分頁名在這幾個分類裡自動選定；對不上才請使用者在群組內手動選。
+ *   3. 都沒有：等使用者上傳工單：用 XLSX 讀出分頁名 → 填入分頁選單 → 依所選分頁自動偵測分類；也可在「工具分類」下拉手動選。
+ * 啟用後由 ProfileLoader 依序載入規則、分類專屬程式、core；core 起來後先載入內建公版（templates/<分類>/_bundle.js），
+ * 再把剛上傳的工單交給它，bootstrap 隨即解除自己的監聽，之後所有操作都是 core 在處理（只留一層包裝更新「已載入工單」狀態）。
  */
 (function initBootstrap() {
   'use strict';
@@ -15,29 +18,37 @@
   const $ = (id) => document.getElementById(id);
   const GATED_INPUTS = ['assetInput', 'templateFolderInput', 'generateFromExcelBtn'];
   const listeners = new AbortController();
-  /** workbookSource：這份工單怎麼來的（顯示在「1. 開始」狀態列）；coreReady：core 已接手，之後的工單直接交給 BatchManager。 */
-  const state = { workbookFile: null, sheetNames: [], selectedSheet: '', workbookSource: '手動上傳', coreReady: false, pendingLauncherReply: null };
-  /** 入口頁（index.html）用 postMessage 把工單交過來的訊息型別；用 postMessage 而不是直接碰 iframe 物件，雙擊 index.html（file://）時才不會被同源政策擋下。 */
-  const LAUNCHER_MESSAGE = { workbook: 'launcher:workbook', result: 'launcher:workbook-result' };
+  /** group：網址 ?group= 對應的卡片（null＝沒有限制）；coreReady：core 已接手，之後的工單直接交給 BatchManager。 */
+  const state = { workbookFile: null, sheetNames: [], selectedSheet: '', group: null, coreReady: false };
 
   const setStatus = (text) => { const el = $('profileStatus'); if (el) el.textContent = text; };
   const setGated = (disabled) => GATED_INPUTS.forEach((id) => { const el = $(id); if (el) el.disabled = disabled; });
   const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 
-  /** 「1. 開始」的工單狀態：載入後把按鈕改成「重新上傳工單」，下方顯示檔名、分頁數與來源。 */
-  function showWorkbookLoaded(file, sheetCount, source) {
+  /** 網址 ?group=<id> 對應 config/tools.js 的卡片；找不到就當沒有限制。 */
+  function resolveGroup() {
+    const groupId = new URLSearchParams(window.location.search).get('group') || '';
+    const tool = (window.TOOL_REGISTRY || []).find((entry) => entry.id === groupId);
+    return tool && Array.isArray(tool.profiles) && tool.profiles.length ? tool : null;
+  }
+
+  /** 有群組限制時只留群組內的分類。 */
+  const withinGroup = (profileIds) => (state.group ? profileIds.filter((id) => state.group.profiles.includes(id)) : profileIds);
+
+  /** 「1. 開始」的工單狀態：載入後把按鈕改成「重新上傳工單」，下方顯示檔名與分頁數。 */
+  function showWorkbookLoaded(file, sheetCount) {
     const label = $('excelInputLabel'); if (label) label.textContent = '重新上傳工單';
     label?.closest('.upload-btn')?.classList.add('is-loaded');
     const status = $('workbookStatus'); if (!status) return;
-    status.innerHTML = `<div><strong>${escapeHtml(file.name)}</strong><small>已載入工單・${sheetCount} 個分頁・${escapeHtml(source)}</small></div>`;
+    status.innerHTML = `<div><strong>${escapeHtml(file.name)}</strong><small>已載入工單・${sheetCount} 個分頁</small></div>`;
     status.hidden = false;
   }
 
   async function populateProfileSelect() {
     const select = $('profileSelect'); if (!select) return;
     const index = await window.ProfileLoader.loadIndex();
-    const escape = (value) => String(value).replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
-    select.innerHTML = '<option value="">（自動偵測）</option>' + index.map((p) => `<option value="${escape(p.id)}">${escape(p.label)}</option>`).join('');
+    const options = state.group ? index.filter((p) => state.group.profiles.includes(p.id)) : index;
+    select.innerHTML = '<option value="">（自動偵測）</option>' + options.map((p) => `<option value="${escapeHtml(p.id)}">${escapeHtml(p.label)}</option>`).join('');
   }
 
   /** placeholder=true 時第一項是「（請選擇分頁）」，使用者選了才偵測分類；否則直接選第一個分頁。 */
@@ -51,20 +62,29 @@
   }
 
   /** 一份工單可能同時有好幾個工具的分頁（例如跨夜＋鏡面）；分類一旦啟用就要重載才能換，所以要先確定使用者要哪一頁。
-   *  只有「所有分頁都指向同一個分類」時才直接啟用；否則先請使用者選分頁。 */
+   *  只有「所有分頁都指向同一個分類」時才直接啟用；否則先請使用者選分頁。
+   *  有群組限制時，只看群組內的分類：例如 KOL 工單同時有第一單／第二單分頁，兩頁都在群組內，就請使用者選分頁。 */
   async function readWorkbook(file) {
     if (!file || !window.XLSX) return;
     const workbook = window.XLSX.read(await file.arrayBuffer(), { type: 'array', bookSheets: true });
     state.workbookFile = file;
     state.sheetNames = workbook.SheetNames || [];
     await window.ProfileLoader.loadIndex();
-    const perSheet = state.sheetNames.map((name) => window.ProfileLoader.detectBySheetNames([name]));
+    const perSheet = state.sheetNames.map((name) => withinGroup(window.ProfileLoader.detectBySheetNames([name])));
+    const matchedSheets = state.sheetNames.filter((_, index) => perSheet[index].length);
     const distinct = new Set(perSheet.flat());
-    const unanimous = state.sheetNames.length === 1 || (distinct.size === 1 && perSheet.every((list) => list.length === 1));
+    // 群組頁：只有一個分頁對得上群組就直接用那一頁（其他分頁與這個工具無關）。
+    const unanimous = state.sheetNames.length === 1 || (distinct.size === 1 && perSheet.every((list) => list.length === 1))
+      || (state.group && matchedSheets.length === 1);
     populateSheetSelect(state.sheetNames, { placeholder: !unanimous });
-    showWorkbookLoaded(file, state.sheetNames.length, state.workbookSource);
+    if (unanimous && state.group && matchedSheets.length === 1) {
+      state.selectedSheet = matchedSheets[0];
+      const select = $('excelSheetSelect'); if (select) select.value = state.selectedSheet;
+    }
+    showWorkbookLoaded(file, state.sheetNames.length);
     const batchStatus = $('batchStatus'); if (batchStatus) batchStatus.textContent = `已讀取：${file.name}${unanimous ? '' : '，請選擇分頁'}`;
     if (unanimous) await detectForSheet(state.selectedSheet);
+    else if (state.group && matchedSheets.length > 1) setStatus(`這份工單有 ${matchedSheets.length} 個「${state.group.label}」的分頁（${matchedSheets.join('、')}），請先選要做的分頁。`);
     else setStatus(`這份工單有 ${state.sheetNames.length} 個分頁，對應到不同工具分類；請先選要做的分頁。`);
   }
 
@@ -73,7 +93,7 @@
     const loader = window.ProfileLoader;
     if (loader.active || !sheetName) return;
     await loader.loadIndex();
-    const candidates = loader.detectBySheetNames([sheetName]);
+    const candidates = withinGroup(loader.detectBySheetNames([sheetName]));
     const chooser = $('profileChooser');
     if (candidates.length === 1) {
       const select = $('profileSelect'); if (select) select.value = candidates[0];
@@ -82,9 +102,64 @@
       setStatus(`分頁「${sheetName}」同時符合：${candidates.join('、')}，請手動選擇分類。`);
       if (chooser) chooser.open = true;
     } else {
-      setStatus(`無法由分頁「${sheetName}」判斷分類，請手動選擇。`);
+      setStatus(state.group
+        ? `分頁「${sheetName}」不是「${state.group.label}」的工單分頁，請換一份工單或手動選擇分類。`
+        : `無法由分頁「${sheetName}」判斷分類，請手動選擇。`);
       if (chooser) chooser.open = true;
     }
+  }
+
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
+      const el = document.createElement('script');
+      el.async = false;
+      el.src = src;
+      el.addEventListener('load', () => resolve(src), { once: true });
+      el.addEventListener('error', () => reject(new Error(`載入失敗：${src}`)), { once: true });
+      document.head.appendChild(el);
+    });
+  }
+
+  /**
+   * 內建公版（18節 2026-10-29 封測回饋：照 Circle，公版放在工具裡，使用者不用上傳）。
+   * tests/tools/bundle-templates.js 把 templates/<分類>/*.json 打包成 _bundle.js（file:// 也能用 <script> 載入），
+   * 這裡還原成 File 物件、照檔名排序，塞進原本的「上傳公版」input 並觸發 change：core 走同一條
+   * loadTemplateFolder()，session-archive 也照樣攔到公版原檔（存檔裡才有公版可載回），輸出與手動上傳完全相同。
+   */
+  async function loadBuiltinTemplates(profile) {
+    const dir = String(profile?.templatesDir || '').replace(/\/+$/, '');
+    const input = $('templateFolderInput');
+    if (!dir || !input) return;
+    await loadScript(`${dir}/_bundle.js`);
+    const bundle = window.__templateBundles?.[dir];
+    if (!bundle?.files?.length) throw new Error(`內建公版讀取失敗：${dir}/_bundle.js`);
+    const files = bundle.files.map(({ name, text }) => {
+      const file = new File([text], name, { type: 'application/json', lastModified: 0 });
+      Object.defineProperty(file, 'webkitRelativePath', { value: `templates/${name}`, configurable: true });
+      return file;
+    });
+    // FileList 無法建構；core 只用 [...fileList]，用陣列取代即可（與黃金擷取器同一招）。
+    // input 在啟用完成前是 disabled（瀏覽器不一定把事件送給 disabled 的表單元件），先暫時打開再觸發。
+    Object.defineProperty(input, 'files', { value: files, configurable: true });
+    const wasDisabled = input.disabled;
+    input.disabled = false;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+    input.disabled = wasDisabled;
+    await waitFor(() => (window.AppState?.templates || []).length === files.length - countManifest(files), 30000, '內建公版載入逾時');
+  }
+
+  const countManifest = (files) => files.filter((file) => file.name === 'manifest.json').length;
+
+  function waitFor(predicate, timeoutMs, message) {
+    return new Promise((resolve, reject) => {
+      const startedAt = Date.now();
+      const tick = () => {
+        if (predicate()) return resolve();
+        if (Date.now() - startedAt > timeoutMs) return reject(new Error(message));
+        setTimeout(tick, 50);
+      };
+      tick();
+    });
   }
 
   async function activate(profileId, reason) {
@@ -94,24 +169,24 @@
     try {
       await loader.activate(profileId);
       await window.__appReady;
+      await loadBuiltinTemplates(loader.active);
       watchCoreWorkbookUploads();
-      // 先標記 core 已接手，再交付：交付期間若入口頁的工單剛好送到，會直接走 core 路徑，不會被漏掉。
+      // 先標記 core 已接手，再交付；交付失敗也要解鎖上傳按鈕，不能讓使用者卡住。
       state.coreReady = true;
-      await handOffToCore(state.workbookFile, state.selectedSheet);
+      try { await handOffToCore(state.workbookFile, state.selectedSheet); }
+      catch (error) { console.error('[Bootstrap] 工單交付 core 失敗', error); alert(`工單讀取失敗：${error?.message || error}\n請在「1. 開始」重新上傳工單。`); }
       listeners.abort();
       setGated(false);
       setStatus(`已啟用：${loader.active.label}${reason ? `（${reason}）` : ''}`);
       const versionLabel = $('profileVersionLabel'); if (versionLabel) versionLabel.textContent = loader.active.label || loader.active.id;
-      replyToLauncher({ ok: true, sheet: $('excelSheetSelect')?.value || '' });
     } catch (error) {
-      replyToLauncher({ ok: false, error: error?.message || String(error) });
       console.error('[Bootstrap]', error);
       setStatus(`分類啟用失敗：${error?.message || error}`);
       alert(`分類「${profileId}」啟用失敗：${error?.message || error}`);
     }
   }
 
-  /** core 起來後，把工單（bootstrap 期間上傳的、或入口頁送來的）與所選分頁交給 core 的 BatchManager。 */
+  /** core 起來後，把 bootstrap 期間上傳的工單與所選分頁交給 core 的 BatchManager。 */
   async function handOffToCore(file, sheetName) {
     if (!file || !window.BatchManager) return;
     await window.BatchManager.handleExcelFile(file);
@@ -122,13 +197,6 @@
     }
   }
 
-  /** 入口頁的工單若是在分類載入中送到，要等 activate() 交付完才回報結果。 */
-  function replyToLauncher(payload) {
-    const reply = state.pendingLauncherReply;
-    state.pendingLauncherReply = null;
-    reply?.(payload);
-  }
-
   /** core 接手後，使用者在「1. 開始」重新上傳的工單走 core 的 handleExcelFile；包一層只為了更新狀態列，不動 core 行為。 */
   function watchCoreWorkbookUploads() {
     const manager = window.BatchManager;
@@ -137,74 +205,36 @@
     const watched = async function handleExcelFileWatched(file) {
       const result = await original.call(this, file);
       const sheetNames = window.AppState?.excelWorkbook?.SheetNames;
-      if (file && sheetNames) { showWorkbookLoaded(file, sheetNames.length, state.workbookSource); state.workbookSource = '手動上傳'; }
+      if (file && sheetNames) showWorkbookLoaded(file, sheetNames.length);
       return result;
     };
     watched.__bootstrapWatched = true;
     manager.handleExcelFile = watched;
   }
 
-  /**
-   * 入口頁送來的工單（{ type, file, preferredSheet }）。core 已接手就直接交給 BatchManager；
-   * 分類還在載入（?profile= 啟用中）就先存起來，activate 完成時會一併交付。處理結果回報給入口頁顯示。
-   */
-  async function receiveWorkbookFromLauncher(event) {
-    const data = event.data;
-    if (!data || data.type !== LAUNCHER_MESSAGE.workbook || !(data.file instanceof File)) return;
-    const reply = (payload) => event.source?.postMessage({ type: LAUNCHER_MESSAGE.result, ...payload }, '*');
-    state.workbookSource = '由入口頁帶入';
-    try {
-      if (state.coreReady) {
-        await handOffToCore(data.file, data.preferredSheet);
-      } else if (window.ProfileLoader.urlProfile()) {
-        state.workbookFile = data.file;
-        state.selectedSheet = data.preferredSheet || '';
-        state.pendingLauncherReply = reply; // activate() 交付完成後再回報
-        return;
-      } else {
-        await readWorkbook(data.file);
-      }
-      reply({ ok: true, sheet: $('excelSheetSelect')?.value || data.preferredSheet || '' });
-    } catch (error) {
-      console.error('[Bootstrap] 入口頁工單帶入失敗', error);
-      reply({ ok: false, error: error?.message || String(error) });
-    }
-  }
-
-  /** 回饋 4：「重置專案」＝整頁重新載入回到「1. 開始」（不帶 ?profile），所有狀態一次乾淨；分類切換本來就得重載。 */
+  /** 回饋 4：「重置專案」＝整頁重新載入回到「1. 開始」（不帶 ?profile；群組頁保留 ?group），所有狀態一次乾淨；分類切換本來就得重載。 */
   function bindResetProject() {
     $('resetProjectBtn')?.addEventListener('click', () => {
       if (!confirm('確定要重置專案嗎？\n\n目前的分類、工單、公版、素材、預覽與手動調整都會清掉，回到「1. 開始」。\n（要保留成果請先「儲存存檔」。）')) return;
       const url = new URL(window.location.href);
-      url.search = '';
+      url.search = state.group ? `?group=${encodeURIComponent(state.group.id)}` : '';
       window.location.replace(url.toString());
     });
   }
 
-  /** 字型載入偵測：fonts/*.ttf 若是 Git LFS 指標檔（上 GitHub Pages／下載 ZIP 常見），瀏覽器會悄悄退回系統字型、產圖字體全錯。
-   *  這裡主動把 ShopeeNotoSans 三個字重載一次，任一失敗就在「1. 開始」顯示紅字提醒，不讓問題被吞掉。 */
-  async function checkFontsLoaded() {
-    if (!document.fonts?.load) return;
-    const family = '"ShopeeNotoSans Content"';
-    const weights = ['400', '500', '700'];
-    const results = await Promise.all(weights.map((weight) => document.fonts.load(`${weight} 16px ${family}`).then((faces) => faces.length > 0).catch(() => false)));
-    const failed = weights.filter((_, index) => !results[index]);
-    if (!failed.length) return;
-    const message = `字型載入失敗（ShopeeNotoSans ${failed.join('／')}）：fonts/ 裡的 .ttf 可能是 Git LFS 指標檔而不是真檔（GitHub Pages／下載 ZIP 常見）。請用 git clone 並安裝 git-lfs，或依 README「上 GitHub／GitLab」一節把字型移出 LFS。`;
-    console.error('[Bootstrap]', message);
-    const status = $('profileStatus');
-    if (!status) return;
-    const warning = document.createElement('div');
-    warning.className = 'font-warning';
-    warning.setAttribute('role', 'alert');
-    warning.textContent = message;
-    status.insertAdjacentElement('afterend', warning);
+  /** 左上品牌區：群組頁先顯示卡片名稱，分類啟用後換成分類名稱（activate 內更新）。 */
+  function showGroupLabel() {
+    if (!state.group) return;
+    const versionLabel = $('profileVersionLabel'); if (versionLabel) versionLabel.textContent = state.group.label;
+    document.title = `${state.group.label} — 25節生成工具`;
+    setStatus(`上傳「${state.group.label}」的工單，系統會依分頁自動選定版本。`);
   }
 
   async function main() {
     setGated(true);
+    state.group = resolveGroup();
+    showGroupLabel();
     bindResetProject();
-    checkFontsLoaded().catch((error) => console.warn('[Bootstrap] 字型偵測失敗', error));
     await populateProfileSelect();
     const { signal } = listeners;
     $('profileSelect')?.addEventListener('change', (event) => { if (event.target.value) activate(event.target.value, '手動選擇'); }, { signal });
@@ -220,7 +250,22 @@
     if (fromUrl) { const select = $('profileSelect'); if (select) select.value = fromUrl; await activate(fromUrl, '網址參數'); }
   }
 
-  // 入口頁在 iframe load 事件後立刻送工單；監聽器在這裡（腳本解析時）就掛好，不等 DOMContentLoaded，才不會漏接。
-  window.addEventListener('message', (event) => { receiveWorkbookFromLauncher(event).catch((error) => console.error('[Bootstrap]', error)); });
+  /**
+   * 給匯入工單彈窗（modules/import-flow.js）用的小介面：
+   *   group            — 網址 ?group= 對應的卡片（null＝單一分類頁）
+   *   isCoreReady()    — 分類已啟用、core 已接手
+   *   detectProfiles(sheetName) — 這個分頁對到哪些分類（有群組限制時只看群組內）
+   *   activate(profileId)       — 啟用分類（含載入內建公版）；已啟用就不動
+   */
+  window.ToolBootstrap = Object.freeze({
+    get group() { return state.group; },
+    isCoreReady: () => state.coreReady,
+    detectProfiles: async (sheetName) => {
+      await window.ProfileLoader.loadIndex();
+      return withinGroup(window.ProfileLoader.detectBySheetNames([sheetName]));
+    },
+    activate: (profileId) => activate(profileId, '匯入工單'),
+  });
+
   window.addEventListener('DOMContentLoaded', () => { main().catch((error) => console.error('[Bootstrap]', error)); }, { once: true });
 })();

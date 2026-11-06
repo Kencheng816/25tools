@@ -1,0 +1,73 @@
+# 25節生成工具（整合版）CI（GitHub Actions；2026-11-06 自 18節 移植，.gitlab-ci.yml 仍保留給 GitLab）
+#   check  ：不開瀏覽器的靜態檢查（每次 push／PR 都跑，幾秒鐘）
+#   golden ：12 案例黃金樣本回歸（一般路徑＋匯入彈窗路徑＋逐張點縮圖）＋入口頁＋存檔往返＋手動編輯流程＋各模組 E2E（需 headless Chromium）
+#            main 分支 push 自動跑；其他分支可在 Actions 頁手動 Run workflow。
+# GitHub Pages 不在這裡：repo Settings → Pages → Source 選「Deploy from a branch」→ main / (root)，push 後 GitHub 自己部署
+#（偶爾看到 deploy 失敗 502 是 GitHub Pages 服務當下故障，Re-run 即可）。
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+env:
+  GOLDEN_WORK_DIR: /tmp/golden-work # 純 ASCII 路徑（CDP 檔案上傳對 # 與中文路徑失效）
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node tests/check-manifests.js
+      - run: node tests/check-coupon-catalog.js
+      - run: node tests/check-lfs-pointers.js
+      - run: node tests/check-template-bundles.js
+
+  golden:
+    needs: check
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    # 黃金是在 Ubuntu 22.04 的 Chromium（@sparticuz/chromium 152）拍的；字型後備（ShopeeNotoSans 沒有的字）用系統字型，版本不同就會差幾個像素 → 跑 22.04、裝同一組字型套件
+    runs-on: ubuntu-22.04
+    timeout-minutes: 150
+    env:
+      NODE_PATH: ${{ github.workspace }}/node_modules
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - name: Chromium 依賴＋跟拍黃金的環境同一組系統字型
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libdrm2 libxkbcommon0 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2 libpango-1.0-0 libcairo2 > /dev/null
+          sudo apt-get install -y -qq fonts-dejavu fonts-dejavu-extra fonts-droid-fallback fonts-noto-cjk fonts-noto-mono fonts-liberation fonts-liberation2 fonts-lato fonts-crosextra-caladea fonts-crosextra-carlito fonts-urw-base35 fonts-texgyre fonts-lmodern fonts-opensymbol fonts-font-awesome fonts-ubuntu-console > /dev/null
+          fc-cache -f > /dev/null
+          fc-match "sans-serif:lang=zh-tw"; fc-match sans-serif
+      - run: npm ci
+      - run: node tests/run-golden/run-launcher.js
+      - run: node tests/run-golden/run-golden.js
+      - run: node tests/run-golden/run-golden.js --import-flow
+      - run: node tests/run-golden/run-golden.js --click-thumbs
+      - run: node tests/run-golden/run-roundtrip.js
+      - run: node tests/run-golden/run-edit-flows.js
+      - run: node tests/run-golden/run-tour.js
+      - run: node tests/run-golden/run-manual-assets.js
+      - run: node tests/run-golden/run-manual-fit.js
+      - run: node tests/run-golden/run-text-edit.js
+      - run: node tests/run-golden/run-text-ux.js
+      - run: node tests/run-golden/run-interaction.js
+      - run: node tests/run-golden/run-asset-library.js
+      - run: node tests/run-golden/run-coupon.js
+      - run: node tests/run-golden/run-coupon-price.js
+      - run: node tests/run-golden/run-export-bundle.js
+      - run: node tests/run-golden/run-diagnostics-panel.js
+      - name: 失敗時留下比對結果
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: golden-diff
+          path: tests/golden-diff/
+          retention-days: 7
+          if-no-files-found: ignore

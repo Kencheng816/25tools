@@ -129,7 +129,11 @@ window.__profileRegistry["_defaults"] = {
     "sync.assetLink": true,
     "sync.productGroup": true,
     "export.bundleSessionArchive": true,
-    "export.bundleDiagnostics": true
+    "export.bundleDiagnostics": true,
+    "diagnostics.skipBlocks": [],
+    "batch.multiProductSplit": false,
+    "export.recordNumberMode": "contentCode",
+    "diagnostics.mutedWarnings": []
   },
   "families": {
     "a": {

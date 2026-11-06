@@ -10,7 +10,11 @@
  *       輸出差異圖到 tests/golden-diff/<case>/，並在結論列出差異像素數。
  *       `診斷報告.txt` 含產生時間，不列入比對（見 tests/golden/README.md）。
  *
- * 用法：node run-golden.js [--case "<id>"] [--batch <i>/<n>] [--threshold 0] [--click-thumbs]
+ * 用法：node run-golden.js [--case "<id>"] [--batch <i>/<n>] [--threshold 0] [--click-thumbs] [--import-flow]
+ *       --update-golden：輸出有意改變時（規則／公版決策），把差異的圖寫回 tests/golden（只寫差異與缺的檔），並印出清單；
+ *       之後要在 tests/golden/README.md 記下日期與原因（自 18節 做法）。
+ *       --import-flow：不走隱藏的舊 input，改走使用者實際用的「匯入工單」彈窗（modules/import-flow.js：工單＋素材一次套用、
+ *       公版用內建 _bundle.js），輸出必須與黃金逐 byte 相同（2026-11-05 自 18節 移植）。
  *       --batch 2/3：只跑第 2 批（案例依序均分成 3 批），供有單次執行時間上限的環境分段跑完。
  *       --click-thumbs：產圖後逐一點過每張縮圖再下載（模擬使用者互動），確認點選不會改變輸出（自 18節 移植：
  *       只走「產圖→下載」抓不到點縮圖時 after-hook 重跑之類的互動路徑）。
@@ -23,16 +27,16 @@ const crypto = require('crypto');
 const { execFileSync } = require('child_process');
 
 const { startStaticServer } = require('../golden-capture/lib/static-server');
-const { launchBrowser } = require('../golden-capture/lib/browser');
+const { launchBrowser, setInputFiles, setInputFilesSorted } = require('../golden-capture/lib/browser');
 const driver = require('../golden-capture/lib/tool-driver');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
 const CASES = JSON.parse(fs.readFileSync(path.join(__dirname, 'cases.json'), 'utf8')).cases;
 const DIFF_ROOT = path.join(REPO_ROOT, 'tests', 'golden-diff');
-const SYNC_DIRS = ['core', 'renderers', 'modules', 'smart-assets', 'vendor', 'fonts', 'config', 'rules', 'templates', 'assets', 'launcher', 'tests/golden-inputs'];
-const SYNC_FILES = ['index.html', 'app.html', 'style.css', 'theme-25.css', '.nojekyll', '.gitattributes'];
+const SYNC_DIRS = ['core', 'renderers', 'modules', 'smart-assets', 'vendor', 'fonts', 'config', 'rules', 'templates', 'assets', 'launcher', 'tour', 'tests/golden-inputs'];
+const SYNC_FILES = ['index.html', 'app.html', 'style.css', 'theme-25.css', 'sw.js', '.nojekyll', '.gitattributes'];
 
-const BOOLEAN_FLAGS = ['--click-thumbs'];
+const BOOLEAN_FLAGS = ['--click-thumbs', '--import-flow', '--update-golden'];
 function parseArgs(argv) {
   const args = {};
   const tokens = argv.filter((token) => !BOOLEAN_FLAGS.includes(token));
@@ -119,13 +123,48 @@ async function extractZip(buffer) {
   return files;
 }
 
+/** GOLDEN_FONTS：字型來源（見 config/fonts.js 的 ?fonts=）。預設 local＝只用內建 TTF（沙箱連不到 GitHub raw，省掉等逾時）；
+ *  要驗證 WOFF2 輸出零誤差時指到一個放 WOFF2 的網址，例如 GOLDEN_FONTS=http://127.0.0.1:PORT/fonts-woff2/ 。 */
+const FONTS_PARAM = process.env.GOLDEN_FONTS || 'local';
+
 /** 開頁並等到分類啟用 → 規則與 core 載入 → App.init 完成 → bootstrap 解除閘門（輸入框啟用）。 */
 async function openWithProfile(page, origin, profileId) {
-  await page.goto(`${origin}/app.html?profile=${encodeURIComponent(profileId)}`, { waitUntil: 'load' });
+  await page.goto(`${origin}/app.html?profile=${encodeURIComponent(profileId)}&fonts=${encodeURIComponent(FONTS_PARAM)}`, { waitUntil: 'load' });
   // 注意：__appReady 是 Promise，waitForFunction 回傳它本身會被 await 成 undefined，所以先轉成布林。
   await page.waitForFunction(() => !!(window.ProfileLoader?.active && window.__rulesLoadResult && window.App && window.__appReady), { timeout: 60000 });
   await page.evaluate(() => window.__appReady);
   await page.waitForFunction(() => !document.getElementById('templateFolderInput').disabled, { timeout: 60000 });
+  // 2026-11-05：進工具頁會自動跳一次匯入彈窗（modules/import-flow.js）；回歸走的是隱藏的舊 input，先把彈窗關掉（關過就不再自動跳）。
+  await page.evaluate(() => window.ImportFlow?.close?.());
+}
+
+/** 匯入工單彈窗路徑：公版用內建的（bootstrap 已載）、素材與工單從彈窗的 <input> 餵、按「確認匯入」等預覽產完。 */
+async function importViaModal(page, workDir, testCase) {
+  const alerts = [];
+  const onDialog = (dialog) => { alerts.push(dialog.message()); dialog.dismiss(); };
+  page.on('dialog', onDialog);
+  try {
+    await page.evaluate(() => window.ImportFlow.open());
+    // 素材與黃金擷取同一種餵法（固定排序、根資料夾名 assets）：B 系素材模糊比對會受資料夾列舉順序與根資料夾名影響（既有行為，不在這次範圍）
+    await setInputFilesSorted(page, 'importAssetInput', testCase.assetsDir, driver.listFilesRecursive(path.join(workDir, testCase.assetsDir)), 'assets');
+    await page.waitForFunction(() => /已選擇 \d+ 張素材/.test(document.getElementById('importAssetsTitle')?.textContent || ''), { timeout: 60000 });
+    await setInputFiles(page, 'importExcelInput', [path.join(workDir, testCase.workbook)]);
+    await page.waitForFunction(() => document.querySelectorAll('#importSheetSelect option').length > 0, { timeout: 60000 });
+    await page.select('#importSheetSelect', testCase.sheet);
+    // A 系（正式BN／暖身BN／MS）載內建公版時「素材載入中」進度視窗會蓋在彈窗上，滑鼠點不到按鈕 → 等它收掉、改用 DOM click
+    await page.waitForFunction(() => !document.getElementById('assetLoadingOverlay')?.classList.contains('is-open'), { timeout: 60000 }).catch(() => {});
+    await page.evaluate(() => document.getElementById('importConfirmBtn').click());
+    await page.waitForFunction(() => document.getElementById('importConfirmBtn')?.disabled === true, { timeout: 10000 }).catch(() => {});
+    await page.waitForFunction(() => document.getElementById('importConfirmBtn')?.disabled === false, { timeout: 180000 });
+    await page.waitForFunction(() => !document.getElementById('assetLoadingOverlay')?.classList.contains('is-open'), { timeout: 60000 }).catch(() => {});
+    return page.evaluate((alertList) => ({
+      error: alertList.find((text) => /匯入失敗/.test(text)) || null,
+      generated: (window.AppState.batchItems || []).length,
+      alerts: alertList,
+    }), alerts);
+  } finally {
+    page.off('dialog', onDialog);
+  }
 }
 
 async function runCase(testCase, workDir, browser, options = {}) {
@@ -142,9 +181,10 @@ async function runCase(testCase, workDir, browser, options = {}) {
       assets: { inputId: 'assetInput', dir: testCase.assetsDir },
       workbook: { inputId: 'excelInput' },
     };
-    await driver.uploadInputs(page, workDir, { uploads, workbook: testCase.workbook });
-    const result = await driver.generate(page, testCase.sheet, testCase.project || '');
-    if (result.error || !result.generated) return { id: testCase.id, status: 'error', detail: result.error || result.alerts.join(' | '), consoleErrors };
+    const result = options.importFlow
+      ? await importViaModal(page, workDir, testCase)
+      : await (async () => { await driver.uploadInputs(page, workDir, { uploads, workbook: testCase.workbook }); return driver.generate(page, testCase.sheet, testCase.project || ''); })();
+    if (result.error || !result.generated) return { id: testCase.id, status: 'error', detail: result.error || (result.alerts || []).join(' | '), consoleErrors };
 
     if (options.clickThumbs) await clickEveryThumb(page);
     const zipBuffer = await driver.exportZip(page);
@@ -168,6 +208,13 @@ async function runCase(testCase, workDir, browser, options = {}) {
     const mappedActualNames = new Set(goldenNames.map((name) => nameMap[name] || name));
     report.extra = actualNames.filter((name) => !mappedActualNames.has(name) && !expectedExtra.has(name));
     if (report.missing.length || report.extra.length || report.mismatches.some((m) => m.mismatch !== 'bytes-only')) report.status = 'fail';
+    if (options.updateGolden && report.status === 'fail') {
+      const written = [];
+      for (const entry of report.mismatches) { fs.writeFileSync(path.join(goldenDir, entry.name), actual.get(entry.actualName)); written.push(entry.name); }
+      for (const name of report.extra) { fs.mkdirSync(path.dirname(path.join(goldenDir, name)), { recursive: true }); fs.writeFileSync(path.join(goldenDir, name), actual.get(name)); written.push(`${name}（新增）`); }
+      report.updated = written;
+      report.status = report.missing.length ? 'fail' : 'pass';
+    }
     return report;
   } finally {
     await page.close();
@@ -190,12 +237,13 @@ async function main() {
   const reports = [];
   try {
     for (const testCase of selected) {
-      const report = await runCase(testCase, workDir, browser, { clickThumbs: args['click-thumbs'] === true });
+      const report = await runCase(testCase, workDir, browser, { clickThumbs: args['click-thumbs'] === true, importFlow: args['import-flow'] === true, updateGolden: args['update-golden'] === true });
       reports.push(report);
       const summary = report.status === 'pass'
-        ? `PASS  ${report.id}  ${report.identical}/${report.golden} 位元組相同${args['click-thumbs'] ? '（已逐張點縮圖）' : ''}`
+        ? `PASS  ${report.id}  ${report.identical}/${report.golden} 位元組相同${args['click-thumbs'] ? '（已逐張點縮圖）' : ''}${args['import-flow'] ? '（走匯入彈窗）' : ''}`
         : `FAIL  ${report.id}  相同 ${report.identical}/${report.golden}，差異 ${report.mismatches?.length || 0}，缺 ${report.missing?.length || 0}，多 ${report.extra?.length || 0}${report.detail ? `：${report.detail}` : ''}`;
       console.log(summary);
+      if (report.updated?.length) console.log(`      已更新黃金 ${report.updated.length} 張：${report.updated.join('、')}`);
     }
   } finally { await browser.close(); }
 

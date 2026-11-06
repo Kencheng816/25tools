@@ -14,7 +14,7 @@ window.__profileRegistry["profile:正式BN"] = {
   "_comment": "flags 只放與 _defaults.json（defaults ＋ families.a）不同的旗標；其餘沿用預設。",
   "flags": {
     "templates.variant": "formal",
-    "export.folderStrategy": "sourceTemplate"
+    "export.folderStrategy": "workOrderContent"
   },
   "_inapplicable": [
     "assets.shopeeVipGuard",

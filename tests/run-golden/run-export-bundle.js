@@ -1,7 +1,7 @@
-/* 下載流程 E2E（自 18節 移植：對話框條列＋「依工單規則（推薦）」、zip 附存檔與診斷報告）
+/* 下載流程 E2E（自 18節 移植：下載直接依工單規則（不跳格式對話框）、zip 附存檔與診斷報告）
  *
  * 每個案例（A 系、B 系、自帶診斷報告的 network 各抽）產圖後：
- *   1. 點「下載圖片」→ 對話框有條列說明（.v3-modal-notes）、主按鈕文字「依工單規則（推薦）」→ 關閉；
+ *   1. 點「下載圖片」→ 不跳格式對話框，直接依工單規則（askImageFormat 回 'auto'）；
  *   2. 以「依工單規則」打包 → zip 內除圖片外，恰好一個 存檔/<…>.25tool.zip 與恰好一個 診斷報告.txt
  *      （network／鏡面／跨夜 原本就有自己的診斷報告 → 不重複附、內容維持原工具格式）；
  *   3. 診斷報告.txt（整合版格式者）含四級標題；
@@ -46,17 +46,10 @@ async function runCase(testCase, workDir, browser) {
     const generated = await driver.generate(pageA, testCase.sheet, testCase.project || '');
     if (generated.error || !generated.generated) return { id: testCase.id, problems: [generated.error || generated.alerts.join(' | ')], errors };
 
-    // 1. 對話框
-    // 直接開對話框（按鈕在左欄「3. 輸出」面板內，headless 視窗裡可能被捲出畫面）；askImageFormat 回傳的 Promise 等使用者點按鈕，不 await。
-    await pageA.evaluate(() => { window.ExportManager.askImageFormat(); });
-    await sleep(300);
-    const dialog = await pageA.evaluate(() => ({
-      notes: document.querySelectorAll('.v3-modal .v3-modal-notes li').length,
-      primary: document.querySelector('.v3-modal [data-format="auto"]')?.textContent?.trim(),
-    }));
-    if (dialog.notes < 4) problems.push(`對話框條列只有 ${dialog.notes} 條`);
-    if (dialog.primary !== '依工單規則（推薦）') problems.push(`主按鈕文字「${dialog.primary}」`);
-    await pageA.evaluate(() => document.querySelector('.v3-modal-backdrop')?.remove());
+    // 1. 下載不再跳格式對話框（2026-11-05 自 18節 移植，modules/topbar.js）：askImageFormat 直接回 'auto'＝依工單規則
+    const format = await pageA.evaluate(() => window.ExportManager.askImageFormat());
+    if (format !== 'auto') problems.push(`askImageFormat 回傳「${format}」，預期 'auto'（頂部列下載應直接依工單規則）`);
+    if (await pageA.$('.v3-modal-backdrop:not(.hidden) [data-format]')) problems.push('下載時不該再跳格式對話框');
 
     // 2. zip 內容
     const zipBuffer = await driver.exportZip(pageA);
@@ -110,7 +103,7 @@ async function main() {
       const report = await runCase(testCase, workDir, browser).catch((error) => ({ id: testCase.id, problems: [error.message], errors: [] }));
       const all = [...(report.problems || []), ...(report.errors || [])];
       if (all.length) { failures += 1; console.log(`FAIL  ${report.id}\n    ${all.join('\n    ')}`); }
-      else console.log(`PASS  ${report.id}  對話框條列＋「依工單規則（推薦）」；zip：${report.summary}；存檔載回再下載相同`);
+      else console.log(`PASS  ${report.id}  下載直接依工單規則（不跳對話框）；zip：${report.summary}；存檔載回再下載相同`);
     }
   } finally {
     await browser.close();

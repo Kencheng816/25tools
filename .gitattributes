@@ -1,25 +1,8 @@
-# Git LFS 只用在「測試資料」：黃金樣本圖、黃金工單。
-# 瀏覽器執行時要讀的檔案（fonts／assets／vendor／templates／config／rules／core／modules）一律不走 LFS——
-# GitHub Pages 與「下載 ZIP」拿到的 LFS 檔是幾行文字的指標檔，不是真檔，字型與素材會載不到。
-# 若 GitHub／GitLab 沒開 LFS，刪掉下面 filter=lfs 的行即回一般 git 存放。
-tests/golden/**/*.png filter=lfs diff=lfs merge=lfs -text
-tests/golden/**/*.jpg filter=lfs diff=lfs merge=lfs -text
-tests/golden/**/*.jpeg filter=lfs diff=lfs merge=lfs -text
-tests/golden/**/*.webp filter=lfs diff=lfs merge=lfs -text
-tests/golden-inputs/** filter=lfs diff=lfs merge=lfs -text
-
-# 執行時需要的目錄：明確關掉 LFS（即使本機曾跑過 git lfs track "*.ttf" 之類的全域規則，這裡的路徑規則優先）
-fonts/** -filter -diff -merge
-assets/** -filter -diff -merge
-vendor/** -filter -diff -merge
-templates/** -filter -diff -merge
-fonts/** binary
-assets/**/*.png binary
-assets/**/*.jpg binary
-assets/**/*.jpeg binary
-assets/**/*.webp binary
-assets/**/*.gif binary
-
+# 2026-10-14：不再使用 Git LFS。
+# 原因：GitHub 的 Download ZIP／GitHub Pages 不含 LFS 真檔，沒裝 git-lfs 的電腦 clone 也只會拿到指標檔，
+# 免費方案 LFS 流量 1GB/月幾次就用完——結果字型／素材變成 130 byte 的文字檔，程式悄悄改用替代字型，輸出會變。
+# 整個 repo 約 490MB、單檔最大 72MB（assets/暖身BN/01_頭巾/01_頭巾_CTA_兌換完畢.png），GitHub／GitLab 一般 git 都放得下（單檔上限 100MB）。
+# 若 repo 以前推過 LFS 版本，請照 docs/上傳步驟.md 的「從 LFS 換回一般檔」做一次。
 # 文字檔統一 LF
 *.js text eol=lf
 *.json text eol=lf
@@ -28,3 +11,17 @@ assets/**/*.gif binary
 *.md text eol=lf
 *.yml text eol=lf
 *.svg text eol=lf
+# 二進位檔不做換行轉換
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.gif binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.xlsx binary
+*.xls binary
+*.xlsm binary
+*.zip binary
