@@ -42,7 +42,10 @@ function main() {
     fs.readFileSync(attributes, 'utf8').split('\n').map((line) => line.trim())
       .filter((line) => line && !line.startsWith('#') && /filter=lfs/.test(line))
       .forEach((line) => problems.push(`.gitattributes 仍有 LFS 規則「${line}」：本專案不使用 Git LFS，請移除`));
-  }
+    // 2026-11-06：本機全域 ~/.gitattributes 的 filter=lfs 會蓋過 repo 的 binary 規則（推上 GitHub 變指標檔），repo 要明確寫「* -filter」才壓得住
+    const lines = fs.readFileSync(attributes, 'utf8').split('\n').map((line) => line.trim());
+    if (!lines.some((line) => /^\*\s+.*-filter(\s|$)/.test(line))) problems.push('.gitattributes 缺少「* -filter」：沒有它，本機全域的 LFS 設定會把 png／jpg 推成指標檔（2026-11-06 實際踩到）');
+  } else problems.push('缺少 .gitattributes（需要 * -filter 擋掉本機全域的 LFS 設定）');
   if (!fs.existsSync(path.join(REPO_ROOT, '.nojekyll'))) problems.push('缺少根目錄 .nojekyll：GitHub Pages 會用 Jekyll 建站並略過底線開頭的 config/profiles/_defaults.js，請建立空檔 .nojekyll');
 
   if (problems.length) {

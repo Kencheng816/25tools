@@ -3,6 +3,10 @@
 # 免費方案 LFS 流量 1GB/月幾次就用完——結果字型／素材變成 130 byte 的文字檔，程式悄悄改用替代字型，輸出會變。
 # 整個 repo 約 490MB、單檔最大 72MB（assets/暖身BN/01_頭巾/01_頭巾_CTA_兌換完畢.png），GitHub／GitLab 一般 git 都放得下（單檔上限 100MB）。
 # 若 repo 以前推過 LFS 版本，請照 docs/上傳步驟.md 的「從 LFS 換回一般檔」做一次。
+#
+# 2026-11-06：GitHub Actions 的 check 抓到 tests/golden 的 jpg／png 推上去變成 LFS 指標檔——
+# 原因是本機（全域 ~/.gitattributes 或 git lfs track）把 *.png／*.jpg 交給 LFS，repo 這份沒有明確取消就會被全域設定蓋過。
+# 所以這裡每一種二進位檔都加 -filter -diff -merge（明確「不走 LFS」，repo 設定優先於全域），再加一條 * -filter 兜底。
 # 文字檔統一 LF
 *.js text eol=lf
 *.json text eol=lf
@@ -11,17 +15,21 @@
 *.md text eol=lf
 *.yml text eol=lf
 *.svg text eol=lf
-# 二進位檔不做換行轉換
-*.png binary
-*.jpg binary
-*.jpeg binary
-*.webp binary
-*.gif binary
-*.ttf binary
-*.otf binary
-*.woff binary
-*.woff2 binary
-*.xlsx binary
-*.xls binary
-*.xlsm binary
-*.zip binary
+# 二進位檔不做換行轉換、也不走 LFS（-filter）
+*.png binary -filter
+*.jpg binary -filter
+*.jpeg binary -filter
+*.webp binary -filter
+*.gif binary -filter
+*.ttf binary -filter
+*.otf binary -filter
+*.woff binary -filter
+*.woff2 binary -filter
+*.xlsx binary -filter
+*.xls binary -filter
+*.xlsm binary -filter
+*.zip binary -filter
+*.psd binary -filter
+*.psb binary -filter
+# 兜底：這個 repo 任何檔案都不走 LFS
+* -filter
