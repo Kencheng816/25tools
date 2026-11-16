@@ -127,6 +127,7 @@ window.__profileRegistry["_defaults"] = {
     "export.transparentToPng": true,
     "layers.lockOnLoadPatterns": ["*kv_bg*"],
     "sync.assetLink": true,
+    "sync.assetLinkExcludePatterns": [],
     "sync.productGroup": true,
     "export.bundleSessionArchive": true,
     "export.bundleDiagnostics": true,

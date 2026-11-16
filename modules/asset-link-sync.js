@@ -32,8 +32,17 @@
       return name.trim().normalize('NFKC').toLowerCase();
     },
 
+    /** 旗標 sync.assetLinkExcludePatterns（正則字串陣列）：命中圖層名的不連動（2026-11-16：正式／暖身BN 的 DECO_* 小素材預設各張自己調）。 */
+    isExcludedByName(key, layer) {
+      const patterns = flag('sync.assetLinkExcludePatterns', []);
+      if (!Array.isArray(patterns) || !patterns.length) return false;
+      const names = [String(key || ''), String(layer?.psdName || ''), String(layer?.name || '')];
+      return patterns.some((pattern) => { try { const re = new RegExp(pattern); return names.some((name) => name && re.test(name)); } catch (_) { return false; } });
+    },
+
     isEligible(key, layer, template) {
       if (!layer || layer.type !== 'image' || layer.__nonInteractive || !String(layer.assetFilename || '').trim()) return false;
+      if (this.isExcludedByName(key, layer)) return false;
       // single-size-asset-sync 設定的圖層（同素材同尺寸一比一同步）由它負責，這裡讓開避免重複套用。
       if (window.SingleSizeAssetSync?.config?.eligibleLayers?.includes?.(key)) return false;
       // network／跨夜的規格素材由 multi-size-asset-sync 連動（有自己的比例邏輯），也讓開。

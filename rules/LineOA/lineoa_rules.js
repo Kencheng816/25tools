@@ -366,6 +366,41 @@
   // ── 商品套圖上傳格（01_LineOA_Template_push）──────────────
   // 套品範圍不輸出成實際線條/色塊，只作為商品顯示範圍（遮罩）使用；
   // 超過範圍的部分由 maskLayerName 自動裁切。
+  // （二校二修 V2 #7，自 18節 搬入）商品槽比套品範圍往內縮一圈留白（短邊的 5%），商品圖才不會頂到白卡邊緣；
+  // 遮罩仍是整個套品範圍（使用者自己放大超過留白時照舊裁切）。
+  const PRODUCT_SLOT_INSET_RATIO = 0.05;
+  function insetBox(box, ratio) {
+    const inset = Math.round(Math.min(Number(box.width || 0), Number(box.height || 0)) * ratio);
+    return { x: box.x + inset, y: box.y + inset, width: Math.max(1, box.width - inset * 2), height: Math.max(1, box.height - inset * 2) };
+  }
+  // （25節 自加）02_RM 這類公版的套品範圍本身壓在同一格的 CTA 底色上，商品圖 contain 進去會被「點我搶」蓋到：
+  // 商品槽再避開 商品_0X_CTA_BG（哪一邊切掉最少就切哪一邊，並留同樣的留白）。
+  function avoidLayerBox(box, obstacle, gap) {
+    if (!obstacle) return box;
+    const o = { left: obstacle.x - gap, top: obstacle.y - gap, right: obstacle.x + obstacle.width + gap, bottom: obstacle.y + obstacle.height + gap };
+    const b = { left: box.x, top: box.y, right: box.x + box.width, bottom: box.y + box.height };
+    if (o.left >= b.right || o.right <= b.left || o.top >= b.bottom || o.bottom <= b.top) return box;
+    const cuts = [
+      { side: 'bottom', cost: b.bottom - o.top },
+      { side: 'top', cost: o.bottom - b.top },
+      { side: 'right', cost: b.right - o.left },
+      { side: 'left', cost: o.right - b.left },
+    ].filter((cut) => cut.cost > 0).sort((a, c) => a.cost - c.cost);
+    const cut = cuts[0];
+    if (!cut) return box;
+    if (cut.side === 'bottom') return { ...box, height: Math.max(1, o.top - b.top) };
+    if (cut.side === 'top') return { ...box, y: o.bottom, height: Math.max(1, b.bottom - o.bottom) };
+    if (cut.side === 'right') return { ...box, width: Math.max(1, o.left - b.left) };
+    return { ...box, x: o.right, width: Math.max(1, b.right - o.right) };
+  }
+  /** 商品槽的實際框：套品範圍內縮 5%，再避開同一格的 CTA 底色。 */
+  function productSlotBox(template, mask, productNo) {
+    const maskBox = layerBox(mask);
+    const inset = Math.round(Math.min(Number(maskBox.width || 0), Number(maskBox.height || 0)) * PRODUCT_SLOT_INSET_RATIO);
+    const ctaBg = productNo ? findLayer(template, `商品_${productNo}_CTA_BG`) : null;
+    return avoidLayerBox(insetBox(maskBox, PRODUCT_SLOT_INSET_RATIO), ctaBg && !ctaBg.hidden ? layerBox(ctaBg) : null, inset);
+  }
+
   function applySlotGeometryFromBox(layer, box) {
     if (!layer || !box) return;
     layer.x = box.x;
@@ -420,7 +455,7 @@
         template.layers[slot.key] = layer;
       }
       if (options.resetGeometry || !Number.isFinite(Number(layer.centerX))) {
-        applySlotGeometryFromBox(layer, layerBox(mask));
+        applySlotGeometryFromBox(layer, productSlotBox(template, mask, slot.product));
         layer.sizingMode = 'containByPBox';
       }
 
@@ -569,6 +604,53 @@
   }
 
   // ── 套版 ───────────────────────────────────────────────
+  // （二校二修 V2 #7，自 18節 搬入）品名換行：中文 1 字元、英數符號 0.5 字元，每行 5 字元就換行；最多 2 行，
+  // 第 2 行還放不下就等比縮字（以公版原字級為基準，重套工單不會越縮越小）。工單自己有斷行的照工單。
+  // 只有商品在品名左邊、品名框本身是兩行高的選單公版（02_RM、04_RM）才換行；01_push 品名在商品下方單行框，不換。
+  const PRODUCT_NAME_LAYER_PATTERN = /^商品_\d{2}_品名$/;
+  const PRODUCT_NAME_WRAP_TEMPLATE_IDS = new Set(['02_LineOA_Template_RM', '04_LineOA_Template_RM']);
+  const templateIdOf = (template) => String(template?.canvas?.templateId || template?.templateId || '').replace(/\.psd$/i, '');
+  const PRODUCT_NAME_UNITS_PER_LINE = 5;
+  const charUnits = (ch) => (/[\u2e80-\u9fff\uf900-\ufaff\uff00-\uffef]/.test(ch) ? 1 : 0.5);
+  const textUnits = (text) => [...String(text || '')].reduce((sum, ch) => sum + charUnits(ch), 0);
+  function wrapProductName(raw) {
+    const text = String(raw || '').trim();
+    if (!text || text.includes('\n')) return { text, scale: 1 };
+    const chars = [...text.replace(/\s+/g, ' ')];
+    let units = 0;
+    let cut = chars.length;
+    for (let i = 0; i < chars.length; i += 1) {
+      const next = units + charUnits(chars[i]);
+      if (next > PRODUCT_NAME_UNITS_PER_LINE) { cut = i; break; }
+      units = next;
+    }
+    if (cut >= chars.length) return { text: chars.join(''), scale: 1 };
+    // 切點落在詞中間、而第 1 行裡有空格（例：「萬歲牌 堅果日記」）→ 退到空格處換行，不把「堅果」拆成兩行
+    const lastSpace = chars.slice(0, cut).lastIndexOf(' ');
+    if (chars[cut] !== ' ' && lastSpace > 0) cut = lastSpace;
+    const line1 = chars.slice(0, cut).join('').trim();
+    const line2 = chars.slice(cut).join('').trim();
+    const line2Units = textUnits(line2);
+    return { text: `${line1}\n${line2}`, scale: line2Units > PRODUCT_NAME_UNITS_PER_LINE ? PRODUCT_NAME_UNITS_PER_LINE / line2Units : 1 };
+  }
+  function applyProductNameWrap(layer) {
+    const wrapped = wrapProductName(layer.text);
+    if (!Number.isFinite(Number(layer.__lineoaBaseFontSize))) layer.__lineoaBaseFontSize = Number(layer.fontSizePx) || 24;
+    layer.text = wrapped.text;
+    layer.fontSizePx = Math.round(layer.__lineoaBaseFontSize * wrapped.scale * 100) / 100;
+    if (wrapped.scale < 1) layer.lineHeight = Math.round(layer.fontSizePx * 1.1 * 100) / 100;
+  }
+  // 品名預設置頂（換行公版）：單行貼齊框頂、兩行從頂排起；使用者手動調過垂直對齊（__userAdjustedVAlign）則不覆蓋。
+  function applyProductNameVerticalDefaults(template) {
+    if (!PRODUCT_NAME_WRAP_TEMPLATE_IDS.has(templateIdOf(template))) return;
+    Object.entries(template?.layers || {}).forEach(([key, layer]) => {
+      if (!layer || layer.type !== 'text') return;
+      if (!PRODUCT_NAME_LAYER_PATTERN.test(String(layer.psdName || key))) return;
+      if (layer.__userAdjustedVAlign === true) return;
+      if (layer.textVerticalAlign === undefined) layer.textVerticalAlign = 'top';
+    });
+  }
+
   function applyTextLayer(template, layerName, value, diagnostics, field = layerName) {
     const layer = findLayer(template, layerName);
     if (!layer || layer.type !== 'text') {
@@ -577,6 +659,7 @@
     }
     layer.text = String(value).trim();
     layer.hidden = false;
+    if (PRODUCT_NAME_LAYER_PATTERN.test(String(layerName)) && PRODUCT_NAME_WRAP_TEMPLATE_IDS.has(templateIdOf(template))) applyProductNameWrap(layer);
     // 多行文案（需求：工單斷行 → 自動兩行）：PSD 匯出的 lineHeight 來自單行文字，
     // 常小於字級（例：主案型 fs=80、lineHeight=58）→ 兩行會互相重疊。
     // 有斷行且行高小於字級時，改用 1.1 倍字級行距；單行文字不動。
@@ -624,9 +707,13 @@
     return { layer: findLayer(template, fallbackName), target: fallbackName };
   }
 
+  // （二校二修 V2 #8，使用者 2026-11-13 決定）券上的金額要跟券圖一樣斜：PSD 匯出時價格層的角度掉了，固定補 -6.5°。
+  // 只在公版沒給角度時補；使用者在畫布上自己轉過（rotation 已有值）就照使用者的。
+  const COUPON_PRICE_ROTATION_DEG = -6.5;
   function applyPriceStyledText(layer, value) {
     layer.text = String(value).replace(/，/g, ',').trim();
     layer.hidden = false;
+    if (!Number(layer.rotation)) layer.rotation = COUPON_PRICE_ROTATION_DEG;
     applyLineoaPriceRanges(layer);
   }
 
@@ -972,12 +1059,15 @@
     const kvSlot = KV_SLOTS.find((item) => item.key === slotKey);
     const geometrySourceName = kvSlot?.bg || layer.maskLayerName || '';
     const source = geometrySourceName ? findLayer(template, geometrySourceName) : null;
-    const box = source ? layerBox(source) : {
-      x: 0,
-      y: 0,
-      width: Math.max(1, Number(template?.canvas?.width || 1)),
-      height: Math.max(1, Number(template?.canvas?.height || 1)),
-    };
+    const productSlot = PRODUCT_SLOTS.find((item) => item.key === slotKey);
+    const box = source
+      ? (productSlot ? productSlotBox(template, source, productSlot.product) : layerBox(source))
+      : {
+        x: 0,
+        y: 0,
+        width: Math.max(1, Number(template?.canvas?.width || 1)),
+        height: Math.max(1, Number(template?.canvas?.height || 1)),
+      };
     applySlotGeometryFromBox(layer, box);
 
     // KV：BG 底色還原成吸色前的原色。
@@ -1209,6 +1299,7 @@
     window.SPTextStandard?.applyTemplateNonPriceText?.(template);
     unifyMainCaseVerticalMode(template); // 主案型垂直模式統一（需在全域標準之後，避免被內容差異分岔）
     applyPriceDecorations(template); // 79.5% 價格大小字 + 原價刪除線（需在寬度量測/置中排版之前）
+    applyProductNameVerticalDefaults(template); // 02_RM／04_RM 品名置頂（配合 5 字換行）
     layoutInfoSection(template);
     layoutAllProductPrices(template);
   }

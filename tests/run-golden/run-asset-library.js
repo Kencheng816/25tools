@@ -20,9 +20,14 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function pickImageLayer(page) {
   return page.evaluate(async () => {
     const AppState = window.AppState;
+    // 2026-11-16：挑的圖層中心點不能被疊在上面的別層蓋住（HBN 新公版 DECO 排在 P_01 下面），不然步驟 5 點空槽會點到上面那層。
     const pick = (template) => Object.keys(template.layers).find((name) => {
       const layer = template.layers[name];
-      return layer.type === 'image' && !layer.hidden && !layer.locked && !layer.__nonInteractive && !layer.smartAssetId && !layer.__assetSpec && !layer.__uploadSlot && String(layer.assetFilename || '').trim();
+      if (!(layer.type === 'image' && !layer.hidden && !layer.locked && !layer.__nonInteractive && !layer.smartAssetId && !layer.__assetSpec && !layer.__uploadSlot && String(layer.assetFilename || '').trim())) return false;
+      const order = [...(template.renderOrder || [])];
+      const above = order.slice(order.indexOf(name) + 1).map((key) => template.layers[key]).filter((other) => other && !other.hidden && other.type !== 'text');
+      const cx = Number(layer.x) + Number(layer.width) / 2; const cy = Number(layer.y) + Number(layer.height) / 2;
+      return !above.some((other) => cx >= other.x && cx <= other.x + other.width && cy >= other.y && cy <= other.y + other.height);
     });
     const index = AppState.templates.findIndex((item) => pick(item.data));
     if (index < 0) return { error: '沒有一般圖片圖層可測' };

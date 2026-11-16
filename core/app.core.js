@@ -26,6 +26,19 @@
    */
   const CORE_LINEAGE = window.__profile?.family && window.__profile.family !== 'a' ? 'b' : 'a';
   const pickLineage = (implA, implB) => (CORE_LINEAGE === 'b' ? implB : implA);
+  // （二校二修 V2 #6，2026-11-16）等「下一幀」：分頁在前景走 requestAnimationFrame（跟原本一樣）；
+  // 分頁切到背景時 Chrome 不跑 rAF，產圖會整個停住 → 改走 MessageChannel 的即時回呼。
+  // 等待中途被切到背景也會立刻放行（visibilitychange），不會卡在永遠不來的那一幀。
+  const nextFrame = () => new Promise((resolve) => {
+    let done = false;
+    const finish = () => { if (done) return; done = true; document.removeEventListener('visibilitychange', onHidden); resolve(); };
+    const viaChannel = () => { const channel = new MessageChannel(); channel.port1.onmessage = finish; channel.port2.postMessage(0); };
+    const onHidden = () => { if (document.hidden) viaChannel(); };
+    if (document.hidden) { viaChannel(); return; }
+    document.addEventListener('visibilitychange', onHidden);
+    requestAnimationFrame(finish);
+  });
+  window.nextFrame = nextFrame;
   const normStr = (value) => String(value || '')
     .toLowerCase()
     .replace(/\.[a-z0-9]+$/i, '')
@@ -979,7 +992,7 @@
       // 防止批次縮圖背景載入時覆蓋目前畫布的圖片快取。
       if (seq === AppState.imageLoadSeq) {
         AppState.images = images;
-        try { await new Promise(requestAnimationFrame); } catch (_) {}
+        try { await nextFrame(); } catch (_) {}
         // 圖片載入完成後，只讓非 edited-json absolute 的價格圖層重新依圖片實際尺寸同步。
         // edited JSON 寫回的 absolute 價格座標必須先保持原始絕對值；
         // 商品圖若由使用者手動移動 / 縮放，會由 handleLayerBoxApplied 即時連動價格。
@@ -1313,7 +1326,7 @@
     },
     loadImage(src) { return new Promise((resolve, reject) => { const img = new Image(); const s = String(src); if (/^https?:\/\//i.test(s)) img.crossOrigin = 'anonymous';
         const timer = setTimeout(() => reject(new Error('image load timeout')), 8000);
-        img.onload = async () => { clearTimeout(timer); try { if (img.decode) await img.decode(); } catch (_) {} await new Promise(requestAnimationFrame); resolve(img); };
+        img.onload = async () => { clearTimeout(timer); try { if (img.decode) await img.decode(); } catch (_) {} await nextFrame(); resolve(img); };
         img.onerror = (err) => { clearTimeout(timer); reject(err); };
         img.src = src;
       });
@@ -1638,7 +1651,7 @@
       // 防止批次縮圖背景載入時覆蓋目前畫布的圖片快取。
       if (seq === AppState.imageLoadSeq) {
         AppState.images = images;
-        try { await new Promise(requestAnimationFrame); } catch (_) {}
+        try { await nextFrame(); } catch (_) {}
         // 圖片載入完成後，只讓非 edited-json absolute 的價格圖層重新依圖片實際尺寸同步。
         // edited JSON 寫回的 absolute 價格座標必須先保持原始絕對值；
         // 商品圖若由使用者手動移動 / 縮放，會由 handleLayerBoxApplied 即時連動價格。
@@ -1788,7 +1801,7 @@
     },
     loadImage(src) { return new Promise((resolve, reject) => { const img = new Image(); const s = String(src); if (/^https?:\/\//i.test(s)) img.crossOrigin = 'anonymous';
         const timer = setTimeout(() => reject(new Error('image load timeout')), 8000);
-        img.onload = async () => { clearTimeout(timer); try { if (img.decode) await img.decode(); } catch (_) {} await new Promise(requestAnimationFrame); resolve(img); };
+        img.onload = async () => { clearTimeout(timer); try { if (img.decode) await img.decode(); } catch (_) {} await nextFrame(); resolve(img); };
         img.onerror = (err) => { clearTimeout(timer); reject(err); };
         img.src = src;
       });
@@ -3639,7 +3652,15 @@
       const bottomAligned = this.isTextBottomAligned(drawableLayer);
       const sourceBaselineAligned = this.isTextSourceBaselineAligned(drawableLayer);
       const bottomPadding = Math.max(0, Number(drawableLayer.textBottomPaddingPx || 0));
-      const defaultStartY = drawableLayer.y + Math.max(0, (drawableLayer.height - lines.length * lineHeight) / 2);
+      // 垂直對齊 textVerticalAlign（自 18節 LineOA 搬入，純超集）：'top' 置頂／'bottom' 置底／其餘＝置中（原行為）。
+      // 'bottom' 在此之前已由 isTextBottomAligned 攔走，兩邊行為等價；'top' 目前只有 LineOA 規則（商品品名）會用。
+      const verticalAlign = String(drawableLayer.textVerticalAlign || '').toLowerCase();
+      const textBlockHeight = lines.length * lineHeight;
+      const defaultStartY = verticalAlign === 'top'
+        ? drawableLayer.y
+        : verticalAlign === 'bottom'
+          ? drawableLayer.y + Math.max(0, drawableLayer.height - textBlockHeight)
+          : drawableLayer.y + Math.max(0, (drawableLayer.height - textBlockHeight) / 2);
       const x = drawableLayer.align === 'left'
         ? drawableLayer.x
         : drawableLayer.align === 'right'
@@ -4816,7 +4837,15 @@
       const bottomAligned = this.isTextBottomAligned(drawableLayer);
       const sourceBaselineAligned = this.isTextSourceBaselineAligned(drawableLayer);
       const bottomPadding = Math.max(0, Number(drawableLayer.textBottomPaddingPx || 0));
-      const defaultStartY = drawableLayer.y + Math.max(0, (drawableLayer.height - lines.length * lineHeight) / 2);
+      // 垂直對齊 textVerticalAlign（自 18節 LineOA 搬入，純超集）：'top' 置頂／'bottom' 置底／其餘＝置中（原行為）。
+      // 'bottom' 在此之前已由 isTextBottomAligned 攔走，兩邊行為等價；'top' 目前只有 LineOA 規則（商品品名）會用。
+      const verticalAlign = String(drawableLayer.textVerticalAlign || '').toLowerCase();
+      const textBlockHeight = lines.length * lineHeight;
+      const defaultStartY = verticalAlign === 'top'
+        ? drawableLayer.y
+        : verticalAlign === 'bottom'
+          ? drawableLayer.y + Math.max(0, drawableLayer.height - textBlockHeight)
+          : drawableLayer.y + Math.max(0, (drawableLayer.height - textBlockHeight) / 2);
       const x = drawableLayer.align === 'left'
         ? drawableLayer.x
         : drawableLayer.align === 'right'
@@ -11433,7 +11462,7 @@
 
     waitForPreviewFrame() {
       return new Promise((resolve) => {
-        requestAnimationFrame(() => requestAnimationFrame(resolve));
+        nextFrame().then(nextFrame).then(resolve);
       });
     },
 
@@ -13535,7 +13564,7 @@
 
     waitForPreviewFrame() {
       return new Promise((resolve) => {
-        requestAnimationFrame(() => requestAnimationFrame(resolve));
+        nextFrame().then(nextFrame).then(resolve);
       });
     },
 

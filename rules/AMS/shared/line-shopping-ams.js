@@ -153,6 +153,41 @@
   // 25節的引擎把 P_範圍 當成「參考框（placement guide）」，匯出時不畫它。
   // 所以商品圖不能像 18節那樣把 P_範圍 自己改成 image，
   // 而是照 25節的做法另外生成一個商品圖層，位置＝參考框、遮罩＝指定圖層。
+  // （2026-11-17 使用者回報，比照 LineOA）商品格比 P_範圍 往內縮一圈留白（短邊的 5%），商品不會貼到格子邊被切；
+  // 再避開同一張裡的 CTA 底色（CTA_BG／CTA_*_BG）：哪一邊切掉最少就切哪一邊，並留同樣留白。P_範圍 本身不動。
+  const PRODUCT_SAFE_INSET_RATIO = 0.05;
+  const CTA_OBSTACLE = /^CTA(_.*)?_BG$|^CTA_BG/;
+  function insetBox(box, ratio) {
+    const inset = Math.round(Math.min(num(box.width), num(box.height)) * ratio);
+    return { x: box.x + inset, y: box.y + inset, width: Math.max(1, box.width - inset * 2), height: Math.max(1, box.height - inset * 2), inset };
+  }
+  function avoidBox(box, obstacle, gap) {
+    const o = { left: obstacle.x - gap, top: obstacle.y - gap, right: obstacle.x + obstacle.width + gap, bottom: obstacle.y + obstacle.height + gap };
+    const b = { left: box.x, top: box.y, right: box.x + box.width, bottom: box.y + box.height };
+    if (o.left >= b.right || o.right <= b.left || o.top >= b.bottom || o.bottom <= b.top) return box;
+    const cut = [
+      { side: 'bottom', cost: b.bottom - o.top },
+      { side: 'top', cost: o.bottom - b.top },
+      { side: 'right', cost: b.right - o.left },
+      { side: 'left', cost: o.right - b.left },
+    ].filter((item) => item.cost > 0).sort((p, q) => p.cost - q.cost)[0];
+    if (!cut) return box;
+    if (cut.side === 'bottom') return { ...box, height: Math.max(1, o.top - b.top) };
+    if (cut.side === 'top') return { ...box, y: o.bottom, height: Math.max(1, b.bottom - o.bottom) };
+    if (cut.side === 'right') return { ...box, width: Math.max(1, o.left - b.left) };
+    return { ...box, x: o.right, width: Math.max(1, b.right - o.right) };
+  }
+  function productSafeBox(template, guide) {
+    let box = insetBox({ x: num(guide.x), y: num(guide.y), width: num(guide.width), height: num(guide.height) }, PRODUCT_SAFE_INSET_RATIO);
+    const gap = box.inset;
+    Object.keys(template.layers || {}).forEach((key) => {
+      const layer = template.layers[key];
+      if (!layer || layer.hidden || !CTA_OBSTACLE.test(key)) return;
+      box = avoidBox(box, { x: num(layer.x), y: num(layer.y), width: num(layer.width), height: num(layer.height) }, gap);
+    });
+    return box;
+  }
+
   function createProductLayer(template, options = {}) {
     const guideName = options.guideName || 'P_範圍';
     const layerName = options.layerName || '商品圖1';
@@ -163,11 +198,12 @@
 
     markGuide(guide);
 
-    const x = num(guide.x);
-    const y = num(guide.y);
-    const width = num(guide.width);
-    const height = num(guide.height);
-    if (!(width > 0) || !(height > 0)) return null;
+    if (!(num(guide.width) > 0) || !(num(guide.height) > 0)) return null;
+    const safe = productSafeBox(template, guide);
+    const x = safe.x;
+    const y = safe.y;
+    const width = safe.width;
+    const height = safe.height;
 
     const existing = template.layers[layerName];
     const layer = {
@@ -180,8 +216,8 @@
       y,
       width,
       height,
-      centerX: num(guide.centerX, x + width / 2),
-      centerY: num(guide.centerY, y + height / 2),
+      centerX: x + width / 2,
+      centerY: y + height / 2,
       // P_範圍 轉了幾度，商品圖就跟著轉幾度。
       // 引擎的 drawImage 是繞中心旋轉，所以 x/y/width/height 沿用參考框的未旋轉框即可。
       rotation: num(guide.rotation, 0),

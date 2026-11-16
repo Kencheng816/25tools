@@ -236,6 +236,18 @@
     return (AppState?.templates || []).map((item, index) => ({ item, index }));
   }
 
+  /** （2026-11-13 文案規則，自 18節 搬入）禁用語／字數／標點／數字格式／警語日期／蝦幣條件：規則在 config/copy-rules.js，檢查在 modules/copy-lint.js；字數上限依目前工具。 */
+  function collectCopyLint(collector, entries) {
+    const lint = window.CopyLint?.lintTemplate;
+    if (typeof lint !== 'function') return;
+    const profileId = window.ProfileLoader?.active?.id || '';
+    entries.forEach(({ item, index }) => {
+      let issues = [];
+      try { issues = lint(item.data, profileId) || []; } catch (_) { return; }
+      issues.forEach((issue) => collector.add(issue.tier === 'critical' ? 'critical' : 'important', issue.kind, item.name, issue.detail, index));
+    });
+  }
+
   /** 同步彙整（不載圖片）。 */
   function collect() {
     const { AppState, Renderer } = core();
@@ -246,6 +258,7 @@
     collectAssetDiagnostics(collector, entries);
     collectPriceIssues(collector, entries);
     collectTextOverflow(collector, entries, Renderer, AppState);
+    collectCopyLint(collector, entries);
     collectSkippedRows(collector, AppState);
     collectDuplicateNames(collector, entries);
     collectInfo(collector, AppState, entries);

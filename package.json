@@ -18,12 +18,14 @@
     "test:diagnostics": "node tests/run-golden/run-diagnostics-panel.js",
     "test:edit-flows": "node tests/run-golden/run-edit-flows.js",
     "test:tour": "node tests/run-golden/run-tour.js",
+    "test:copy-lint": "node tests/run-copy-lint.js",
+    "test:loading-game": "node tests/run-golden/run-loading-game.js",
     "build:tour-sample": "node tests/tools/build-tour-sample.js",
     "test:text-edit": "node tests/run-golden/run-text-edit.js",
     "test:text-ux": "node tests/run-golden/run-text-ux.js",
     "test:interaction": "node tests/run-golden/run-interaction.js",
     "test:asset-library": "node tests/run-golden/run-asset-library.js",
-    "test:all": "npm run check && npm run test:launcher && npm run test:golden && npm run test:click-export && npm run test:roundtrip && npm run test:manual-assets && npm run test:manual-fit && npm run test:text-edit && npm run test:text-ux && npm run test:interaction && npm run test:asset-library && npm run test:coupon && npm run test:coupon-price && npm run test:export-bundle && npm run test:diagnostics && npm run test:edit-flows && npm run test:tour"
+    "test:all": "npm run check && npm run test:copy-lint && npm run test:launcher && npm run test:golden && npm run test:click-export && npm run test:roundtrip && npm run test:manual-assets && npm run test:manual-fit && npm run test:text-edit && npm run test:text-ux && npm run test:interaction && npm run test:asset-library && npm run test:coupon && npm run test:coupon-price && npm run test:export-bundle && npm run test:diagnostics && npm run test:edit-flows && npm run test:tour && npm run test:loading-game"
   },
   "devDependencies": {
     "@sparticuz/chromium": "152.0.0",

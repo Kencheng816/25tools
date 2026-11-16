@@ -23,7 +23,8 @@ window.__profileRegistry["profile:暖身BN"] = {
     "smartAsset.multiProductLink": false,
     "smartAsset.skipHiddenProduct": false,
     "interaction.markThumbStale": false,
-    "ui.rotateHandleAnchor": "topRight"
+    "ui.rotateHandleAnchor": "topRight",
+    "sync.assetLinkExcludePatterns": ["^DECO_"]
   },
   "_inapplicable": [
     "assets.shopeeVipGuard",

@@ -207,6 +207,44 @@
     layer.styledTextVerticalAlign = 'source-baseline';
   }
 
+  // （二校二修 V2 #2，2026-11-16）文字縮進 P_範圍：套完文案後量每個顯示中的文字層實際寬度，
+  // 超過 P_範圍 的寬度就等比縮字（fontSizePx 與每段 range 一起縮），字級不動位置、框的中心不變。
+  // 公版沒有 P_範圍 圖層就不做；縮到 60% 以下另外提醒文字太長。
+  var FIT_RANGE_LAYER = 'P_範圍';
+  var FIT_MIN_SCALE = 0.6;
+  function fitTextIntoRange(template, args) {
+    var range = getLayer(template, FIT_RANGE_LAYER);
+    var measure = args && args.helpers && typeof args.helpers.measureTextWidth === 'function' ? args.helpers.measureTextWidth : null;
+    if (!range || !measure) return;
+    var maxWidth = Number(range.width) || 0;
+    if (!(maxWidth > 0)) return;
+    Object.keys(template.layers || {}).forEach(function (key) {
+      var layer = template.layers[key];
+      if (!layer || layer.type !== 'text' || layer.hidden || !String(layer.text || '').trim()) return;
+      if (layer.__manualOverrides && layer.__manualOverrides.fontSizePx) return;
+      // 先套全域大小字標準（核心在這個 hook 之後也會套同一套），量到的才是最後畫出來的寬度
+      if (window.SPTextStandard && typeof window.SPTextStandard.applyNonPriceTextLayer === 'function') window.SPTextStandard.applyNonPriceTextLayer(layer, key);
+      var measured = Number(measure(layer)) || 0;
+      if (!(measured > maxWidth)) return;
+      var scale = maxWidth / measured;
+      var scaleTo = function (value) { return Math.round(Number(value) * scale * 100) / 100; };
+      layer.fontSizePx = scaleTo(layer.fontSizePx);
+      if (layer.fontSizePt) layer.fontSizePt = scaleTo(layer.fontSizePt);
+      if (layer.lineHeight) layer.lineHeight = scaleTo(layer.lineHeight);
+      (layer.textStyleRanges || []).forEach(function (item) { if (item && item.fontSizePx) item.fontSizePx = scaleTo(item.fontSizePx); });
+      if (layer.textBaselineReference && layer.textBaselineReference.fontSizePx) layer.textBaselineReference = Object.assign({}, layer.textBaselineReference, { fontSizePx: scaleTo(layer.textBaselineReference.fontSizePx) });
+      if (Array.isArray(args.diagnostics)) {
+        args.diagnostics.push({
+          field: 'AR案型',
+          status: scale < FIT_MIN_SCALE ? 'warning' : 'ok',
+          kind: scale < FIT_MIN_SCALE ? '版面提醒' : undefined,
+          value: String(layer.text),
+          target: (layer.psdName || key) + '：文字寬 ' + Math.round(measured) + 'px 超過 P_範圍 ' + Math.round(maxWidth) + 'px，字級縮到 ' + Math.round(scale * 100) + '%' + (scale < FIT_MIN_SCALE ? '（文字太長，請縮短文案）' : ''),
+        });
+      }
+    });
+  }
+
   function applyVariant(template, context) {
     var lines = context.lines;
     var key = context.variant.key;
@@ -369,6 +407,7 @@
     var context = args.template && args.template.__arVariantContext || buildContext(args.record || {});
     validateContext(args, context);
     applyVariant(args.template, context);
+    fitTextIntoRange(args.template, args);
     args.template.arVariant = context.variant.key;
     if (Array.isArray(args.diagnostics)) {
       args.diagnostics.push({
@@ -390,5 +429,5 @@
   };
 
   window.TemplateRuleRegistry.register(FAMILY, rule);
-  window.__AR_RULE_VERSION = '2026-11-06｜AR特規Parser＋複合曝光＋自動備註No＋五型Variant＋2上2下借用2上3下';
+  window.__AR_RULE_VERSION = '2026-11-16｜AR特規Parser＋複合曝光＋自動備註No＋五型Variant＋2上2下借用2上3下＋文字縮進P_範圍';
 })();

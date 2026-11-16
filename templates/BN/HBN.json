@@ -1,5 +1,5 @@
 {
-  "_comment": "整合版雙版型公版：formal＝正式BN 01_HBN.json、warmup＝暖身BN 02_HBN.json；由工單分頁自動選用。",
+  "_comment": "整合版雙版型公版：formal＝正式BN 01_HBN.json、warmup＝暖身BN 02_HBN.json；由工單分頁自動選用。 2026-11-16：warmup 版型加 DECO_錢幣_右上／DECO_券_左下 獨立圖層（底圖 02_HBN_KV_BG.png 已去掉蝦幣與券），讓暖身也能像正式一樣調整小素材。",
   "variants": {
     "formal": {
       "sourceFile": "01_HBN.json",
@@ -4108,7 +4108,7 @@
       }
     },
     "warmup": {
-      "sourceFile": "02_HBN.json",
+      "sourceFile": "02_HBN.json [2026-11-16 加 DECO_錢幣_右上／DECO_券_左下]",
       "template": {
         "templateId": "02_HBN",
         "version": "2.6.2-subtitle-frame-order",
@@ -4136,10 +4136,12 @@
             "height": 18,
             "centerX": 1156.5,
             "centerY": 312,
+            "rotation": 0,
             "fill": "#FFFFFF",
             "shape": {
               "kind": "polygon",
               "fill": "#FFFFFF",
+              "fillEnabled": true,
               "stroke": {
                 "enabled": false,
                 "width": 0,
@@ -4148,6 +4150,7 @@
                 "raw": null
               },
               "cornerRadius": 0,
+              "cornerRadii": null,
               "pathBounds": {
                 "x": 1151.125,
                 "y": 303.625,
@@ -4168,6 +4171,8 @@
                   "centerY": 312.3125
                 },
                 "corners": [],
+                "rotation": 0,
+                "unrotatedBox": null,
                 "polygonSides": null,
                 "maxOuterCornerRadius": null,
                 "transform": null,
@@ -4426,6 +4431,7 @@
             "height": 28,
             "centerX": 1052.5,
             "centerY": 312,
+            "rotation": 0,
             "text": "放心買 安心退",
             "fontSizePt": 29,
             "fontSizePx": 29,
@@ -4468,10 +4474,12 @@
             "height": 44,
             "centerX": 1058,
             "centerY": 312,
+            "rotation": 0,
             "fill": "#000000",
             "shape": {
               "kind": "roundedRectangle",
               "fill": "#000000",
+              "fillEnabled": true,
               "stroke": {
                 "enabled": false,
                 "width": 1,
@@ -4527,6 +4535,12 @@
                 }
               },
               "cornerRadius": 8,
+              "cornerRadii": {
+                "topLeft": 8,
+                "topRight": 8,
+                "bottomRight": 8,
+                "bottomLeft": 8
+              },
               "pathBounds": {
                 "x": 938,
                 "y": 290,
@@ -4564,6 +4578,15 @@
                     "y": 334
                   }
                 ],
+                "rotation": 0,
+                "unrotatedBox": {
+                  "x": 938,
+                  "y": 290,
+                  "width": 239.999,
+                  "height": 44,
+                  "centerX": 1058,
+                  "centerY": 312
+                },
                 "polygonSides": null,
                 "maxOuterCornerRadius": null,
                 "transform": {
@@ -5202,6 +5225,7 @@
             "height": 87,
             "centerX": 150.5,
             "centerY": 131.5,
+            "rotation": 0,
             "assetFilename": "02_HBN_蝦皮VIP_LOGO.png"
           },
           "蝦皮VIP_主標題_右": {
@@ -5213,6 +5237,7 @@
             "height": 58,
             "centerX": 466.5,
             "centerY": 147,
+            "rotation": 0,
             "text": "獨享25%蝦幣",
             "fontSizePt": 60.66,
             "fontSizePx": 60.66,
@@ -5281,6 +5306,7 @@
             "height": 87,
             "centerX": 267,
             "centerY": 138.5,
+            "rotation": 0,
             "assetFilename": "02_HBN_蝦皮直營_LOGO.png"
           },
           "蝦皮直營_主標題_右": {
@@ -5292,6 +5318,7 @@
             "height": 72,
             "centerX": 551,
             "centerY": 141,
+            "rotation": 0,
             "text": "限定",
             "fontSizePt": 75,
             "fontSizePx": 75,
@@ -5334,6 +5361,7 @@
             "height": 71,
             "centerX": 341.5,
             "centerY": 139.5,
+            "rotation": 0,
             "text": "全站滿千折$200",
             "fontSizePt": 75,
             "fontSizePx": 75,
@@ -5353,32 +5381,6 @@
             "textStyleRanges": [
               {
                 "from": 0,
-                "to": 5,
-                "fontSizePx": 75,
-                "fontSizePtRaw": 59.94089126586914,
-                "fontFamily": "ShopeeNotoSans Content",
-                "fontWeight": "700",
-                "fontStyleName": "Bold",
-                "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
-                "color": "#FFFFFF",
-                "lineHeight": 90,
-                "letterSpacing": 0
-              },
-              {
-                "from": 5,
-                "to": 6,
-                "fontSizePx": 75,
-                "fontSizePtRaw": 59.94089126586914,
-                "fontFamily": "ShopeeNotoSans Content",
-                "fontWeight": "700",
-                "fontStyleName": "Bold",
-                "fontPostScriptName": "ShopeeNotoSanscontent-Bold",
-                "color": "#FFFFFF",
-                "lineHeight": 90,
-                "letterSpacing": 0
-              },
-              {
-                "from": 6,
                 "to": 10,
                 "fontSizePx": 75,
                 "fontSizePtRaw": 59.94089126586914,
@@ -5391,7 +5393,7 @@
                 "letterSpacing": 0
               }
             ],
-            "dominantStyleSource": "textStyleRange-dominant"
+            "dominantStyleSource": "textStyleRange"
           },
           "subtitle": {
             "type": "text",
@@ -5402,6 +5404,7 @@
             "height": 55,
             "centerX": 341,
             "centerY": 231.5,
+            "rotation": 0,
             "text": "不限店家無限免運",
             "fontSizePt": 58,
             "fontSizePx": 58,
@@ -5444,10 +5447,12 @@
             "height": 80,
             "centerX": 340.5,
             "centerY": 232,
+            "rotation": 0,
             "fill": "#113366",
             "shape": {
               "kind": "rectangle",
               "fill": "#113366",
+              "fillEnabled": true,
               "stroke": {
                 "enabled": false,
                 "width": 0,
@@ -5456,6 +5461,7 @@
                 "raw": null
               },
               "cornerRadius": 0,
+              "cornerRadii": null,
               "pathBounds": {
                 "x": 38,
                 "y": 192,
@@ -5493,6 +5499,15 @@
                     "y": 1526
                   }
                 ],
+                "rotation": 0,
+                "unrotatedBox": {
+                  "x": 244,
+                  "y": 1450,
+                  "width": 535,
+                  "height": 76,
+                  "centerX": 511.5,
+                  "centerY": 1488
+                },
                 "polygonSides": null,
                 "maxOuterCornerRadius": null,
                 "transform": {
@@ -6134,6 +6149,7 @@
             "height": 23,
             "centerX": 340.5,
             "centerY": 292.5,
+            "rotation": 0,
             "text": "免運優惠須依店家適用之物流為主",
             "fontSizePt": 24,
             "fontSizePx": 24,
@@ -6176,12 +6192,37 @@
             "height": 234,
             "centerX": 922.5,
             "centerY": 157,
+            "rotation": 0,
             "assetFilename": "02_HBN_P.png",
             "role": "曝品",
             "alignX": "custom",
             "sizingMode": "widthBased",
             "keepAspectRatio": true,
             "targetWidth": 439
+          },
+          "DECO_錢幣_右上": {
+            "type": "image",
+            "psdName": "DECO_錢幣_右上",
+            "x": 977,
+            "y": 23,
+            "width": 184,
+            "height": 106,
+            "centerX": 1069,
+            "centerY": 76,
+            "rotation": 0,
+            "assetFilename": "02_HBN_DECO_錢幣_右上.png"
+          },
+          "DECO_券_左下": {
+            "type": "image",
+            "psdName": "DECO_券_左下",
+            "x": 715,
+            "y": 202,
+            "width": 206,
+            "height": 138,
+            "centerX": 818,
+            "centerY": 271,
+            "rotation": 0,
+            "assetFilename": "02_HBN_DECO_券_左下.png"
           },
           "kv_bg": {
             "type": "image",
@@ -6192,6 +6233,7 @@
             "height": 360,
             "centerX": 600,
             "centerY": 180,
+            "rotation": 0,
             "assetFilename": "02_HBN_KV_BG.png"
           }
         },
@@ -6217,6 +6259,8 @@
         },
         "renderOrder": [
           "kv_bg",
+          "DECO_券_左下",
+          "DECO_錢幣_右上",
           "product",
           "保護文字",
           "副標題_底色",

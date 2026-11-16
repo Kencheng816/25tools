@@ -11,7 +11,7 @@
  */
 'use strict';
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2'; // 2026-11-17 二校二修 V2 上線：換快取名，舊的 v1 在 activate 清掉，第一次開頁就拿到整套新程式
 const CACHES = { fonts: `25tool-fonts-${CACHE_VERSION}`, html: `25tool-html-${CACHE_VERSION}`, static: `25tool-static-${CACHE_VERSION}` };
 const FONT_HOSTS = ['raw.githubusercontent.com'];
 const STATIC_EXT = /\.(js|css|json|png|jpe?g|webp|gif|svg|ico)$/i;

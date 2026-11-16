@@ -50,6 +50,8 @@ modules/product-group-sync.js  商品圖↔價格等比連動（智慧物件引�
 modules/multi-select.js    Shift 多選
 modules/shortcut-help.js   工具列「⌨ 快捷鍵」卡片
 modules/diagnostics-panel.js  左欄診斷摘要＋右側診斷面板（依版位分卡；進階模式）
+config/copy-rules.js       文案規則資料（用字替換、禁用語、字數上限依工具、放行片段）；modules/copy-lint.js 自動校正＋檢查（匯入工單／面板／畫布三個入口）
+modules/loading-snake.js   素材載入視窗 >30 張時的「等待時玩一下（貪食蛇）」（純前端、不碰產圖）
 modules/diagnostics-report.js  診斷彙整四級分類（旗標 diagnostics.skipBlocks／mutedWarnings；文字超出框分三級：超畫布／超框 50%＝橘、小幅超框＝資訊＋工單字數建議、公版範例本身超框不報）
 modules/coupon-price-sync.js  換票券素材後價格重算
 modules/asset-library.js   素材庫
@@ -97,6 +99,8 @@ npm run test:export-bundle      # 下載：直接依工單規則、zip 附存檔
 npm run test:diagnostics        # 診斷面板（依版位分卡；先開進階模式）
 npm run test:tour               # 新手導覽：?tour=1 自動開始、每步打亮與示範、完成後清掉範例回到匯入視窗；沒有 ?tour 的自動化環境不自動跑
 npm run test:edit-flows         # 手動編輯流程：改主標／改副標顏色進下載、其他張不變、存檔往返；商品合成 0.6 倍價格跟著縮／還原回黃金；「A + B」拆與不拆
+npm run test:loading-game        # 載入視窗貪食蛇（>30 張才出現、開關、按鍵不外漏）＋背景分頁 nextFrame 不卡
+npm run test:copy-lint          # 文案規則單元測試（不開瀏覽器）：用字替換、字元算法、數字格式、依工具字數上限、MS 不刪空格
 node tests/run-golden/run-golden.js --case "正式BN/BN 正式"   # 單一案例
 node tests/run-golden/run-golden.js --batch 1/4               # 分批跑（單次執行有時間上限的環境）
 node tests/run-golden/run-golden.js --case "暖身BN/BN 暖身" --update-golden   # 輸出有意改變時重拍黃金（只寫差異檔；要在 tests/golden/README.md 記原因）
@@ -121,3 +125,22 @@ CI：GitHub 用 `.github/workflows/ci.yml`（`check` 每次 push 都跑；`golde
 | 其餘程式與設定 | < 10 MB | |
 
 不使用 Git LFS（原因見上一節）；`.gitattributes` 只管換行與二進位標記。clone 約 505 MB。
+
+## 變更紀錄（二校二修 V2，2026-11-13 起）
+反饋表「25節」Sheet A15 以下 8 筆，分六批：①文案規則 → ②LineOA 曝品＋券角度 → ③正式／暖身BN LOGO 文字色＋字級表（含 HBN 新公版） → ④AR 縮進 P_範圍 → ⑤AFF 等待小遊戲＋背景分頁不停 → ⑥OM LOGO 黃金。
+- **第①批 文案規則（2026-11-16）**：自 18節 搬入 `config/copy-rules.js`＋`modules/copy-lint.js`＋`tests/run-copy-lint.js`（`npm run test:copy-lint`，在 `test:all`）。自動改字：撒→灑；主／副標補 $＋千分位、刪中文旁空格；警語補 $＋千分位、日期區間「M/D - M/D」；套用點＝匯入工單（依欄位名）、面板欄位離開、畫布雙擊改字確認（依圖層名）。只進診斷：禁用語、字數（中 1／其他 0.5）、主副標標點、蝦幣警語條件。
+  25節 差異：字數上限依工具（共用 8／8／14，LineOA／OM 12，MS 21）；放行「5.25」「25號」後面的空格與 MS 的「|」；MS 不刪、不提示中文旁空格（攻略頁一行兩句靠空格）；跳過 `__sourceCells`／`__hostName`／`__outputName`。
+  修正 18節 原版 bug：「滿$999折$100」被改成「滿999折$100」（折 後面接數字或 $ 時不當單位），18節 已同步回修。
+  黃金：跨夜 AR_02「狂撒→狂灑」1 張重拍；OM_w1 35 張（Template×15、UAC×20）因使用者更新 `黃字對外.svg`（商城狂購節 黃→白）重拍，舊的在 `tests/golden-legacy/外廣OM_wave1_LOGO黃字/`；其餘 10 套逐 byte 不變。
+  **已知未修**：`templates/BN/HBN.json` 2026-11-11 換成新公版（圖層名 product／DECO_…），正式BN HBN 15 張與 edit-flows compose-single 目前與黃金不同（商品圖不見、票券過大），第③批改 `01_HBN_rules.js` 對新公版後重拍。`tests/golden-legacy/正式BN_HBN_舊公版/`、`跨夜_copy-rules/` 是比對時留下的，可刪。
+- **第②批 LineOA 曝品＋券金額角度（2026-11-16）**：`rules/LineOA/lineoa_rules.js`——商品上傳格比 `商品_0X_套品範圍` 內縮短邊 5%（自 18節 搬入；遮罩不變），再避開同一格的 `商品_0X_CTA_BG`（25節 自加：02_RM 的套品範圍本身壓在「點我搶」上，哪一邊切最少就切哪邊、留同樣留白；上傳／清除後重設幾何也走同一個框）。品名 5 字換行（中 1／英數 0.5，最多 2 行、第 2 行塞不下等比縮字、詞中間退到空格）只對商品在左、品名框兩行高的 02_RM／04_RM 開，並預設置頂（core `drawText` 兩套實作加 `textVerticalAlign: 'top'|'bottom'`，純超集）。券上的金額 `活動_0X_價格01` 公版沒角度時固定補 −6.5°（使用者 2026-11-13 給的角度；使用者自己轉過的不蓋）。
+  黃金：LineOA「Line OA」4 張（0524／0525 選單＋推文-2）重拍，舊的在 `tests/golden-legacy/LineOA_曝品內縮前/`；LineOA_Wave1、其餘工具不變。asset-library 正式BN 案例目前紅＝同上 HBN 新公版問題，第③批一起看。
+- **第③批 BN LOGO 文字色＋字級表＋HBN 新公版（2026-11-16）**：`rules/正式BN|暖身BN/shared/warmup-banner-rule-factory.js` 加 `applyBrandTextColors`（使用者 2026-11-13 規則：副標有 LOGO → 副標 LOGO 前後字白、主標黃；主標有 LOGO → 主標 LOGO 前後字白、副標黃；黃＝該公版一般副標原色、公版自己已是黃色系的圖層保留自己的黃；面板／畫布手動改過色不動；rule `brandTextColors:false` 可關）。字級表進各 rule 的 `fontSizes`（DDC 55／40／22／VIP 主右 46／直營 55；POPUP 55／40／25／VIP 副右 35／VIP 主右 43.85／直營 50.68；HBN 75／58／24／60.66／75），factory 新增 `fontSizes.protect`、變體路徑（DD Card）各角色改吃 `fontSizes`。
+  HBN 公版（以 914 舊版為主）：`templates/BN/HBN.json` 維持雙版型一檔（`variants.formal`＝正式 01_HBN 27 層、`variants.warmup`＝暖身 02_HBN），暖身版型加 `DECO_錢幣_右上`／`DECO_券_左下` 兩層獨立小素材（使用者提供去掉蝦幣與券的 `assets/暖身BN/02_HBN/02_HBN_KV_BG.png`；素材用 `共用素材/DECO_錢幣_右上.png`、`DECO_券_左下.png`，已從正式複製一份到暖身的共用素材），暖身 factory 補上正式才有的 `resolveDecoLayers`。`01_HBN_rules.js` 維持四型態變體＋P_01／P_02，字級表進 `fontSizes`（副標 VIP 那組沒列、維持公版原字級：factory 變體路徑對 subVip 改讀 `fontSizes.subVip`）。
+  **小素材預設不連動**：`modules/asset-link-sync.js` 新旗標 `sync.assetLinkExcludePatterns`（正則字串陣列，比對圖層名），正式BN／暖身BN 設 `["^DECO_"]`，DECO 小素材各張自己調；其他圖層連動照舊。
+  測試：`run-asset-library` 挑測試圖層時避開中心點被上層蓋住的（新 HBN 的 DECO 在 P_01 下面）。黃金：正式BN 15 張（HBN 2：主標 VIP 字級 60.66、DD Card 4、POPUP 9）、暖身BN 20 張（HBN 12：DECO 獨立層＋新底圖、DD Card 3、POPUP 5）重拍，舊的在 `tests/golden-legacy/正式BN_V2第③批前/`、`暖身BN_V2第③批前/`。
+- **第④批 AR 文字縮進 P_範圍（2026-11-16）**：使用者重匯 `templates/BN/06_AR.json`（多 `P_範圍` 參考層 13,13,74,74）。`rules/暖身BN/06_AR_rules.js` 的 `fitTextIntoRange`：套完案型後量每個顯示中文字層的實際寬度（先套全域大小字標準再量），超過 P_範圍 寬就等比縮字（fontSizePx／ranges／lineHeight 一起縮，位置不動）；縮到 60% 以下另外「版面提醒」；使用者手動改過字級的不動；公版沒有 P_範圍 就不做（跨夜 AR 目前沒有這層，維持原樣）。黃金：暖身BN 07_AR 14 張重拍，舊的在 `tests/golden-legacy/暖身BN_AR縮進前/`。
+- **第⑤批 AFF 等待小遊戲＋背景分頁不停（2026-11-16）**：`modules/loading-snake.js`——素材載入視窗（LoadingOverlay）顯示「正在載入素材 N / M」且 M > 30 時，卡片多一顆「等待時玩一下（貪食蛇）」，按下在卡片裡開 Canvas 貪食蛇（方向鍵／WASD、空白鍵或點畫面重開；遊戲中這幾個鍵不交給工具），視窗關掉就收。`core/app.core.js` 新增 `nextFrame()`：原本 6 處 `await requestAnimationFrame`（loadImage ×2、loadImagesForActiveTemplate ×2、waitForPreviewFrame ×2）改走它——前景照舊 rAF，分頁切到背景（Chrome 不跑 rAF）改走 MessageChannel 立刻回來，等待中被切到背景也立刻放行 → 產圖／下載在背景分頁會繼續跑（只是 setTimeout 被瀏覽器降速，會慢一點）。`npm run test:loading-game`。黃金：network 151／正式BN 92 逐 byte 不變。
+- **2026-11-17 收尾**：DD Card 警語（保護文字）四型態統一 24（原本一般／直營／主標VIP 22、副標VIP 24 → 使用者回報「尺寸未定」）；正式 HBN 副標VIP 那組警語也統一 24（`fontSizes.subVip.protect`）。黃金：正式BN DD Card 13 張＋HBN 2 張、暖身BN DD Card 12 張重拍，舊的在 `tests/golden-legacy/BN_警語22/`。`sw.js` 快取名升 v2（上線後第一次開頁就清掉舊快取，不會新舊程式混用）。
+- **2026-11-17 AMS 商品格安全邊**（使用者回報，比照 LineOA）：`rules/AMS/shared/line-shopping-ams.js` 的商品圖層改放在 `P_範圍` 內縮短邊 5% 的框裡，再避開同一張的 `CTA_BG`／`CTA_*_BG`（哪一邊切最少切哪邊、留同樣留白）；P_範圍 參考框本身不動。黃金：AMS 9 張重拍，舊的在 `tests/golden-legacy/AMS_商品格內縮前/`。
+

@@ -48,3 +48,25 @@ A 系（AssetLookup 歧義即拋錯）不受順序影響。
 ├─ session.json       AppState.templates 全量（座標／文字／顏色）
 └─ capture-meta.json  chrome、rule 清單、產出數、警告、skipped、輸入檔 sha256
 ```
+
+## 2026-11-16 二校二修 V2 第①批（文案規則）
+- 跨夜 `5.PN_AR_02_100x100.jpg`：狂撒→狂灑（用字替換）。
+- 外廣OM wave1 Template×15、UAC_Pmax_LineLAP×20：使用者更新 `assets/OM_w1/橫式_25號商城狂購節_LOGO_黃字對外.svg`（「商城狂購節」黃→白），其餘像素相同；舊圖在 `tests/golden-legacy/外廣OM_wave1_LOGO黃字/`。
+
+## 2026-11-16 二校二修 V2 第②批（LineOA 曝品）
+- LineOA「Line OA」`0524_選單.jpg`、`0525_選單.jpg`、`0524_推文-2.png`、`0525_推文-2.png`：商品格內縮 5%＋避開 CTA_BG、券金額 −6.5°；舊圖在 `tests/golden-legacy/LineOA_曝品內縮前/`。
+
+## 2026-11-16 二校二修 V2 第③批（BN 文字色＋字級表＋HBN 新公版）
+- 正式BN：01_HBN 2 張（HBN14／21 主標 VIP 字級 60.66＋文字色）、02_DD Card 4 張、03_POPUP 9 張（字級表＋LOGO 文字色）。
+- 暖身BN：02_HBN 12 張（DECO_錢幣_右上／DECO_券_左下 改獨立圖層＋新底圖）、03_DD Card 3 張、04_POPUP 5 張（字級表＋LOGO 文字色）。
+- 舊圖在 `tests/golden-legacy/正式BN_V2第③批前/`、`tests/golden-legacy/暖身BN_V2第③批前/`。
+
+## 2026-11-16 二校二修 V2 第④批（AR 縮進 P_範圍）
+- 暖身BN 07_AR 14 張：文字超過 P_範圍（74px）等比縮字；舊圖在 `tests/golden-legacy/暖身BN_AR縮進前/`。
+
+## 2026-11-17 DD Card／HBN 警語統一 24
+- 正式BN 02_DD Card 13 張、01_HBN HBN19／24；暖身BN 03_DD Card 12 張。舊圖在 `tests/golden-legacy/BN_警語22/`。
+
+## 2026-11-17 AMS 商品格內縮 5%＋避 CTA
+- Line購物AMS 9 張全部重拍（商品圖框縮小）；舊圖在 `tests/golden-legacy/AMS_商品格內縮前/`。
+

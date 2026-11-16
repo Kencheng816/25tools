@@ -26,7 +26,9 @@
     mainGroupGap: 9,
     priceBigFontSize: 48,
     // 留空表示使用 JSON 載入時保存的原始字級：一般55 / VIP46.02 / 直營55 / 副標40。
-    fontSizes: {},
+    // 字級表（使用者 2026-11-13）：主標題 55／副標題 40／保護文字 22／蝦皮VIP_主標題_右 46／蝦皮直營_主標題_右 55
+    // 字級表（使用者 2026-11-13；2026-11-17 警語改 24）
+    fontSizes: { plain: 55, subtitle: 40, protect: 24, vip: 46, direct: 55 },
   });
 
   window.__DD_CARD_RULE_VERSION = '2026-08-05a｜新增03_DD Card｜HBN共用架構＋群組中心對齊';

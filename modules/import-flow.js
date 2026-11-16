@@ -267,6 +267,14 @@
     return active ? candidates.filter((id) => id === active.id) : candidates;
   }
 
+  /** 目前分類（或群組內各分類）的 sheetHints 依序攤平：預設選分頁時，排前面的 hint 優先。 */
+  async function preferredSheetOrder() {
+    const index = await window.ProfileLoader.loadIndex();
+    const active = activeProfile();
+    const profiles = active ? index.filter((profile) => profile.id === active.id) : index;
+    return profiles.flatMap((profile) => (profile.sheetHints || []).map((hint) => String(hint).trim()));
+  }
+
   /** 分頁名「完全等於」某個分類的 sheetHints（trim 後）才算精準命中；只是包含關鍵字的算部分命中。 */
   async function isExactSheetMatch(sheetName, profileIds) {
     const index = await window.ProfileLoader.loadIndex();
@@ -288,7 +296,12 @@
       if (!ids.length) continue;
       (await isExactSheetMatch(name, ids) ? exact : partial).push(name);
     }
-    const matched = exact.length ? exact : partial;
+    // 2026-11-17：同時有多個精準命中（LineOA 工單同時有「LineOA_Wave1」「Line OA」）時，預設選的不是工單裡排前面的，
+    // 而是分類 sheetHints 排前面的（LineOA 的 hints 是 ['Line OA','LineOA_Wave1']，主分頁在前；Wave1 是保留的次要分頁，
+    // 工單裡它排在前面，以前就會被預設選到，產出的是只有佔位格的推文-2，使用者以為沒載到）。
+    const hintOrder = await preferredSheetOrder();
+    const byHint = (name) => { const index = hintOrder.indexOf(String(name).trim()); return index < 0 ? hintOrder.length : index; };
+    const matched = (exact.length ? exact : partial).slice().sort((a, b) => byHint(a) - byHint(b));
     select.innerHTML = state.sheetNames.map((name) =>
       `<option value="${escapeHtml(name)}">${matched.includes(name) ? '✓ ' : ''}${escapeHtml(name)}</option>`).join('');
     select.value = matched[0] || state.sheetNames[0] || '';

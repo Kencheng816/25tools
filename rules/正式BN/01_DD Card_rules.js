@@ -73,8 +73,9 @@
     },
     mainGroupGap: 9,
     priceBigFontSize: 48,
-    // 變體模式字級一律取 JSON 原始圖層（title 55 / 副蝦皮VIP_主標題 51.93 / 蝦皮VIP_主標題_右 46.02…）。
-    fontSizes: {},
+    // 字級表（使用者 2026-11-13；2026-11-17 警語改 24）：主標題 55／副標題 40／警語（保護文字）24／蝦皮VIP_主標題_右 46／蝦皮直營_主標題_右 55
+    // 副標 VIP 那組（副蝦皮VIP_*）主副標維持公版原字級，只有警語也統一 24（四型態警語才會一樣大）。
+    fontSizes: { plain: 55, subtitle: 40, protect: 24, vip: 46, direct: 55, subVip: { protect: 24 } },
   });
 
   window.__DD_CARD_RULE_VERSION = '2026-08-13b｜正式案01_DD Card｜主標VIP例外（icon白色/LOGO雙形態）＋四型態變體';

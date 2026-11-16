@@ -1258,6 +1258,14 @@
     "default": true
   },
   {
+    "key": "sync.assetLinkExcludePatterns",
+    "type": "list",
+    "affects": "interaction",
+    "summary": "智慧型物件連動的排除名單（正則字串陣列，比對圖層 key／psdName／name）：命中的圖片圖層不跨版位連動，各張自己調。2026-11-16 二校二修 V2：正式BN／暖身BN 設 [\"^DECO_\"]（DECO_錢幣_右上／DECO_券_左下 小素材預設不連動）；其餘工具空陣列。",
+    "source": "25節 二校二修 V2 2026-11-16",
+    "default": []
+  },
+  {
     "key": "sync.productGroup",
     "type": "bool",
     "affects": "interaction",

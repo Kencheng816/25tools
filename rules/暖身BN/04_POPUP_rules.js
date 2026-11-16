@@ -39,7 +39,8 @@
     mainGroupGaps: { vip: 6, direct: 7 },
     subtitleGroupGap: 5,
     priceBigFontSize: 48,
-    fontSizes: {},
+    // 字級表（使用者 2026-11-13）：主標題 55／副標題 40／保護文字 25／蝦皮VIP_副標題_右 35／蝦皮VIP_主標題_右 43.85／蝦皮直營_主標題_右 50.68
+    fontSizes: { plain: 55, subtitle: 40, protect: 25, vipSubtitle: 35, vip: 43.85, direct: 50.68 },
     layerKeys: { subBg: '副標題_底圖' },
     vipSubtitleSplit: true,
     subtitleBackgroundMode: 'content-padding',

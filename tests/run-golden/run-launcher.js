@@ -5,7 +5,7 @@
  *    匯入彈窗自動跳出（關掉不再跳）、版面健檢（左欄／主畫布／縮圖欄都是 .app-shell 的直接子元素、畫布在視窗裡）。
  * 3. 多分類卡片（外廣 OM）：點卡片 → 彈窗選工單與分頁 → 確認匯入 → 依分頁啟用 OM_w2、載入公版、產生預覽、空狀態收起。
  *    工單同時有 Wave1／wave2 分頁時，彈窗兩個都打 ✓、預選第一個；群組外的分頁（Line OA）不打 ✓。
- * 4. Line OA（封測 P0-3）：工單同時有「Line OA」「LineOA_Wave1」與備份分頁「CopyRita原本的Line OA」→ 只有前兩個打 ✓（精準命中優先），
+ * 4. Line OA（封測 P0-3）：工單同時有「Line OA」「LineOA_Wave1」與備份分頁「CopyRita原本的Line OA」→ 只有前兩個打 ✓（精準命中優先）、預設選「Line OA」（2026-11-17），
  *    確認匯入「Line OA」後產生預覽。
  * http 與 file:// 各跑一次（使用者多半是雙擊 index.html 開啟）。
  *
@@ -157,6 +157,8 @@ async function caseLineOaExactSheet(page, baseUrl, workDir) {
   const options = await sheetOptions(page);
   const matched = options.filter((o) => o.matched).map((o) => o.value);
   if (matched.join('|') !== 'LineOA_Wave1|Line OA') problems.push(`打 ✓ 的分頁：${matched.join('、')}（備份分頁「CopyRita原本的Line OA」不該打 ✓）`);
+  // 2026-11-17：兩個精準命中時預設選 sheetHints 排前面的「Line OA」（主分頁），不是工單裡排前面的「LineOA_Wave1」（保留的次要分頁，只會產出佔位格）
+  if ((await page.$eval('#importSheetSelect', (el) => el.value)) !== 'Line OA') problems.push('預設應選「Line OA」（主分頁），不是工單裡排前面的 LineOA_Wave1');
   await page.select('#importSheetSelect', 'Line OA');
   await confirmImportAndCheck(page, problems, { profileId: 'LineOA', sheetName: 'Line OA' });
   return problems;

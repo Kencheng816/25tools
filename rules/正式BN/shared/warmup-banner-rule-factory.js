@@ -266,6 +266,52 @@
     return isFinite(fallback) && fallback >= 0 ? fallback : 0;
   }
 
+
+  // ── 品牌 LOGO 文字色（二校二修 V2 #1，使用者 2026-11-13 決定）──
+  // 副標有 LOGO（副標含 VIP）→ 副標 LOGO 前後的字白、主標黃；主標有 LOGO（主標含 VIP／蝦皮直營）→ 主標 LOGO 前後的字白、副標黃。
+  // 黃＝這張公版「一般副標」圖層原本的顏色（各公版自己的黃，不另定色碼）；白＝#FFFFFF。都沒有 LOGO → 各圖層回自己原色。
+  // 使用者在面板／畫布改過顏色（__manualOverrides.color）的圖層不動；rule 設 brandTextColors:false 可整個關掉。
+  var BRAND_WHITE = '#FFFFFF';
+  function setTextColor(layer, color) {
+    if (!layer || !color) return;
+    layer.color = color;
+    (layer.textStyleRanges || []).forEach(function (range) {
+      if (!range) return;
+      range.color = color;
+      if (range.fill !== undefined) range.fill = color;
+    });
+  }
+  // 公版自己已經是黃色系的圖層（例：DD Card 的 副蝦皮VIP_主標題 #FFFD3E）保留自己的黃，不硬改成副標的黃。
+  function isYellowish(hex) {
+    var m = /^#?([0-9a-f]{6})$/i.exec(String(hex || '').trim());
+    if (!m) return false;
+    var r = parseInt(m[1].slice(0, 2), 16), g = parseInt(m[1].slice(2, 4), 16), b = parseInt(m[1].slice(4, 6), 16);
+    return r >= 200 && g >= 170 && b <= 120;
+  }
+  function rememberBaseColor(layer) {
+    if (layer && !layer.__brandBaseColor && layer.color) layer.__brandBaseColor = layer.color;
+    return layer && layer.__brandBaseColor;
+  }
+  function applyBrandTextColors(template, config, roles) {
+    if (!template || config.brandTextColors === false) return;
+    var yellowSource = getLayer(template, roles.yellowSource);
+    var yellow = rememberBaseColor(yellowSource) || '#FFE600';
+    var paint = function (keys, color) {
+      (keys || []).forEach(function (key) {
+        var layer = key ? getLayer(template, key) : null;
+        if (!layer || layer.type !== 'text' || layer.hidden) return;
+        if (layer.__manualOverrides && layer.__manualOverrides.color) return;
+        var base = rememberBaseColor(layer);
+        var target = color || base;
+        if (color && color !== BRAND_WHITE && isYellowish(base)) target = base;
+        setTextColor(layer, target);
+      });
+    };
+    if (roles.subtitleHasLogo) { paint(roles.subtitleKeys, BRAND_WHITE); paint(roles.titleKeys, yellow); }
+    else if (roles.titleHasLogo) { paint(roles.titleKeys, BRAND_WHITE); paint(roles.subtitleKeys, yellow); }
+    else { paint(roles.titleKeys, null); paint(roles.subtitleKeys, null); }
+  }
+
   function applyTitle(template, record, helpers, config, keys, centerX) {
     var raw = trim(record['主標']);
     var isVip = /vip/i.test(raw);
@@ -325,13 +371,13 @@
       textLayer.align = 'left';
       textLayer.x = round2(groupLeft + logoWidth + groupGap);
       textLayer.centerX = round2(textLayer.x + textWidth / 2);
-      return { width: groupWidth, centerX: centerX };
+      return { width: groupWidth, centerX: centerX, variantKind: variantKind, textLayerKey: textLayerKey };
     }
 
     textLayer.align = 'center';
     textLayer.x = round2(centerX - textWidth / 2);
     textLayer.centerX = round2(centerX);
-    return { width: textWidth, centerX: centerX };
+    return { width: textWidth, centerX: centerX, variantKind: variantKind, textLayerKey: textLayerKey };
   }
 
   function applySubtitle(template, record, helpers, config, keys, centerX) {
@@ -386,13 +432,16 @@
     return width;
   }
 
-  function applyProtectText(template, record, keys, centerX) {
+  function applyProtectText(template, record, keys, centerX, config) {
     var layer = getLayer(template, keys.protect);
     if (!layer) return;
     var value = trim(record['保護文字']);
     if (value) {
       layer.text = value;
       layer.hidden = false;
+      // 字級表（2026-11-13）：rule 的 fontSizes.protect 有給就用，沒給維持公版原字級
+      var protectSize = config && config.fontSizes && config.fontSizes.protect;
+      if (protectSize && !(layer.__manualOverrides && layer.__manualOverrides.fontSizePx)) layer.fontSizePx = round2(resolveFontSize(protectSize, layer, 24));
     } else {
       layer.text = '';
       layer.hidden = true;
@@ -792,7 +841,8 @@
     return Number(layer && layer.width) || 0;
   }
 
-  function setVariantText(template, key, text, helpers) {
+  // fontSizeConfig（2026-11-13 字級表）：rule 的 fontSizes.<角色> 有給就用，沒給取公版原字級。
+  function setVariantText(template, key, text, helpers, fontSizeConfig) {
     var layer = getLayer(template, key);
     if (!layer) return null;
     if (!trim(text)) { layer.hidden = true; layer.text = ''; return null; }
@@ -801,7 +851,7 @@
     layer.text = trim(text);
     layer.textVerticalAlign = 'source-baseline';
     delete layer.textBottomPaddingPx;
-    var fontSize = getSourceFontSize(layer, 24);
+    var fontSize = manual.fontSizePx ? getSourceFontSize(layer, 24) : resolveFontSize(fontSizeConfig, layer, 24);
     layer.fontSizePx = round2(fontSize);
     applyTitleRanges(layer, layer.text, fontSize, layer.color || '#FFFFFF');
     var width = measureLayerWidth(layer, helpers);
@@ -858,6 +908,8 @@
     var set = sets[variantKind] || sets.plain || {};
     var titleRaw = trim(record['主標']);
     var subtitleRaw = trim(record['副標']);
+    // 字級表：一般／主標VIP／直營 用 fontSizes 主表；副標VIP 那組圖層（副蝦皮VIP_*）字級表沒列，用 fontSizes.subVip（沒給＝公版原字級）
+    var sizes = variantKind === 'subVip' ? ((config.fontSizes && config.fontSizes.subVip) || {}) : (config.fontSizes || {});
 
     if (variantKind === 'subVip') {
       // 2026-08-13 特例（使用者確認僅限指定文案）：主標文案命中 titleMirror.texts 時，
@@ -880,12 +932,12 @@
           }
         }
       }
-      setVariantText(template, set.title, titleRaw, helpers);
+      setVariantText(template, set.title, titleRaw, helpers, sizes.plain);
       var subSplit = splitVipText(subtitleRaw);
-      setVariantText(template, set.subLeft, subSplit.left, helpers);
+      setVariantText(template, set.subLeft, subSplit.left, helpers, sizes.vipSubtitle || sizes.subtitle);
       var subLogo = getLayer(template, set.subLogo);
       if (subLogo) subLogo.hidden = false;
-      setVariantText(template, set.subRight, subSplit.right, helpers);
+      setVariantText(template, set.subRight, subSplit.right, helpers, sizes.vipSubtitle || sizes.subtitle);
     } else if (variantKind === 'titleVip') {
       var titleSplit = splitVipText(titleRaw);
       var titleLeftLayer = set.titleLeft ? getLayer(template, set.titleLeft) : null;
@@ -896,36 +948,43 @@
       var useIconForm = !!(titleIconLayer && titleLeftLayer && titleSplit.left);
       if (useIconForm) {
         titleIconLayer.hidden = false;
-        setVariantText(template, set.titleLeft, titleSplit.left, helpers);
-        setVariantText(template, set.titleRight, titleSplit.right, helpers);
+        setVariantText(template, set.titleLeft, titleSplit.left, helpers, sizes.vip);
+        setVariantText(template, set.titleRight, titleSplit.right, helpers, sizes.vip);
       } else if (titleLeftLayer && !titleIconLayer) {
         // HBN：LOGO 固定居中組，左右文字切分（左字為空自動隱藏左圖層）。
         var titleLogo = getLayer(template, set.titleLogo);
         if (titleLogo) titleLogo.hidden = false;
-        setVariantText(template, set.titleLeft, titleSplit.left, helpers);
-        setVariantText(template, set.titleRight, titleSplit.right, helpers);
+        setVariantText(template, set.titleLeft, titleSplit.left, helpers, sizes.vip);
+        setVariantText(template, set.titleRight, titleSplit.right, helpers, sizes.vip);
       } else {
         // VIP 開頭無左字，或無「_左」圖層：LOGO ＋ 右（僅去除開頭 VIP 字樣）。
         var titleLogoOnly = getLayer(template, set.titleLogo);
         if (titleLogoOnly) titleLogoOnly.hidden = false;
-        setVariantText(template, set.titleRight, titleSplit.left ? titleRaw.replace(/^\s*vip\s*/i, '') : titleSplit.right, helpers);
+        setVariantText(template, set.titleRight, titleSplit.left ? titleRaw.replace(/^\s*vip\s*/i, '') : titleSplit.right, helpers, sizes.vip);
       }
-      setVariantText(template, set.subtitle, subtitleRaw, helpers);
+      setVariantText(template, set.subtitle, subtitleRaw, helpers, sizes.subtitle);
     } else if (variantKind === 'direct') {
       var directLogo = getLayer(template, set.titleLogo);
       if (directLogo) directLogo.hidden = false;
-      setVariantText(template, set.titleRight, titleRaw.replace(/^\s*(蝦皮直營|直營)\s*/, ''), helpers);
-      setVariantText(template, set.subtitle, subtitleRaw, helpers);
+      setVariantText(template, set.titleRight, titleRaw.replace(/^\s*(蝦皮直營|直營)\s*/, ''), helpers, sizes.direct);
+      setVariantText(template, set.subtitle, subtitleRaw, helpers, sizes.subtitle);
     } else {
-      setVariantText(template, set.title, titleRaw, helpers);
-      setVariantText(template, set.subtitle, subtitleRaw, helpers);
+      setVariantText(template, set.title, titleRaw, helpers, sizes.plain);
+      setVariantText(template, set.subtitle, subtitleRaw, helpers, sizes.subtitle);
     }
 
     var layoutKeys = variantLayoutKeys(variantKind, set);
     var titleWidth = layoutVariantGroup(template, layoutKeys.title, centerX, snapshot);
     var subtitleWidth = layoutVariantGroup(template, layoutKeys.subtitle, centerX, snapshot);
-    applyProtectText(template, record, { protect: set.protect }, centerX);
+    applyProtectText(template, record, { protect: set.protect }, centerX, { fontSizes: sizes });
     applySubtitleBackground(template, titleWidth, subtitleWidth, config, { subBg: set.subBg }, centerX);
+    applyBrandTextColors(template, config, {
+      yellowSource: (sets.plain || {}).subtitle || 'subtitle',
+      subtitleHasLogo: variantKind === 'subVip',
+      titleHasLogo: variantKind === 'titleVip' || variantKind === 'direct',
+      titleKeys: [set.title, set.titleLeft, set.titleRight],
+      subtitleKeys: [set.subtitle, set.subLeft, set.subRight],
+    });
     return { variantKind: variantKind, titleWidth: titleWidth, subtitleWidth: subtitleWidth };
   }
 
@@ -1057,6 +1116,30 @@
     if (!normalizedConfig.templateAssetFolder) throw new Error('WarmupBannerRuleFactory: templateAssetFolder is required');
 
     var blockParser = createBlockParser(normalizedConfig);
+    // （2026-11-16 第③批）新 PSD 匯出的公版沒有 P_01／P_02 圖層（例：HBN 新版只有 product）：
+    // 依 rule 的 dualProductLayerDefaults 補出兩個隱藏的圖片圖層（排在 product 上一層），之後的雙商品切換、
+    // 置版預設（warmup-placement-presets 依序號給框）與價格錨點都照舊；公版本來就有的不動。
+    function ensureDualProductLayers(template, config, product) {
+      var keys = config.dualProductLayerKeys;
+      var defaults = config.dualProductLayerDefaults || {};
+      if (!keys || !template || !template.layers) return;
+      var order = Array.isArray(template.renderOrder) ? template.renderOrder : (template.renderOrder = Object.keys(template.layers));
+      var productKey = product ? Object.keys(template.layers).find(function (key) { return template.layers[key] === product; }) : null;
+      [keys.p1, keys.p2].forEach(function (key) {
+        if (!key || getLayer(template, key)) return;
+        var box = defaults[key] || (product ? { x: product.x, y: product.y, width: product.width, height: product.height } : { x: 0, y: 0, width: 100, height: 100 });
+        template.layers[key] = {
+          type: 'image', name: key, psdName: key, hidden: true,
+          x: box.x, y: box.y, width: box.width, height: box.height,
+          centerX: box.x + box.width / 2, centerY: box.y + box.height / 2,
+          rotation: 0, keepAspectRatio: true, sizingMode: product && product.sizingMode || 'containByPBox',
+          __syntheticDualProduct: true,
+        };
+        var at = productKey ? order.indexOf(productKey) : -1;
+        order.splice(at >= 0 ? at + 1 : order.length, 0, key);
+      });
+    }
+
     var createVariantRecords = createVariantFactory(normalizedConfig);
     var priceRules = createPriceRules(normalizedConfig);
 
@@ -1079,6 +1162,7 @@
         // 2026-08-13 調整3：顯示切換提前到套版最前（價格圖層建立之前），
         // 確保 PriceCouponManager.findAnchorLayerKey 依「正確的可見狀態」選錨點
         // （雙圖時 product 已隱藏 → 錨到 P_01；單圖時 P_01/P_02 已隱藏 → 錨到 product）。
+        ensureDualProductLayers(template, normalizedConfig, product);
         var dualP1 = getLayer(template, normalizedConfig.dualProductLayerKeys.p1);
         var dualP2 = getLayer(template, normalizedConfig.dualProductLayerKeys.p2);
         if (dualP1 && dualP2 && product) {
@@ -1142,9 +1226,17 @@
           : Number(normalizedConfig.subtitleCenterX);
         if (!isFinite(subtitleCenterX)) subtitleCenterX = dependentCenterX;
         var subtitleWidth = applySubtitle(template, record, helpers, normalizedConfig, keys, subtitleCenterX);
-        applyProtectText(template, record, keys, dependentCenterX);
+        applyProtectText(template, record, keys, dependentCenterX, normalizedConfig);
         applyCta(template, record, normalizedConfig, keys);
         applySubtitleBackground(template, titleLayout.width, subtitleWidth, normalizedConfig, keys, subtitleCenterX);
+        var vipSubtitleLogoLayer = getLayer(template, keys.vipSubtitleLogo);
+        applyBrandTextColors(template, normalizedConfig, {
+          yellowSource: keys.subtitle,
+          titleHasLogo: titleLayout.variantKind === 'vip' || titleLayout.variantKind === 'direct',
+          subtitleHasLogo: !!(vipSubtitleLogoLayer && vipSubtitleLogoLayer.hidden !== true),
+          titleKeys: [keys.titlePlain, keys.vipTitle, keys.directTitle],
+          subtitleKeys: [keys.subtitle, keys.vipSubtitle],
+        });
       }
       // Placement Preset is applied centrally by BatchManager before this dynamic after-hook.
     }

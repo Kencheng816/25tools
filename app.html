@@ -459,9 +459,13 @@
   <script src="core/session-archive.js"></script>
   <script src="core/work-order-content-planner.js"></script>
   <!-- 素材庫要排在 manual-asset-controls 之前：點已清除空槽時先出小選單（兩者都在 capture 階段監聽 pointerdown） -->
+  <!-- 文案規則（2026-11-13 自 18節 搬入）：規則資料＋自動校正／檢查，要排在 diagnostics-report 之前 -->
+  <script src="config/copy-rules.js"></script>
+  <script src="modules/copy-lint.js"></script>
   <script src="modules/diagnostics-report.js"></script>
   <script src="modules/diagnostics-panel.js"></script>
   <script src="modules/shortcut-help.js"></script>
+  <script src="modules/loading-snake.js"></script>
   <script src="modules/import-flow.js"></script>
   <script src="modules/topbar.js"></script>
   <script src="modules/project-tabs.js"></script>

@@ -13,6 +13,7 @@ window.__profileRegistry["profile:正式BN"] = {
   "rulesNamespace": "rules/正式BN/",
   "_comment": "flags 只放與 _defaults.json（defaults ＋ families.a）不同的旗標；其餘沿用預設。",
   "flags": {
+    "sync.assetLinkExcludePatterns": ["^DECO_"],
     "templates.variant": "formal",
     "export.folderStrategy": "workOrderContent"
   },

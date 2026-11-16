@@ -8,6 +8,9 @@
  *    預設隱藏 P_01/P_02 顯示 product（商品圖1帶入 product）；
  *    商品圖1、圖2皆有值時 P_01←商品圖1、P_02←商品圖2，隱藏 product；
  *    只填商品圖2 視為工單錯誤（warning，不套圖）。
+ * 2026-11-16 二校二修 V2 第③批：公版維持 templates/BN/HBN.json 的 variants.formal（914 版，27 圖層）；
+ *    字級照使用者 2026-11-13 字級表（fontSizes），副標含 VIP 那組（副蝦皮VIP_*）字級表沒列、維持公版原字級；
+ *    LOGO 前後文字色由 factory 的 applyBrandTextColors 統一處理。
  */
 (function registerHbnFormalRule() {
   'use strict';
@@ -29,7 +32,7 @@
     exportConfig: { format: 'jpg', folder: '01_HBN' },
     dualProductLayerKeys: { p1: 'P_01', p2: 'P_02' },
     // 四型態主/副標變體（2026-08-13）：副標VIP → 主標VIP → 蝦皮直營 → 一般。
-    // 圖層名對應 templates/01_HBN.json（2026-08-13 版，25 圖層）；字級/色碼/底色 #1D54A4 皆取自 JSON。
+    // 圖層名對應 templates/BN/HBN.json variants.formal（27 圖層）；底色 #1D54A4 取自 JSON。
     variantLayerSets: {
       subVip: {
         title: '副蝦皮VIP_主標題',
@@ -66,9 +69,10 @@
     mainCenterX: 340.5,
     mainGroupGap: 9,
     priceBigFontSize: 48,
-    // 變體模式字級一律取 JSON 原始圖層（title 75 / 副蝦皮VIP_主標題 62.07 / 蝦皮VIP_主標題_左右 60.54…）。
-    fontSizes: {},
+    // 字級表（使用者 2026-11-13）：主標題 75／副標題 58／保護文字 24／蝦皮VIP_主標題_右 60.66／蝦皮直營_主標題_右 75。
+    // 主標 VIP 時左右兩段同字級；副標 VIP 那組（副蝦皮VIP_*）維持公版原字級（62.07／38.08／22.86）。
+    fontSizes: { plain: 75, subtitle: 58, protect: 24, vip: 60.66, direct: 75, subVip: { protect: 24 } },
   });
 
-  window.__HBN_RULE_VERSION = '2026-08-13a｜正式案01_HBN｜四型態主副標變體＋P_01/P_02雙商品圖';
+  window.__HBN_RULE_VERSION = '2026-11-16b｜正式案01_HBN｜四型態主副標變體＋P_01/P_02雙商品圖＋字級表';
 })();
