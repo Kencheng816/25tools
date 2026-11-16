@@ -2,12 +2,12 @@
  * 色票與工具頁 theme-25.css 同一組：深底、蝦皮橘單一強調色、8px 網格。 */
 :root {
   --bg: #0b0f18; --panel: #151b28; --line: #273247; --line-2: #334155; --text: #f8fafc; --muted: #94a3b8;
-  --accent: #ee4d2d; --accent-2: #ff7a59; --accent-soft: rgba(238, 77, 45, .16);
+  --accent: #d0011b; --accent-2: #ff3b4a; --accent-soft: rgba(208, 1, 27, .16);
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif; }
-body { background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), transparent 30%), var(--bg); }
+body { background: radial-gradient(circle at 85% 8%, rgba(208, 1, 27, .14), transparent 30%), var(--bg); }
 
 .launcher { max-width: 1080px; margin: 0 auto; padding: 56px 24px 64px; }
 .launcher-hero { text-align: center; margin-bottom: 40px; }
@@ -25,7 +25,7 @@ body { background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), tra
   font-size: 16px; font-weight: 700; text-align: center; text-decoration: none;
   transition: border-color .16s ease, transform .16s ease, box-shadow .16s ease; }
 .tool-card:hover, .tool-card:focus-visible { border-color: var(--accent); transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, .28), 0 0 0 1px rgba(238, 77, 45, .25); outline: none; }
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .28), 0 0 0 1px rgba(208, 1, 27, .25); outline: none; }
 .tool-card:active { transform: translateY(0); background: var(--accent-soft); }
 
 .launcher-error { margin: 24px 0 0; padding: 16px; border: 1px solid #ef4444; border-radius: 12px;
@@ -39,6 +39,12 @@ body { background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), tra
 }
 
 /* 「工具有新版本」提示（core/sw-register.js） */
-#swUpdateToast { position: fixed; left: 50%; bottom: 20px; z-index: 100050; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 1px solid #ff7a59; border-radius: 12px; background: #151b28; color: #f8fafc; font-size: 13px; box-shadow: 0 16px 44px rgba(0, 0, 0, .4); }
-#swUpdateToast button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #ee4d2d; color: #fff; font-weight: 700; cursor: pointer; }
+#swUpdateToast { position: fixed; left: 50%; bottom: 20px; z-index: 100050; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 1px solid #ff3b4a; border-radius: 12px; background: #151b28; color: #f8fafc; font-size: 13px; box-shadow: 0 16px 44px rgba(0, 0, 0, .4); }
+#swUpdateToast button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #d0011b; color: #fff; font-weight: 700; cursor: pointer; }
 #swUpdateToast .sw-toast-close { padding: 0 8px; background: transparent; color: #94a3b8; }
+
+/* 2026-11-16：版本數字徽章（跟工具頁左上角同一顆）＋最外圍一圈主色暈光（淡） */
+.launcher-hero h1 { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.edition-badge { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 11px; background: var(--accent); color: #fff; font-size: 19px; font-weight: 900; letter-spacing: -.03em; line-height: 1; box-shadow: 0 3px 12px rgba(208, 1, 27, .45), 0 0 0 1px rgba(255,255,255,.12) inset; }
+body::after { content: ''; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; box-shadow: inset 0 0 56px rgba(208, 1, 27, .20); }
+

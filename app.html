@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>25節生成工具</title>
+  <title>25節｜生成工具</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2064%2064%27%3E%3Crect%20width=%2764%27%20height=%2764%27%20rx=%2714%27%20fill=%27%23d0011b%27/%3E%3Ctext%20x=%2732%27%20y=%2744%27%20text-anchor=%27middle%27%20font-family=%27Arial,Helvetica,sans-serif%27%20font-size=%2734%27%20font-weight=%27800%27%20fill=%27%23fff%27%3E25%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="style.css" />
 
   <!-- 字型（2026-11-05 自 18節 移植）：先抓 GitHub raw 的 WOFF2（約 8 MB／個），抓不到退回 fonts/ 內建 TTF；來源設定在 config/fonts.js。
@@ -144,7 +145,7 @@
   </script>
   <style>
     :root {
-      --brand-icon-color: #EE4D2D;
+      --brand-icon-color: #D0011B;
       --brand-icon-radius: 2px;
       --brand-icon-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
     }
@@ -183,6 +184,8 @@
     .topbar-home:hover, .topbar-home:focus-visible { color: var(--accent-2); outline: none; }
     .topbar-home .brand-icon.shopee-brand-icon { width: 32px; height: 32px; min-width: 32px; min-height: 32px; padding: 4px 0; }
     .topbar-home .shopee-brand-logo { height: 22px; max-width: 26px; }
+    /* 2026-11-16：18節／25節 一眼辨識——左上角改成版本數字徽章（跟原本蝦皮 icon 同尺寸 32px），顏色＝該版本主色 */
+    .edition-badge { width: 32px; height: 32px; min-width: 32px; min-height: 32px; display: grid; place-items: center; border-radius: 9px; background: var(--accent); color: #fff; font-size: 15px; font-weight: 900; letter-spacing: -.03em; line-height: 1; box-shadow: 0 2px 8px rgba(208,1,27, .45), 0 0 0 1px rgba(255,255,255,.12) inset; }
       /* 2026-10-14：字型載不到時的攔截視窗（FontPreloader.showFontGuard） */
     #fontGuard { position: fixed; inset: 0; z-index: 999999; display: grid; place-items: center; padding: 16px; background: rgba(3, 7, 18, .86); backdrop-filter: blur(8px); }
     .font-guard-card { width: min(560px, 100%); padding: 24px; border: 1px solid #ef4444; border-radius: 16px; background: #151b28; color: #f8fafc; font: 13px/1.6 -apple-system, "Noto Sans TC", "Microsoft JhengHei", sans-serif; box-shadow: 0 30px 90px rgba(0, 0, 0, .55); }
@@ -211,7 +214,7 @@
     <!-- ── 頂部列（2026-11-05 自 18節 移植；18節 封測回饋：照 Circle／蝦大，所有「檔案層級」的動作都在這一列） ── -->
     <header class="app-topbar">
       <a class="topbar-home" href="index.html" title="回首頁，選其他版位">
-        <span class="brand-icon shopee-brand-icon"><img src="./assets/正式BN/shopee-logo.svg" alt="Shopee Logo" class="shopee-brand-logo" /></span>
+        <span class="brand-icon edition-badge" aria-label="25節生成工具">25</span>
         <span class="topbar-home-text">← 回首頁</span>
       </a>
       <div class="topbar-title">

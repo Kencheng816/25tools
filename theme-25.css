@@ -3,7 +3,7 @@
  * 載在 style.css 之後，只「覆寫」不重寫：style.css 是歷代工具累積的樣式（含壓縮過的一行），
  * 這裡集中放設計決策，之後要調整主題只動這一支。
  *
- *   1. 單一強調色：蝦皮橘（#EE4D2D）。藍色只留在「連動／資訊」語意；成功綠、警告黃、錯誤紅不變。
+ *   1. 單一強調色：蝦皮橘（#d0011b）。藍色只留在「連動／資訊」語意；成功綠、警告黃、錯誤紅不變。
  *   2. 8px 網格：間距只用 8／16／24／32，控件高度 32／40／48。
  *   3. 統一面板：左欄面板、右側批次預覽、對話框、素材庫、診斷面板、浮動工具列同一組底色／邊框／圓角／陰影。
  *   4. 三種字級：12（輔助）／13（內文）／16（標題）。
@@ -14,11 +14,11 @@
 
 /* ── 1. 色票 ── */
 :root {
-  --accent: #ee4d2d;
-  --accent-2: #ff7a59;
-  --accent-soft: rgba(238, 77, 45, .16);
+  --accent: #d0011b;
+  --accent-2: #ff3b4a;
+  --accent-soft: rgba(208, 1, 27, .16);
   --accent-line: rgba(255, 122, 89, .55);
-  --shadow-glow: 0 0 24px rgba(238, 77, 45, .28);
+  --shadow-glow: 0 0 24px rgba(208, 1, 27, .28);
   --info: #60a5fa;            /* 連動／資訊語意保留藍 */
   --orange: var(--accent);
 
@@ -52,30 +52,30 @@
 }
 
 body {
-  background: radial-gradient(circle at 85% 8%, rgba(238, 77, 45, .14), transparent 30%), var(--bg);
+  background: radial-gradient(circle at 85% 8%, rgba(208, 1, 27, .14), transparent 30%), var(--bg);
   font-size: var(--fs-m);
 }
 
 /* 藍色硬編碼 → 強調色 */
-.primary-btn, .primaryBtn { background: linear-gradient(135deg, #ff7a59, #ee4d2d); box-shadow: 0 10px 24px rgba(238, 77, 45, .32), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
-.primary-btn:hover, .primaryBtn:hover { box-shadow: 0 14px 30px rgba(238, 77, 45, .4), 0 0 0 1px rgba(255, 255, 255, .12) inset; }
+.primary-btn, .primaryBtn { background: linear-gradient(135deg, #ff3b4a, #d0011b); box-shadow: 0 10px 24px rgba(208, 1, 27, .32), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+.primary-btn:hover, .primaryBtn:hover { box-shadow: 0 14px 30px rgba(208, 1, 27, .4), 0 0 0 1px rgba(255, 255, 255, .12) inset; }
 .secondary-btn:hover, .ghostBtn:hover, .toolbar button:hover, .upload-btn:hover, .fileDrop:hover,
 .align-group button:hover, .segmented button:hover, .word-icon-btn:hover, .word-fmt-btn:hover, .batch-group-header:hover,
-.batch-item:hover, .batch-thumb:hover, .diag-row:hover, .diag-chip:hover, .diag-tool:hover { background: rgba(238, 77, 45, .12); }
-.layerItem.active, .layer-item.active { background: linear-gradient(135deg, rgba(238, 77, 45, .2), rgba(255, 122, 89, .06)); box-shadow: 0 0 18px rgba(238, 77, 45, .12); }
-.templateItem.active, .template-item.active, .batch-item.active { box-shadow: 0 0 18px rgba(238, 77, 45, .12); }
-.batch-thumb.active { box-shadow: 0 0 0 2px rgba(238, 77, 45, .3); }
-.layerIcon, .layer-icon, .accordion-icon, .batch-group-icon { color: var(--accent-2); background: rgba(238, 77, 45, .12); border-color: rgba(255, 122, 89, .22); }
-.word-fmt-btn.active { box-shadow: 0 0 8px rgba(238, 77, 45, .2); }
+.batch-item:hover, .batch-thumb:hover, .diag-row:hover, .diag-chip:hover, .diag-tool:hover { background: rgba(208, 1, 27, .12); }
+.layerItem.active, .layer-item.active { background: linear-gradient(135deg, rgba(208, 1, 27, .2), rgba(255, 122, 89, .06)); box-shadow: 0 0 18px rgba(208, 1, 27, .12); }
+.templateItem.active, .template-item.active, .batch-item.active { box-shadow: 0 0 18px rgba(208, 1, 27, .12); }
+.batch-thumb.active { box-shadow: 0 0 0 2px rgba(208, 1, 27, .3); }
+.layerIcon, .layer-icon, .accordion-icon, .batch-group-icon { color: var(--accent-2); background: rgba(208, 1, 27, .12); border-color: rgba(255, 122, 89, .22); }
+.word-fmt-btn.active { box-shadow: 0 0 8px rgba(208, 1, 27, .2); }
 .search-input:focus, #layerSearch:focus, .controls input:focus, .controls textarea:focus, #commonControls input:focus,
 #textControls input:focus, #textControls textarea:focus, #textInput:focus, .word-select:focus, .word-size-input:focus, .al-search:focus {
-  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(238, 77, 45, .16);
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(208, 1, 27, .16);
 }
-#inlineTextEditor::selection { background: rgba(238, 77, 45, .32); }
+#inlineTextEditor::selection { background: rgba(208, 1, 27, .32); }
 .canvas-shell { background:
   linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px),
   linear-gradient(0deg, rgba(255, 255, 255, .025) 1px, transparent 1px),
-  radial-gradient(circle at center, rgba(238, 77, 45, .06), transparent 48%), #090d15;
+  radial-gradient(circle at center, rgba(208, 1, 27, .06), transparent 48%), #090d15;
   background-size: 24px 24px, 24px 24px, auto, auto; }
 .asset-loading-bar span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
 .link-btn { color: var(--accent-2); }
@@ -160,9 +160,9 @@ body {
 .word-icon-btn, .word-fmt-btn, .icon-btn, .eyeBtn, .lockBtn, .diag-tool, .diag-tab, .diag-row, .diag-chip, .batch-group-header, .link-btn, .al-close {
   transition: background .14s ease, border-color .14s ease, color .14s ease, box-shadow .14s ease, transform .1s ease, opacity .14s ease;
 }
-.primary-btn:active, .primaryBtn:active { transform: translateY(0); filter: brightness(.94); box-shadow: 0 6px 16px rgba(238, 77, 45, .28), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
+.primary-btn:active, .primaryBtn:active { transform: translateY(0); filter: brightness(.94); box-shadow: 0 6px 16px rgba(208, 1, 27, .28), 0 0 0 1px rgba(255, 255, 255, .08) inset; }
 .secondary-btn:active, .ghostBtn:active, .toolbar button:active, .align-group button:active, .segmented button:active, .word-icon-btn:active, .word-fmt-btn:active,
-.diag-tool:active, .diag-row:active, .diag-chip:active, .batch-group-header:active { transform: translateY(1px); background: rgba(238, 77, 45, .2); }
+.diag-tool:active, .diag-row:active, .diag-chip:active, .batch-group-header:active { transform: translateY(1px); background: rgba(208, 1, 27, .2); }
 button:focus-visible, .upload-btn:focus-within, .link-btn:focus-visible, select:focus-visible, input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 button:disabled, button[disabled], .primary-btn:disabled, .secondary-btn:disabled, .toolbar button:disabled {
   opacity: .42; cursor: not-allowed; transform: none !important; box-shadow: none !important; filter: none !important;
@@ -200,8 +200,8 @@ kbd.kbd { display: inline-block; min-width: 18px; padding: 0 5px; border: 1px so
 .workbook-status[hidden], [hidden]:not(.panel-body) { display: none !important; }
 
 /* ── 8. 「工具有新版本」提示（core/sw-register.js；2026-11-05 自 18節 移植） ── */
-#swUpdateToast { position: fixed; left: 50%; bottom: 20px; z-index: 100050; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 1px solid #ff7a59; border-radius: 12px; background: #151b28; color: #f8fafc; font-size: 13px; box-shadow: 0 16px 44px rgba(0, 0, 0, .4); }
-#swUpdateToast button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #ee4d2d; color: #fff; font-weight: 700; cursor: pointer; }
+#swUpdateToast { position: fixed; left: 50%; bottom: 20px; z-index: 100050; transform: translateX(-50%); display: flex; align-items: center; gap: 10px; padding: 10px 12px 10px 16px; border: 1px solid #ff3b4a; border-radius: 12px; background: #151b28; color: #f8fafc; font-size: 13px; box-shadow: 0 16px 44px rgba(0, 0, 0, .4); }
+#swUpdateToast button { height: 30px; padding: 0 12px; border: 0; border-radius: 8px; background: #d0011b; color: #fff; font-weight: 700; cursor: pointer; }
 #swUpdateToast .sw-toast-close { padding: 0 8px; background: transparent; color: #94a3b8; }
 
 /* ── 9. 透明底用棋盤格（2026-11-05 自 18節 移植；18節 封測回饋 P1-4）──
@@ -229,7 +229,7 @@ kbd.kbd { display: inline-block; min-width: 18px; padding: 0 5px; border: 1px so
 .diag-card.tone-yellow { border-left-color: var(--tone-yellow); }
 .diag-card.tone-grey { border-left-color: var(--tone-grey); }
 .diag-card.is-link { cursor: pointer; transition: border-color .14s ease, background .14s ease; }
-.diag-card.is-link:hover { border-color: var(--accent-line); background: rgba(238, 77, 45, .08); }
+.diag-card.is-link:hover { border-color: var(--accent-line); background: rgba(208, 1, 27, .08); }
 .diag-card.is-link:hover .diag-card-go { opacity: 1; }
 .diag-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
 .diag-card-thumb { flex: 0 0 auto; width: 56px; height: 42px; display: grid; place-items: center; overflow: hidden; border-radius: 6px; border: 1px solid var(--line-2);
@@ -258,7 +258,7 @@ kbd.kbd { display: inline-block; min-width: 18px; padding: 0 5px; border: 1px so
 .import-modal-close { width: 32px; height: 32px; border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--muted); background: transparent; font-size: 18px; line-height: 1; cursor: pointer; }
 .import-modal-close:hover { color: var(--text); border-color: var(--accent-line); }
 .import-dropzone { display: grid; gap: 4px; place-items: center; min-height: 112px; padding: var(--space-2); border: 1px dashed var(--line-2); border-radius: var(--r-md); color: var(--text-2); background: rgba(15, 20, 32, .72); text-align: center; cursor: pointer; transition: border-color .14s ease, background .14s ease; }
-.import-dropzone:hover, .import-dropzone:focus-visible, .import-dropzone.is-active { border-color: var(--accent-line); background: rgba(238, 77, 45, .1); outline: none; }
+.import-dropzone:hover, .import-dropzone:focus-visible, .import-dropzone.is-active { border-color: var(--accent-line); background: rgba(208, 1, 27, .1); outline: none; }
 .import-dropzone.is-done { border-style: solid; border-color: rgba(34, 197, 94, .55); background: rgba(34, 197, 94, .07); }
 .import-dropzone.is-done strong::before { content: '✓ '; color: var(--green); }
 .import-dropzone-icon { font-size: 22px; line-height: 1; color: var(--muted); }
@@ -291,8 +291,8 @@ kbd.kbd { display: inline-block; min-width: 18px; padding: 0 5px; border: 1px so
 .topbar-spacer { flex: 1 1 auto; min-width: 0; }
 .topbar-divider { width: 1px; height: 20px; margin: 0 4px; background: var(--line-2); }
 .topbar-btn { height: var(--control-h-sm); padding: 0 12px; border: 1px solid var(--line); border-radius: var(--r-sm); color: var(--text-2); background: rgba(255, 255, 255, .05); font-size: var(--fs-m); font-weight: 700; cursor: pointer; white-space: nowrap; transition: background .14s ease, border-color .14s ease, color .14s ease; }
-.topbar-btn:hover { color: var(--text); border-color: var(--accent-line); background: rgba(238, 77, 45, .12); }
-.topbar-btn.primary { color: #fff; border-color: transparent; background: linear-gradient(135deg, #ff7a59, #ee4d2d); box-shadow: 0 6px 16px rgba(238, 77, 45, .28); }
+.topbar-btn:hover { color: var(--text); border-color: var(--accent-line); background: rgba(208, 1, 27, .12); }
+.topbar-btn.primary { color: #fff; border-color: transparent; background: linear-gradient(135deg, #ff3b4a, #d0011b); box-shadow: 0 6px 16px rgba(208, 1, 27, .28); }
 .topbar-btn.primary:hover { color: #fff; background: linear-gradient(135deg, #ff8d70, #f25a3b); }
 .topbar-btn.danger:hover { color: #fecaca; border-color: rgba(239, 68, 68, .55); background: rgba(239, 68, 68, .12); }
 .topbar-btn:disabled { opacity: .42; cursor: not-allowed; }
@@ -408,3 +408,7 @@ body.is-advanced section.panel.adv-only{ display:block !important; }
 .coupon-slot-actions{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 .coupon-slot-actions .secondary-btn, .coupon-slot-actions .primary-btn{ margin:0; min-height:36px; }
 #defineCouponSlotBtn.has-def{ border-color:var(--accent-line); }
+
+/* 2026-11-16：工具頁最外圍一圈主色暈光（淡、不擋滑鼠），跟入口頁一樣 */
+body::after { content: ''; position: fixed; inset: 0; z-index: 2147483000; pointer-events: none; box-shadow: inset 0 0 56px rgba(208, 1, 27, .20); }
+
