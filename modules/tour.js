@@ -363,12 +363,13 @@
       title: '下載圖片', body: '勾選的製作物一鍵打包，資料夾依工單製作內容分（01_頭巾、02_HBN…）、檔名用工單「編號」欄（HBN_260525HBN01）。' },
 
     { target: '#tourLaunchBtn', place: 'bottom',
-      title: '導覽結束 🎉', body: '按「完成」會清掉範例、回到匯入視窗。之後隨時可以按這顆「使用教學」重看。' },
+      title: '導覽結束 🎉', body: '按「完成」會清掉範例、回到入口頁。之後隨時可以按這顆「使用教學」重看。' },
   ];
 
   // ══════════════ 樣式 ══════════════
-  const ACCENT = '#ee4d2d';
-  const CSS = `
+  // 主色跟 25節 主題一樣（theme-25.css 的 --accent #d0011b）：建導覽那一刻才讀 CSS 變數（主題樣式在這支之後才載），讀不到才退回 18節 的橘
+  const accent = () => (getComputedStyle(document.documentElement).getPropertyValue('--accent') || '').trim() || '#ee4d2d';
+  const cssText = (ACCENT) => `
 #tour-root{position:fixed;inset:0;z-index:100070;pointer-events:none;font-family:inherit;}
 #tour-block{position:fixed;inset:0;pointer-events:auto;background:transparent;}
 #tour-spot{position:fixed;border-radius:10px;box-shadow:0 0 0 9999px rgba(0,0,0,.62);border:2px solid ${ACCENT};transition:left .25s,top .25s,width .25s,height .25s;pointer-events:none;}
@@ -408,7 +409,7 @@
   // ══════════════ 引擎 ══════════════
   function build() {
     if (root) return;
-    const st = document.createElement('style'); st.id = 'tour-style'; st.textContent = CSS; document.head.appendChild(st);
+    const st = document.createElement('style'); st.id = 'tour-style'; st.textContent = cssText(accent()); document.head.appendChild(st);
     root = document.createElement('div'); root.id = 'tour-root';
     root.innerHTML = '<div id="tour-block"></div><div id="tour-spot" class="tour-none"></div>'
       + '<div id="tour-card"><div class="tour-step"></div><div class="tour-title"></div><div class="tour-body"></div>'
@@ -559,9 +560,15 @@
     document.removeEventListener('keydown', onKey, true);
     if (root) root.style.display = 'none';
     try { localStorage.setItem(TOUR_KEY, '1'); } catch (_) { /* 隱私模式 */ }
-    // 範例資料清掉、回到乾淨的匯入視窗：整頁重新載入（去掉 ?tour）
+    // 範例資料清掉、回到初始狀態＝回入口頁（index.html，卡片清單；同 18節 二校二修）；整頁離開，所有狀態一次乾淨
+    window.location.replace(homeUrl());
+  }
+  /** 入口頁網址：跟頂部列「← 回首頁」同一個目標（app.html 旁的 index.html），沒有那顆連結就退回同頁重載。 */
+  function homeUrl() {
+    const link = document.querySelector('.topbar-home');
+    if (link?.getAttribute('href')) return new URL(link.getAttribute('href'), window.location.href).toString();
     const url = new URL(window.location.href); url.searchParams.delete('tour');
-    window.location.replace(url.toString());
+    return url.toString();
   }
 
   // ══════════════ 「使用教學」按鈕＋第一次自動開始 ══════════════

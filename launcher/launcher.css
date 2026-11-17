@@ -13,6 +13,9 @@ body { background: radial-gradient(circle at 85% 8%, rgba(208, 1, 27, .14), tran
 .launcher-hero { text-align: center; margin-bottom: 40px; }
 .launcher-hero h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: .02em; }
 .launcher-hero p { margin: 0; color: var(--muted); font-size: 15px; }
+.launcher-tour { margin: 10px 0 0; font-size: 13px; }
+.launcher-tour a { color: var(--accent, #d0011b); text-decoration: none; }
+.launcher-tour a:hover { text-decoration: underline; }
 
 /* 群組並排成欄（一排最多 4 欄），每欄內的卡片由上往下疊；視窗窄時自動減欄。 */
 .launcher-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 32px 24px; align-items: start; }

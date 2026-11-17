@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* 新手導覽回歸（2026-11-06 自 18節 移植）：app.html?profile=暖身BN&tour=1 → 導覽自動開始（載入範例工單）→ 逐步按「下一步」走完 →
- * 每一步都要找得到打亮目標（開場除外）、示範動畫有跑（有 anim 的步驟假游標要出現過）→ 按「完成」整頁重載、回到匯入視窗、沒有殘留的範例製作物。
+ * 每一步都要找得到打亮目標（開場除外）、示範動畫有跑（有 anim 的步驟假游標要出現過）→ 按「完成」回到入口頁（index.html）。
  * 另外確認：沒有 ?tour 的自動化環境不會自動跑導覽（黃金回歸不受影響）、頂部列有「使用教學」。
  * 用法：node run-tour.js   環境變數同 run-golden.js。 */
 'use strict';
@@ -53,24 +53,22 @@ async function main() {
     }
     if (visited.length < total - 2) problems.push(`只走了 ${visited.length} 步（共 ${total}，可略過 1 步）：${visited.join(' → ')}`);
 
-    // 3. 完成 → 整頁重載、回到匯入視窗、範例清掉
-    await page.waitForNavigation({ waitUntil: 'load', timeout: 30000 }).catch(() => problems.push('按「完成」後沒有重新載入'));
-    await page.waitForFunction(() => window.__appReady && window.__coreScriptsReady, { timeout: 60000 });
-    await page.evaluate(() => window.__appReady);
-    await sleep(2500);
-    const after = await page.evaluate(() => ({ url: location.search, items: (window.AppState?.batchItems || []).length, modalOpen: !!document.getElementById('importModal') && !document.getElementById('importModal').classList.contains('hidden'), seen: localStorage.getItem('25tool_tour_seen_v1'), active: window.Tour?.isActive?.() }));
-    if (/tour/.test(after.url)) problems.push(`重載後網址還帶 tour：${after.url}`);
-    if (after.items) problems.push(`重載後還有 ${after.items} 張範例製作物`);
-    if (!after.modalOpen) problems.push('重載後匯入視窗沒有跳出');
+    // 3. 完成 → 離開工具頁、回到入口頁（index.html 卡片清單）；範例自然清掉（2026-11-17 同 18節 二校二修）
+    await page.waitForNavigation({ waitUntil: 'load', timeout: 30000 }).catch(() => problems.push('按「完成」後沒有離開工具頁'));
+    await sleep(1500);
+    const after = await page.evaluate(() => ({ path: location.pathname, search: location.search, seen: localStorage.getItem('25tool_tour_seen_v1'), hasApp: !!window.AppState, cards: document.querySelectorAll('a[href*="app.html"]').length, tourLink: !!document.querySelector('.launcher-tour a[href*="tour=1"]') }));
+    if (!/(^|\/)(index\.html)?$/.test(after.path)) problems.push(`完成後沒有回到入口頁：${after.path}${after.search}`);
+    if (after.hasApp) problems.push('完成後還停在工具頁（AppState 還在）');
+    if (!after.cards) problems.push('入口頁沒有版位卡片');
+    if (!after.tourLink) problems.push('入口頁沒有「使用教學」入口');
     if (after.seen !== '1') problems.push('沒有記住「已看過導覽」');
-    if (after.active) problems.push('重載後導覽又自己開始了');
   } catch (error) {
     if (error.message !== 'stop') problems.push(`例外：${error.message}`);
   } finally {
     await page.close(); await browser.close(); server.close();
   }
   if (problems.length) { console.log('✗ 新手導覽'); problems.forEach((line) => console.log(`    ${line}`)); console.log('run-tour：失敗'); process.exit(1); }
-  console.log('✓ 新手導覽：自動開始、逐步打亮與示範、完成後清掉範例回到匯入視窗');
+  console.log('✓ 新手導覽：自動開始、逐步打亮與示範、完成後清掉範例回到入口頁（入口頁有教學連結）');
   console.log('run-tour：通過');
 }
 

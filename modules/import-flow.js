@@ -241,6 +241,7 @@
   // ── 工單與分頁 ──
 
   async function setWorkbook(file) {
+    ensureModal(); // 導覽／程式呼叫時彈窗可能還沒建過（2026-11-17：按「使用教學」跳 Cannot set properties of null）
     state.workbookFile = file;
     state.sheetNames = [];
     const title = $('importExcelTitle');
@@ -324,6 +325,7 @@
   }
 
   function setAssets(files) {
+    ensureModal();
     state.assetFiles = files.filter((file) => IMAGE_FILE.test(file.name));
     $('importAssetsTitle').textContent = state.assetFiles.length ? `已選擇 ${state.assetFiles.length} 張素材圖片` : '資料夾裡沒有讀到圖片檔，請點擊這一格重新選擇資料夾';
     $('importZoneAssets').classList.toggle('is-done', state.assetFiles.length > 0);
