@@ -66,6 +66,12 @@ expect('欄位分類 法務小字', CopyLint.classifyField('法務小字'), 'leg
 expect('欄位分類 品名不套', CopyLint.classifyField('商品_01_品名'), null);
 expect('主標 日期後空格保留', CopyLint.autoCorrect('4/18 刷卡享88折', 'title'), '4/18 刷卡享88折');
 expect('主標 刪中文旁空格', CopyLint.autoCorrect('Dyson 溫控吹風機 限時', 'title'), 'Dyson溫控吹風機限時');
+expect('主標 刪標點（句尾驚嘆號）', CopyLint.autoCorrect('優惠倒數6小時！', 'title'), '優惠倒數6小時');
+expect('副標 刪標點（引號、逗號）', CopyLint.autoCorrect('輸碼「AJ25」，領折扣', 'subtitle'), '輸碼AJ25領折扣');
+expect('刪標點 放行 1,000／8.5折／日期時間／$％', CopyLint.autoCorrect('4/18 20:00滿$1,000享8.5折再送5%', 'title'), '4/18 20:00滿$1,000享8.5折再送5%');
+expect('主標 底線不刪（ME PAGE 素材代號）', CopyLint.autoCorrect('icon_點我', 'title'), 'icon_點我');
+expect('主標 連字號不刪', CopyLint.autoCorrect('Mi-Band 8', 'title'), 'Mi-Band 8');
+expect('警語 標點不刪', CopyLint.autoCorrect('優惠券限今日使用，數量有限！', 'legal'), '優惠券限今日使用，數量有限！');
 expect('主標 補 $', CopyLint.autoCorrect('滿200享9折', 'subtitle'), '滿$200享9折');
 expect('警語 日期區間＋$', CopyLint.autoCorrect('11/1~11/2 滿1000最高享300蝦幣', 'legal'), '11/1 - 11/2 滿$1,000最高享300蝦幣');
 expect('警語 不刪空格', CopyLint.autoCorrect('優惠數量有限 售完為止', 'legal'), '優惠數量有限 售完為止');

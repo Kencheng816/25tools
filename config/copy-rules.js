@@ -29,7 +29,8 @@ window.CopyRules = Object.freeze({
     MS: { keepHeadlineSpaces: true },
   },
   // 25節 MS 主標用「蝦皮直營 | 品牌好物」分段，直線不當標點。
-  headlineAllowedChars: '\\u4e00-\\u9fffA-Za-z0-9 $%|｜',
+  // 底線／連字號放行：ME PAGE 這類版位的主標是素材代號（icon_點我）、商品名偶有 Mi-Band 這種寫法，不當標點。
+  headlineAllowedChars: '\\u4e00-\\u9fffA-Za-z0-9 $%|｜_\\-',
   // 日期 M/D、時間 HH:MM 不當標點，後面那一個空格不當「中文旁空格」；
   // 25節 工單慣用「5.25 商城狂購節」「25號 商城狂購節」，這兩種也放行（使用者 2026-11-13 決定）。
   headlineAllowedTokens: ['\\d{1,2}/\\d{1,2}', '\\d{1,2}:\\d{2}', '\\d{1,2}\\.\\d{1,2}', '\\d{1,2}號'],

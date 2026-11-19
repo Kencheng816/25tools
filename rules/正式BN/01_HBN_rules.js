@@ -48,9 +48,14 @@
         titleLeft: '蝦皮VIP_主標題_左',
         titleLogo: '蝦皮VIP_LOGO',
         titleRight: '蝦皮VIP_主標題_右',
-        subtitle: '蝦皮VIP_副標題',
-        subBg: '蝦皮VIP_副標題_底色',
-        protect: '蝦皮VIP_保護文字',
+        // 2026-11-19 比對 5.25 人工成品（HBN14）：主標含 VIP 時副標用一般版那組（58px 字、80 高底色、保護文字 24），
+        // 公版 VIP 專用的 蝦皮VIP_副標題（48.57）／底色（68 高）／保護文字 不再用，列在這裡只是讓變體引擎把它們藏起來。
+        subtitle: 'subtitle',
+        subBg: '副標題_底色',
+        protect: '保護文字',
+        _hiddenSubtitle: '蝦皮VIP_副標題',
+        _hiddenSubBg: '蝦皮VIP_副標題_底色',
+        _hiddenProtect: '蝦皮VIP_保護文字',
       },
       direct: {
         titleLogo: '蝦皮直營_LOGO',
@@ -67,11 +72,13 @@
       },
     },
     mainCenterX: 340.5,
+    // 2026-11-19 使用者決定：主標含 VIP 那組（左字+LOGO+右字）的中心 X 跟副標中心一致（mainCenterX），不另外偏移。
     mainGroupGap: 9,
     priceBigFontSize: 48,
     // 字級表（使用者 2026-11-13）：主標題 75／副標題 58／保護文字 24／蝦皮VIP_主標題_右 60.66／蝦皮直營_主標題_右 75。
     // 主標 VIP 時左右兩段同字級；副標 VIP 那組（副蝦皮VIP_*）維持公版原字級（62.07／38.08／22.86）。
-    fontSizes: { plain: 75, subtitle: 58, protect: 24, vip: 60.66, direct: 75, subVip: { protect: 24 } },
+    // 2026-11-19：蝦皮VIP_主標題_左／右 改回正式公版原值 60.54（字級表的 60.66 是暖身 02_HBN 的數值）。
+    fontSizes: { plain: 75, subtitle: 58, protect: 24, vip: 60.54, direct: 75, subVip: { protect: 24 } },
   });
 
   window.__HBN_RULE_VERSION = '2026-11-16b｜正式案01_HBN｜四型態主副標變體＋P_01/P_02雙商品圖＋字級表';

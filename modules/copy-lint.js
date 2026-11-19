@@ -87,6 +87,21 @@
     });
   }
 
+  // ── 主／副標：標點直接刪（使用者 2026-11-19 決定；警語仍只提示）──
+  // 放行的跟 headlineIssues 同一套：允許字元表、日期／時間等放行片段、1,000 的逗號、8.5折 的小數點；其餘標點／符號刪掉。
+  function removeHeadlinePunctuation(text) {
+    const source = String(text ?? '');
+    const allowed = new RegExp(`[${rules().headlineAllowedChars || '\\u4e00-\\u9fffA-Za-z0-9 $%'}\\n]`);
+    const keep = new Uint8Array(source.length);
+    const protect = (re) => { let m; const g = new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`); while ((m = g.exec(source))) { for (let i = m.index; i < m.index + m[0].length; i += 1) keep[i] = 1; if (!m[0]) g.lastIndex += 1; } };
+    (rules().headlineAllowedTokens || []).forEach((token) => protect(new RegExp(token)));
+    protect(/\d,(?=\d{3})/);
+    protect(/\d\.(?=\d+(折|%))/);
+    let out = '';
+    for (let i = 0; i < source.length; i += 1) { const ch = source[i]; if (keep[i] || allowed.test(ch)) out += ch; }
+    return out;
+  }
+
   // ── 警語日期區間：只接受「M/D - M/D」（dash 前後各一個空格） ──
   function legalDateIssue(text) {
     const m = String(text).match(/\d{1,2}\/\d{1,2}(\s*[-~～－—–至到]\s*)\d{1,2}\/\d{1,2}/);
@@ -118,7 +133,7 @@
   function autoCorrect(text, kind, profileId) {
     let out = replaceWords(text);
     if (kind === 'title' || kind === 'subtitle') {
-      out = suggestNumberFormat(out);
+      out = removeHeadlinePunctuation(suggestNumberFormat(out));
       if (!optionsFor(profileId).keepHeadlineSpaces) out = removeHeadlineSpaces(out);
     }
     else if (kind === 'legal') out = normalizeDateRange(suggestNumberFormat(out));
@@ -180,7 +195,7 @@
     return out;
   }
 
-  const api = { replaceWords, weightedLength, classifyLayer, classifyField, headlineIssues, suggestNumberFormat, legalDateIssue, removeHeadlineSpaces, normalizeDateRange, autoCorrect, charLimitsFor, optionsFor, lintTemplate };
+  const api = { replaceWords, weightedLength, classifyLayer, classifyField, headlineIssues, suggestNumberFormat, legalDateIssue, removeHeadlinePunctuation, removeHeadlineSpaces, normalizeDateRange, autoCorrect, charLimitsFor, optionsFor, lintTemplate };
   root.CopyLint = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   if (typeof document === 'undefined') return;
@@ -229,7 +244,9 @@
       const layer = key ? AppState?.template?.layers?.[key] : null;
       return layer ? classifyLayer(key, layer) : null;
     };
-    const isCopyField = (target) => (target instanceof HTMLTextAreaElement || target instanceof HTMLInputElement) && !!(target.closest('#itemTextFields') || target.id === 'textInput');
+    // 只接文字欄位：面板裡的色票是 <input type=color>，值是「#12ab34」，拿去刪標點會把 # 刪掉變成無效色（2026-11-19 主副標刪標點後踩到）
+    const isTextField = (target) => target instanceof HTMLTextAreaElement || (target instanceof HTMLInputElement && /^(text|search|)$/i.test(target.type || ''));
+    const isCopyField = (target) => isTextField(target) && !!(target.closest('#itemTextFields') || target.id === 'textInput');
     // 離開欄位（change）：依圖層種類套全部校正（$／千分位／空格／日期區間），改了就再送一次 input 讓面板與 Inspector 吃到
     document.addEventListener('change', (event) => {
       const target = event.target;

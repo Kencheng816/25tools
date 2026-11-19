@@ -75,7 +75,10 @@
     priceBigFontSize: 48,
     // 字級表（使用者 2026-11-13；2026-11-17 警語改 24）：主標題 55／副標題 40／警語（保護文字）24／蝦皮VIP_主標題_右 46／蝦皮直營_主標題_右 55
     // 副標 VIP 那組（副蝦皮VIP_*）主副標維持公版原字級，只有警語也統一 24（四型態警語才會一樣大）。
-    fontSizes: { plain: 55, subtitle: 40, protect: 24, vip: 46, direct: 55, subVip: { protect: 24 } },
+    // 2026-11-19：蝦皮VIP_主標題_左／右 改回正式公版原值 48（字級表的 46 是暖身 03_DD Card 的數值）。
+    // 2026-11-19 使用者目視：主標 VIP 型的副標偏小又偏高 → fontSizes.subtitle 40 蓋掉了 蝦皮VIP_副標題 公版的 44.62（還被往上挪）。
+    // 改成不指定副標字級，各型態照自己公版圖層原值（一般／直營 subtitle 40、主標VIP 蝦皮VIP_副標題 44.62、副標VIP 37.16）。
+    fontSizes: { plain: 55, protect: 24, vip: 48, direct: 55, subVip: { protect: 24 } },
   });
 
   window.__DD_CARD_RULE_VERSION = '2026-08-13b｜正式案01_DD Card｜主標VIP例外（icon白色/LOGO雙形態）＋四型態變體';

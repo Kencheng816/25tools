@@ -47,8 +47,9 @@
     mainGroupGaps: { vip: 6, direct: 7 },
     subtitleGroupGap: 5,
     priceBigFontSize: 48,
-    // 字級表（使用者 2026-11-13）：主標題 55／副標題 40／保護文字 25／蝦皮VIP_副標題_右 35／蝦皮VIP_主標題_右 43.85／蝦皮直營_主標題_右 50.68
-    fontSizes: { plain: 55, subtitle: 40, protect: 25, vipSubtitle: 35, vip: 43.85, direct: 50.68 },
+    // 字級（2026-11-19 使用者比對 5.25 正式 POPUP 人工成品後改回公版原值）：主標題 65／副標題 57.78／保護文字 25／蝦皮VIP_副標題_右 48.15／蝦皮VIP_主標題 65。
+    // 2026-11-13 字級表的 55／40／35／43.85／50.68 其實是暖身 04_POPUP 的數值，正式版不適用（暖身 rule 維持那張表）。
+    fontSizes: { plain: 65, subtitle: 57.78, protect: 25, vipSubtitle: 48.15, vip: 65, direct: 65 },
     layerKeys: {
       vipTitle: '蝦皮VIP_主標題',
       vipLogo: '',

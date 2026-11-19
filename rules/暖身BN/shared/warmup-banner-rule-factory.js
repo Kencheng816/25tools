@@ -41,12 +41,31 @@
   function textStandard() { return window.SPTextStandard; }
 
   function getSourceFontSize(layer, fallback) {
-    var sourceSize = Number(layer && layer.textBaselineReference && layer.textBaselineReference.fontSizePx);
+    var reference = layer && (layer.textBaselineReference || layer.__sourceBaselineReference);
+    var sourceSize = Number(reference && reference.fontSizePx);
     if (isFinite(sourceSize) && sourceSize > 0) return sourceSize;
     var currentSize = Number(layer && layer.fontSizePx);
     if (isFinite(currentSize) && currentSize > 0) return currentSize;
     var defaultSize = Number(fallback);
     return isFinite(defaultSize) && defaultSize > 0 ? defaultSize : 24;
+  }
+
+  // 字級表把字級改得跟公版不一樣時（例：POPUP 副標 57.78 → 40）：文字仍貼公版原本的基線，但基線是大字的，
+  // 小字貼上去視覺中心會往下掉（大約掉 (原字級－新字級)×0.36，字高約 0.72em 的一半）→ 把文字框往上挪這個量，
+  // 文字的視覺中心就回到公版原本的位置（XY 跟公版一樣）。字級沒改的不動。重套工單時以上次挪動前的 y 為基準，不會越挪越高；
+  // 置版預設（warmup-placement-presets）另外改過 y 的話，以它改過的 y 為新基準。
+  var SIZED_SHIFT_RATIO = 0.36;
+  function applySizedVerticalAlign(layer, fontSize) {
+    var sourceSize = getSourceFontSize(layer, fontSize);
+    var delta = Math.round((sourceSize - Number(fontSize)) * SIZED_SHIFT_RATIO * 100) / 100;
+    var lastShift = Number(layer.__sizedShift) || 0;
+    var currentY = Number(layer.y) || 0;
+    var baseY = (isFinite(Number(layer.__sizedBaseY)) && Math.abs(currentY - (Number(layer.__sizedBaseY) - lastShift)) < 0.01) ? Number(layer.__sizedBaseY) : currentY;
+    layer.__sizedBaseY = baseY;
+    layer.__sizedShift = delta;
+    if (layer.__manualOverrides && (layer.__manualOverrides.y || layer.__manualOverrides.centerY)) return;
+    layer.y = round2(baseY - delta);
+    layer.centerY = round2(layer.y + (Number(layer.height) || 0) / 2);
   }
 
   function resolveFontSize(value, layer, fallback) {
@@ -346,6 +365,7 @@
     textLayer.text = text;
     textLayer.textVerticalAlign = 'source-baseline';
     delete textLayer.textBottomPaddingPx;
+    applySizedVerticalAlign(textLayer, bigFontSize);
     textLayer.fontSizePx = round2(bigFontSize);
     applyTitleRanges(textLayer, text, bigFontSize, textLayer.color || '#FFFFFF');
 
@@ -395,6 +415,7 @@
       vipText.text = text;
       vipText.textVerticalAlign = 'source-baseline';
       delete vipText.textBottomPaddingPx;
+      applySizedVerticalAlign(vipText, fontSize);
       vipText.fontSizePx = round2(fontSize);
       applyTitleRanges(vipText, text, fontSize, vipText.color || '#FFE600');
       var textWidth = Number(measure(vipText)) || Number(vipText.width) || 0;
@@ -417,6 +438,7 @@
     plain.hidden = false;
     plain.textVerticalAlign = 'source-baseline';
     delete plain.textBottomPaddingPx;
+    applySizedVerticalAlign(plain, plainFontSize);
     plain.fontSizePx = round2(plainFontSize);
     applyTitleRanges(plain, raw, plainFontSize, plain.color || '#FFE600');
     var width = Number(measure(plain)) || Number(plain.width) || 0;
@@ -435,7 +457,7 @@
       layer.hidden = false;
       // 字級表（2026-11-13）：rule 的 fontSizes.protect 有給就用，沒給維持公版原字級
       var protectSize = config && config.fontSizes && config.fontSizes.protect;
-      if (protectSize && !(layer.__manualOverrides && layer.__manualOverrides.fontSizePx)) layer.fontSizePx = round2(resolveFontSize(protectSize, layer, 24));
+      if (protectSize && !(layer.__manualOverrides && layer.__manualOverrides.fontSizePx)) { var sizedProtect = resolveFontSize(protectSize, layer, 24); applySizedVerticalAlign(layer, sizedProtect); layer.fontSizePx = round2(sizedProtect); }
     } else {
       layer.text = '';
       layer.hidden = true;

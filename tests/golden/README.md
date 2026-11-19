@@ -70,3 +70,15 @@ A 系（AssetLookup 歧義即拋錯）不受順序影響。
 ## 2026-11-17 AMS 商品格內縮 5%＋避 CTA
 - Line購物AMS 9 張全部重拍（商品圖框縮小）；舊圖在 `tests/golden-legacy/AMS_商品格內縮前/`。
 
+## 2026-11-19 主副標標點自動刪
+- 正式BN HBN_260525HBN23／DD Card_260525HBN23／POPUP_260525POP17（優惠倒數6小時！）、暖身BN AR Large_BN_06、暖正MS 02_加碼券/01_上蓋_加碼券（5/19限定!）、03_免運懶人包/04_中標_全綠。舊圖在 `tests/golden-legacy/主副標刪標點前/`。
+
+## 2026-11-19 字級表改字級後文字位置回公版
+- 正式BN 01_HBN 4 張（VIP 主標 60.66≠60.54）、02_DD Card 13 張、03_POPUP 9 張；暖身BN 03_DD Card 12 張。舊圖在 `tests/golden-legacy/字級置中前/`。
+
+## 2026-11-19 正式BN 字級改回正式公版原值
+- 正式BN 01_HBN 2 張、02_DD Card 2 張、03_POPUP 9 張；舊圖在 `tests/golden-legacy/正式BN_字級表暖身值/`。
+
+## 2026-11-19 正式 HBN 主標含 VIP 對人工成品
+- 01_HBN HBN_260525HBN14／HBN21（VIP 主標組中心 366、副標改一般版 58px＋80 高底色）；舊圖在 `tests/golden-legacy/正式BN_HBN_VIP主標對人工前/`。
+
