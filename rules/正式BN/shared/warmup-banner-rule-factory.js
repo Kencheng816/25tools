@@ -490,6 +490,32 @@
     if (triLayer) triLayer.hidden = false;
   }
 
+  // ── 副標文字的「墨色中心」對齊副標底色的中心 Y（使用者 2026-11-19 決定）──
+  // 文字是貼公版基線畫的：基線 ＝ y ＋ baselineOffsetY × (目前字級 ÷ 公版字級)，墨色中心 ＝ 基線 － (inkAscent － inkDescent)/2 × 同比例；
+  // 反推 y 讓墨色中心剛好落在底色中心。沒有基線資料（還沒量過）就用字級估（中心在基線上方 0.36em）。手動拖過 y 的不碰。
+  function centerSubtitleOnBand(template, subtitleKeys, bandKey) {
+    var band = getLayer(template, bandKey);
+    if (!band || band.hidden) return;
+    var bandCenterY = Number(band.y || 0) + (Number(band.height) || 0) / 2;
+    (subtitleKeys || []).forEach(function (key) {
+      var layer = key ? getLayer(template, key) : null;
+      if (!layer || layer.type !== 'text' || layer.hidden) return;
+      if (layer.__manualOverrides && (layer.__manualOverrides.y || layer.__manualOverrides.centerY)) return;
+      var fontSize = Number(layer.fontSizePx) || 24;
+      var ref = layer.textBaselineReference;
+      var inkCenterOffset;
+      if (ref && isFinite(Number(ref.baselineOffsetY)) && isFinite(Number(ref.inkAscent))) {
+        var scale = fontSize / Math.max(0.01, Number(ref.fontSizePx) || fontSize);
+        inkCenterOffset = (Number(ref.baselineOffsetY) - (Number(ref.inkAscent) - Number(ref.inkDescent || 0)) / 2) * scale;
+      } else {
+        inkCenterOffset = (Number(layer.height) || fontSize) / 2;
+      }
+      layer.y = round2(bandCenterY - inkCenterOffset);
+      layer.centerY = round2(layer.y + (Number(layer.height) || 0) / 2);
+      delete layer.__sizedBaseY; delete layer.__sizedShift; // 之後重套不要再拿舊的「挪過」基準
+    });
+  }
+
   function applySubtitleBackground(template, titleWidth, subtitleWidth, config, keys, centerX) {
     var layer = getLayer(template, keys.subBg);
     if (!layer) return;
@@ -1003,6 +1029,7 @@
     var subtitleWidth = layoutVariantGroup(template, layoutKeys.subtitle, centerX, snapshot);
     applyProtectText(template, record, { protect: set.protect }, centerX, { fontSizes: sizes });
     applySubtitleBackground(template, titleWidth, subtitleWidth, config, { subBg: set.subBg }, centerX);
+    centerSubtitleOnBand(template, [set.subtitle], set.subBg); // 只對一般副標；副標VIP 的 _左/_右 照上一版（使用者 2026-11-19）
     applyBrandTextColors(template, config, {
       yellowSource: (sets.plain || {}).subtitle || 'subtitle',
       subtitleHasLogo: variantKind === 'subVip',
@@ -1045,6 +1072,7 @@
       if (!protectManual.centerX) protect.centerX = round2(Number(protect.x || 0) + protectWidth / 2);
     }
     applySubtitleBackground(template, titleWidth, subtitleWidth, config, { subBg: set.subBg }, centerX);
+    centerSubtitleOnBand(template, [set.subtitle], set.subBg); // 只對一般副標；副標VIP 的 _左/_右 照上一版（使用者 2026-11-19）
   }
 
   function refreshDynamicTextLayout(template, helpers, config, keys) {
@@ -1122,6 +1150,7 @@
       if (!protectManual.centerX) protect.centerX = round2(Number(protect.x || 0) + protectWidth / 2);
     }
     applySubtitleBackground(template, titleWidth, subtitleWidth, config, keys, centerX);
+    centerSubtitleOnBand(template, [keys.subtitle], keys.subBg); // 只對一般副標；VIP 副標（蝦皮VIP_副標題_右）照上一版（使用者 2026-11-19）
   }
 
   function createRule(config) {
@@ -1254,6 +1283,7 @@
         applyProtectText(template, record, keys, dependentCenterX, normalizedConfig);
         applyCta(template, record, normalizedConfig, keys);
         applySubtitleBackground(template, titleLayout.width, subtitleWidth, normalizedConfig, keys, subtitleCenterX);
+        centerSubtitleOnBand(template, [keys.subtitle], keys.subBg); // 只對一般副標；VIP 副標（蝦皮VIP_副標題_右）照上一版（使用者 2026-11-19）
         var vipSubtitleLogoLayer = getLayer(template, keys.vipSubtitleLogo);
         applyBrandTextColors(template, normalizedConfig, {
           yellowSource: keys.subtitle,

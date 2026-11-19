@@ -78,7 +78,8 @@
     // 2026-11-19：蝦皮VIP_主標題_左／右 改回正式公版原值 48（字級表的 46 是暖身 03_DD Card 的數值）。
     // 2026-11-19 使用者目視：主標 VIP 型的副標偏小又偏高 → fontSizes.subtitle 40 蓋掉了 蝦皮VIP_副標題 公版的 44.62（還被往上挪）。
     // 改成不指定副標字級，各型態照自己公版圖層原值（一般／直營 subtitle 40、主標VIP 蝦皮VIP_副標題 44.62、副標VIP 37.16）。
-    fontSizes: { plain: 55, protect: 24, vip: 48, direct: 55, subVip: { protect: 24 } },
+    // 2026-11-19 使用者：副標統一 44.62（一般／直營 公版 40 → 44.62，與主標VIP 型的 蝦皮VIP_副標題 相同；副標VIP 型維持公版 37.16）。
+    fontSizes: { plain: 55, subtitle: 44.62, protect: 24, vip: 48, direct: 55, subVip: { protect: 24 } },
   });
 
   window.__DD_CARD_RULE_VERSION = '2026-08-13b｜正式案01_DD Card｜主標VIP例外（icon白色/LOGO雙形態）＋四型態變體';
